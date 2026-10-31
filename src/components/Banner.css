@@ -1,0 +1,48 @@
+/* Banner. Figma's own description: "Default banners contain lower priority
+   information and should always be dismissible." */
+
+.vv-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: var(--space-12);
+  border-radius: var(--corner-surface);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+.vv-banner--neutral   { background: var(--color-status-neutral-bg);   color: var(--color-status-neutral-fg); }
+.vv-banner--info      { background: var(--color-status-info-bg);      color: var(--color-status-info-fg); }
+.vv-banner--success   { background: var(--color-status-success-bg);   color: var(--color-status-success-fg); }
+.vv-banner--warning   { background: var(--color-status-warning-bg);   color: var(--color-status-warning-fg); }
+.vv-banner--critical  { background: var(--color-status-critical-bg);  color: var(--color-status-critical-fg); }
+
+.vv-banner__icon { flex: none; font-weight: var(--font-weight-medium); }
+
+.vv-banner__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+
+.vv-banner__title { font-weight: var(--font-weight-medium); }
+
+.vv-banner__actions { display: flex; gap: var(--space-8); margin-top: var(--space-4); }
+
+/* The dismiss control inherits the banner's ink so it never becomes the
+   loudest thing in a critical banner. */
+.vv-banner__dismiss {
+  flex: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.vv-banner__dismiss:hover { background: var(--color-surface-tint-hover); }
+
+.vv-banner__dismiss:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

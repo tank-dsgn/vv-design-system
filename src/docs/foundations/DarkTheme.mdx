@@ -1,0 +1,55 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { Button } from "../../components/Button"
+import { Badge } from "../../components/Badge"
+import { Field } from "../../components/Input"
+import { Banner } from "../../components/Banner"
+import { Switch } from "../../components/Switch"
+
+<Meta title="Foundations/Dark theme" />
+
+# Dark theme
+
+Dark is a **mode**, not a second set of tokens. The token names stay the same; only their values
+change under a `.dark` class. No component knows the theme exists — it reads
+`color-surface-primary` and gets whatever the current mode says.
+
+```css
+:root { --color-surface-primary: var(--white); }
+.dark { --color-surface-primary: var(--neutral-950); }
+```
+
+The sun and moon button at the top right switches the whole page.
+
+<Unstyled>
+<div className="vvd vvd-themes">
+  {["light", "dark"].map((mode) => (
+    <div key={mode} className={mode}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <Button>Book shipment</Button>
+        <Button variant="secondary">Save draft</Button>
+        <Button variant="outlined">Cancel</Button>
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <Badge tone="success">Delivered</Badge>
+        <Badge tone="attention">Delayed</Badge>
+        <Badge tone="critical">Failed</Badge>
+        <Badge tone="info">In transit</Badge>
+      </div>
+      <Field label="Order number" placeholder="ORD-0000" size="sm" />
+      <Switch label="Notify the receiver" defaultChecked />
+      <Banner tone="info" title="Rates change on 1 December">Bookings made before then keep the current rate.</Banner>
+    </div>
+  ))}
+</div>
+</Unstyled>
+
+## What changes
+
+- **Surfaces** move to `neutral-950` and `neutral-900` rather than pure black, so raised surfaces can
+  still sit above the page.
+- **Status colours** swap dark text on a pale fill for light text on a dark fill of the same hue.
+- **Accent and status text** move to lighter steps of the same hue — the light-theme links and
+  errors fall below 4.5:1 on a dark ground. Hover on a link goes lighter, not darker.
+- **Disabled fills** go dark, so a disabled button no longer reads as enabled.
+- **Shadows** keep their geometry and get a denser black; at 10% they would vanish.
+- **Chart ramps** flip their anchor: the lowest value sits darkest, closest to the surface.

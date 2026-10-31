@@ -1,0 +1,2 @@
+.vv-header-strip { display: flex; align-items: center; justify-content: center; gap: var(--space-12); min-height: 32px; padding: var(--space-4) var(--space-16); background: var(--color-status-neutral-bg); border-bottom: 1px solid var(--color-border-default); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
+.vv-header-strip p { margin: 0; min-width: 0; }

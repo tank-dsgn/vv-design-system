@@ -1,0 +1,45 @@
+/* Stacked column chart. Specs from the dataviz method: ≤24px columns, 4px
+   rounded data-end, 2px surface gap between segments, hairline solid grid. */
+
+.vv-bar { position: relative; font-family: var(--font-sans); }
+
+.vv-bar__legend {
+  display: flex; flex-wrap: wrap; gap: var(--space-16);
+  list-style: none; margin: 0 0 var(--space-12); padding: 0;
+  font-size: var(--font-size-xs); line-height: var(--line-height-xs);
+  color: var(--color-text-secondary);
+}
+.vv-bar__legend li { display: inline-flex; align-items: center; gap: var(--space-4); }
+.vv-bar__swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+
+.vv-bar__svg { display: block; width: 100%; overflow: visible; }
+.vv-bar__grid { stroke: var(--color-chart-grid); stroke-width: 1; }
+.vv-bar__baseline { stroke: var(--color-chart-axis); stroke-width: 1; }
+.vv-bar__tick,
+.vv-bar__category { fill: var(--color-text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.vv-bar__total { fill: var(--color-text-primary); font-size: 12px; font-weight: var(--font-weight-medium); }
+
+.vv-bar__hit { fill: transparent; cursor: default; outline: none; }
+.vv-bar__column:focus-visible .vv-bar__hit { stroke: var(--color-border-focus); stroke-width: 2; }
+.vv-bar__column--dim .vv-bar__segment { opacity: 0.45; }
+
+.vv-bar__tooltip {
+  position: absolute; z-index: 1; pointer-events: none; min-width: 160px;
+  padding: var(--space-8) var(--space-12);
+  background: var(--color-surface-raised); color: var(--color-text-primary);
+  border: 1px solid var(--color-border-default); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  font-size: var(--font-size-xs); line-height: var(--line-height-xs);
+  transform: translate(-50%, calc(-100% - 8px));
+}
+.vv-bar__tooltip-title { font-weight: var(--font-weight-medium); margin-bottom: var(--space-4); }
+.vv-bar__tooltip-row { display: flex; align-items: center; gap: var(--space-8); }
+.vv-bar__tooltip-key { width: 10px; height: 2px; flex: none; }
+.vv-bar__tooltip-value { margin-left: auto; font-weight: var(--font-weight-medium); font-variant-numeric: tabular-nums; }
+.vv-bar__tooltip-label { color: var(--color-text-secondary); }
+
+.vv-bar__table-toggle { margin-top: var(--space-8); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .vv-bar__segment { transition: opacity var(--duration-fast); }
+}

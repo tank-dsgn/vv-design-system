@@ -1,0 +1,5 @@
+.vv-explainer { padding: var(--space-16); border-radius: var(--corner-surface); background: var(--color-status-neutral-bg); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
+.vv-explainer h3 { margin: 0 0 var(--space-4); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-semibold); }
+.vv-explainer ol { margin: var(--space-8) 0 0; padding-left: var(--space-20); }
+.vv-explainer li + li { margin-top: var(--space-4); }
+.vv-explainer__link { margin: var(--space-8) 0 0; }

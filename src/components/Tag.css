@@ -1,0 +1,67 @@
+/* Tag. A neutral chip; the remove control is its own button with its own
+   hover and focus, so it can be reached and announced separately. */
+.vv-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--color-status-neutral-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.vv-tag__main {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 100%;
+  min-width: 0;
+  padding: 0 var(--space-8);
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+.vv-tag--removable .vv-tag__main { padding-right: var(--space-2); }
+.vv-tag__label { overflow: hidden; text-overflow: ellipsis; }
+.vv-tag__icon { display: inline-flex; }
+.vv-tag__icon svg { width: 12px; height: 12px; }
+
+button.vv-tag__main { cursor: pointer; transition: background-color var(--duration-fast); }
+button.vv-tag__main:hover:not(:disabled) { background: var(--color-surface-tint-hover); }
+
+.vv-tag__remove {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: var(--space-2);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color var(--duration-fast), color var(--duration-fast);
+}
+.vv-tag__remove:hover:not(:disabled) { background: var(--color-surface-tint-hover); color: var(--color-text-primary); }
+
+.vv-tag__main:focus-visible,
+.vv-tag__remove:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 1px;
+}
+
+.vv-tag--disabled { color: var(--color-text-disabled); }
+.vv-tag--disabled .vv-tag__remove,
+.vv-tag--disabled button.vv-tag__main { cursor: not-allowed; color: var(--color-text-disabled); }
+
+@media (prefers-reduced-motion: reduce) {
+  button.vv-tag__main, .vv-tag__remove { transition: none; }
+}

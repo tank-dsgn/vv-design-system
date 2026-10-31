@@ -1,0 +1,44 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { FontFamilies, LeadingScale, Rules, FontSizeScale, TrackingScale, TypeScale, WeightScale } from "../blocks"
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+One family, **Inter**, on Tailwind's type scale. Hierarchy comes from size and weight, never from colour or a
+second typeface. Change the font once, in `--font-sans`.
+
+## Families
+
+<Unstyled><FontFamilies /></Unstyled>
+
+## Text styles
+
+<Unstyled><TypeScale /></Unstyled>
+
+## Weights
+
+<Unstyled><WeightScale /></Unstyled>
+
+<Unstyled>
+<Rules items={[
+  { kind: "do", title: "step weight before size", text: "To lift a label inside body text, go from regular to medium. A new size is a new level of hierarchy." },
+  { kind: "dont", title: "invent a size", text: "15px or 18px may look close enough on one screen; across a product they become noise. Use the nearest step." },
+]} />
+</Unstyled>
+
+## Sizes
+
+Tailwind's whole scale, each size with its line height.
+
+<Unstyled><FontSizeScale /></Unstyled>
+
+## Line height
+
+For running text, as a multiple of the size.
+
+<Unstyled><LeadingScale /></Unstyled>
+
+## Letter spacing
+
+<Unstyled><TrackingScale /></Unstyled>

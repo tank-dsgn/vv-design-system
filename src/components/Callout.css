@@ -1,0 +1,10 @@
+/* Callout. A flat tint from the status scale; the icon carries the tone with
+   the words, never colour alone. */
+.vv-callout { display: flex; gap: var(--space-12); padding: var(--space-16); border-radius: var(--corner-surface); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
+.vv-callout--note { background: var(--color-status-neutral-bg); }
+.vv-callout--tip { background: var(--color-status-info-bg); }
+.vv-callout--warning { background: var(--color-status-attention-bg); }
+.vv-callout__icon { display: inline-flex; flex: none; }
+.vv-callout__title { margin: 0 0 var(--space-4); font-weight: var(--font-weight-semibold); }
+.vv-callout__body > :first-child { margin-top: 0; }
+.vv-callout__body > :last-child { margin-bottom: 0; }

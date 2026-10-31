@@ -1,0 +1,35 @@
+/* Avatar. Sizes 24/32/40/48 — the same steps the controls use. */
+
+.vv-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-on-tone);
+  user-select: none;
+}
+
+.vv-avatar--xs { width: var(--size-avatar-xs); height: var(--size-avatar-xs); font-size: 10px; }
+.vv-avatar--sm { width: var(--size-avatar-sm); height: var(--size-avatar-sm); font-size: 12px; }
+.vv-avatar--md { width: var(--size-avatar-md); height: var(--size-avatar-md); font-size: var(--font-size-sm); }
+.vv-avatar--lg { width: var(--size-avatar-lg); height: var(--size-avatar-lg); font-size: 18px; }
+
+/* Tones. Figma models these as component variants (2 Blue, 3 MAngeta…), so the
+   colour is baked into the variant. Here tone is a prop and the colours live
+   in tokens. */
+.vv-avatar--neutral { background: var(--color-tone-neutral); }
+.vv-avatar--blue    { background: var(--color-tone-blue); }
+.vv-avatar--magenta { background: var(--color-tone-magenta); }
+.vv-avatar--orange  { background: var(--color-tone-orange); }
+.vv-avatar--purple  { background: var(--color-tone-purple); }
+.vv-avatar--green   { background: var(--color-tone-green); }
+.vv-avatar--red     { background: var(--color-tone-red); }
+
+/* Shape. The second Avatar in the file spells the round one "cirkle". */
+.vv-avatar--circle { border-radius: var(--radius-full); }
+.vv-avatar--rounded { border-radius: var(--radius-lg); }
+
+.vv-avatar__image { width: 100%; height: 100%; object-fit: cover; }

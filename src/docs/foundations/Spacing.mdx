@@ -1,0 +1,27 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { SpaceScale, SizeScale, Rules } from "../blocks"
+
+<Meta title="Foundations/Spacing & Size" />
+
+# Spacing & Size
+
+The token number is the size in pixels: `space-16` is 16px, `space-40` is 40px. The steps come from Tailwind's spacing scale, without the ones off the 4px grid.
+
+## Spacing scale
+
+<Unstyled><SpaceScale /></Unstyled>
+
+<Unstyled>
+<Rules items={[
+  { kind: "do", title: "separate with space first", text: "Group related items with a smaller gap and separate groups with a larger one. Reach for a divider only when space is not enough." },
+  { kind: "dont", title: "use an off-grid value", text: "13px or 18px breaks the rhythm. Snap to the nearest step." },
+]} />
+</Unstyled>
+
+## Control heights
+
+Buttons, inputs, selects and icon buttons share four heights, so any of them line up in a row.
+`size-control-sm` (32px) is the default for dense product UI; `md` (40px) for forms;
+`lg` (48px) for touch-first screens.
+
+<Unstyled><SizeScale /></Unstyled>

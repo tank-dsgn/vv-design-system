@@ -1,0 +1,172 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+<meta name="description" content="VV Foundations — design system: tokens, components and patterns, light and dark." />
+<style>
+  /* Registered so the menu's width can animate. */
+  @property --nav-width { syntax: "<length>"; inherits: true; initial-value: 0px; }
+  /* The site header sits above Storybook. Its colours, brand included, mirror the tokens: the
+     manager is a separate page and cannot read tokens.css. */
+  :root { --vv-h: 56px; --vv-bg: #ffffff; --vv-fg: #0a0a0a; --vv-muted: #525252; --vv-line: #e5e5e5; --vv-hover: #fafafa; --vv-current: #f5f5f5; --vv-ring: #8b5cf6; --vv-brand: #6d28d9; --vv-active-bg: #ede9fe; --vv-active-fg: #5b21b6; --vv-brand-hover: #a78bfa; }
+  :root[data-vv-theme="dark"] { --vv-bg: #0a0a0a; --vv-fg: #fafafa; --vv-muted: #a3a3a3; --vv-line: #262626; --vv-hover: #171717; --vv-current: #262626; --vv-ring: #a78bfa; --vv-brand: #a78bfa; --vv-active-bg: #2e1065; --vv-active-fg: #ddd6fe; --vv-brand-hover: #c4b5fd; }
+  #vv-header { position: fixed; inset: 0 0 auto 0; height: var(--vv-h); z-index: 100; }
+  #root { position: fixed !important; inset: var(--vv-h) 0 0 0 !important; width: auto !important; height: auto !important; }
+  #root > div { height: 100% !important; }
+  .vv-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; height: 100%; padding: 0 20px; box-sizing: border-box; background: var(--vv-bg); color: var(--vv-fg); border-bottom: 1px solid var(--vv-line); font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 20px; }
+  .vv-header a, .vv-header button { color: inherit; text-decoration: none; }
+  .vv-header a:focus-visible, .vv-header button:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: 2px; }
+  .vv-header__logo { justify-self: start; display: inline-flex; align-items: baseline; gap: 0; border-radius: 8px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+  .vv-header__logo span { color: var(--vv-brand); font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  /* The wordmark stays folded and rolls out on hover, where a pointer can hover. */
+  .vv-header__logo small { display: none; color: var(--vv-muted); font-size: 14px; line-height: 20px; font-weight: 500; white-space: nowrap; }
+  @media (hover: hover) and (min-width: 600px) {
+    .vv-header__logo small { display: block; max-width: 0; margin-left: 0; overflow: hidden; opacity: 0; transition: max-width 200ms ease-out, margin-left 200ms ease-out, opacity 200ms ease-out; }
+    .vv-header__logo:hover small, .vv-header__logo:focus-visible small { max-width: 110px; margin-left: 6px; opacity: 1; }
+  }
+  .vv-header__nav { align-self: stretch; display: flex; gap: 4px; min-width: 0; }
+  /* A link fills the header's height so its bar can sit on the bottom edge. The hidden
+     bold copy of the label keeps the width steady. */
+  .vv-header__nav a { position: relative; display: inline-flex; align-items: center; padding: 0 12px; color: var(--vv-muted); font-weight: 500; transition: color 150ms; }
+  .vv-header__nav a:focus-visible { outline: none; }
+  .vv-header__nav a:focus-visible .vv-header__label { outline: 2px solid var(--vv-ring); outline-offset: 4px; border-radius: 4px; }
+  .vv-header__label::after { content: attr(data-label); display: block; height: 0; overflow: hidden; visibility: hidden; font-weight: 600; }
+  .vv-header__nav a:hover { color: var(--vv-brand-hover); }
+  .vv-header__nav a[aria-current="page"] { color: var(--vv-brand); font-weight: 600; }
+  .vv-header__nav a[aria-current="page"]::after { content: ""; position: absolute; inset: auto 0 -1px; height: 2px; background: var(--vv-brand); }
+  .vv-header__theme { justify-self: end; display: inline-grid; place-items: center; flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 8px; background: none; cursor: pointer; transition: background-color 150ms; }
+  .vv-header .vv-header__theme { color: var(--vv-brand); }
+  .vv-header .vv-header__theme:hover { color: var(--vv-brand-hover); background: none; }
+  /* The sidebar lists the open section only. This is CSS, not Storybook's
+     filter: the filter would also limit search to that section. */
+  :root:not([data-vv-section="foundations"]) #storybook-explorer-menu [data-item-id^="foundations"],
+  :root:not([data-vv-section="components"]) #storybook-explorer-menu [data-item-id^="components"] { display: none !important; }
+  /* The sidebar's states match the header's: quiet text, a lighter fill on
+     hover, a stronger one on the current item. Storybook hardcodes a blue hover and an
+     orange, blue or green icon per node type. */
+  #storybook-explorer-menu [data-item-id] { color: var(--vv-muted); }
+  #storybook-explorer-menu [data-item-id] > a, #storybook-explorer-menu a[data-item-id], #storybook-explorer-menu button[data-item-id] { color: inherit !important; font-weight: 400; }
+  #storybook-explorer-menu [data-item-id]:hover, #storybook-explorer-menu [data-item-id]:focus-within { background: var(--vv-hover) !important; color: var(--vv-fg) !important; }
+  #storybook-explorer-menu [data-item-id][data-selected="true"] { background: var(--vv-active-bg) !important; color: var(--vv-active-fg) !important; }
+  #storybook-explorer-menu [data-item-id][data-selected="true"], #storybook-explorer-menu [data-item-id][data-selected="true"] > a { color: var(--vv-active-fg) !important; font-weight: 600 !important; }
+  #storybook-explorer-menu [data-item-id] svg { color: currentColor !important; }
+  #storybook-explorer-menu a:focus-visible, #storybook-explorer-menu button:focus-visible { outline: 2px solid var(--vv-ring) !important; outline-offset: -2px; box-shadow: none !important; }
+  #storybook-explorer-menu [data-nodetype="group"] > button, #storybook-explorer-menu button[data-nodetype="group"] { color: var(--vv-fg) !important; font-weight: 600 !important; }
+  /* Search, laid out like Figma's Find (.storybook/search.tsx). The native field stays
+     mounted but hidden; the tree steps aside while search is open. */
+  form:has(> .search-field), .search-field { display: none !important; }
+  :root[data-vv-find="open"] #storybook-explorer-tree { display: none !important; }
+  :root { --vv-find-fill: #f5f5f5; --vv-find-on-bg: #ede9fe; --vv-find-on-fg: #6d28d9; }
+  :root[data-vv-theme="dark"] { --vv-find-fill: #262626; --vv-find-on-bg: #2e1065; --vv-find-on-fg: #a78bfa; }
+  #vv-find { width: 100%; align-self: stretch; }
+  .vv-find { color: var(--vv-fg); font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 12px; }
+  .vv-find__bar { display: flex; align-items: center; gap: 2px; }
+  .vv-find__field { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; border-radius: 6px; background: var(--vv-find-fill); color: var(--vv-muted); cursor: text; }
+  .vv-find__field:focus-within { box-shadow: inset 0 0 0 2px var(--vv-ring); }
+  .vv-find__field svg { flex: none; }
+  .vv-find__field input { flex: 1; min-width: 0; padding: 0; border: 0; outline: 0; background: none; color: var(--vv-fg); font: inherit; }
+  .vv-find__field input::placeholder { color: var(--vv-muted); opacity: 1; }
+  .vv-find__icon { flex: none; display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 6px; background: none; color: var(--vv-fg); cursor: pointer; }
+  .vv-find__icon:hover { background: var(--vv-current); }
+  .vv-find__icon[data-on] { background: var(--vv-find-on-bg); color: var(--vv-find-on-fg); }
+  .vv-find__icon[data-hidden] { visibility: hidden; }
+  .vv-find__icon:focus-visible, .vv-find__status button:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; }
+  .vv-find__status { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 8px; border-top: 0; color: var(--vv-fg); }
+  .vv-find__status button { display: inline-flex; align-items: center; gap: 2px; height: 24px; padding: 0 4px; border: 0; border-radius: 4px; background: none; color: inherit; font: inherit; cursor: pointer; }
+  .vv-find__status button:hover { background: var(--vv-current); }
+  .vv-find__results { list-style: none; margin: 4px 0 0; padding: 0; }
+  .vv-find__results li { display: flex; gap: 8px; padding: 6px 8px; border-radius: 6px; color: var(--vv-muted); cursor: pointer; }
+  .vv-find__results li svg { flex: none; margin-top: 2px; }
+  .vv-find__results li[aria-selected="true"] { background: var(--vv-active-bg); color: var(--vv-active-fg); }
+  .vv-find__results li[aria-selected="true"] .vv-find__label, .vv-find__results li[aria-selected="true"] .vv-find__label b { color: var(--vv-active-fg); }
+  .vv-find__results li[aria-selected="true"] .vv-find__path { color: inherit; }
+  .vv-find__label, .vv-find__path { display: block; }
+  .vv-find__label { color: var(--vv-fg); }
+  .vv-find__label b { font-weight: 600; color: var(--vv-brand); }
+  .vv-find__path { font-size: 12px; line-height: 16px; }
+  .vv-find-menu { position: fixed; z-index: 200; min-width: 200px; padding: 0; border-radius: 12px; background: #1e1e1e; color: #ffffff; box-shadow: 0 8px 24px rgb(0 0 0 / 0.25); font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 20px; }
+  .vv-find-menu__group { padding: 8px; }
+  .vv-find-menu__group + .vv-find-menu__group { border-top: 1px solid #383838; }
+  .vv-find-menu button { display: flex; align-items: center; gap: 8px; width: 100%; height: 32px; padding: 0 8px 0 4px; border: 0; border-radius: 6px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  .vv-find-menu button:hover, .vv-find-menu button:focus-visible { outline: 0; background: #7c3aed; }
+  .vv-find-menu__check { display: inline-grid; place-items: center; width: 16px; height: 16px; flex: none; }
+  /* The header replaces the sidebar's logo and its section heading. */
+  .sidebar-header, .sidebar-subheading { display: none !important; }
+  /* No drag handle: dragged to the edge, Storybook unmounts the sidebar for good. */
+  [aria-label="Sidebar resize handle"] { display: none !important; }
+  /* The menu folded to its icon rail (.storybook/rail.tsx). The full sidebar is hidden, not
+     just narrowed, so Tab skips it. */
+  @media (min-width: 600px) {
+    :root[data-vv-nav="closed"] #root > div { --nav-width: 56px !important; }
+    :root[data-vv-nav="closed"] .sidebar-container, :root[data-vv-nav="closed"] #storybook-explorer-menu { visibility: hidden; }
+    :root[data-vv-nav-moving] #root > div { transition: --nav-width 240ms ease-out; }
+    :root[data-vv-nav="closed"][data-vv-nav-moving] .sidebar-container { transition: visibility 0s linear 240ms; }
+  }
+  @media (prefers-reduced-motion: reduce) { :root[data-vv-nav-moving] #root > div { transition: none; } }
+  /* Docs pages have no toolbar: it only serves stories. */
+  :root[data-vv-view="docs"] #storybook-preview-wrapper section.sb-bar, :root[data-vv-view="docs"] section.sb-bar { display: none !important; }
+  #vv-rail { position: fixed; top: var(--vv-h); left: 0; bottom: 0; z-index: 50; display: flex; flex-direction: column; width: 56px; box-sizing: border-box; padding: 16px 8px; border-right: 1px solid var(--vv-line); background: var(--vv-bg); color: var(--vv-muted); animation: vv-rail-in 240ms ease-out; }
+  @keyframes vv-rail-in { from { opacity: 0; } }
+  .vv-rail__top, .vv-rail__items { display: flex; flex-direction: column; gap: 4px; }
+  .vv-rail__top { padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--vv-line); }
+  .vv-rail__items { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+  #vv-rail a, #vv-rail button { flex: none; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 8px; background: none; color: inherit; cursor: pointer; }
+  #vv-rail a:hover, #vv-rail button:hover { background: var(--vv-hover); color: var(--vv-fg); }
+  #vv-rail [aria-current="page"], #vv-rail [data-current], #vv-rail [aria-expanded="true"] { background: var(--vv-active-bg); color: var(--vv-active-fg); }
+  #vv-rail a:focus-visible, #vv-rail button:focus-visible, .vv-rail__fly a:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; }
+  .vv-rail__tip { position: fixed; left: 60px; z-index: 210; transform: translateY(-50%); padding: 4px 8px; border-radius: 6px; background: #1e1e1e; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 12px; line-height: 16px; white-space: nowrap; pointer-events: none; }
+  .vv-rail__fly { position: fixed; left: 60px; z-index: 210; display: flex; flex-direction: column; width: 220px; max-height: 400px; box-sizing: border-box; overflow-y: auto; padding: 8px; border-radius: 12px; background: #1e1e1e; color: #ffffff; box-shadow: 0 8px 24px rgb(0 0 0 / 0.25); font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 20px; }
+  .vv-rail__fly p { margin: 0; padding: 6px 8px; color: #a3a3a3; font-size: 12px; line-height: 16px; }
+  .vv-rail__fly a { flex: none; display: flex; align-items: center; height: 32px; padding: 0 8px; border-radius: 6px; color: inherit; text-decoration: none; }
+  .vv-rail__fly a:hover, .vv-rail__fly a:focus-visible { background: #7c3aed; }
+  .vv-rail__fly a[aria-current="page"] { font-weight: 600; }
+  @media (max-width: 599px) { #vv-rail, .vv-rail__tip, .vv-rail__fly { display: none; } }
+  @media (prefers-reduced-motion: reduce) { #vv-rail { animation: none; } }
+  /* Phone: the logo and the burger. Everything else moves into the panel. */
+  .vv-burger, .vv-drawer, .vv-drawer__scrim { display: none; }
+  @media (max-width: 599px) {
+    .vv-header { grid-template-columns: 1fr auto; padding: 0 16px; }
+    .vv-header__nav, .vv-header .vv-header__theme { display: none; }
+    section:has(> header.sb-bar button[aria-label="Open navigation menu"]) { display: none !important; }
+    .vv-header .vv-burger { position: relative; display: block; width: 44px; height: 44px; margin-right: -10px; padding: 0; border: 0; border-radius: 8px; background: none; color: var(--vv-brand); cursor: pointer; }
+    .vv-burger span { position: absolute; left: 12px; width: 20px; height: 2px; border-radius: 999px; background: currentColor; transition: transform 200ms ease-out, opacity 200ms ease-out; }
+    .vv-burger span:nth-child(1) { top: 14px; }
+    .vv-burger span:nth-child(2) { top: 21px; }
+    .vv-burger span:nth-child(3) { top: 28px; }
+    .vv-burger[data-open] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .vv-burger[data-open] span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+    .vv-burger[data-open] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .vv-header .vv-burger:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; }
+    .vv-drawer__scrim { display: block; position: fixed; inset: var(--vv-h) 0 0 0; z-index: 90; background: rgb(0 0 0 / 0.4); opacity: 0; visibility: hidden; transition: opacity 240ms ease-out, visibility 0s linear 240ms; }
+    .vv-drawer__scrim[data-open] { opacity: 1; visibility: visible; transition: opacity 240ms ease-out; }
+    .vv-drawer { display: flex; flex-direction: column; position: fixed; top: var(--vv-h); right: 0; bottom: 0; z-index: 91; width: min(320px, 86vw); box-sizing: border-box; background: var(--vv-bg); border-left: 1px solid var(--vv-line); color: var(--vv-fg); font-size: 16px; line-height: 24px; transform: translateX(100%); visibility: hidden; transition: transform 240ms ease-out, visibility 0s linear 240ms; }
+    .vv-drawer[data-open] { transform: none; visibility: visible; transition: transform 240ms ease-out; }
+    .vv-drawer__body { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 16px 16px; }
+    .vv-drawer a, .vv-drawer summary { display: flex; align-items: center; min-height: 44px; box-sizing: border-box; color: var(--vv-muted); text-decoration: none; cursor: pointer; }
+    .vv-drawer a:focus-visible, .vv-drawer summary:focus-visible, .vv-drawer button:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; border-radius: 6px; }
+    .vv-drawer__sections { display: flex; gap: 24px; border-bottom: 1px solid var(--vv-line); }
+    .vv-drawer__sections a { position: relative; font-weight: 500; }
+    .vv-drawer__sections a[data-tab] { color: var(--vv-brand); font-weight: 600; }
+    .vv-drawer__sections a[data-tab]::after { content: ""; position: absolute; inset: auto 0 -1px; height: 2px; background: var(--vv-brand); }
+    .vv-drawer__find { display: flex; align-items: center; gap: 8px; height: 40px; margin: 12px 0 8px; padding: 0 12px; border-radius: 6px; background: var(--vv-find-fill); color: var(--vv-muted); }
+    .vv-drawer__find:focus-within { box-shadow: inset 0 0 0 2px var(--vv-ring); }
+    .vv-drawer__find svg { flex: none; }
+    .vv-drawer__find input { flex: 1; min-width: 0; padding: 0; border: 0; outline: 0; background: none; color: var(--vv-fg); font: inherit; }
+    .vv-drawer__find input::placeholder { color: var(--vv-muted); opacity: 1; }
+    .vv-drawer__pages a[aria-current="page"] { margin: 0 -8px; padding-left: 8px; border-radius: 6px; background: var(--vv-active-bg); color: var(--vv-active-fg); font-weight: 600; }
+    .vv-drawer__pages details a { padding-left: 16px; }
+    .vv-drawer__pages summary { justify-content: space-between; color: var(--vv-fg); font-weight: 600; list-style: none; }
+    .vv-drawer__pages summary::-webkit-details-marker { display: none; }
+    .vv-drawer__pages summary::after { content: ""; width: 7px; height: 7px; margin-right: 4px; border-right: 1.5px solid var(--vv-muted); border-bottom: 1.5px solid var(--vv-muted); transform: rotate(45deg); }
+    .vv-drawer__pages details[open] > summary::after { transform: rotate(-135deg); }
+    .vv-drawer__pages p { margin: 12px 0; color: var(--vv-muted); }
+    .vv-drawer__theme { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--vv-line); }
+    .vv-drawer__theme > div { display: flex; padding: 2px; border-radius: 8px; background: var(--vv-find-fill); }
+    .vv-drawer__theme button { height: 36px; padding: 0 12px; border: 0; border-radius: 6px; background: none; color: var(--vv-muted); font: inherit; font-size: 14px; cursor: pointer; }
+    .vv-drawer__theme button[aria-pressed="true"] { background: var(--vv-active-bg); color: var(--vv-active-fg); font-weight: 600; }
+  }
+  @media (prefers-reduced-motion: reduce) { .vv-header *, .vv-burger span, .vv-drawer, .vv-drawer__scrim { transition: none !important; } }
+</style>
+<script>
+  document.title = "VV Foundations"
+</script>

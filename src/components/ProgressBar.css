@@ -1,0 +1,39 @@
+/* Progress bar. Not in the Figma file — see MAPPING.md §10. */
+
+.vv-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--color-text-primary);
+  min-width: 0;
+}
+
+.vv-progress__value {
+  flex: none;
+  min-width: 4ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.vv-progress__track {
+  flex: 1;
+  min-width: 64px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-subtle);
+  overflow: hidden;
+}
+
+.vv-progress__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-accent);
+  transition: width var(--duration-fast);
+}
+
+.vv-progress--complete .vv-progress__fill { background: var(--color-status-success-strong-bg); }
+
+@media (prefers-reduced-motion: reduce) { .vv-progress__fill { transition: none; } }

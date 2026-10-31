@@ -1,0 +1,102 @@
+/* Button. No raw values — semantic tokens only.
+   Check against SPEC.md: switch tokens.css off and the component must fall apart. */
+
+.vv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: var(--font-weight-medium);
+
+  border: 1px solid transparent;
+  border-radius: var(--corner-control);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast),
+    border-color var(--duration-fast),
+    color var(--duration-fast);
+}
+
+/* One ring for every variant, as SPEC.md §5 requires.
+   :focus-visible, not :focus, so the ring does not appear on a mouse click. */
+.vv-button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Sizes. Horizontal padding comes from the same spacing tokens. */
+.vv-button--xs { height: var(--size-control-xs); padding: 0 var(--space-8); }
+.vv-button--sm { height: var(--size-control-sm); padding: 0 var(--space-8); }
+.vv-button--md { height: var(--size-control-md); padding: 0 var(--space-12); }
+.vv-button--lg { height: var(--size-control-lg); padding: 0 var(--space-12); }
+
+/* --- primary --- */
+.vv-button--primary { background: var(--color-button-bg-primary); color: var(--color-text-on-accent); }
+.vv-button--primary:hover:not(:disabled) { background: var(--color-button-bg-primary-hover); }
+.vv-button--primary:active:not(:disabled) { background: var(--color-button-bg-primary-pressed); }
+.vv-button--primary:disabled { background: var(--color-button-bg-primary-disabled); }
+
+/* --- secondary --- */
+.vv-button--secondary { background: var(--color-button-bg-secondary); color: var(--color-text-primary); }
+.vv-button--secondary:hover:not(:disabled) { background: var(--color-button-bg-secondary-hover); }
+.vv-button--secondary:active:not(:disabled) { background: var(--color-button-bg-secondary-pressed); }
+.vv-button--secondary:disabled { background: var(--color-button-bg-secondary-disabled); color: var(--color-text-disabled); }
+
+/* --- destructive --- */
+.vv-button--destructive { background: var(--color-button-bg-danger); color: var(--color-text-on-accent); }
+.vv-button--destructive:hover:not(:disabled) { background: var(--color-button-bg-danger-hover); }
+.vv-button--destructive:active:not(:disabled) { background: var(--color-button-bg-danger-pressed); }
+.vv-button--destructive:disabled { background: var(--color-button-bg-danger-disabled); }
+
+/* --- outlined --- */
+.vv-button--outlined {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+.vv-button--outlined:hover:not(:disabled) { border-color: var(--color-border-hover); }
+.vv-button--outlined:disabled { border-color: var(--color-border-disabled); color: var(--color-text-disabled); }
+
+/* --- ghost --- */
+.vv-button--ghost { background: transparent; color: var(--color-text-primary); }
+.vv-button--ghost:hover:not(:disabled) { background: var(--color-button-bg-secondary-hover); }
+.vv-button--ghost:active:not(:disabled) { background: var(--color-button-bg-secondary-pressed); }
+.vv-button--ghost:disabled { color: var(--color-text-disabled); }
+
+/* --- link --- */
+.vv-button--link {
+  background: transparent;
+  color: var(--color-text-accent);
+  text-decoration: underline;
+  padding-inline: 0;
+}
+.vv-button--link:hover:not(:disabled) { color: var(--color-text-accent-hover); }
+.vv-button--link:active:not(:disabled) { color: var(--color-text-accent-pressed); }
+.vv-button--link:disabled { color: var(--color-text-accent-disabled); }
+
+/* disabled and loading cancel hover/pressed — SPEC.md, combination rule */
+.vv-button:disabled { cursor: not-allowed; }
+
+/* Spinner for state=loading */
+.vv-button__spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: vv-spin var(--duration-spin) linear infinite;
+}
+
+@keyframes vv-spin { to { transform: rotate(360deg); } }
+
+/* Respect the system setting: without this, "loading" keeps spinning for
+   people who must not see motion. */
+@media (prefers-reduced-motion: reduce) {
+  .vv-button__spinner { animation-duration: var(--duration-spin-reduced); }
+  .vv-button { transition: none; }
+}

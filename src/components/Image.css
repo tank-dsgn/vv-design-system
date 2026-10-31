@@ -1,0 +1,9 @@
+.vv-image { position: relative; width: 100%; overflow: hidden; background: var(--color-surface-sunken); }
+.vv-image img { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity var(--duration-moderate) var(--ease-out); }
+.vv-image[data-loaded] img { opacity: 1; }
+.vv-image--r-md { border-radius: var(--radius-lg); }
+.vv-image--r-lg { border-radius: var(--radius-xl); }
+.vv-image__fallback { position: absolute; inset: 0; display: grid; place-items: center; color: var(--color-text-muted); }
+.vv-image__figure { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
+.vv-image__figure figcaption { font-family: var(--font-sans); font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-muted); }
+@media (prefers-reduced-motion: reduce) { .vv-image img { transition: none; } }

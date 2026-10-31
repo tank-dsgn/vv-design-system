@@ -1,0 +1,115 @@
+/* Input. No raw values — semantic tokens only.
+   Check: switch tokens.css off and the component must fall apart. */
+
+.vv-input {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+
+  background: var(--color-surface-input);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--corner-control);
+  padding-inline: var(--space-12);
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--color-text-primary);
+
+  transition: border-color var(--duration-fast);
+}
+
+/* No Figma variant shows hover, yet Border/Hover exists in the file and Input
+   references it. The state was intended — so it is drawn here. */
+.vv-input:hover:not(.vv-input--disabled):not(:focus-within) {
+  border-color: var(--color-border-hover);
+}
+
+/* Focus sits on the WRAPPER, not the <input>. A field in focus wears the brand
+   on its own border, drawn inward so nothing shifts, with no outer ring: that is
+   for controls reached by keyboard. It must enclose the whole field, icon and
+   suffix included. Button focuses the button itself — it has no wrapper. Same ring
+   either way, as SPEC.md §5 requires. */
+.vv-input:focus-within {
+  border-color: var(--color-border-focus);
+  box-shadow: inset 0 0 0 1px var(--color-border-focus);
+}
+.vv-input--invalid:focus-within {
+  border-color: var(--color-border-danger);
+  box-shadow: inset 0 0 0 1px var(--color-border-danger);
+}
+
+/* The input itself has no border — the wrapper carries it. */
+.vv-input__field {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+}
+
+.vv-input__field::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Icon and affixes are muted so they do not compete with the entered value. */
+.vv-input__icon,
+.vv-input__affix {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Heights. Four, not two: SPEC.md requires one scale shared with Button, or a
+   field and a button side by side in a form will not line up. 24 and 48 are
+   our extension. */
+.vv-input--xs { height: var(--size-control-xs); }
+.vv-input--sm { height: var(--size-control-sm); }
+.vv-input--md { height: var(--size-control-md); }
+.vv-input--lg { height: var(--size-control-lg); }
+
+/* State=Error. A flag rather than a state: an error combines with any field
+   content. */
+.vv-input--invalid {
+  border-color: var(--color-border-danger);
+}
+.vv-input--invalid:hover:not(.vv-input--disabled):not(:focus-within) {
+  border-color: var(--color-border-danger);
+}
+
+/* Disabled cancels hover — SPEC.md's combination rule. */
+.vv-input--disabled {
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+.vv-input--disabled .vv-input__field,
+.vv-input--disabled .vv-input__icon,
+.vv-input--disabled .vv-input__affix {
+  color: var(--color-text-faint);
+  cursor: not-allowed;
+}
+
+/* Field wrapper: label, hint, error. Figma has none of it — only the field
+   itself is drawn. Built from SPEC.md's FormField molecule. */
+.vv-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+.vv-field__label { color: var(--color-text-primary); }
+.vv-field__hint { color: var(--color-text-muted); }
+.vv-field__error { color: var(--color-text-danger); }
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-input { transition: none; }
+}

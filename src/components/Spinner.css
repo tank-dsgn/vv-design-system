@@ -1,0 +1,20 @@
+/* Spinner. Figma spells the animation out as keyframes (Keyframe=1|2|3) —
+   in code it is one CSS animation. */
+
+.vv-spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: vv-spinner-spin var(--duration-spin) linear infinite;
+}
+
+.vv-spinner--sm { width: 20px; height: 20px; }
+.vv-spinner--lg { width: 44px; height: 44px; border-width: 3px; }
+
+@keyframes vv-spinner-spin { to { transform: rotate(360deg); } }
+
+/* Slowed down, not stopped: a frozen spinner reads as "it hung". */
+@media (prefers-reduced-motion: reduce) {
+  .vv-spinner { animation-duration: var(--duration-spin-reduced); }
+}

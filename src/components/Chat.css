@@ -1,0 +1,37 @@
+/* Chat. Not in the Figma file — built for the assistant screens. */
+
+.vv-chat-msg { display: flex; flex-direction: column; gap: var(--space-8); font-family: var(--font-sans); }
+.vv-chat-msg__meta {
+  display: flex; align-items: baseline; gap: var(--space-12);
+  font-size: var(--font-size-sm); line-height: var(--line-height-sm);
+}
+.vv-chat-msg__author { font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+.vv-chat-msg__time { margin-left: auto; color: var(--color-text-muted); }
+
+.vv-chat-msg--user { align-items: flex-end; }
+.vv-chat-msg--user .vv-chat-msg__meta { width: 100%; max-width: 480px; }
+.vv-chat-msg--user .vv-chat-msg__body {
+  max-width: 480px; padding: var(--space-8) var(--space-12);
+  background: var(--color-surface-subtle); border-radius: var(--corner-surface);
+  color: var(--color-text-primary);
+}
+
+.vv-chat-msg--assistant { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: var(--space-12); row-gap: var(--space-8); }
+.vv-chat-msg--assistant .vv-chat-msg__avatar { grid-row: 1 / span 2; }
+.vv-chat-msg--assistant .vv-chat-msg__body {
+  padding: var(--space-12); min-width: 0;
+  background: var(--color-surface-raised); border: 1px solid var(--color-border-default); border-radius: var(--corner-surface);
+  color: var(--color-text-primary); font-size: var(--font-size-sm); line-height: var(--line-height-sm);
+}
+.vv-chat-msg__actions { grid-column: 2; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-8); }
+
+.vv-chat-composer {
+  display: flex; align-items: center; gap: var(--space-8);
+  font-family: var(--font-sans);
+}
+.vv-chat-composer__field { flex: 1; min-width: 0; }
+
+.vv-chat-typing {
+  display: inline-flex; align-items: center; gap: var(--space-8);
+  color: var(--color-text-secondary); font-family: var(--font-sans); font-size: var(--font-size-sm);
+}

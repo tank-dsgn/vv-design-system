@@ -1,0 +1,22 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { TokenList } from "../blocks"
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Motion confirms a change of state — a hover, a menu opening, a toast arriving. Nothing moves
+on its own, nothing loops except a loading spinner, and nothing scrolls into view for effect.
+
+<Unstyled><TokenList prefix="--duration-" /></Unstyled>
+<Unstyled><TokenList prefix="--ease-" /></Unstyled>
+
+- **Fast (150ms)** — colour and border changes on hover and press.
+- **Moderate (250ms)** — overlays entering: menus, tooltips, toasts.
+- Transitions name their properties. `transition: all` is never used.
+
+## Reduced motion
+
+Every component that moves carries its own `prefers-reduced-motion` rule. Under it transitions
+are removed, and the spinner slows down rather than stopping — a frozen spinner reads as a hung
+screen.

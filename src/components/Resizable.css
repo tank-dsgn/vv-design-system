@@ -1,0 +1,14 @@
+/* Resizable. The hit area is wider than the hairline it draws. */
+.vv-resizable { display: flex; overflow: hidden; border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); font-family: var(--font-sans); }
+.vv-resizable--vertical { flex-direction: column; }
+.vv-resizable__pane { flex: 0 0 auto; min-width: 0; min-height: 0; overflow: hidden; }
+.vv-resizable__pane--rest { flex: 1 1 0; }
+.vv-resizable__handle { position: relative; flex: none; background: var(--color-border-default); touch-action: none; transition: background-color var(--duration-fast); }
+.vv-resizable--horizontal > .vv-resizable__handle { width: 1px; cursor: col-resize; }
+.vv-resizable--vertical > .vv-resizable__handle { height: 1px; cursor: row-resize; }
+.vv-resizable__handle::after { content: ""; position: absolute; inset: 0; }
+.vv-resizable--horizontal > .vv-resizable__handle::after { inset: 0 calc(-1 * var(--space-8)); }
+.vv-resizable--vertical > .vv-resizable__handle::after { inset: calc(-1 * var(--space-8)) 0; }
+.vv-resizable__handle:hover { background: var(--color-border-hover); }
+.vv-resizable__handle:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 0; background: var(--color-border-focus); }
+@media (prefers-reduced-motion: reduce) { .vv-resizable__handle { transition: none; } }

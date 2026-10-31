@@ -1,0 +1,120 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { ColorTable, PrimitiveRamps } from "../blocks"
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+Every colour in the interface, as [tokens](./?path=/docs/foundations-tokens--docs): the Tailwind palette first, then the
+semantic colours built on it, which components read.
+
+## Brand
+
+The project's own ramp. It points at one Tailwind ramp, `violet` here, and changing that one line recolours the
+system. Semantic tokens read it as `brand-700`, not by the name of the ramp behind it.
+
+<Unstyled><PrimitiveRamps only={["brand"]} /></Unstyled>
+
+## Primitives
+
+The rest of the Tailwind CSS palette under its Tailwind names. Hover a step for its value.
+
+<Unstyled><PrimitiveRamps /></Unstyled>
+
+## Surface
+
+<Unstyled><ColorTable prefix="--color-surface-" roles={{
+  "--color-surface-primary": "Page background",
+  "--color-surface-input": "Input fields",
+  "--color-surface-raised": "Cards, menus, modals",
+  "--color-surface-sunken": "Wells, inset areas",
+  "--color-surface-subtle": "Tracks, active items, skeletons",
+  "--color-surface-hover": "Rows and list items on hover",
+  "--color-surface-inverse": "Tooltips and toasts",
+  "--color-surface-inverse-hover": "Hover on an inverse surface",
+  "--color-surface-tint-hover": "Hover on a tinted ground, such as a banner",
+  "--color-surface-overlay": "Dim behind a modal",
+}} /></Unstyled>
+
+## Text
+
+<Unstyled><ColorTable prefix="--color-text-" roles={{
+  "--color-text-primary": "Default text and icons",
+  "--color-text-secondary": "Supporting text",
+  "--color-text-muted": "Placeholders, hints, meta",
+  "--color-text-faint": "Separators and quiet marks",
+  "--color-text-disabled": "Disabled labels",
+  "--color-text-on-accent": "Label on a primary or destructive fill",
+  "--color-text-on-tone": "Initials on an avatar tone",
+  "--color-text-inverse": "Text on an inverse surface",
+  "--color-text-accent": "Links",
+  "--color-text-accent-hover": "Links on hover",
+  "--color-text-accent-pressed": "Links when pressed",
+  "--color-text-accent-disabled": "Disabled links",
+  "--color-text-danger": "Errors",
+  "--color-text-success": "Confirmations",
+}} /></Unstyled>
+
+## Button
+
+<Unstyled><ColorTable prefix="--color-button-" roles={{
+  "--color-button-bg-primary": "Primary button",
+  "--color-button-bg-primary-hover": "Primary, hover",
+  "--color-button-bg-primary-pressed": "Primary, pressed",
+  "--color-button-bg-primary-disabled": "Primary, disabled and loading",
+  "--color-button-bg-secondary": "Secondary button",
+  "--color-button-bg-secondary-hover": "Secondary and ghost, hover",
+  "--color-button-bg-secondary-pressed": "Secondary and ghost, pressed",
+  "--color-button-bg-secondary-disabled": "Secondary, disabled",
+  "--color-button-bg-danger": "Destructive button",
+  "--color-button-bg-danger-hover": "Destructive, hover",
+  "--color-button-bg-danger-pressed": "Destructive, pressed",
+  "--color-button-bg-danger-disabled": "Destructive, disabled",
+}} /></Unstyled>
+
+## Accent
+
+<Unstyled><ColorTable prefix="--color-accent" roles={{
+  "--color-accent": "Checked controls, active tabs, progress",
+  "--color-accent-hover": "Checked controls on hover",
+  "--color-accent-pressed": "Checked controls when pressed",
+  "--color-accent-disabled": "Checked controls, disabled",
+  "--color-accent-subtle": "Selected rows and cards",
+  "--color-accent-subtle-hover": "Selected rows on hover",
+  "--color-accent-border": "Outline of a selected row",
+  "--color-accent-on-subtle": "Text on a selected row or card",
+}} /></Unstyled>
+
+## Border
+
+<Unstyled><ColorTable prefix="--color-border-" roles={{
+  "--color-border-default": "Inputs, cards, dividers",
+  "--color-border-hover": "Inputs on hover",
+  "--color-border-disabled": "Disabled inputs",
+  "--color-border-danger": "Invalid inputs",
+  "--color-border-focus": "Focus ring on every interactive component",
+}} /></Unstyled>
+
+## Charts
+
+<Unstyled><ColorTable prefix="--color-chart-" roles={{
+  "--color-chart-grid": "Gridlines",
+  "--color-chart-axis": "Axes and ticks",
+  "--color-chart-ordinal3-1": "Three ordered steps, low",
+  "--color-chart-ordinal3-2": "Three ordered steps, middle",
+  "--color-chart-ordinal3-3": "Three ordered steps, high",
+  "--color-chart-ordinal4-1": "Four ordered steps, lowest",
+  "--color-chart-ordinal4-2": "Four ordered steps",
+  "--color-chart-ordinal4-3": "Four ordered steps",
+  "--color-chart-ordinal4-4": "Four ordered steps, highest",
+}} /></Unstyled>
+
+## Status
+
+Each tone is a pale fill with dark text, plus a solid fill for the one status that must stand out.
+
+<Unstyled><ColorTable prefix="--color-status-" /></Unstyled>
+
+## Avatar tones
+
+<Unstyled><ColorTable prefix="--color-tone-" /></Unstyled>

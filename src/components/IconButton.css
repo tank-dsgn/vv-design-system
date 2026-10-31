@@ -1,0 +1,32 @@
+/* IconButton. Variant colours, states and the focus ring all come from
+   Button.css — only the square geometry lives here.
+
+   It hooks onto a data attribute rather than its own class: Button
+   deliberately refuses a className prop so its styles cannot be overridden
+   from outside. Opening that hole for one component is a bad trade. */
+
+.vv-button[data-icon-only] {
+  padding: 0;
+  aspect-ratio: 1;
+}
+
+.vv-button[data-icon-only].vv-button--xs { width: var(--size-control-xs); }
+.vv-button[data-icon-only].vv-button--sm { width: var(--size-control-sm); }
+.vv-button[data-icon-only].vv-button--md { width: var(--size-control-md); }
+.vv-button[data-icon-only].vv-button--lg { width: var(--size-control-lg); }
+
+/* The glyph takes a share of the button rather than a fixed size: otherwise it
+   touches the edges at 24px and drowns in space at 48px. */
+.vv-button[data-icon-only] .vv-icon-button__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  line-height: 1;
+}
+
+.vv-button[data-icon-only] .vv-icon-button__glyph > svg {
+  width: 100%;
+  height: 100%;
+}

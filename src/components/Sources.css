@@ -1,0 +1,5 @@
+.vv-sources { margin: 0; padding-left: var(--space-20); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); }
+.vv-sources li + li { margin-top: var(--space-4); }
+.vv-sources a { color: var(--color-text-accent); }
+.vv-sources a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 1px; border-radius: var(--radius-sm); }
+.vv-sources__site { color: var(--color-text-secondary); }

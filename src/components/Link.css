@@ -1,0 +1,20 @@
+/* Link. Figma: State=rest | hover | active. */
+
+.vv-link {
+  color: var(--color-text-accent);
+  font-family: var(--font-sans);
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.vv-link:hover { color: var(--color-text-accent-hover); }
+.vv-link:active { color: var(--color-text-accent-pressed); }
+
+.vv-link:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

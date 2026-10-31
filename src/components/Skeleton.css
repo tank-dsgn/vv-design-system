@@ -1,0 +1,20 @@
+/* Skeleton. A soft pulse while loading — tied to the loading state, and
+   static under reduced motion. */
+.vv-skeleton {
+  display: block;
+  background: var(--color-surface-subtle);
+  animation: vv-skeleton-pulse var(--duration-pulse) var(--ease-out) infinite;
+}
+.vv-skeleton--text { height: var(--font-size-sm); margin: var(--space-2) 0; border-radius: var(--radius-sm); }
+.vv-skeleton--rect { border-radius: var(--radius-lg); }
+.vv-skeleton--circle { border-radius: var(--radius-full); flex: none; }
+.vv-skeleton-lines { display: flex; flex-direction: column; gap: var(--space-6); }
+
+@keyframes vv-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-skeleton { animation: none; }
+}

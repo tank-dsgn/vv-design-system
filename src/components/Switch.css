@@ -1,0 +1,64 @@
+/* Switch. Figma calls this "NewToggle" and folds size, colour and icon into a
+   single `Type` property; here they are separate. See MAPPING.md §9. */
+
+.vv-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.vv-switch__input {
+  appearance: none;
+  margin: 0;
+  flex: none;
+  position: relative;
+  border-radius: var(--radius-full);
+  background: var(--color-border-hover);
+  cursor: inherit;
+  transition: background-color var(--duration-fast);
+}
+
+.vv-switch__input--sm { width: 28px; height: 16px; }
+.vv-switch__input--lg { width: 52px; height: 24px; }
+
+/* The knob is a pseudo-element so the whole control stays one element in the
+   accessibility tree — a real checkbox, not a div pretending to be one. */
+.vv-switch__input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-on-accent);
+  transition: transform var(--duration-fast);
+}
+
+.vv-switch__input--sm::after { width: 12px; height: 12px; }
+.vv-switch__input--lg::after { width: 20px; height: 20px; }
+
+.vv-switch__input:checked { background: var(--color-accent); }
+.vv-switch__input--sm:checked::after { transform: translateX(12px); }
+.vv-switch__input--lg:checked::after { transform: translateX(28px); }
+
+.vv-switch__input:hover:not(:disabled):not(:checked) { background: var(--color-text-muted); }
+.vv-switch__input:hover:not(:disabled):checked { background: var(--color-accent-hover); }
+
+.vv-switch__input:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.vv-switch__input:disabled { background: var(--color-border-disabled); cursor: not-allowed; }
+.vv-switch__input:disabled:checked { background: var(--color-accent-disabled); }
+.vv-switch__input:active:not(:disabled):checked { background: var(--color-accent-pressed); }
+.vv-switch:has(.vv-switch__input:disabled) { color: var(--color-text-disabled); cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-switch__input,
+  .vv-switch__input::after { transition: none; }
+}

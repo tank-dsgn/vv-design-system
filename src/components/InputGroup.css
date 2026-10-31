@@ -1,0 +1,10 @@
+/* InputGroup. Inner corners go square, neighbours share a border; the input
+   takes the free width. Works on whichever element carries the border. */
+.vv-input-group { display: flex; width: 100%; }
+.vv-input-group > * { min-width: 0; }
+.vv-input-group > :not(button):not(select) { flex: 1; }
+.vv-input-group > *, .vv-input-group > * * { border-radius: 0 !important; }
+.vv-input-group > * + * { margin-left: -1px; }
+.vv-input-group > :first-child, .vv-input-group > :first-child * { border-top-left-radius: var(--corner-control) !important; border-bottom-left-radius: var(--corner-control) !important; }
+.vv-input-group > :last-child, .vv-input-group > :last-child * { border-top-right-radius: var(--corner-control) !important; border-bottom-right-radius: var(--corner-control) !important; }
+.vv-input-group > :focus-within { position: relative; z-index: 1; }

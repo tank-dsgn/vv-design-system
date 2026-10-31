@@ -1,0 +1,39 @@
+/* Badge. Figma ships two implementations of this (see MAPPING.md §9);
+   this is one, with tone and size as props. */
+
+.vv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.vv-badge--medium { height: 20px; padding-inline: var(--space-8); }
+.vv-badge--large { height: 24px; padding-inline: var(--space-8); }
+
+.vv-badge--neutral   { background: var(--color-status-neutral-bg);   color: var(--color-status-neutral-fg); }
+.vv-badge--info      { background: var(--color-status-info-bg);      color: var(--color-status-info-fg); }
+.vv-badge--success   { background: var(--color-status-success-bg);   color: var(--color-status-success-fg); }
+.vv-badge--attention { background: var(--color-status-attention-bg); color: var(--color-status-attention-fg); }
+.vv-badge--warning   { background: var(--color-status-warning-bg);   color: var(--color-status-warning-fg); }
+.vv-badge--critical  { background: var(--color-status-critical-bg);  color: var(--color-status-critical-fg); }
+
+.vv-badge--strong.vv-badge--info      { background: var(--color-status-info-strong-bg);      color: var(--color-status-info-strong-fg); }
+.vv-badge--strong.vv-badge--success   { background: var(--color-status-success-strong-bg);   color: var(--color-status-success-strong-fg); }
+.vv-badge--strong.vv-badge--attention { background: var(--color-status-attention-strong-bg); color: var(--color-status-attention-strong-fg); }
+.vv-badge--strong.vv-badge--warning   { background: var(--color-status-warning-strong-bg);   color: var(--color-status-warning-strong-fg); }
+.vv-badge--strong.vv-badge--critical  { background: var(--color-status-critical-strong-bg);  color: var(--color-status-critical-strong-fg); }
+
+/* Progress Indicator=true in Figma: a dot carrying the tone's own colour. */
+.vv-badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  flex: none;
+}

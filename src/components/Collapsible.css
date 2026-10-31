@@ -1,0 +1,15 @@
+/* Collapsible. The chevron turns, the body appears without animation: the
+   content is what someone came for, not the movement. */
+.vv-collapsible { font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
+.vv-collapsible__trigger { display: flex; align-items: center; gap: var(--space-4); width: 100%; min-height: 32px; padding: var(--space-4); border: 0; border-radius: var(--corner-control); background: none; color: inherit; font: inherit; font-weight: var(--font-weight-medium); text-align: left; cursor: pointer; transition: background-color var(--duration-fast); }
+.vv-collapsible__trigger:hover:not(:disabled) { background: var(--color-surface-hover); }
+.vv-collapsible__trigger:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 1px; }
+.vv-collapsible__icon { display: inline-flex; flex: none; color: var(--color-text-secondary); transition: transform var(--duration-fast); transform: rotate(-90deg); }
+.vv-collapsible__icon[data-open="true"] { transform: none; }
+.vv-collapsible__title { flex: 1; min-width: 0; }
+.vv-collapsible__meta { flex: none; font-weight: var(--font-weight-normal); color: var(--color-text-secondary); }
+.vv-collapsible__trigger:active:not(:disabled) { background: var(--color-surface-subtle); }
+.vv-collapsible__trigger:disabled { color: var(--color-text-disabled); cursor: not-allowed; }
+.vv-collapsible__trigger:disabled .vv-collapsible__icon { color: var(--color-text-disabled); }
+.vv-collapsible__body { padding: var(--space-8) var(--space-4) var(--space-8) var(--space-24); }
+@media (prefers-reduced-motion: reduce) { .vv-collapsible__trigger, .vv-collapsible__icon { transition: none; } }

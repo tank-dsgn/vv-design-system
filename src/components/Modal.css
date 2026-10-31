@@ -1,0 +1,77 @@
+/* Modal. Figma calls the component set Popup, the instances Modal and the
+   page "Popup/Modal". One name is used here: Modal. */
+
+.vv-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: var(--color-surface-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+}
+
+.vv-modal {
+  position: relative;
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  width: 100%;
+
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--corner-surface);
+  box-shadow: var(--shadow-xl);
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+/* Widths from Figma: Width/w-96, w-2xl, w-5xl. */
+.vv-modal--small { max-width: 384px; }
+.vv-modal--large { max-width: 672px; }
+.vv-modal--fullscreen { max-width: 1024px; }
+
+.vv-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.vv-modal__title {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.vv-modal__body {
+  padding: var(--space-12);
+  overflow: auto;
+  color: var(--color-text-secondary);
+}
+
+.vv-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* Side panel ---------------------------------------------------------------
+   Declared after the size classes so its width wins at equal specificity. */
+.vv-modal__header-actions { display: flex; align-items: center; gap: var(--space-4); margin-left: auto; }
+.vv-modal__overlay--right { justify-content: flex-end; align-items: stretch; padding: 0; }
+.vv-modal--right {
+  max-width: 560px; height: 100%; max-height: none;
+  border-radius: 0; border-width: 0 0 0 1px;
+}
+.vv-modal--right .vv-modal__header { align-items: center; }
+.vv-modal--right .vv-modal__body { flex: 1; color: var(--color-text-primary); }

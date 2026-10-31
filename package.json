@@ -1,0 +1,39 @@
+{
+  "name": "vv-ds",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6306 --no-open",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc --noEmit",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test:a11y": "node scripts/a11y.mjs",
+    "check:tokens": "bash scripts/check-tokens.sh",
+    "check": "npm run typecheck && npm run check:tokens",
+    "test:interactions": "node scripts/interactions.mjs",
+    "test:crawl": "node scripts/crawl.mjs"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "axe-core": "^4.14.0",
+    "lucide-static": "0.460.0",
+    "playwright": "^1.64.1",
+    "storybook": "^10.6.0",
+    "storybook-addon-pseudo-states": "^10.6.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Ivan Grigorenko"
+}

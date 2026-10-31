@@ -1,0 +1,51 @@
+/* Top navigation. Figma has a "Tab bar" and a left rail, but no horizontal
+   primary navigation — see MAPPING.md §10. */
+
+.vv-topnav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vv-topnav__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: var(--size-control-md);
+  padding-inline: var(--space-12);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--duration-fast), color var(--duration-fast);
+}
+
+.vv-topnav__item:hover { background: var(--color-surface-hover); color: var(--color-text-primary); }
+
+.vv-topnav__item[aria-current="page"] {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-on-subtle);
+}
+
+.vv-topnav__item:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Below this width the labels go and the icons stay; the label moves into
+   aria-label so the item keeps its name. */
+@media (max-width: 900px) {
+  .vv-topnav__label { display: none; }
+  .vv-topnav__item { padding-inline: var(--space-8); }
+}
+
+@media (prefers-reduced-motion: reduce) { .vv-topnav__item { transition: none; } }

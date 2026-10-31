@@ -1,0 +1,10 @@
+.vv-divider--horizontal { height: 1px; width: 100%; background: var(--color-border-default); }
+.vv-divider--vertical { width: 1px; align-self: stretch; min-height: var(--space-16); background: var(--color-border-default); }
+.vv-divider--horizontal.vv-divider--sm { margin: var(--space-8) 0; }
+.vv-divider--horizontal.vv-divider--md { margin: var(--space-16) 0; }
+.vv-divider--vertical.vv-divider--sm { margin: 0 var(--space-8); }
+.vv-divider--vertical.vv-divider--md { margin: 0 var(--space-16); }
+.vv-divider--label { display: flex; align-items: center; gap: var(--space-12); font-family: var(--font-sans); font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-muted); }
+.vv-divider--label.vv-divider--sm { margin: var(--space-8) 0; }
+.vv-divider--label.vv-divider--md { margin: var(--space-16) 0; }
+.vv-divider--label::before, .vv-divider--label::after { content: ""; flex: 1; height: 1px; background: var(--color-border-default); }

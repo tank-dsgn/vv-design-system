@@ -1,0 +1,10 @@
+/* Message. A person's message sits in a tint; an answer sits on the page,
+   because it is usually long and reads as a document. */
+.vv-message { display: flex; gap: var(--space-12); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
+.vv-message__main { flex: 1; min-width: 0; }
+.vv-message__meta { margin: 0 0 var(--space-4); color: var(--color-text-secondary); }
+.vv-message__meta b { font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+.vv-message--user .vv-message__body { padding: var(--space-8) var(--space-12); border-radius: var(--corner-surface); background: var(--color-status-neutral-bg); }
+.vv-message__body > :first-child { margin-top: 0; }
+.vv-message__body > :last-child { margin-bottom: 0; }
+.vv-message__actions { margin-top: var(--space-4); }

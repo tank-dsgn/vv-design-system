@@ -1,0 +1,65 @@
+/* Dropzone. The only component in the file whose State=focus is drawn. */
+
+.vv-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  width: 100%;
+
+  background: var(--color-surface-input);
+  border: 1px dashed var(--color-border-default);
+  border-radius: var(--corner-control);
+  color: var(--color-text-secondary);
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--duration-fast), background-color var(--duration-fast);
+}
+
+.vv-dropzone--lg { min-height: 120px; padding: var(--space-12); }
+.vv-dropzone--md { min-height: 100px; padding: var(--space-8); }
+.vv-dropzone--sm { min-height: 50px; padding: var(--space-4); }
+
+.vv-dropzone:hover:not(.vv-dropzone--disabled) {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-sunken);
+}
+
+.vv-dropzone:focus-within {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* State=dragging. Separate from hover: dragging is not hovering, and "drop it
+   here" has to be confirmed more loudly. */
+.vv-dropzone--dragging {
+  border-color: var(--color-accent);
+  border-style: solid;
+  background: var(--color-surface-sunken);
+}
+
+.vv-dropzone--invalid { border-color: var(--color-border-danger); }
+
+.vv-dropzone--disabled {
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* The input is not hidden with display:none — that drops it out of the tab
+   order and makes the zone unreachable by keyboard. Hidden visually, still
+   focusable. */
+.vv-dropzone__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) { .vv-dropzone { transition: none; } }

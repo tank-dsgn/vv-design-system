@@ -1,0 +1,3 @@
+/* AspectRatio. Children fill the box; the box never changes shape. */
+.vv-aspect { position: relative; width: 100%; overflow: hidden; border-radius: var(--corner-surface); background: var(--color-surface-subtle); }
+.vv-aspect > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

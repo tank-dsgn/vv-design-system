@@ -1,0 +1,5 @@
+.vv-confirmation { padding: var(--space-16); border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); background: var(--color-surface-raised); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
+.vv-confirmation h3 { margin: 0; font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-semibold); }
+.vv-confirmation__body { margin-top: var(--space-4); color: var(--color-text-secondary); }
+.vv-confirmation__actions { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-top: var(--space-12); }
+.vv-confirmation__result { margin: var(--space-12) 0 0; font-weight: var(--font-weight-medium); color: var(--color-text-secondary); }

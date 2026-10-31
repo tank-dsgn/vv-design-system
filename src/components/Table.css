@@ -1,0 +1,99 @@
+/* Table. The wrapper scrolls, not the page: a wide table must not push the
+   whole layout sideways. */
+
+.vv-table-wrap { overflow-x: auto; width: 100%; }
+
+.vv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--color-text-primary);
+}
+
+.vv-table th,
+.vv-table td {
+  text-align: left;
+  padding: var(--space-8) var(--space-12);
+  border-bottom: 1px solid var(--color-border-default);
+  white-space: nowrap;
+}
+
+.vv-table th {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.vv-table tbody tr:hover { background: var(--color-surface-sunken); }
+
+.vv-table tbody tr[aria-selected="true"] { background: var(--color-accent-subtle); }
+.vv-table tbody tr[aria-selected="true"]:hover { background: var(--color-accent-subtle-hover); }
+
+/* A sortable header is a button filling the cell, so the whole cell is the
+   target and the keyboard reaches it. */
+.vv-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.vv-table__sort:hover { color: var(--color-text-primary); }
+
+.vv-table__sort:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.vv-table__arrow { font-size: var(--font-size-xs); }
+
+.vv-table__empty {
+  padding: var(--space-24);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.vv-table__select { width: 1%; }
+
+/* The caption and any header that exists only for screen readers. */
+.vv-table__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Expandable rows */
+.vv-table__disclosure {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-control-sm);
+  height: var(--size-control-sm);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+.vv-table__disclosure:hover { background: var(--color-surface-hover); color: var(--color-text-primary); }
+.vv-table__disclosure:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+
+.vv-table tbody tr.vv-table__detail:hover { background: transparent; }
+.vv-table__detail > td { white-space: normal; background: var(--color-surface-sunken); }
+
+/* Numeric columns: right-aligned, with figures of equal width. */
+.vv-table [data-align="end"] { text-align: right; font-variant-numeric: tabular-nums; }
+.vv-table th[data-align="end"] .vv-table__sort { flex-direction: row-reverse; margin-left: auto; }

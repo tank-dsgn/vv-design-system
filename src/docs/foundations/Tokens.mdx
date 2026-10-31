@@ -1,0 +1,37 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { TokenLevels, TokenPyramid } from "../blocks"
+
+<Meta title="Foundations/Tokens" />
+
+# Tokens
+
+Every colour, size, corner and shadow in the system is a token in one file, `tokens.css`. Components never hold a raw
+value, so changing a token once changes it everywhere.
+
+<Unstyled><TokenPyramid /></Unstyled>
+
+## Two levels
+
+**Primitives** hold raw values: the Tailwind CSS palette and scales, under their Tailwind names. The project's brand is not a colour of its own: it only says which Tailwind ramp the project wears, `violet` here. **Semantic tokens** give
+a primitive its role in the interface. Components read semantic tokens only.
+
+<Unstyled><TokenLevels /></Unstyled>
+
+## Naming
+
+A primitive is named by what it is: `--neutral-200`, `--brand-700`. A semantic token is named by what it does:
+`--color-surface-hover`, `--color-text-secondary`, `--corner-control`. The dark theme keeps the names and changes the
+values.
+
+## To fit another project
+
+Point the 11 `--brand-*` steps at another Tailwind ramp, at the top of `tokens.css`. Every button, link, checkbox, focus ring
+and chart follows. No component is touched. [Try it live](./?path=/docs/foundations-theming--docs).
+
+## Where to find them
+
+[Colors](./?path=/docs/foundations-colors--docs), [Typography](./?path=/docs/foundations-typography--docs),
+[Spacing & Size](./?path=/docs/foundations-spacing-size--docs),
+[Border and Corner](./?path=/docs/foundations-border-and-corner--docs),
+[Shadows & Elevation](./?path=/docs/foundations-shadows-elevation--docs),
+[Motion](./?path=/docs/foundations-motion--docs).

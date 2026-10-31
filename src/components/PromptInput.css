@@ -1,0 +1,9 @@
+.vv-prompt { padding: var(--space-8); border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); background: var(--color-surface-input); font-family: var(--font-sans); transition: border-color var(--duration-fast); }
+.vv-prompt:has(textarea:disabled) { border-color: var(--color-border-disabled); background: var(--color-surface-sunken); }
+.vv-prompt textarea:disabled, .vv-prompt textarea:disabled::placeholder { color: var(--color-text-disabled); cursor: not-allowed; }
+.vv-prompt:not(:has(textarea:disabled)):hover { border-color: var(--color-border-hover); }
+.vv-prompt:has(textarea:focus) { border-color: var(--color-border-focus); box-shadow: inset 0 0 0 1px var(--color-border-focus); }
+.vv-prompt textarea { display: block; width: 100%; max-height: 200px; padding: var(--space-4); border: 0; outline: 0; background: none; color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); line-height: var(--line-height-sm); resize: none; box-sizing: border-box; }
+.vv-prompt textarea::placeholder { color: var(--color-text-secondary); }
+.vv-prompt__bar { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-4); }
+@media (prefers-reduced-motion: reduce) { .vv-prompt { transition: none; } }

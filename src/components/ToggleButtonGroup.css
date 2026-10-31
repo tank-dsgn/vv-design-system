@@ -1,0 +1,6 @@
+.vv-toggle-group { display: inline-flex; }
+.vv-toggle-group > * { border-radius: 0; }
+.vv-toggle-group > * + * { margin-left: -1px; }
+.vv-toggle-group > :first-child { border-top-left-radius: var(--corner-control); border-bottom-left-radius: var(--corner-control); }
+.vv-toggle-group > :last-child { border-top-right-radius: var(--corner-control); border-bottom-right-radius: var(--corner-control); }
+.vv-toggle-group > [aria-pressed="true"] { position: relative; }

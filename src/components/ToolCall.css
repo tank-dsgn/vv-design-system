@@ -1,0 +1,2 @@
+.vv-tool { border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); padding: var(--space-4); }
+.vv-tool__parts { display: flex; flex-direction: column; gap: var(--space-8); }

@@ -1,0 +1,91 @@
+/* Checkbox. Same control geometry as Radio — they sit in the same forms and
+   must line up. */
+
+.vv-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.vv-checkbox__input {
+  appearance: none;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  position: relative;
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-input);
+  cursor: inherit;
+  transition: background-color var(--duration-fast), border-color var(--duration-fast);
+}
+
+.vv-checkbox__input:hover:not(:disabled) { border-color: var(--color-text-primary); }
+
+.vv-checkbox__input:checked,
+.vv-checkbox__input:indeterminate {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* The tick is drawn, not a glyph: a font character would shift with the
+   reader's font settings and stop lining up with the box. */
+.vv-checkbox__input:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-text-on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.vv-checkbox__input:indeterminate::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  width: 10px;
+  height: 2px;
+  background: var(--color-text-on-accent);
+}
+
+.vv-checkbox__input:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.vv-checkbox__input:disabled { border-color: var(--color-border-disabled); cursor: not-allowed; }
+.vv-checkbox__input:disabled:checked,
+.vv-checkbox__input:disabled:indeterminate {
+  background: var(--color-text-disabled);
+  border-color: var(--color-text-disabled);
+}
+.vv-checkbox:has(.vv-checkbox__input:disabled) { color: var(--color-text-disabled); cursor: not-allowed; }
+
+/* A checkbox in a table cell has no room for its label, but it still needs
+   one: without a name it reaches a screen reader as "checkbox", and in a
+   column of them nobody can tell which row they are on. Hidden, not removed. */
+.vv-checkbox__label--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vv-checkbox__input:checked:hover:not(:disabled), .vv-checkbox__input:indeterminate:hover:not(:disabled) { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+.vv-checkbox__input:checked:active:not(:disabled), .vv-checkbox__input:indeterminate:active:not(:disabled) { background: var(--color-accent-pressed); border-color: var(--color-accent-pressed); }
+@media (prefers-reduced-motion: reduce) { .vv-checkbox__input { transition: none; } }

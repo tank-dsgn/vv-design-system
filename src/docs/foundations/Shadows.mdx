@@ -1,0 +1,17 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
+import { ShadowScale, TokenList } from "../blocks"
+
+<Meta title="Foundations/Shadows & Elevation" />
+
+# Shadows & Elevation
+
+Elevation tells what sits above what. Most of the interface is flat and separated by space and
+hairlines; a shadow appears only when an element genuinely floats over other content.
+
+<Unstyled><ShadowScale /></Unstyled>
+
+## Layers
+
+Stacking order is a token too, so a tooltip inside a modal still lands on top.
+
+<Unstyled><TokenList prefix="--z-" /></Unstyled>

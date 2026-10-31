@@ -1,0 +1,19 @@
+.vv-list-item { display: flex; align-items: center; border-radius: var(--corner-control); font-family: var(--font-sans); transition: background-color var(--duration-fast); }
+.vv-list-item:has(button.vv-list-item__main:not(:disabled)):hover { background: var(--color-surface-hover); }
+.vv-list-item--selected, .vv-list-item--selected:has(button.vv-list-item__main):hover { box-shadow: inset 0 0 0 1px var(--color-accent-border); }
+.vv-list-item--selected { background: var(--color-accent-subtle); }
+.vv-list-item--selected:has(button.vv-list-item__main):hover { background: var(--color-accent-subtle-hover); }
+.vv-list-item--selected .vv-list-item__title { color: var(--color-accent-on-subtle); }
+.vv-list-item__main { display: flex; flex: 1; align-items: center; gap: var(--space-12); min-width: 0; padding: var(--space-8) var(--space-12); border: 0; border-radius: inherit; background: none; color: inherit; font: inherit; text-align: left; }
+button.vv-list-item__main { cursor: pointer; }
+button.vv-list-item__main:active:not(:disabled) { background: var(--color-surface-subtle); }
+button.vv-list-item__main:disabled { cursor: not-allowed; }
+button.vv-list-item__main:disabled .vv-list-item__title, button.vv-list-item__main:disabled .vv-list-item__desc { color: var(--color-text-disabled); }
+button.vv-list-item__main:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: -2px; }
+.vv-list-item__media { display: inline-flex; flex: none; }
+.vv-list-item__text { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.vv-list-item__title { font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+.vv-list-item__desc { font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-secondary); }
+.vv-list-item__meta { flex: none; font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-secondary); }
+.vv-list-item__action { flex: none; padding-right: var(--space-8); }
+@media (prefers-reduced-motion: reduce) { .vv-list-item { transition: none; } }

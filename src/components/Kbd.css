@@ -1,0 +1,17 @@
+/* Keyboard key. A raised chip: border plus a bottom edge, not a shadow. */
+.vv-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border-default);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+.vv-kbd--sm { min-width: 20px; height: 20px; padding: 0 var(--space-4); font-size: var(--font-size-xs); line-height: var(--line-height-xs); }
+.vv-kbd--md { min-width: 24px; height: 24px; padding: 0 var(--space-6); font-size: var(--font-size-xs); line-height: var(--line-height-xs); }

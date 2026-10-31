@@ -1,0 +1,27 @@
+.vv-stepper { display: flex; margin: 0; padding: 0; list-style: none; font-family: var(--font-sans); }
+.vv-stepper--horizontal { gap: var(--space-8); }
+.vv-stepper--horizontal .vv-stepper__step { flex: 1; flex-direction: column; gap: var(--space-8); padding-top: var(--space-12); border-top: 2px solid var(--color-border-default); }
+.vv-stepper--horizontal .vv-stepper__step[data-state="complete"],
+.vv-stepper--horizontal .vv-stepper__step[data-state="current"] { border-top-color: var(--color-accent); }
+.vv-stepper--vertical { flex-direction: column; }
+.vv-stepper--vertical .vv-stepper__step { gap: var(--space-12); position: relative; padding-bottom: var(--space-20); }
+.vv-stepper--vertical .vv-stepper__step:not(:last-child)::after {
+  content: ""; position: absolute; left: 11px; top: 28px; bottom: var(--space-4); width: 2px; background: var(--color-border-default);
+}
+.vv-stepper--vertical .vv-stepper__step[data-state="complete"]:not(:last-child)::after { background: var(--color-accent); }
+.vv-stepper__step { display: flex; min-width: 0; }
+.vv-stepper__marker {
+  display: inline-grid; place-items: center; flex: none;
+  width: 24px; height: 24px; border-radius: var(--radius-full);
+  font-size: var(--font-size-xs); line-height: var(--line-height-xs); font-weight: var(--font-weight-semibold);
+  border: 1px solid var(--color-border-hover); color: var(--color-text-secondary); background: var(--color-surface-primary);
+}
+.vv-stepper--horizontal .vv-stepper__marker { display: none; }
+.vv-stepper__step[data-state="complete"] .vv-stepper__marker { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-text-on-accent); }
+.vv-stepper__step[data-state="current"] .vv-stepper__marker { border: 2px solid var(--color-accent); color: var(--color-text-accent); }
+.vv-stepper__text { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; padding-top: var(--space-2); }
+.vv-stepper__label { font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+.vv-stepper__step[data-state="upcoming"] .vv-stepper__label { color: var(--color-text-secondary); }
+.vv-stepper--horizontal .vv-stepper__step[data-state="current"] .vv-stepper__label { color: var(--color-text-accent); }
+.vv-stepper__desc { font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-muted); }
+.vv-stepper__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
