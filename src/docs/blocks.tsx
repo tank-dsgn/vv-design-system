@@ -312,6 +312,43 @@ export function RadiusScale() {
   )
 }
 
+const BORDERS: { token: string; use: string; width?: number }[] = [
+  { token: "--color-border-default", use: "Inputs, cards, dividers" },
+  { token: "--color-border-hover", use: "An input under the pointer" },
+  { token: "--color-border-disabled", use: "A disabled input" },
+  { token: "--color-border-danger", use: "An invalid input" },
+  { token: "--color-border-accent", use: "A selected row" },
+  { token: "--color-border-focus", use: "Focus, on every control", width: 2 },
+]
+
+/** The border colours, each on a sample of what it outlines. */
+export function BorderScale() {
+  return (
+    <div className="vvd vvd-tiles">
+      {BORDERS.map((b) => (
+        <div key={b.token} className="vvd-tile">
+          <div className="vvd-tile__shape vvd-tile__shape--border" style={{ borderColor: `var(${b.token})`, borderWidth: b.width ?? 1 }} />
+          <p><code className="vvd-name">{b.token.replace(/^--color-/, "")}</code><span style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-xs)" }}>{b.use}</span></p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** The two widths in use. */
+export function BorderWidths() {
+  return (
+    <div className="vvd vvd-tiles">
+      {[{ width: 1, use: "Every outline and divider" }, { width: 2, use: "Focus, checked and current" }].map((w) => (
+        <div key={w.width} className="vvd-tile">
+          <div className="vvd-tile__shape vvd-tile__shape--border" style={{ borderColor: "var(--color-text-primary)", borderWidth: w.width }} />
+          <p><code className="vvd-name">{w.width}px</code><span style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-xs)" }}>{w.use}</span></p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const SHADOW_USE: Record<string, string> = {
   "--shadow-sm": "Resting cards, inputs on tinted ground",
   "--shadow-md": "Menus, popovers, tooltips",

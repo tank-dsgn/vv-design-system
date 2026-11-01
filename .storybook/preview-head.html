@@ -4,13 +4,14 @@
 <style>
   /* Our own screen for every failure, over Storybook's. It may show before any bundle
      has loaded, so tokens.css cannot be assumed: the colours mirror the tokens here. */
-  :root { --vve-bg: #ffffff; --vve-fg: #0a0a0a; --vve-muted: #525252; --vve-line: #e5e5e5; --vve-fill: #f5f5f5; --vve-brand: #6d28d9; --vve-brand-hover: #5b21b6; --vve-on-brand: #ffffff; --vve-ring: #8b5cf6; }
-  html.dark { --vve-bg: #0a0a0a; --vve-fg: #fafafa; --vve-muted: #a3a3a3; --vve-line: #262626; --vve-fill: #171717; --vve-brand: #6d28d9; --vve-brand-hover: #7c3aed; --vve-on-brand: #ffffff; --vve-ring: #a78bfa; background: #0a0a0a; }
+  :root { --vve-bg: #ffffff; --vve-shadow: rgb(76 29 149 / 0.35); --vve-fg: #0a0a0a; --vve-muted: #525252; --vve-line: #e5e5e5; --vve-fill: #f5f5f5; --vve-brand: #6d28d9; --vve-brand-hover: #5b21b6; --vve-on-brand: #ffffff; --vve-ring: #8b5cf6; }
+  html.dark { --vve-bg: #0a0a0a; --vve-shadow: rgb(139 92 246 / 0.5); --vve-fg: #fafafa; --vve-muted: #a3a3a3; --vve-line: #262626; --vve-fill: #171717; --vve-brand: #6d28d9; --vve-brand-hover: #7c3aed; --vve-on-brand: #ffffff; --vve-ring: #a78bfa; background: #0a0a0a; }
   html.dark .sb-preparing-docs, html.dark .sb-preparing-story { background: #0a0a0a; }
   .sb-errordisplay, .sb-nopreview { position: fixed; inset: 0; z-index: 1000; padding: 0 !important; background: var(--vve-bg) !important; }
   .sb-errordisplay > *:not(#vv-error), .sb-nopreview > *:not(#vv-error) { display: none !important; }
   #vv-error { box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; padding: 32px 16px; background: var(--vve-bg); color: var(--vve-fg); font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 24px; text-align: center; }
   #vv-error .vve-art { width: 200px; height: 124px; margin-bottom: 32px; overflow: visible; }
+  .vve-tier { filter: drop-shadow(0 4px 4px var(--vve-shadow)); }
   .vve-t1 { fill: #ddd6fe; --vve-delay: 240ms; } .vve-t2 { fill: #a78bfa; --vve-delay: 120ms; } .vve-t3 { fill: #6d28d9; --vve-delay: 0ms; }
   /* The tiers rise one by one from the base, then a slow wave keeps running up the pyramid. */
   .vve-tier { animation: vve-rise 480ms ease-out var(--vve-delay) both, vve-wave 3s ease-in-out calc(var(--vve-delay) + 800ms) infinite; }
@@ -25,9 +26,6 @@
   #vv-error button.vve-btn--primary, #vv-error a.vve-btn--primary { border-color: var(--vve-brand); background: var(--vve-brand); color: var(--vve-on-brand); }
   #vv-error button.vve-btn--primary:hover, #vv-error a.vve-btn--primary:hover { border-color: var(--vve-brand-hover); background: var(--vve-brand-hover); }
   #vv-error a:focus-visible, #vv-error button:focus-visible, #vv-error summary:focus-visible { outline: 2px solid var(--vve-ring); outline-offset: 2px; }
-  #vv-error details { width: 100%; max-width: 640px; margin-top: 32px; color: var(--vve-muted); font-size: 14px; line-height: 20px; }
-  #vv-error summary { display: inline-block; border-radius: 4px; cursor: pointer; }
-  #vv-error pre { max-height: 240px; margin: 12px 0 0; padding: 12px; overflow: auto; border-radius: 8px; background: var(--vve-fill); color: var(--vve-fg); font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; line-height: 16px; text-align: left; white-space: pre-wrap; word-break: break-word; }
   @media (prefers-reduced-motion: reduce) { #vv-error a, #vv-error button.vve-btn { transition: none; } .vve-tier { animation: none; } }
 </style>
 <script>
@@ -46,15 +44,14 @@
       if (empty) return { title: "Zero spacing, zero content", text: "The structure is here, nothing has filled it yet. Pick another page from the menu.", home: true }
       if (!navigator.onLine) return { title: "You've gone off the grid", text: "No connection, so nothing can resolve to a value. It all clicks back into place once you're online.", reload: true }
       if (/failed to fetch|networkerror|load failed|importing a module|dynamically imported|chunk/i.test(message))
-        return { title: "The tokens didn't arrive", text: "The connection dropped on the way, or the site has just been updated. A reload usually reconnects everything.", reload: true, home: true, details: true }
+        return { title: "The tokens didn't arrive", text: "The connection dropped on the way, or the site has just been updated. A reload usually reconnects everything.", reload: true, home: true }
       if (/couldn.t find|can.t find|unable to find|no story|not found/i.test(message))
         return { code: true, title: "var(--this-page) is undefined", text: "No token, no page. It may have moved or been renamed, or the address has a typo.", home: true, primaryHome: true }
-      return { title: "This example fell out of the system", text: "Something in it broke. The rest of the pyramid is still standing.", reload: true, home: true, details: true }
+      return { title: "This example fell out of the system", text: "Something in it broke. The rest of the pyramid is still standing.", reload: true, home: true }
     }
 
     function draw(wrapper, empty) {
       var msg = document.getElementById("error-message")
-      var stack = document.getElementById("error-stack")
       var message = (msg && msg.textContent) || ""
       var key = (empty ? "empty" : message) + navigator.onLine
       var box = wrapper.querySelector("#vv-error")
@@ -80,12 +77,6 @@
         a.href = HOME; a.target = "_top"; a.textContent = "Back to Tokens"
         if (d.primaryHome) a.className = "vve-btn--primary"
         actions.appendChild(a)
-      }
-      if (d.details && (message || (stack && stack.textContent))) {
-        var det = document.createElement("details")
-        det.innerHTML = "<summary>Technical details</summary><pre></pre>"
-        det.querySelector("pre").textContent = message + (stack && stack.textContent ? "\n\n" + stack.textContent : "")
-        box.appendChild(det)
       }
     }
 

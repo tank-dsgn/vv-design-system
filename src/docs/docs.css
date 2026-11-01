@@ -160,6 +160,7 @@
 }
 .vvd-tile__shape--shadow { border: 0; border-radius: var(--radius-xl); }
 .vvd-tile__shape--radius { background: var(--color-surface-sunken); }
+.vvd-tile__shape--border { border-style: solid; border-radius: var(--radius-lg); background: var(--color-surface-raised); }
 .vvd-tile p { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 
 /* Icon gallery */
