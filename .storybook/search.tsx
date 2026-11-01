@@ -70,8 +70,13 @@ function DarkMenu({ anchor, label, groups, onClose }: { anchor: HTMLElement; lab
     const down = (e: PointerEvent) => {
       if (!ref.current?.contains(e.target as Node) && !anchor.contains(e.target as Node)) onClose()
     }
+    // A click in the page lands in the preview's iframe: this document only sees itself lose focus.
     document.addEventListener("pointerdown", down)
-    return () => document.removeEventListener("pointerdown", down)
+    window.addEventListener("blur", onClose)
+    return () => {
+      document.removeEventListener("pointerdown", down)
+      window.removeEventListener("blur", onClose)
+    }
   }, [anchor, onClose])
   const onKey = (e: React.KeyboardEvent) => {
     const items = Array.from(ref.current?.querySelectorAll("button") ?? [])

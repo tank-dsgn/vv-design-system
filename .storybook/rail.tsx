@@ -1,41 +1,12 @@
 import * as React from "react"
 import { createPortal } from "react-dom"
 import type { API } from "storybook/manager-api"
-import { ICONS, type IconName } from "../src/icons/icons"
 import { GROUPS } from "../src/docs/groups"
+import { GROUP_ICONS, NavIcon, PAGE_ICONS } from "./nav-icons"
 import { PanelIcon, setNavOpen, useNavOpen } from "./nav-state"
 
 /* The folded sidebar: everything it holds, as icons. Foundations pages are links;
    a component group opens a flyout with its components. */
-
-// The manager's bundle needs React in scope, so it draws the set itself instead of importing Icon.
-const Icon = ({ name, size = 20 }: { name: IconName; size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS[name] }} />
-)
-
-const PAGE_ICONS: Record<string, IconName> = {
-  Tokens: "braces",
-  Colors: "palette",
-  Theming: "sparkles",
-  Typography: "type",
-  "Spacing & Size": "size-hor",
-  "Border and Corner": "square",
-  "Shadows & Elevation": "layers",
-  "Breakpoints & Grids": "layout-grid",
-  Motion: "zap",
-  Icons: "star-empty",
-  "Dark theme": "moon",
-}
-const GROUP_ICONS: Record<string, IconName> = {
-  Actions: "play",
-  Forms: "edit",
-  Navigation: "compass",
-  Feedback: "notifications",
-  Overlays: "copy",
-  Content: "document",
-  Data: "chart",
-  AI: "ai",
-}
 
 function Tip({ tip }: { tip: { label: string; top: number } | null }) {
   if (!tip) return null
@@ -55,8 +26,14 @@ export function Rail({ api, section, path }: { api: API; section: string; path: 
     const down = (e: PointerEvent) => {
       if (!flyRef.current?.contains(e.target as Node) && !fly.anchor.contains(e.target as Node)) setFly(null)
     }
+    // A click in the page lands in the preview's iframe: this document only sees itself lose focus.
+    const blur = () => setFly(null)
     document.addEventListener("pointerdown", down)
-    return () => document.removeEventListener("pointerdown", down)
+    window.addEventListener("blur", blur)
+    return () => {
+      document.removeEventListener("pointerdown", down)
+      window.removeEventListener("blur", blur)
+    }
   }, [fly])
 
   const tipProps = (label: string) => ({
@@ -101,7 +78,7 @@ export function Rail({ api, section, path }: { api: API; section: string; path: 
             window.setTimeout(() => document.querySelector<HTMLInputElement>("#vv-find input")?.focus(), 60)
           }}
         >
-          <Icon name="search" size={16} />
+          <NavIcon name="search" />
         </button>
       </div>
       <div className="vv-rail__items">
@@ -111,7 +88,7 @@ export function Rail({ api, section, path }: { api: API; section: string; path: 
               const id = `foundations-${name.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`
               return (
                 <a key={id} href={`./?path=/docs/${id}--docs`} aria-current={id === current ? "page" : undefined} {...tipProps(name)} onClick={(e) => go(e, `/docs/${id}--docs`)}>
-                  <Icon name={icon} />
+                  <NavIcon name={icon} />
                 </a>
               )
             })
@@ -129,7 +106,7 @@ export function Rail({ api, section, path }: { api: API; section: string; path: 
                   setFly(fly?.group === group ? null : { group, top: anchor.getBoundingClientRect().top, anchor })
                 }}
               >
-                <Icon name={GROUP_ICONS[group]} />
+                <NavIcon name={GROUP_ICONS[group]} />
               </button>
             ))}
       </div>

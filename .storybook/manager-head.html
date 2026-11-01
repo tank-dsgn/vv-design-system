@@ -50,6 +50,12 @@
   #storybook-explorer-menu [data-item-id][data-selected="true"] { background: var(--vv-active-bg) !important; color: var(--vv-active-fg) !important; }
   #storybook-explorer-menu [data-item-id][data-selected="true"], #storybook-explorer-menu [data-item-id][data-selected="true"] > a { color: var(--vv-active-fg) !important; font-weight: 600 !important; }
   #storybook-explorer-menu [data-item-id] svg { color: currentColor !important; }
+  /* Every item carries its own icon (.storybook/nav-icons.tsx), so Storybook's goes; its chevrons stay. */
+  #storybook-explorer-menu [data-item-id] > :is(a, button) > div:first-child > svg { display: none; }
+  #storybook-explorer-menu [data-item-id] > :is(a, button) > div:first-child:not(:has(> div)) { display: none; }
+  #storybook-explorer-menu [data-item-id] > button { align-items: center; }
+  .vv-nav-label { display: inline-flex; align-items: center; gap: 8px; }
+  .vv-nav-label svg { flex: none; }
   #storybook-explorer-menu a:focus-visible, #storybook-explorer-menu button:focus-visible { outline: 2px solid var(--vv-ring) !important; outline-offset: -2px; box-shadow: none !important; }
   #storybook-explorer-menu [data-nodetype="group"] > button, #storybook-explorer-menu button[data-nodetype="group"] { color: var(--vv-fg) !important; font-weight: 600 !important; }
   /* Search, laid out like Figma's Find (.storybook/search.tsx). The native field stays
@@ -94,6 +100,9 @@
   .sidebar-header, .sidebar-subheading { display: none !important; }
   /* No drag handle: dragged to the edge, Storybook unmounts the sidebar for good. */
   [aria-label="Sidebar resize handle"] { display: none !important; }
+  /* The theme change's fade (setTheme in manager.tsx). */
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 160ms; }
+  @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
   /* The menu folded to its icon rail (.storybook/rail.tsx). The full sidebar is hidden, not
      just narrowed, so Tab skips it. */
   @media (min-width: 600px) {
@@ -155,6 +164,7 @@
     .vv-drawer__find input::placeholder { color: var(--vv-muted); opacity: 1; }
     .vv-drawer__pages a[aria-current="page"] { margin: 0 -8px; padding-left: 8px; border-radius: 6px; background: var(--vv-active-bg); color: var(--vv-active-fg); font-weight: 600; }
     .vv-drawer__pages details a { padding-left: 16px; }
+    .vv-drawer__pages svg { flex: none; margin-right: 8px; }
     .vv-drawer__pages summary { justify-content: space-between; color: var(--vv-fg); font-weight: 600; list-style: none; }
     .vv-drawer__pages summary::-webkit-details-marker { display: none; }
     .vv-drawer__pages summary::after { content: ""; width: 7px; height: 7px; margin-right: 4px; border-right: 1.5px solid var(--vv-muted); border-bottom: 1.5px solid var(--vv-muted); transform: rotate(45deg); }

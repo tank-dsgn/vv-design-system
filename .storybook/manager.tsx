@@ -1,7 +1,9 @@
 import * as React from "react"
+import { flushSync } from "react-dom"
 import { createRoot } from "react-dom/client"
 import { addons, type API } from "storybook/manager-api"
 import { Burger, MobileMenu } from "./mobile-menu"
+import { navLabel } from "./nav-icons"
 import { Rail } from "./rail"
 import { mountSearch } from "./search"
 import { vvTheme, vvThemeDark } from "./theme"
@@ -14,7 +16,7 @@ import { vvTheme, vvThemeDark } from "./theme"
 
 addons.setConfig({
   theme: vvTheme,
-  sidebar: { showRoots: true },
+  sidebar: { showRoots: true, renderLabel: navLabel },
   enableShortcuts: false,
 })
 
@@ -44,6 +46,25 @@ const Moon = () => (
     <path d="M13.5 9.6A5.5 5.5 0 1 1 6.4 2.5a4.5 4.5 0 0 0 7.1 7.1Z" />
   </svg>
 )
+
+/** The preview repaints after the manager, and Storybook rebuilds the page's contents list
+    100ms after that. Resolves once both are done, or at the cap if the preview can't answer. */
+function previewCaughtUp(dark: boolean) {
+  return new Promise<void>((resolve) => {
+    const started = performance.now()
+    let matched = 0
+    const check = () => {
+      const now = performance.now()
+      const doc = document.querySelector<HTMLIFrameElement>("#storybook-preview-iframe")?.contentDocument
+      if (doc?.documentElement.classList.contains("dark") === dark) matched ||= now
+      const toc = doc?.querySelector(".toc-wrapper")
+      const settled = matched && (!toc || (now - matched > 120 && toc.querySelector("a")))
+      if (settled || now - started > 500) resolve()
+      else window.setTimeout(check, 16)
+    }
+    check()
+  })
+}
 
 function Header({ api }: { api: API }) {
   const [path, setPath] = React.useState(() => api.getUrlState().path)
@@ -102,7 +123,12 @@ function Header({ api }: { api: API }) {
   const label = dark ? "Switch to light theme" : "Switch to dark theme"
   const setTheme = (next: boolean) => {
     try { localStorage.setItem(KEY, next ? "dark" : "light") } catch { /* the choice just won't persist */ }
-    setDark(next)
+    // The old picture holds until the whole window has the new theme, then fades over.
+    if (!document.startViewTransition) { setDark(next); return }
+    document.startViewTransition(() => {
+      flushSync(() => setDark(next))
+      return previewCaughtUp(next)
+    })
   }
 
   return (

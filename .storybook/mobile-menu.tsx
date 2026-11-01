@@ -1,6 +1,7 @@
 import * as React from "react"
 import type { API } from "storybook/manager-api"
 import { GROUPS } from "../src/docs/groups"
+import { GROUP_ICONS, NavIcon, PAGE_ICONS } from "./nav-icons"
 
 /* The phone menu: a panel from the right, under the header, opened by the burger.
    It replaces Storybook's bottom bar and its drawer. The header's sections, the
@@ -68,6 +69,7 @@ export function MobileMenu({ api, open, path, section, dark, onTheme, onClose, s
 
   const link = (p: Page) => (
     <a key={p.id} href={`./?path=/docs/${p.id}`} aria-current={p.id.replace(/--.*$/, "") === current ? "page" : undefined} onClick={(e) => go(e, `/docs/${p.id}`)}>
+      {PAGE_ICONS[leaf(p.title)] && <NavIcon name={PAGE_ICONS[leaf(p.title)]} />}
       {leaf(p.title)}
     </a>
   )
@@ -104,7 +106,7 @@ export function MobileMenu({ api, open, path, section, dark, onTheme, onClose, s
             ) : (
               Object.entries(GROUPS).map(([group, names]) => (
                 <details key={group} open={names.some((n) => n.toLowerCase() === current?.replace("components-", "")) || undefined}>
-                  <summary>{group}</summary>
+                  <summary><NavIcon name={GROUP_ICONS[group]} />{group}</summary>
                   {names.map(byName).filter((p): p is Page => Boolean(p)).map(link)}
                 </details>
               ))
