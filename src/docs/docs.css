@@ -222,6 +222,11 @@
 /* Air above every section, on all pages. */
 .sbdocs-content > h2, .sbdocs-content [data-panel] > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-64) !important; }
 
+/* The contents list: a quiet rail with the current section in the active colour. */
+.toc-wrapper .toc-list { border-left-color: var(--color-border-default) !important; }
+.toc-wrapper .toc-list-item::before { border-left-color: var(--color-text-accent) !important; }
+.toc-wrapper .toc-list-item.is-active-li > a { color: var(--color-text-accent) !important; }
+
 /* Motion page. */
 .vvd-motion { display: flex; flex-direction: column; gap: var(--space-16); margin: var(--space-16) 0 var(--space-32); }
 .vvd-motion-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--space-16); align-items: center; }
