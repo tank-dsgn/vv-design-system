@@ -247,7 +247,8 @@
 .vvd-color-tabs { margin-top: var(--space-24); }
 .vvd-color-tabs > .sb-unstyled { position: sticky; top: 0; z-index: var(--z-dropdown); background: var(--color-background-primary); }
 .vvd-color-tabs [data-panel] > :is(h2, h3) { scroll-margin-top: var(--space-64); }
-.vvd-color-tabs[data-tab="semantic"] > [data-panel="primitives"], .vvd-color-tabs[data-tab="primitives"] > [data-panel="semantic"] { display: none; }
+.vvd-color-tabs[data-tab="semantic"] > [data-panel]:not([data-panel="semantic"]), .vvd-color-tabs[data-tab="primitives"] > [data-panel]:not([data-panel="primitives"]), .vvd-color-tabs[data-tab="contrast"] > [data-panel]:not([data-panel="contrast"]) { display: none; }
+.vvd-color-tabs [data-panel="contrast"] > p:first-child { margin-top: var(--space-24); }
 .vvd-contrast-table { table-layout: fixed; }
 .vvd-contrast-table th:nth-child(1), .vvd-contrast-table th:nth-child(2) { width: 25%; }
 .vvd-contrast-table td { overflow-wrap: anywhere; }

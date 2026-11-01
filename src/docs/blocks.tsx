@@ -102,31 +102,37 @@ export function ColorTabs({ children }: { children: ReactNode }) {
     <div ref={root} className="vvd-color-tabs" data-tab={tab}>
       <style>{hide}</style>
       <div className="sb-unstyled vvd">
-        <Tabs aria-label="Colour tokens" items={[{ id: "semantic", label: "Semantic" }, { id: "primitives", label: "Primitives" }]} value={tab} onChange={setTab} />
+        <Tabs aria-label="Colour tokens" items={[{ id: "semantic", label: "Semantic" }, { id: "primitives", label: "Primitives" }, { id: "contrast", label: "Contrast" }]} value={tab} onChange={setTab} />
       </div>
       {children}
     </div>
   )
 }
 
-const CONTRAST_PAIRS: [string, string][] = [
-  ["text-primary", "background-primary"],
-  ["text-secondary", "background-primary"],
-  ["text-accent", "background-primary"],
-  ["text-danger", "background-primary"],
-  ["text-success", "background-primary"],
-  ["text-primary", "surface-raised"],
-  ["text-secondary", "surface-raised"],
-  ["text-primary", "surface-sunken"],
-  ["text-secondary", "surface-sunken"],
-  ["text-inverse", "surface-inverse"],
-  ["text-on-accent", "accent"],
-  ["text-on-accent-subtle", "accent-subtle"],
-  ["text-primary", "button-secondary"],
-  ["text-on-accent", "button-danger"],
-  ...["neutral", "info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-subtle`, `status-${t}-subtle`]),
-  ...["info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-strong`, `status-${t}-strong`]),
-]
+const CONTRAST_PAIRS: Record<"text" | "controls" | "status", [string, string][]> = {
+  text: [
+    ["text-primary", "background-primary"],
+    ["text-secondary", "background-primary"],
+    ["text-accent", "background-primary"],
+    ["text-danger", "background-primary"],
+    ["text-success", "background-primary"],
+    ["text-primary", "surface-raised"],
+    ["text-secondary", "surface-raised"],
+    ["text-primary", "surface-sunken"],
+    ["text-secondary", "surface-sunken"],
+    ["text-inverse", "surface-inverse"],
+  ],
+  controls: [
+    ["text-on-accent", "accent"],
+    ["text-on-accent-subtle", "accent-subtle"],
+    ["text-primary", "button-secondary"],
+    ["text-on-accent", "button-danger"],
+  ],
+  status: [
+    ...["neutral", "info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-subtle`, `status-${t}-subtle`]),
+    ...["info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-strong`, `status-${t}-strong`]),
+  ],
+}
 
 const luminance = (hex: string) => {
   const full = hex.length === 4 ? hex.replace(/[0-9a-f]/gi, "$&$&") : hex
@@ -153,13 +159,13 @@ function ContrastCell({ fg, bg }: { fg: string; bg: string }) {
 }
 
 /** Every text and ground the system pairs, measured from tokens.css. */
-export function ContrastPairs() {
+export function ContrastPairs({ group }: { group: keyof typeof CONTRAST_PAIRS }) {
   const value = (name: string, dark: boolean) => rawValue((dark && darkValue(`--color-${name}`)) || lightTokens.find((t) => t.name === `--color-${name}`)?.value)
   return (
     <table className="vvd vvd-table vvd-contrast-table">
       <thead><tr><th>Text</th><th>On</th><th>Light</th><th>Dark</th></tr></thead>
       <tbody>
-        {CONTRAST_PAIRS.map(([fg, bg]) => (
+        {CONTRAST_PAIRS[group].map(([fg, bg]) => (
           <tr key={fg + bg}>
             <td><code className="vvd-name">{fg}</code></td>
             <td><code className="vvd-name">{bg}</code></td>
