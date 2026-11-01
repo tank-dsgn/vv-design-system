@@ -2,7 +2,9 @@ import * as React from "react"
 import type { Preview } from "@storybook/react-vite"
 import { vvTheme, vvThemeDark } from "./theme"
 import { DocsPage } from "./DocsPage"
+import { subscribeToTheme, theme } from "./theme-store"
 import { DocsContainer, type DocsContainerProps } from "@storybook/addon-docs/blocks"
+import { addons } from "storybook/preview-api"
 import "../src/styles/tokens.css"
 import "../src/docs/docs.css"
 
@@ -15,30 +17,19 @@ const sampleLink = (e: Event) => {
 document.addEventListener("click", (e) => { if (sampleLink(e)) e.preventDefault() }, true)
 document.documentElement.addEventListener("click", (e) => { if (sampleLink(e)) e.stopPropagation() })
 
-/* The theme lives outside Storybook's globals: changing a global re-renders the docs, which
-   reloads every example on the page and shows its loading screen. The header saves the choice;
-   every preview, nested ones too, hears it through the storage event and only swaps the class. */
-function savedTheme() {
-  try { return localStorage.getItem("vv-theme") } catch { return null }
-}
-
-const theme = {
-  dark: savedTheme() ? savedTheme() === "dark" : new URLSearchParams(location.search).get("globals")?.includes("theme:dark") ?? false,
-  listeners: new Set<() => void>(),
-}
-
-window.addEventListener("storage", (e) => {
-  if (e.key !== "vv-theme") return
-  theme.dark = e.newValue === "dark"
-  document.documentElement.classList.toggle("dark", theme.dark)
-  theme.listeners.forEach((l) => l())
-})
-
-function subscribeToTheme(listener: () => void) {
-  theme.listeners.add(listener)
-  return () => {
-    theme.listeners.delete(listener)
-  }
+// A link to another page of the site would reload all of it. The site changes the page instead.
+if (window.frameElement?.id === "storybook-preview-iframe") {
+  document.addEventListener("click", (e) => {
+    if (sampleLink(e) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+    const link = (e.target as Element).closest?.<HTMLAnchorElement>("a[href]")
+    if (!link) return
+    const url = new URL(link.href, location.href)
+    const path = url.origin === location.origin ? url.searchParams.get("path") : null
+    if (!path) return
+    e.preventDefault()
+    e.stopPropagation()
+    addons.getChannel().emit("vv/navigate", path)
+  }, true)
 }
 
 /** The contents list is headed by the page it belongs to. */

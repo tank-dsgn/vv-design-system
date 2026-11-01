@@ -146,6 +146,7 @@ addons.register("vv/header", (api) => {
   host.id = "vv-header"
   document.body.prepend(host)
   createRoot(host).render(<Header api={api} />)
+  addons.getChannel().on("vv/navigate", (path: string) => api.navigate(path))
   mountSearch(api)
   // Restores the sidebar for anyone whose saved layout has it dragged away.
   ;(api as unknown as { setSizes: (s: { navSize: number }) => void }).setSizes({ navSize: 300 })

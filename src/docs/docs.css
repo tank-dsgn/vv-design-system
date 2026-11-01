@@ -306,6 +306,8 @@
 .vvd-example { display: flex; flex-direction: column; gap: var(--space-8); min-width: 0; }
 .vvd-example__tabs { display: flex; justify-content: flex-end; }
 .vvd-example .sbdocs-preview, .vvd-example .docblock-source { margin: 0; }
+.dark .vvd-example .docblock-source { border-color: var(--color-border-default); background: var(--color-surface-raised); }
+.dark .vvd-example .docblock-source pre, .dark .vvd-example .docblock-source .os-host { background: transparent; }
 .vvd-docpage__head { position: relative; }
 .vvd-pager { position: absolute; top: var(--space-8); right: 0; display: flex; gap: var(--space-4); }
 .vvd-pager > * { display: inline-grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--color-border-default); border-radius: var(--corner-control); color: var(--color-text-primary); transition: background-color var(--duration-fast), border-color var(--duration-fast); }

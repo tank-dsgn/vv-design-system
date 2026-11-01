@@ -4,6 +4,7 @@ import { Icon } from "../src/components/Icon"
 import { SegmentedControl } from "../src/components/SegmentedControl"
 import { COMPONENTS } from "../src/docs/groups"
 import { USAGE } from "../src/docs/usage"
+import { subscribeToTheme, theme } from "./theme-store"
 
 /* One template for every component page: the description, the example, "Usage"
    (src/docs/usage.ts: when to use it, when not to and what instead), then "Properties" — each property a row with its
@@ -29,12 +30,13 @@ function Rich({ text }: { text: string }) {
 /** An example with its code one click away. */
 function Example({ of }: { of: unknown }) {
   const [mode, setMode] = React.useState("preview")
+  const dark = React.useSyncExternalStore(subscribeToTheme, () => theme.dark)
   return (
     <div className="vvd-example">
       <div className="vvd-example__tabs">
         <SegmentedControl aria-label="Show" size="sm" value={mode} onChange={setMode} options={[{ value: "preview", label: "Preview" }, { value: "code", label: "Code" }]} />
       </div>
-      {mode === "preview" ? <Canvas of={of as never} sourceState="none" withToolbar={false} /> : <Source of={of as never} />}
+      {mode === "preview" ? <Canvas of={of as never} sourceState="none" withToolbar={false} /> : <Source of={of as never} dark={dark} />}
     </div>
   )
 }
