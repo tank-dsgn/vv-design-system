@@ -21,7 +21,7 @@
 }
 .vv-segmented--sm .vv-segmented__item { height: calc(var(--size-control-sm) - var(--space-4)); }
 .vv-segmented--md .vv-segmented__item { height: calc(var(--size-control-md) - var(--space-4)); }
-.vv-segmented__item:hover:not(:disabled):not([aria-checked="true"]) { color: var(--color-text-primary); }
+.vv-segmented__item:hover:not(:disabled):not([aria-checked="true"]) { background: var(--color-surface-tint-hover); color: var(--color-text-primary); }
 .vv-segmented__item[aria-checked="true"] { background: var(--color-accent-subtle); color: var(--color-accent-on-subtle); box-shadow: inset 0 0 0 1px var(--color-accent-border); font-weight: var(--font-weight-semibold); }
 .vv-segmented__item:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 1px; }
 .vv-segmented__item:disabled { color: var(--color-text-disabled); cursor: not-allowed; }

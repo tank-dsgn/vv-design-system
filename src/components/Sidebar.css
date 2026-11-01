@@ -52,14 +52,16 @@
 
 .vv-sidebar--collapsed .vv-sidebar__item { justify-content: center; padding-inline: 0; }
 
-.vv-sidebar__item:hover:not(:disabled) {
-  background: var(--color-surface-hover);
+/* The rail is already a sunken surface, so hover is a tint over it. */
+.vv-sidebar__item:hover:not(:disabled):not([aria-current="page"]) {
+  background: var(--color-surface-tint-hover);
   color: var(--color-text-primary);
 }
+.vv-sidebar__item:active:not(:disabled):not([aria-current="page"]) { background: var(--color-surface-subtle); }
 
 /* State=Active. As with tabs: a fact of selection, not an input state. */
 .vv-sidebar__item[aria-current="page"] {
-  background: var(--color-accent-subtle);
+  background: var(--color-accent-subtle-hover);
   color: var(--color-accent-on-subtle);
   font-weight: var(--font-weight-medium);
 }

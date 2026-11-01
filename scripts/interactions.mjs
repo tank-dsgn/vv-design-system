@@ -380,6 +380,26 @@ await test("Sample links go nowhere: the page does not jump or change its addres
   eq(errors.length, 0, "no script errors")
 })
 
+await test("Sidebar: hover shows on the whole item; a clicked item turns current under the cursor", async () => {
+  await open("components-sidebar--expanded")
+  const item = page.getByRole("button", { name: "Shipments" })
+  const bg = () => item.evaluate((e) => getComputedStyle(e).backgroundColor)
+  await page.mouse.move(800, 600)
+  await page.waitForTimeout(250)
+  const rest = await bg()
+  await item.hover()
+  await page.waitForTimeout(250)
+  const hover = await bg()
+  eq(hover !== rest, true, "hover differs from rest")
+  await item.click()
+  await page.waitForTimeout(250)
+  const current = await bg()
+  eq(current !== hover, true, "current shows while the cursor is still on it")
+  await page.mouse.move(800, 600)
+  await page.waitForTimeout(250)
+  eq(await bg(), current, "same after the cursor leaves")
+})
+
 for (const [name, path] of [["a Foundations page", "foundations-tokens--docs"], ["a component page", "components-button--docs"]]) {
   await test(`Theme: the button switches ${name} both ways`, async () => {
     await page.goto(`${base}/index.html?path=/docs/${path}`)

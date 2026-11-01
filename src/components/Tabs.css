@@ -66,3 +66,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .vv-tab { transition: none; } }
+
+/* Hover fills the whole tab; the current one keeps its underline and takes no fill. */
+.vv-tab:hover:not(:disabled):not([aria-selected="true"]) { background: var(--color-surface-hover); }
