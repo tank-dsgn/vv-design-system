@@ -232,13 +232,13 @@
 .vvd-motion-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--space-16); align-items: center; }
 .vvd-motion-row p { display: flex; flex-direction: column; margin: 0; }
 .vvd-motion-row small { color: var(--color-text-secondary); }
-.vvd-motion-track { position: relative; height: var(--space-24); border-radius: var(--radius-full); background: var(--color-surface-sunken); }
-.vvd-motion-dot { position: absolute; top: var(--space-4); left: var(--space-4); width: var(--space-16); height: var(--space-16); border-radius: var(--radius-full); background: var(--color-accent); transition-property: left; }
+.vvd-motion-track { position: relative; height: var(--space-24); border-radius: var(--radius-full); background: var(--color-surface-subtle); }
+.vvd-motion-dot { position: absolute; top: var(--space-4); left: var(--space-4); width: var(--space-16); height: var(--space-16); border-radius: var(--radius-full); background: var(--color-text-accent); transition-property: left; }
 .vvd-motion-dot[data-on] { left: calc(100% - var(--space-16) - var(--space-4)); }
 .vvd-motion--ease { flex-direction: row; gap: var(--space-32); align-items: center; flex-wrap: wrap; }
 .vvd-motion-curve { flex: none; width: 160px; height: 160px; overflow: visible; }
 .vvd-motion-axis { stroke: var(--color-border-default); }
-.vvd-motion-line { stroke: var(--color-accent); stroke-width: 2; stroke-linecap: round; }
+.vvd-motion-line { stroke: var(--color-text-accent); stroke-width: 2; stroke-linecap: round; }
 .vvd-motion-race { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: var(--space-16); }
 .vvd-motion-stage { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-8); min-height: 120px; padding: var(--space-16); box-sizing: border-box; border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); }
 .vvd-motion-stage--wide > * { width: 100%; }
