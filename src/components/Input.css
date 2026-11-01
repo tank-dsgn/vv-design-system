@@ -54,7 +54,7 @@
 }
 
 .vv-input__field::placeholder {
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 /* Icon and affixes are muted so they do not compete with the entered value. */
@@ -62,7 +62,7 @@
 .vv-input__affix {
   display: inline-flex;
   align-items: center;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   white-space: nowrap;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .vv-field__label { color: var(--color-text-primary); }
-.vv-field__hint { color: var(--color-text-muted); }
+.vv-field__hint { color: var(--color-text-secondary); }
 .vv-field__error { color: var(--color-text-danger); }
 
 @media (prefers-reduced-motion: reduce) {

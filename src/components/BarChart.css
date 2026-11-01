@@ -16,7 +16,7 @@
 .vv-bar__grid { stroke: var(--color-chart-grid); stroke-width: 1; }
 .vv-bar__baseline { stroke: var(--color-chart-axis); stroke-width: 1; }
 .vv-bar__tick,
-.vv-bar__category { fill: var(--color-text-muted); font-size: var(--text-caption-size); font-variant-numeric: tabular-nums; }
+.vv-bar__category { fill: var(--color-text-secondary); font-size: var(--text-caption-size); font-variant-numeric: tabular-nums; }
 .vv-bar__total { fill: var(--color-text-primary); font-size: var(--text-caption-size); font-weight: var(--text-label-weight); }
 
 .vv-bar__hit { fill: transparent; cursor: default; outline: none; }

@@ -4,9 +4,9 @@
 .vv-slider__value { font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
 .vv-slider__input { width: 100%; height: var(--size-control-xs); margin: 0; accent-color: var(--color-accent); cursor: pointer; }
 .vv-slider__input:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; border-radius: var(--radius-sm); }
-.vv-slider__range { display: flex; justify-content: space-between; font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-muted); }
+.vv-slider__range { display: flex; justify-content: space-between; font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-secondary); }
 .vv-slider--disabled { color: var(--color-text-disabled); }
 .vv-slider--disabled .vv-slider__label { color: var(--color-text-disabled); }
 /* Still information while disabled, so it keeps readable contrast. */
-.vv-slider--disabled .vv-slider__value { color: var(--color-text-muted); }
+.vv-slider--disabled .vv-slider__value { color: var(--color-text-secondary); }
 .vv-slider--disabled .vv-slider__input { cursor: not-allowed; }

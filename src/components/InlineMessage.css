@@ -13,7 +13,7 @@
 .vv-inline-message--success     { color: var(--color-status-success-on-subtle); }
 .vv-inline-message--warning     { color: var(--color-status-warning-on-subtle); }
 .vv-inline-message--information { color: var(--color-status-info-on-subtle); }
-.vv-inline-message--hint        { color: var(--color-text-muted); }
+.vv-inline-message--hint        { color: var(--color-text-secondary); }
 
 .vv-inline-message__icon { flex: none; line-height: inherit; }
 .vv-inline-message--success .vv-inline-message__icon { color: var(--color-icon-success); }

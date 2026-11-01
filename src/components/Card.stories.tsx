@@ -50,7 +50,7 @@ export const Playground: Story = {
 export const WithMedia: Story = {
   render: (args) => (
     <div style={{ maxWidth: 280 }}>
-      <Card {...args} media={<RouteMedia />} footer={<span style={{ color: "var(--color-text-muted)" }}>Departs today, 14:30</span>} />
+      <Card {...args} media={<RouteMedia />} footer={<span style={{ color: "var(--color-text-secondary)" }}>Departs today, 14:30</span>} />
     </div>
   ),
 }

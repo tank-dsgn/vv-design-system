@@ -1,5 +1,5 @@
 import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
-import { ColorTable, PrimitiveRamps } from "../blocks"
+import { ColorTable, ColorTabs, ContrastPairs, PrimitiveRamps, RestRamps } from "../blocks"
 
 <Meta title="Foundations/Colors" />
 
@@ -7,6 +7,9 @@ import { ColorTable, PrimitiveRamps } from "../blocks"
 
 Every colour in the interface, as [tokens](./?path=/docs/foundations-tokens--docs): the Tailwind palette first, then the
 semantic colours built on it, which components read.
+
+<ColorTabs>
+<div data-panel="primitives">
 
 ## Brand
 
@@ -17,9 +20,14 @@ system. Semantic tokens read it as `brand-700`, not by the name of the ramp behi
 
 ## Primitives
 
-The rest of the Tailwind CSS palette under its Tailwind names. Hover a step for its value.
+The Tailwind ramps the semantic colours read, under their Tailwind names. Hover a step for its value.
 
 <Unstyled><PrimitiveRamps /></Unstyled>
+
+<Unstyled><RestRamps /></Unstyled>
+
+</div>
+<div data-panel="semantic">
 
 ## Background
 
@@ -50,8 +58,7 @@ An element that sits on the background and could be picked up and moved.
 
 <Unstyled><ColorTable prefix="--color-text-" roles={{
   "--color-text-primary": "Default text",
-  "--color-text-secondary": "Supporting text",
-  "--color-text-muted": "Placeholders, hints, meta",
+  "--color-text-secondary": "Supporting text, placeholders, hints",
   "--color-text-faint": "Separators and quiet marks",
   "--color-text-disabled": "Disabled labels",
   "--color-text-on-accent": "Label on a primary or destructive fill",
@@ -66,14 +73,19 @@ An element that sits on the background and could be picked up and moved.
   "--color-text-success": "Confirmations",
 }} /></Unstyled>
 
+## Contrast
+
+Which text can sit on which ground, measured from these tokens in both themes. **AA** clears 4.5:1 and **AAA** clears 7:1.
+
+<Unstyled><ContrastPairs /></Unstyled>
+
 ## Icon
 
 An icon takes the colour of its text unless it needs its own.
 
 <Unstyled><ColorTable prefix="--color-icon-" roles={{
   "--color-icon-primary": "Default icons",
-  "--color-icon-secondary": "Icons beside text: menus, commands, file rows",
-  "--color-icon-muted": "Quiet marks: chevrons, field icons",
+  "--color-icon-secondary": "Icons beside text, chevrons, field icons",
   "--color-icon-disabled": "Icons on a disabled control",
   "--color-icon-on-accent": "Icons on a primary or destructive fill",
   "--color-icon-inverse": "Icons on an inverse surface",
@@ -144,3 +156,6 @@ Each tone is a pale fill with dark text, plus a solid fill for the one status th
 ## Avatar tones
 
 <Unstyled><ColorTable prefix="--color-tone-" /></Unstyled>
+
+</div>
+</ColorTabs>

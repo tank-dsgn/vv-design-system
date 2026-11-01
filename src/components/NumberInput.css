@@ -20,6 +20,6 @@
 }
 .vv-number__input:focus { outline: none; }
 .vv-number__input:disabled { color: var(--color-text-disabled); }
-.vv-number__unit { font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-muted); }
-.vv-number__hint { font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-muted); }
+.vv-number__unit { font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); }
+.vv-number__hint { font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-secondary); }
 @media (prefers-reduced-motion: reduce) { .vv-number__field { transition: none; } }

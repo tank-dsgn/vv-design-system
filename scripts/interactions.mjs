@@ -28,6 +28,7 @@ const open = async (id, mode = "story") => {
 const focused = () => page.evaluate(() => (document.activeElement?.getAttribute("aria-label") || document.activeElement?.textContent || "").trim())
 const results = []
 const test = async (name, fn) => {
+  if (process.env.TRACE) console.error(name)
   try { await fn(); results.push(["ok", name]) } catch (e) { results.push(["FAIL", `${name}: ${String(e.message).split("\n")[0]}`]) }
 }
 const eq = (got, want, what) => { if (got !== want) throw new Error(`${what}: expected "${want}", got "${got}"`) }
@@ -250,6 +251,22 @@ await test("Menu: a saved layout with the sidebar dragged away is restored", asy
   await page.waitForTimeout(1500)
   eq(await page.getByRole("combobox", { name: "Find" }).isVisible(), true, "menu back")
   eq(await page.locator('[aria-label="Sidebar resize handle"]').isVisible().catch(() => false), false, "no handle")
+})
+await test("Theme change: the page is not reloaded and no example is rebuilt", async () => {
+  await page.goto(`${base}/index.html?path=/docs/components-button--docs`)
+  const iframe = page.frameLocator("#storybook-preview-iframe")
+  await iframe.locator(".docs-story button").first().waitFor()
+  const frame = page.frames().find((f) => f.url().includes("iframe.html"))
+  await frame.evaluate(() => {
+    window.vvSame = document.querySelector(".docs-story button")
+  })
+  await page.locator(".vv-header__theme").click()
+  await page.waitForTimeout(800)
+  const after = await frame.evaluate(() => [document.documentElement.classList.contains("dark"), window.vvSame === document.querySelector(".docs-story button")])
+  await page.locator(".vv-header__theme").click()
+  await page.waitForTimeout(500)
+  eq(after[0], true, "preview went dark")
+  eq(after[1], true, "same example, not rebuilt")
 })
 await test("Icons: the search and sizes stay at the top while the grid scrolls, and go back", async () => {
   await open("foundations-icons--docs", "docs")

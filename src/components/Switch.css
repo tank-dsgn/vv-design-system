@@ -45,7 +45,7 @@
 .vv-switch__input--sm:checked::after { transform: translateX(12px); }
 .vv-switch__input--lg:checked::after { transform: translateX(28px); }
 
-.vv-switch__input:hover:not(:disabled):not(:checked) { background: var(--color-text-muted); }
+.vv-switch__input:hover:not(:disabled):not(:checked) { background: var(--color-text-secondary); }
 .vv-switch__input:hover:not(:disabled):checked { background: var(--color-accent-hover); }
 
 .vv-switch__input:focus-visible {

@@ -7,7 +7,7 @@
   font-family: var(--font-sans);
 }
 .vv-metric__label { display: flex; align-items: center; gap: var(--space-8); font-size: var(--text-label-size); line-height: var(--text-label-line-height); color: var(--color-text-primary); font-weight: var(--text-label-weight); }
-.vv-metric__dot { width: 8px; height: 8px; border-radius: var(--radius-full); flex: none; background: var(--color-text-muted); }
+.vv-metric__dot { width: 8px; height: 8px; border-radius: var(--radius-full); flex: none; background: var(--color-text-secondary); }
 .vv-metric__dot--good { background: var(--color-status-success-strong); }
 .vv-metric__dot--bad { background: var(--color-status-critical-strong); }
 .vv-metric__value { margin: 0; font-size: var(--text-heading-xl-size); line-height: var(--text-heading-xl-line-height); font-weight: var(--text-heading-xl-weight); color: var(--color-text-primary); }

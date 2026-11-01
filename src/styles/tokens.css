@@ -251,7 +251,6 @@
   /* Icons */
   --color-icon-primary: var(--neutral-950);
   --color-icon-secondary: var(--neutral-600);
-  --color-icon-muted: var(--neutral-500);
   --color-icon-disabled: var(--neutral-400);
   --color-icon-on-accent: var(--white);
   --color-icon-inverse: var(--white);
@@ -273,7 +272,6 @@
   /* Text */
   --color-text-primary: var(--neutral-950);
   --color-text-secondary: var(--neutral-600);
-  --color-text-muted: var(--neutral-500);
   --color-text-faint: var(--neutral-300);
   --color-text-disabled: var(--neutral-400);
   --color-text-on-accent: var(--white);
@@ -392,7 +390,6 @@
   --color-skeleton-shine: rgb(255 255 255 / 0.07);
   --color-icon-primary: var(--neutral-50);
   --color-icon-secondary: var(--neutral-400);
-  --color-icon-muted: var(--neutral-400);
   --color-icon-disabled: var(--neutral-600);
   --color-icon-inverse: var(--neutral-950);
   --color-icon-danger: var(--red-400);
@@ -415,7 +412,6 @@
 
   --color-text-primary: var(--neutral-50);
   --color-text-secondary: var(--neutral-400);
-  --color-text-muted: var(--neutral-400);
   --color-text-faint: var(--neutral-600);
   --color-text-disabled: var(--neutral-600);
   --color-text-inverse: var(--neutral-950);

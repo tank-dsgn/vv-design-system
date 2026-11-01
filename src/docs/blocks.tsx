@@ -12,7 +12,7 @@ import { ProgressBar } from "../components/ProgressBar.js"
 import { SegmentedControl } from "../components/SegmentedControl.js"
 import { Switch } from "../components/Switch.js"
 import { Tabs } from "../components/Tabs.js"
-import { STEPS, RAMPS, byPrefix, darkValue, lightTokens, primitiveOf, rawValue, tailwindStep } from "./tokens.js"
+import { STEPS, RAMPS, byPrefix, darkTokens, darkValue, lightTokens, primitiveOf, rawValue, tailwindStep } from "./tokens.js"
 
 export function Docs({ children }: { children: ReactNode }) {
   return <div className="vvd">{children}</div>
@@ -85,6 +85,107 @@ export function TokenLevels() {
   )
 }
 
+/** Semantic and Primitives, one view at a time. Both stay in the page, so the contents list
+ *  knows every heading; the headings of the hidden view leave the list. */
+export function ColorTabs({ children }: { children: ReactNode }) {
+  const [tab, setTab] = useState("semantic")
+  const root = useRef<HTMLDivElement>(null)
+  const [hide, setHide] = useState("")
+  useEffect(() => {
+    const ids = Array.from(root.current?.querySelectorAll(`[data-panel]:not([data-panel="${tab}"]) :is(h2, h3)`) ?? []).map((h) => h.id).filter(Boolean)
+    setHide(ids.map((id) => `.toc-wrapper li:has(> a[href$="#${id}"])`).join(",") + (ids.length ? "{display:none}" : ""))
+    window.scrollTo(0, 0)
+  }, [tab])
+  return (
+    <div ref={root} className="vvd-color-tabs" data-tab={tab}>
+      <style>{hide}</style>
+      <div className="sb-unstyled vvd">
+        <Tabs aria-label="Colour tokens" items={[{ id: "semantic", label: "Semantic" }, { id: "primitives", label: "Primitives" }]} value={tab} onChange={setTab} />
+      </div>
+      {children}
+    </div>
+  )
+}
+
+/** The ramps the semantic colours point at, in either theme. Brand has its own row. */
+const USED_RAMPS = RAMPS.filter((r) =>
+  r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, "") &&
+  [...lightTokens, ...darkTokens].some((t) => t.name.startsWith("--color-") && t.value.includes(`var(--${r}-`)),
+)
+
+/** The ramps nothing reads yet, kept for a project that needs them. */
+export function RestRamps() {
+  return (
+    <details className="vvd vvd-ramps-rest">
+      <summary>Rest of Tailwind ({RAMPS.length - USED_RAMPS.length - 1} ramps)</summary>
+      <PrimitiveRamps only={RAMPS.filter((r) => !USED_RAMPS.includes(r) && r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, ""))} />
+    </details>
+  )
+}
+
+const CONTRAST_PAIRS: [string, string][] = [
+  ["text-primary", "background-primary"],
+  ["text-secondary", "background-primary"],
+  ["text-accent", "background-primary"],
+  ["text-danger", "background-primary"],
+  ["text-success", "background-primary"],
+  ["text-primary", "surface-raised"],
+  ["text-secondary", "surface-raised"],
+  ["text-primary", "surface-sunken"],
+  ["text-secondary", "surface-sunken"],
+  ["text-inverse", "surface-inverse"],
+  ["text-on-accent", "accent"],
+  ["text-on-accent-subtle", "accent-subtle"],
+  ["text-primary", "button-secondary"],
+  ["text-on-accent", "button-danger"],
+  ...["neutral", "info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-subtle`, `status-${t}-subtle`]),
+  ...["info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-strong`, `status-${t}-strong`]),
+]
+
+const luminance = (hex: string) => {
+  const full = hex.length === 4 ? hex.replace(/[0-9a-f]/gi, "$&$&") : hex
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(full.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+const contrast = (a: string, b: string) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
+  return (hi + 0.05) / (lo + 0.05)
+}
+const grade = (ratio: number) => (ratio >= 7 ? "AAA" : ratio >= 4.5 ? "AA" : ratio >= 3 ? "Large text only" : "Fail")
+
+function ContrastCell({ fg, bg }: { fg: string; bg: string }) {
+  const ratio = contrast(fg, bg)
+  return (
+    <td>
+      <span className="vvd-contrast">
+        <span className="vvd-contrast__sample" style={{ color: fg, background: bg }} aria-hidden="true">Aa</span>
+        <span className="mono">{ratio.toFixed(1)}:1</span>
+        <span>{grade(ratio)}</span>
+      </span>
+    </td>
+  )
+}
+
+/** Every text and ground the system pairs, measured from tokens.css. */
+export function ContrastPairs() {
+  const value = (name: string, dark: boolean) => rawValue((dark && darkValue(`--color-${name}`)) || lightTokens.find((t) => t.name === `--color-${name}`)?.value)
+  return (
+    <table className="vvd vvd-table vvd-contrast-table">
+      <thead><tr><th>Text</th><th>On</th><th>Light</th><th>Dark</th></tr></thead>
+      <tbody>
+        {CONTRAST_PAIRS.map(([fg, bg]) => (
+          <tr key={fg + bg}>
+            <td><code className="vvd-name">{fg}</code></td>
+            <td><code className="vvd-name">{bg}</code></td>
+            <ContrastCell fg={value(fg, false)} bg={value(bg, false)} />
+            <ContrastCell fg={value(fg, true)} bg={value(bg, true)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
 /** Every ramp as one strip. Hover a step for its hex value. */
 export function PrimitiveRamps({ only }: { only?: string[] }) {
   return (
@@ -93,7 +194,7 @@ export function PrimitiveRamps({ only }: { only?: string[] }) {
         <span />
         <div className="vvd-ramp__steps">{STEPS.map((s) => <span key={s}>{s}</span>)}</div>
       </div>
-      {(only ?? RAMPS.filter((r) => r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, ""))).map((r) => (
+      {(only ?? USED_RAMPS).map((r) => (
         <div key={r} className="vvd-ramp">
           <span className="vvd-ramp__name">
             {r}
@@ -180,7 +281,7 @@ export function TypeScale({ sample = "The quick brown fox jumps over the lazy do
             <div className="vvd-type__meta">
               <b style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>{r.name}</b>
               <code>text-{r.role}</code>
-              <span className="mono" style={{ color: "var(--color-text-muted)" }}>{size} / {lh} · {r.weight}</span>
+              <span className="mono" style={{ color: "var(--color-text-secondary)" }}>{size} / {lh} · {r.weight}</span>
             </div>
             <p
               className="vvd-type__sample"
@@ -257,7 +358,7 @@ export function WeightScale() {
       {byPrefix("--font-weight-").map((t) => (
         <div key={t.name} className="vvd-tile">
           <span style={{ fontSize: "var(--font-size-4xl)", lineHeight: "var(--line-height-4xl)", fontWeight: `var(${t.name})` }}>Aa</span>
-          <p><code className="vvd-name">{t.name.replace(/^--/, "")}</code><span className="mono" style={{ color: "var(--color-text-muted)" }}>{t.value}</span></p>
+          <p><code className="vvd-name">{t.name.replace(/^--/, "")}</code><span className="mono" style={{ color: "var(--color-text-secondary)" }}>{t.value}</span></p>
         </div>
       ))}
     </div>
@@ -272,7 +373,7 @@ export function SpaceScale() {
       {byPrefix("--space-").map((t) => (
         <div key={t.name} className="vvd-scale__row">
           <code className="vvd-name">{t.name.replace(/^--/, "")}</code>
-          <span className="mono" style={{ color: "var(--color-text-muted)" }}>{t.value}</span>
+          <span className="mono" style={{ color: "var(--color-text-secondary)" }}>{t.value}</span>
           <div className="vvd-scale__bar" style={{ width: `var(${t.name})` }} />
         </div>
       ))}
@@ -305,7 +406,7 @@ export function RadiusScale() {
       {byPrefix("--radius-").map((t) => (
         <div key={t.name} className="vvd-tile">
           <div className="vvd-tile__shape vvd-tile__shape--radius" style={{ borderRadius: `var(${t.name})`, width: t.name === "--radius-full" ? 96 : undefined }} />
-          <p><code className="vvd-name">{t.name.replace(/^--/, "")}</code><span className="mono" style={{ color: "var(--color-text-muted)" }}>{t.value}</span></p>
+          <p><code className="vvd-name">{t.name.replace(/^--/, "")}</code><span className="mono" style={{ color: "var(--color-text-secondary)" }}>{t.value}</span></p>
         </div>
       ))}
     </div>
@@ -328,7 +429,7 @@ export function BorderScale() {
       {BORDERS.map((b) => (
         <div key={b.token} className="vvd-tile">
           <div className="vvd-tile__shape vvd-tile__shape--border" style={{ borderColor: `var(${b.token})`, borderWidth: b.width ?? 1 }} />
-          <p><code className="vvd-name">{b.token.replace(/^--color-/, "")}</code><span style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-xs)" }}>{b.use}</span></p>
+          <p><code className="vvd-name">{b.token.replace(/^--color-/, "")}</code><span style={{ color: "var(--color-text-secondary)", fontSize: "var(--font-size-xs)" }}>{b.use}</span></p>
         </div>
       ))}
     </div>
@@ -342,7 +443,7 @@ export function BorderWidths() {
       {[{ width: 1, use: "Every outline and divider" }, { width: 2, use: "Focus, checked and current" }].map((w) => (
         <div key={w.width} className="vvd-tile">
           <div className="vvd-tile__shape vvd-tile__shape--border" style={{ borderColor: "var(--color-text-primary)", borderWidth: w.width }} />
-          <p><code className="vvd-name">{w.width}px</code><span style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-xs)" }}>{w.use}</span></p>
+          <p><code className="vvd-name">{w.width}px</code><span style={{ color: "var(--color-text-secondary)", fontSize: "var(--font-size-xs)" }}>{w.use}</span></p>
         </div>
       ))}
     </div>

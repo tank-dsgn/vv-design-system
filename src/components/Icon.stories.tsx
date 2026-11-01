@@ -49,7 +49,7 @@ export const InheritsColour: Story = {
       <span style={{ color: "var(--color-text-danger)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="error" size={16} />Booking failed</span>
       <span style={{ color: "var(--color-text-success)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="success" size={16} />Delivered</span>
       <span style={{ color: "var(--color-text-accent)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="information" size={16} />2 updates</span>
-      <span style={{ color: "var(--color-text-muted)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="time" size={16} />Updated 5 min ago</span>
+      <span style={{ color: "var(--color-text-secondary)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="time" size={16} />Updated 5 min ago</span>
     </Row>
   ),
 }

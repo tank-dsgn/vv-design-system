@@ -33,7 +33,7 @@
   font-size: var(--text-caption-strong-size);
   line-height: var(--text-caption-strong-line-height);
   font-weight: var(--text-caption-strong-weight);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 .vv-menu__item {
@@ -63,7 +63,7 @@
 .vv-menu__item--destructive .vv-menu__icon,
 .vv-menu__item:disabled .vv-menu__icon { color: inherit; }
 .vv-menu__label { flex: 1; min-width: 0; }
-.vv-menu__shortcut { font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-muted); }
+.vv-menu__shortcut { font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-secondary); }
 
 @media (prefers-reduced-motion: reduce) {
   .vv-menu { animation: none; }

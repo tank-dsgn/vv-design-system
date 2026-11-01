@@ -3,7 +3,6 @@ import type { Preview } from "@storybook/react-vite"
 import { vvTheme, vvThemeDark } from "./theme"
 import { DocsPage } from "./DocsPage"
 import { DocsContainer, type DocsContainerProps } from "@storybook/addon-docs/blocks"
-import { addons } from "storybook/preview-api"
 import "../src/styles/tokens.css"
 import "../src/docs/docs.css"
 
@@ -16,10 +15,9 @@ const sampleLink = (e: Event) => {
 document.addEventListener("click", (e) => { if (sampleLink(e)) e.preventDefault() }, true)
 document.documentElement.addEventListener("click", (e) => { if (sampleLink(e)) e.stopPropagation() })
 
-/* The current theme lives outside React. Storybook remounts the docs container
-   when globals change, and the iframe's URL still holds the previous value at
-   that moment, so a remount must not start from the URL. */
-/** The header's saved choice wins: the iframe may reload with a stale URL. */
+/* The theme lives outside Storybook's globals: changing a global re-renders the docs, which
+   reloads every example on the page and shows its loading screen. The header saves the choice;
+   every preview, nested ones too, hears it through the storage event and only swaps the class. */
 function savedTheme() {
   try { return localStorage.getItem("vv-theme") } catch { return null }
 }
@@ -27,20 +25,16 @@ function savedTheme() {
 const theme = {
   dark: savedTheme() ? savedTheme() === "dark" : new URLSearchParams(location.search).get("globals")?.includes("theme:dark") ?? false,
   listeners: new Set<() => void>(),
-  listening: false,
 }
 
+window.addEventListener("storage", (e) => {
+  if (e.key !== "vv-theme") return
+  theme.dark = e.newValue === "dark"
+  document.documentElement.classList.toggle("dark", theme.dark)
+  theme.listeners.forEach((l) => l())
+})
+
 function subscribeToTheme(listener: () => void) {
-  if (!theme.listening) {
-    theme.listening = true
-    const channel = addons.getChannel()
-    const on = ({ globals }: { globals: { theme?: string } }) => {
-      theme.dark = globals.theme === "dark"
-      theme.listeners.forEach((l) => l())
-    }
-    channel.on("globalsUpdated", on)
-    channel.on("setGlobals", on)
-  }
   theme.listeners.add(listener)
   return () => {
     theme.listeners.delete(listener)
@@ -53,6 +47,18 @@ function PageName() {
   const index = (window as unknown as { __STORYBOOK_PREVIEW__?: { storyStoreValue?: { storyIndex?: { entries: Record<string, { title: string }> } } } }).__STORYBOOK_PREVIEW__
   const title = id ? index?.storyStoreValue?.storyIndex?.entries[id]?.title : undefined
   return <>{title?.split("/").pop() ?? "On this page"}</>
+}
+
+/* A page opened for the first time has to fetch its code, and that wait is what shows. So the
+   site's own preview fetches them all ahead, one at a time, when the browser is idle. */
+if (window.frameElement?.id === "storybook-preview-iframe" && !(navigator as { connection?: { saveData?: boolean } }).connection?.saveData) {
+  const pages = Object.values(import.meta.glob(["../src/components/*.stories.tsx", "../src/docs/foundations/*.mdx"]))
+  const idle = (fn: () => void) => ("requestIdleCallback" in window ? requestIdleCallback(fn) : setTimeout(fn, 200))
+  const next = () => {
+    const page = pages.shift()
+    if (page) page().catch(() => {}).finally(() => idle(next))
+  }
+  setTimeout(next, 1000)
 }
 
 /** MDX pages have no story to run a decorator, so the docs wrapper follows the
@@ -88,18 +94,12 @@ const showOptions: NonNullable<Preview["argTypesEnhancers"]>[number] = (context)
 const preview: Preview = {
   tags: ["autodocs"],
   argTypesEnhancers: [showOptions],
-  // No toolbar entry: the sun/moon button in manager.tsx sets this.
-  globalTypes: { theme: { description: "Theme" } },
-  // From the saved choice: an embedded example is a preview of its own, and starting it on
-  // light would broadcast that to the page around it.
-  initialGlobals: { theme: savedTheme() ?? "light" },
   /* Dark theme is a .dark class on <html>, exactly as tokens.css declares it.
      Token names never change; only their values do. */
   decorators: [
     (Story, context) => {
-      const dark = context.globals.theme === "dark"
+      const dark = React.useSyncExternalStore(subscribeToTheme, () => theme.dark)
       const docs = context.viewMode === "docs"
-      if (!docs) theme.dark = dark
       React.useLayoutEffect(() => {
         if (!docs) document.documentElement.classList.toggle("dark", dark)
       }, [dark, docs])

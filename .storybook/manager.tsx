@@ -47,19 +47,13 @@ const Moon = () => (
   </svg>
 )
 
-/** The preview repaints after the manager, and Storybook rebuilds the page's contents list
-    100ms after that. Resolves once both are done, or at the cap if the preview can't answer. */
+/** The preview repaints a moment after the manager. Resolves when it has, or at the cap. */
 function previewCaughtUp(dark: boolean) {
   return new Promise<void>((resolve) => {
     const started = performance.now()
-    let matched = 0
     const check = () => {
-      const now = performance.now()
       const doc = document.querySelector<HTMLIFrameElement>("#storybook-preview-iframe")?.contentDocument
-      if (doc?.documentElement.classList.contains("dark") === dark) matched ||= now
-      const toc = doc?.querySelector(".toc-wrapper")
-      const settled = matched && (!toc || (now - matched > 120 && toc.querySelector("a")))
-      if (settled || now - started > 500) resolve()
+      if (doc?.documentElement.classList.contains("dark") === dark || performance.now() - started > 300) resolve()
       else window.setTimeout(check, 16)
     }
     check()
@@ -95,23 +89,10 @@ function Header({ api }: { api: API }) {
     document.documentElement.dataset.vvView = path?.startsWith("/story/") ? "story" : "docs"
   }, [path])
 
-  // Theme: the saved choice wins, re-applied when globals arrive, because an
-  // update sent before the preview is ready gets overwritten by its defaults.
+  // The preview follows on its own: it listens for the saved choice (preview.tsx).
   React.useEffect(() => {
-    const theme = dark ? "dark" : "light"
-    document.documentElement.dataset.vvTheme = theme
+    document.documentElement.dataset.vvTheme = dark ? "dark" : "light"
     api.setOptions({ theme: dark ? vvThemeDark : vvTheme })
-    const channel = addons.getChannel()
-    const apply = (e?: { globals?: { theme?: string } }) => {
-      if (e?.globals?.theme !== theme) channel.emit("updateGlobals", { globals: { theme } })
-    }
-    apply()
-    channel.on("setGlobals", apply)
-    channel.on("globalsUpdated", apply)
-    return () => {
-      channel.off("setGlobals", apply)
-      channel.off("globalsUpdated", apply)
-    }
   }, [api, dark])
 
   const go = (e: React.MouseEvent, to: string) => {

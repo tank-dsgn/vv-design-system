@@ -59,7 +59,7 @@ export const Playground: Story = {
     return (
       <div style={{ display: "flex", gap: 16, alignItems: "center", minHeight: 260, alignContent: "start", flexWrap: "wrap" }}>
         <Menu {...args} onSelect={setLast} />
-        <span style={{ color: "var(--color-text-muted)" }}>{last ? `Selected: ${last}` : "Nothing selected yet"}</span>
+        <span style={{ color: "var(--color-text-secondary)" }}>{last ? `Selected: ${last}` : "Nothing selected yet"}</span>
       </div>
     )
   },
