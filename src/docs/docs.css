@@ -245,6 +245,8 @@
 
 /* Colors: one view at a time. */
 .vvd-color-tabs { margin-top: var(--space-24); }
+.vvd-color-tabs > .sb-unstyled { position: sticky; top: 0; z-index: var(--z-dropdown); background: var(--color-background-primary); }
+.vvd-color-tabs [data-panel] > :is(h2, h3) { scroll-margin-top: var(--space-64); }
 .vvd-color-tabs[data-tab="semantic"] > [data-panel="primitives"], .vvd-color-tabs[data-tab="primitives"] > [data-panel="semantic"] { display: none; }
 .vvd-contrast-table { table-layout: fixed; }
 .vvd-contrast-table th:nth-child(1), .vvd-contrast-table th:nth-child(2) { width: 25%; }
