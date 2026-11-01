@@ -8,6 +8,7 @@ import { PageHeader } from "./PageHeader.js"
 const meta = {
   id: "components-pageheader",
   title: "Components/Navigation/PageHeader",
+  tags: ["!dev"],
   component: PageHeader,
   args: { title: "Shipments", subtitle: "148 this month" },
   argTypes: { badge: { control: false }, back: { control: false }, actions: { control: false } },

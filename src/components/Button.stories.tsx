@@ -6,6 +6,7 @@ import { Icon } from "./Icon.js"
 const meta = {
   id: "components-button",
   title: "Components/Actions/Button",
+  tags: ["!dev"],
   component: Button,
   args: { children: "Book shipment", variant: "primary", size: "sm" },
   argTypes: {

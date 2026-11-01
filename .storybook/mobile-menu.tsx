@@ -69,7 +69,7 @@ export function MobileMenu({ api, open, path, section, dark, onTheme, onClose, s
 
   const link = (p: Page) => (
     <a key={p.id} href={`./?path=/docs/${p.id}`} aria-current={p.id.replace(/--.*$/, "") === current ? "page" : undefined} onClick={(e) => go(e, `/docs/${p.id}`)}>
-      {PAGE_ICONS[leaf(p.title)] && <NavIcon name={PAGE_ICONS[leaf(p.title)]} />}
+      <NavIcon name={p.id.startsWith("components-") ? "component" : PAGE_ICONS[leaf(p.title)]} />
       {leaf(p.title)}
     </a>
   )

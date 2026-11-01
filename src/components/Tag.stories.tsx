@@ -8,6 +8,7 @@ import { Tag } from "./Tag.js"
 const meta = {
   id: "components-tag",
   title: "Components/Forms/Tag",
+  tags: ["!dev"],
   component: Tag,
   args: { children: "Fragile" },
   argTypes: { icon: { control: false } },

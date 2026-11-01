@@ -6,6 +6,7 @@ import { Spinner } from "./Spinner.js"
 const meta = {
   id: "components-spinner",
   title: "Components/Feedback/Spinner",
+  tags: ["!dev"],
   component: Spinner,
   args: { size: "lg", label: "Loading shipments" },
   argTypes: { size: { control: "inline-radio", options: ["sm", "lg"] } },

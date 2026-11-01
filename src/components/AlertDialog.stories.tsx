@@ -19,7 +19,7 @@ const meta = {
   id: "components-alertdialog",
   title: "Components/Overlays/AlertDialog",
   component: AlertDialog,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { open: false, title: "Delete shipment ORD-4417?", children: "This cannot be undone.", confirmLabel: "Delete shipment", cancelLabel: "Keep shipment", onConfirm: () => {}, onClose: () => {} },
   argTypes: { children: { control: false } },
   parameters: { docs: { description: { component: "Asks one question before something irreversible. Both buttons say what they do, and focus starts on the safe one. It is a Modal with these rules already applied." }, story: { inline: false, height: "320px" } } },

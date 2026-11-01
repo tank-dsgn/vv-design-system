@@ -11,7 +11,7 @@ const meta = {
   id: "components-carousel",
   title: "Components/Content/Carousel",
   component: Carousel,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Dock photos", slides: [<Slide text="Dock 1" />, <Slide text="Dock 2" />, <Slide text="Dock 3" />] },
   argTypes: { slides: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

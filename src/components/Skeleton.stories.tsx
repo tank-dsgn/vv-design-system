@@ -9,6 +9,7 @@ import { Skeleton } from "./Skeleton.js"
 const meta = {
   id: "components-skeleton",
   title: "Components/Feedback/Skeleton",
+  tags: ["!dev"],
   component: Skeleton,
   args: { shape: "text", lines: 3 },
   argTypes: { shape: { control: "inline-radio", options: ["text", "rect", "circle"] } },

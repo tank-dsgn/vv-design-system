@@ -8,7 +8,7 @@ const meta = {
   id: "components-calendar",
   title: "Components/Forms/Calendar",
   component: Calendar,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { value: FIXED, onChange: () => {} },
   argTypes: { value: { control: false }, min: { control: false }, max: { control: false } },
   parameters: {

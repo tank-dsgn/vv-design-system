@@ -8,6 +8,7 @@ import { Modal, type ModalSize } from "./Modal.js"
 const meta = {
   id: "components-modal",
   title: "Components/Overlays/Modal",
+  tags: ["!dev"],
   component: Modal,
   args: { open: false, title: "Delete shipment?", onClose: () => {}, size: "small", placement: "center" },
   argTypes: {

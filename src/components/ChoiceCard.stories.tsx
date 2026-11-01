@@ -7,7 +7,7 @@ const meta = {
   id: "components-choicecard",
   title: "Components/Forms/ChoiceCard",
   component: ChoiceCard,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { name: "demo", value: "road", title: "Road freight", description: "Door to door, 2 to 3 working days.", meta: "€420", checked: true, onChange: () => {} },
   argTypes: { meta: { control: false }, type: { control: "inline-radio", options: ["radio", "checkbox"] } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

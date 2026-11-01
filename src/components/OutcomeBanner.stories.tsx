@@ -7,7 +7,7 @@ const meta = {
   id: "components-outcomebanner",
   title: "Components/Feedback/OutcomeBanner",
   component: OutcomeBanner,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { outcome: "success", title: "48 shipments imported", children: "All rows passed validation and are ready to book." },
   argTypes: { outcome: { control: "inline-radio", options: ["success", "partial", "failed"] }, children: { control: false }, actions: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

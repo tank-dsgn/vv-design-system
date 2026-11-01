@@ -13,7 +13,7 @@ const meta = {
   id: "components-timeline",
   title: "Components/Data/Timeline",
   component: Timeline,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { events: EVENTS },
   argTypes: { events: { control: false } },
   parameters: {

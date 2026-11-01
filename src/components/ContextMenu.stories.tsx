@@ -9,7 +9,7 @@ const meta = {
   id: "components-contextmenu",
   title: "Components/Actions/ContextMenu",
   component: ContextMenu,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Shipment ORD-4417", items: ITEMS, onSelect: () => {}, children: <Area text="Right-click here, or focus and press Shift+F10" /> },
   argTypes: { items: { control: false }, children: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

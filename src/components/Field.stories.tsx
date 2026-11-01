@@ -6,7 +6,7 @@ const meta = {
   id: "components-field",
   title: "Components/Forms/Field",
   component: Field,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Order number", placeholder: "ORD-0000", hint: "On the top right of the carrier's invoice." },
   decorators: [(Story) => <Narrow><Story /></Narrow>],
   parameters: { docs: { description: { component: "An Input with its visible label, hint and error, wired together for screen readers. Every field in a form is a Field; a bare Input is for places where the label is already on screen." } } },

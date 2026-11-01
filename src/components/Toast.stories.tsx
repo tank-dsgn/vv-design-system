@@ -7,6 +7,7 @@ import { Toast, ToastRegion, type ToastTone } from "./Toast.js"
 const meta = {
   id: "components-toast",
   title: "Components/Feedback/Toast",
+  tags: ["!dev"],
   component: Toast,
   args: { tone: "success", children: "Shipment ORD-4417 booked" },
   argTypes: {

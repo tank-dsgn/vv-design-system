@@ -6,6 +6,7 @@ import { StateMatrix, pseudoParams } from "../docs/specimen.js"
 
 const meta: Meta = { id: "components-filterlist",
   title: "Components/Forms/FilterList",
+  tags: ["!dev"],
   parameters: { docs: { description: { component: "Collapsible filter sections for a side panel. Filters are toggle buttons (`aria-pressed`), counts show what each one holds, and an empty filter is disabled rather than hidden so the category is still known to exist." } } } }
 export default meta
 type Story = StoryObj

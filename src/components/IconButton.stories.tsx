@@ -7,6 +7,7 @@ import { IconButton, type IconButtonVariant } from "./IconButton.js"
 const meta = {
   id: "components-iconbutton",
   title: "Components/Actions/IconButton",
+  tags: ["!dev"],
   component: IconButton,
   args: { icon: <Icon name="edit" />, label: "Edit shipment", variant: "outlined", size: "sm" },
   argTypes: {

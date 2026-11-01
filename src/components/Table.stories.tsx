@@ -7,6 +7,7 @@ import { StateMatrix, pseudoParams } from "../docs/specimen.js"
 const meta: Meta = {
   id: "components-table",
   title: "Components/Data/Table",
+  tags: ["!dev"],
   component: Table,
   parameters: {
     docs: {

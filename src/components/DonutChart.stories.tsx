@@ -3,6 +3,7 @@ import { DonutChart } from "./DonutChart.js"
 
 const meta: Meta = { id: "components-donutchart",
   title: "Components/Data/DonutChart",
+  tags: ["!dev"],
   parameters: { docs: { description: { component: "Part-to-whole for up to six slices. The legend lists every value, so it doubles as the accessible table; beyond six slices, use a table." } } } }
 export default meta
 type Story = StoryObj

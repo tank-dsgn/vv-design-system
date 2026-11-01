@@ -11,7 +11,7 @@ const meta = {
   id: "components-themeswitcher",
   title: "Components/Forms/ThemeSwitcher",
   component: ThemeSwitcher,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { value: "system", onChange: () => {} },
   argTypes: { value: { control: "inline-radio", options: ["light", "dark", "system"] }, size: { control: "inline-radio", options: ["sm", "md"] } },
   parameters: { docs: { description: { component: "Picks the interface theme for settings pages. Three options, because following the system is a choice of its own. It reports the choice; putting `.dark` on `<html>` is the app's job." } } },

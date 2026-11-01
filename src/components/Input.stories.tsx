@@ -6,6 +6,7 @@ import { Field, Input, type InputSize } from "./Input.js"
 const meta = {
   id: "components-input",
   title: "Components/Forms/Input",
+  tags: ["!dev"],
   component: Input,
   args: { placeholder: "ORD-0000", size: "md" },
   argTypes: {

@@ -14,7 +14,7 @@ const meta = {
   id: "components-combobox",
   title: "Components/Forms/Combobox",
   component: Combobox,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Destination", options: CITIES, value: "hamburg", onChange: () => {} },
   argTypes: { options: { control: false } },
   decorators: [(Story) => <Narrow><div style={{ minHeight: 320 }}><Story /></div></Narrow>],

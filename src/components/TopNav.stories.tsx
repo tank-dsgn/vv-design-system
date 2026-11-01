@@ -7,6 +7,7 @@ import { StateMatrix, pseudoParams } from "../docs/specimen.js"
 const meta: Meta = {
   id: "components-topnav",
   title: "Components/Navigation/TopNav",
+  tags: ["!dev"],
   component: TopNav,
   parameters: {
     docs: {

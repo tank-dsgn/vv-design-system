@@ -28,20 +28,14 @@ export const GROUP_ICONS: Record<string, IconName> = {
   Data: "chart-column",
 }
 
-const TYPE_ICONS: Record<string, IconName> = {
-  component: "component",
-  docs: "file-text",
-  story: "square-play",
-}
-
 // The manager's bundle needs React in scope, so it draws the set itself instead of importing Icon.
 export const NavIcon = ({ name }: { name: IconName }) => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS[name] }} />
 )
 
 /** The sidebar's label: Storybook's own icon per node type is hidden in manager-head.html. */
-export function navLabel(item: { name: string; type: string }) {
-  const icon = item.type === "group" ? GROUP_ICONS[item.name] : PAGE_ICONS[item.name] ?? TYPE_ICONS[item.type]
+export function navLabel(item: { id: string; name: string; type: string }) {
+  const icon = item.type === "group" ? GROUP_ICONS[item.name] : item.id.startsWith("components-") ? "component" : PAGE_ICONS[item.name]
   if (!icon) return undefined
   return (
     <span className="vv-nav-label">

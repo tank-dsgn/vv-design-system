@@ -6,6 +6,7 @@ import { Icon, type IconName } from "./Icon.js"
 const meta = {
   id: "components-icon",
   title: "Components/Content/Icon",
+  tags: ["!dev"],
   component: Icon,
   args: { name: "notifications", size: 20 },
   argTypes: {

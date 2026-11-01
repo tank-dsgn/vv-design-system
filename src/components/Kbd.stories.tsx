@@ -5,6 +5,7 @@ import { Kbd } from "./Kbd.js"
 const meta = {
   id: "components-kbd",
   title: "Components/Actions/Kbd",
+  tags: ["!dev"],
   component: Kbd,
   args: { children: "⌘K", size: "md" },
   argTypes: { size: { control: "inline-radio", options: ["sm", "md"] } },

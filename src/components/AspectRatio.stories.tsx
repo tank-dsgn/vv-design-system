@@ -10,7 +10,7 @@ const meta = {
   id: "components-aspectratio",
   title: "Components/Content/AspectRatio",
   component: AspectRatio,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { ratio: 16 / 9, children: <Fill text="16 : 9" /> },
   argTypes: { children: { control: false } },
   decorators: [(Story) => <Narrow><Story /></Narrow>],

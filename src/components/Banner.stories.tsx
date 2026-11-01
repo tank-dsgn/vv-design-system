@@ -7,6 +7,7 @@ import { Button } from "./Button.js"
 const meta = {
   id: "components-banner",
   title: "Components/Feedback/Banner",
+  tags: ["!dev"],
   component: Banner,
   args: {
     tone: "info",

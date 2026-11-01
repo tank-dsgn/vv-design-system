@@ -7,7 +7,7 @@ const meta = {
   id: "components-numberinput",
   title: "Components/Forms/NumberInput",
   component: NumberInput,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Pallets", value: 4, onChange: () => {}, min: 1, max: 33, step: 1, size: "md" },
   argTypes: { size: { control: "inline-radio", options: ["sm", "md"] } },
   parameters: {

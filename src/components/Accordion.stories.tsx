@@ -13,7 +13,7 @@ const meta = {
   id: "components-accordion",
   title: "Components/Content/Accordion",
   component: Accordion,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { items: ITEMS, allowMultiple: false, defaultOpen: ["rates"], headingLevel: 3 },
   argTypes: { items: { control: false }, headingLevel: { control: "inline-radio", options: [2, 3, 4] } },
   parameters: {

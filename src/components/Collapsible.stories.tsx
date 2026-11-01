@@ -6,7 +6,7 @@ const meta = {
   id: "components-collapsible",
   title: "Components/Content/Collapsible",
   component: Collapsible,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { title: "Rate breakdown", defaultOpen: true, children: "Base rate €380, fuel €40. VAT is added on the invoice." },
   argTypes: { children: { control: false }, title: { control: "text" }, meta: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

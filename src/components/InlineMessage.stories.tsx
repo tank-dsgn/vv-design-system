@@ -6,6 +6,7 @@ import { InlineMessage, type InlineMessageTone } from "./InlineMessage.js"
 const meta = {
   id: "components-inlinemessage",
   title: "Components/Feedback/InlineMessage",
+  tags: ["!dev"],
   component: InlineMessage,
   args: { tone: "error", children: "Add the last two digits of the order number" },
   argTypes: { tone: { control: "inline-radio", options: ["error", "success", "warning", "information", "hint"] } },

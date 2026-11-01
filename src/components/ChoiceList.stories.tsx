@@ -12,7 +12,7 @@ const meta = {
   id: "components-choicelist",
   title: "Components/Forms/ChoiceList",
   component: ChoiceList,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { title: "Delivery", choices: DELIVERY, selected: ["standard"], onChange: () => {}, allowMultiple: false, titleHidden: false },
   argTypes: { choices: { control: false }, selected: { control: false } },
   parameters: {

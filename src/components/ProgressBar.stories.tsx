@@ -5,6 +5,7 @@ import { ProgressBar } from "./ProgressBar.js"
 const meta = {
   id: "components-progressbar",
   title: "Components/Feedback/ProgressBar",
+  tags: ["!dev"],
   component: ProgressBar,
   args: { value: 47, label: "Inspection progress", showValue: true },
   argTypes: { value: { control: { type: "range", min: 0, max: 100, step: 1 } } },

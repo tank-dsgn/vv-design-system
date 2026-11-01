@@ -9,7 +9,7 @@ const meta = {
   id: "components-inputgroup",
   title: "Components/Forms/InputGroup",
   component: InputGroup,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: {
     label: "Promo code",
     children: (

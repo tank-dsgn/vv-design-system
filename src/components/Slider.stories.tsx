@@ -7,7 +7,7 @@ const meta = {
   id: "components-slider",
   title: "Components/Forms/Slider",
   component: Slider,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Search radius", value: 25, onChange: () => {}, min: 5, max: 100, step: 5, showValue: true },
   parameters: {
     docs: {

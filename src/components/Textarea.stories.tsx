@@ -5,6 +5,7 @@ import { Textarea } from "./Textarea.js"
 const meta = {
   id: "components-textarea",
   title: "Components/Forms/Textarea",
+  tags: ["!dev"],
   component: Textarea,
   args: { label: "Delivery notes", placeholder: "Gate number, contact on site, loading hours" },
   parameters: {

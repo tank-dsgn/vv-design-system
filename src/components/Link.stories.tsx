@@ -5,6 +5,7 @@ import { Link } from "./Link.js"
 const meta = {
   id: "components-link",
   title: "Components/Actions/Link",
+  tags: ["!dev"],
   component: Link,
   args: { href: "#", children: "Cancellation policy" },
   parameters: {

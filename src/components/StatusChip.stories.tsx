@@ -6,7 +6,7 @@ const meta = {
   id: "components-statuschip",
   title: "Components/Feedback/StatusChip",
   component: StatusChip,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { status: "running" },
   argTypes: { status: { control: "inline-radio", options: ["queued", "running", "paused", "done", "failed"] } },
   parameters: { docs: { description: { component: "Where a process is: queued, running, paused, done or failed. A Badge with the mapping decided, so the same stage has the same word and tone on every screen." } } },

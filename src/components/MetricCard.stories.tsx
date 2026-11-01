@@ -4,6 +4,7 @@ import { MetricCard } from "./MetricCard.js"
 const meta = {
   id: "components-metriccard",
   title: "Components/Data/MetricCard",
+  tags: ["!dev"],
   parameters: { docs: { description: { component: "One key figure with its change over a period. `sentiment` says whether the change is good news \u2014 a rising overdue balance is bad, a rising collection rate is good \u2014 so colour follows meaning, not direction." } } },
   component: MetricCard,
   args: { label: "Overdue balance", value: "$142,510", delta: "+12%", period: "vs yesterday", sentiment: "bad" },

@@ -17,7 +17,7 @@ const meta = {
   id: "components-descriptionlist",
   title: "Components/Data/DescriptionList",
   component: DescriptionList,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { items: ITEMS, layout: "row" },
   argTypes: { items: { control: false }, layout: { control: "inline-radio", options: ["row", "column"] } },
   parameters: {

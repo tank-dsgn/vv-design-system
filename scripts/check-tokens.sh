@@ -47,6 +47,10 @@ report "Every component has usage, every link resolves" "$(
 report "Space tokens are named by their value" "$(
   sed -n 's/^ *--space-\([0-9]*\): \([0-9]*\)px;.*/\1 \2/p' styles/tokens.css | while read -r a b; do [ "$a" = "$b" ] || echo "--space-$a is ${b}px"; done
 )"
+# The sidebar lists a component once: its examples live on its page, so they carry !dev.
+report "Every component's examples stay out of the sidebar" "$(
+  grep -L '"!dev"' components/*.stories.tsx
+)"
 # Every component is filed in docs/groups.ts under the group its title names.
 report "Every component sits in its group" "$(
   for f in components/*.stories.tsx; do n=$(basename "$f" .stories.tsx); g=$(sed -n 's/.*title: "Components\/\([A-Za-z]*\)\/'"$n"'".*/\1/p' "$f"); grep -q "^  $g: \[.*\"$n\"" docs/groups.ts || echo "not filed: $n"; done

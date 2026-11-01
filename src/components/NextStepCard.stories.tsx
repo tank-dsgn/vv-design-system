@@ -7,7 +7,7 @@ const meta = {
   id: "components-nextstepcard",
   title: "Components/Content/NextStepCard",
   component: NextStepCard,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { title: "Confirm the pickup time", description: "The carrier holds the slot until 16:00 today.", action: <Button>Confirm pickup</Button> },
   argTypes: { action: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

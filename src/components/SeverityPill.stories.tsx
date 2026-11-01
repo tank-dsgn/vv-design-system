@@ -6,7 +6,7 @@ const meta = {
   id: "components-severitypill",
   title: "Components/Feedback/SeverityPill",
   component: SeverityPill,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { severity: "high" },
   argTypes: { severity: { control: "inline-radio", options: ["low", "medium", "high", "critical"] } },
   parameters: { docs: { description: { component: "How serious something is, on a fixed scale of four: an incident, a defect, an audit finding. Bars and word say it together, and the levels sort." } } },

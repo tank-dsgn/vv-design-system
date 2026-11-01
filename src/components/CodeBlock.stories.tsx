@@ -6,7 +6,7 @@ const meta = {
   id: "components-codeblock",
   title: "Components/Content/CodeBlock",
   component: CodeBlock,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { title: "tokens.css", code: ":root {\n  --brand-500: #3b82f6;\n  --brand-600: #2563eb;\n}" },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],
   parameters: { docs: { description: { component: "Code to read and copy: an API example, a config, a tool's output. It scrolls sideways rather than wrapping, because wrapped code reads wrong." } } },

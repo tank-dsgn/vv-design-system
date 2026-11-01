@@ -8,7 +8,7 @@ const meta = {
   id: "components-entitycard",
   title: "Components/Content/EntityCard",
   component: EntityCard,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: {
     name: "North Line Logistics",
     subtitle: "Road carrier",

@@ -12,7 +12,7 @@ const meta = {
   id: "components-otpinput",
   title: "Components/Forms/OtpInput",
   component: OtpInput,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Confirmation code", value: "", onChange: () => {} },
   parameters: { docs: { description: { component: "A one-time code, one box per digit. Typing advances, Backspace returns, and pasting the whole code fills every box. The first box asks the browser for SMS autofill." } } },
 } satisfies Meta<typeof OtpInput>

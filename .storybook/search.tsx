@@ -9,10 +9,9 @@ import { PanelIcon, setNavOpen } from "./nav-state"
    is typed. It replaces Storybook's own field (hidden in manager-head.html) and
    reads the same index. The sidebar's tree is hidden while search is open. */
 
-type Kind = "all" | "docs" | "story"
 type Scope = "all" | "section"
 type Entry = { id: string; type: string; title: string; name: string }
-type Result = { id: string; type: string; label: string; path: string }
+type Result = { id: string; label: string; path: string }
 
 const Glyph = ({ d, size = 16 }: { d: string; size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -25,28 +24,22 @@ const CLOSE = "M3.5 3.5l9 9M12.5 3.5l-9 9"
 const CHECK = "M3 8.5l3.2 3.2L13 4.5"
 const CHEVRON = "M4.5 6.5 8 10l3.5-3.5"
 const PAGE = "M4 1.5h5.5L12.5 4.5v10h-8.5zM6.5 7.5h4M6.5 10h4"
-const EXAMPLE = "M4.5 1.5h7v13L8 11.5l-3.5 3z"
-const STACK = "M8 2 14 5.2 8 8.4 2 5.2zM2 10.8l6 3.2 6-3.2M2 8l6 3.2L14 8"
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
-function find(entries: Entry[], query: string, kind: Kind, scope: Scope, matchCase: boolean, wholeWords: boolean) {
+function find(entries: Entry[], query: string, scope: Scope, matchCase: boolean, wholeWords: boolean) {
   const q = query.trim()
   if (!q) return { results: [] as Result[], re: null }
   const re = new RegExp(wholeWords ? `\\b${escape(q)}\\b` : escape(q), matchCase ? "" : "i")
   const section = document.documentElement.dataset.vvSection === "components" ? "Components" : "Foundations"
   const results = entries
-    .filter((e) => (e.type === "docs" || e.type === "story") && (kind === "all" || e.type === kind) && (scope === "all" || e.title.startsWith(section)))
+    .filter((e) => e.type === "docs" && (scope === "all" || e.title.startsWith(section)))
     .map((e) => {
       const parts = e.title.split("/")
-      const leaf = parts[parts.length - 1]
-      return e.type === "docs"
-        ? { id: e.id, type: e.type, label: leaf, path: parts.slice(0, -1).join(" / "), text: leaf }
-        : { id: e.id, type: e.type, label: e.name, path: parts.join(" / "), text: `${leaf} ${e.name}` }
+      return { id: e.id, label: parts[parts.length - 1], path: parts.slice(0, -1).join(" / ") }
     })
-    .filter((r) => re.test(r.text))
+    .filter((r) => re.test(r.label))
     .sort((a, b) =>
-      Number(a.type !== "docs") - Number(b.type !== "docs") ||
       Number(!a.label.toLowerCase().startsWith(q.toLowerCase())) - Number(!b.label.toLowerCase().startsWith(q.toLowerCase())) ||
       a.label.localeCompare(b.label),
     )
@@ -107,7 +100,6 @@ function DarkMenu({ anchor, label, groups, onClose }: { anchor: HTMLElement; lab
 function Find({ api }: { api: API }) {
   const [open, setOpen] = React.useState(false)
   const [text, setText] = React.useState("")
-  const [kind, setKind] = React.useState<Kind>("all")
   const [scope, setScope] = React.useState<Scope>("all")
   const [matchCase, setMatchCase] = React.useState(false)
   const [wholeWords, setWholeWords] = React.useState(false)
@@ -126,9 +118,9 @@ function Find({ api }: { api: API }) {
     () => (open ? (Object.values(api.getIndex()?.entries ?? {}) as unknown as Entry[]) : []),
     [api, open],
   )
-  const { results, re } = React.useMemo(() => find(entries, text, kind, scope, matchCase, wholeWords), [entries, text, kind, scope, matchCase, wholeWords])
+  const { results, re } = React.useMemo(() => find(entries, text, scope, matchCase, wholeWords), [entries, text, scope, matchCase, wholeWords])
   const shown = results.slice(0, 100)
-  const filtered = kind !== "all" || matchCase || wholeWords
+  const filtered = matchCase || wholeWords
   const scopeLabel = scope === "all" ? "All sections" : "This section"
 
   const close = () => {
@@ -137,7 +129,7 @@ function Find({ api }: { api: API }) {
     setMenu(null)
     setActive(0)
   }
-  const go = (r: Result) => api.navigate(`/${r.type === "docs" ? "docs" : "story"}/${r.id}`)
+  const go = (r: Result) => api.navigate(`/docs/${r.id}`)
 
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") { e.preventDefault(); close() }
@@ -224,7 +216,7 @@ function Find({ api }: { api: API }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => go(r)}
             >
-              <Glyph d={r.type === "docs" ? PAGE : EXAMPLE} />
+              <Glyph d={PAGE} />
               <span>
                 <span className="vv-find__label"><Mark text={r.label} re={re} /></span>
                 <span className="vv-find__path">{r.path}</span>
@@ -240,11 +232,6 @@ function Find({ api }: { api: API }) {
           label="Filters"
           onClose={() => setMenu(null)}
           groups={[
-            [
-              { label: "All", icon: STACK, role: "menuitemradio", on: kind === "all", onPick: () => setKind("all") },
-              { label: "Pages", icon: PAGE, role: "menuitemradio", on: kind === "docs", onPick: () => setKind("docs") },
-              { label: "Examples", icon: EXAMPLE, role: "menuitemradio", on: kind === "story", onPick: () => setKind("story") },
-            ],
             [
               { label: "Match case", role: "menuitemcheckbox", on: matchCase, onPick: () => setMatchCase(!matchCase) },
               { label: "Whole words", role: "menuitemcheckbox", on: wholeWords, onPick: () => setWholeWords(!wholeWords) },

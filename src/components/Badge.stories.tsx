@@ -6,6 +6,7 @@ import { Icon } from "./Icon.js"
 const meta = {
   id: "components-badge",
   title: "Components/Feedback/Badge",
+  tags: ["!dev"],
   component: Badge,
   args: { children: "In transit", tone: "info", size: "medium", strong: false, dot: false },
   argTypes: {

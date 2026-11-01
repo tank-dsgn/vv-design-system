@@ -4,6 +4,7 @@ import { Stat } from "./Stat.js"
 const meta = {
   id: "components-stat",
   title: "Components/Data/Stat",
+  tags: ["!dev"],
   parameters: { docs: { description: { component: "A compact figure with a note, for summary rows in dashboards. Renders as `dt`/`dd` inside a `dl`, so label and value stay paired for screen readers." } } },
   component: Stat,
   args: { label: "Total active findings", value: "870" },

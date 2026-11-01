@@ -8,7 +8,7 @@ const meta = {
   id: "components-scrollarea",
   title: "Components/Content/ScrollArea",
   component: ScrollArea,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Route stops", maxHeight: 200, children: LINES },
   argTypes: { children: { control: false } },
   decorators: [(Story) => <Narrow><Story /></Narrow>],

@@ -6,6 +6,7 @@ import { Dropzone } from "./Dropzone.js"
 const meta = {
   id: "components-dropzone",
   title: "Components/Forms/Dropzone",
+  tags: ["!dev"],
   component: Dropzone,
   args: { size: "lg" },
   argTypes: { size: { control: "inline-radio", options: ["sm", "md", "lg"] } },

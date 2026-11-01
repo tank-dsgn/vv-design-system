@@ -6,7 +6,7 @@ const meta = {
   id: "components-headerstrip",
   title: "Components/Navigation/HeaderStrip",
   component: HeaderStrip,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { children: "You are viewing the Vilnius depot as an administrator.", action: <Link href="#switch">Switch back</Link> },
   argTypes: { children: { control: false }, action: { control: false } },
   parameters: { docs: { description: { component: "A one-line strip above the app header about the whole session: a demo workspace, viewing as another user, a planned outage. It stays while the condition lasts." } } },

@@ -6,7 +6,7 @@ const meta = {
   id: "components-breadcrumbs",
   title: "Components/Navigation/Breadcrumbs",
   component: Breadcrumbs,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { items: [{ label: "Shipments", href: "#" }, { label: "North warehouse", href: "#" }, { label: "ORD-4417" }], maxItems: 4 },
   argTypes: { items: { control: false } },
   parameters: {

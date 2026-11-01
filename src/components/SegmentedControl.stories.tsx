@@ -14,7 +14,7 @@ const meta = {
   id: "components-segmentedcontrol",
   title: "Components/Forms/SegmentedControl",
   component: SegmentedControl,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { "aria-label": "View", options: VIEWS, value: "list", onChange: () => {}, size: "md", fill: false },
   argTypes: { options: { control: false }, size: { control: "inline-radio", options: ["sm", "md"] } },
   parameters: {

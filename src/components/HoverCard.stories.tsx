@@ -14,7 +14,7 @@ const meta = {
   id: "components-hovercard",
   title: "Components/Overlays/HoverCard",
   component: HoverCard,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { trigger: <Link href="#carrier">North Line</Link>, children: <Preview /> },
   argTypes: { trigger: { control: false }, children: { control: false } },
   decorators: [(Story) => <div style={{ minHeight: 140 }}><Story /></div>],

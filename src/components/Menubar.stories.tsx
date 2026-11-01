@@ -12,7 +12,7 @@ const meta = {
   id: "components-menubar",
   title: "Components/Actions/Menubar",
   component: Menubar,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Route editor", menus: MENUS, onSelect: () => {} },
   argTypes: { menus: { control: false } },
   decorators: [(Story) => <div style={{ minHeight: 180 }}><Story /></div>],

@@ -9,6 +9,7 @@ import { StateMatrix, pseudoParams } from "../docs/specimen.js"
 const meta = {
   id: "components-sidebar",
   title: "Components/Navigation/Sidebar",
+  tags: ["!dev"],
   component: Sidebar,
   args: { "aria-label": "Main navigation", current: "orders", onNavigate: () => {}, groups: [] },
   argTypes: { groups: { control: false }, header: { control: false }, footer: { control: false } },

@@ -47,6 +47,14 @@ function subscribeToTheme(listener: () => void) {
   }
 }
 
+/** The contents list is headed by the page it belongs to. */
+function PageName() {
+  const id = new URLSearchParams(location.search).get("id")
+  const index = (window as unknown as { __STORYBOOK_PREVIEW__?: { storyStoreValue?: { storyIndex?: { entries: Record<string, { title: string }> } } } }).__STORYBOOK_PREVIEW__
+  const title = id ? index?.storyStoreValue?.storyIndex?.entries[id]?.title : undefined
+  return <>{title?.split("/").pop() ?? "On this page"}</>
+}
+
 /** MDX pages have no story to run a decorator, so the docs wrapper follows the
  *  theme itself: the page's tokens through <html>, Storybook's own docs styles
  *  through the theme prop. */
@@ -110,7 +118,7 @@ const preview: Preview = {
       theme: vvTheme,
       page: DocsPage,
       container: ThemedDocs,
-      toc: { headingSelector: "h2, h3", title: "On this page" },
+      toc: { headingSelector: "h2, h3", title: <PageName /> },
       codePanel: true,
     },
     options: {

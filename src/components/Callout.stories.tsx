@@ -6,7 +6,7 @@ const meta = {
   id: "components-callout",
   title: "Components/Feedback/Callout",
   component: Callout,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { tone: "note", title: "Rates include fuel", children: "The quoted rate already covers the fuel surcharge for this lane." },
   argTypes: { tone: { control: "inline-radio", options: ["note", "tip", "warning"] }, children: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

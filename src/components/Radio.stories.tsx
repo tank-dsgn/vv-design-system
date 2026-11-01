@@ -6,6 +6,7 @@ import { Radio, RadioGroup } from "./Radio.js"
 const meta = {
   id: "components-radio",
   title: "Components/Forms/Radio",
+  tags: ["!dev"],
   component: RadioGroup,
   args: {
     legend: "Vehicle type",

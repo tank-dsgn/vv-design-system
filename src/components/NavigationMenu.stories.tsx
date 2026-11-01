@@ -12,7 +12,7 @@ const meta = {
   id: "components-navigationmenu",
   title: "Components/Navigation/NavigationMenu",
   component: NavigationMenu,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Main", entries: ENTRIES },
   argTypes: { entries: { control: false } },
   decorators: [(Story) => <div style={{ minHeight: 200 }}><Story /></div>],

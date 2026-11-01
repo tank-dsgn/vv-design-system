@@ -9,6 +9,7 @@ import { Tooltip } from "./Tooltip.js"
 const meta = {
   id: "components-tooltip",
   title: "Components/Overlays/Tooltip",
+  tags: ["!dev"],
   component: Tooltip,
   args: {
     content: "Duplicate shipment",

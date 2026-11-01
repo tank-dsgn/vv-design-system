@@ -213,6 +213,8 @@
 .vvd-docpage__usage { font-weight: var(--font-weight-normal); color: var(--color-text-muted); }
 .vvd-docpage__lead { max-width: 72ch; font-size: var(--font-size-base); line-height: var(--line-height-base); color: var(--color-text-secondary); }
 .vvd-docpage__lead p { margin: 0; font-size: inherit; line-height: inherit; }
+#table-of-contents { margin-bottom: var(--space-12); color: var(--color-text-primary); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-semibold); }
+
 /* Air above every section, on all pages. */
 .sbdocs-content > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-64) !important; }
 .vvd-docpage__h2 {

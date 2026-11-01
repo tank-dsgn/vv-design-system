@@ -6,6 +6,7 @@ import { Switch } from "./Switch.js"
 const meta = {
   id: "components-switch",
   title: "Components/Forms/Switch",
+  tags: ["!dev"],
   component: Switch,
   args: { label: "Book immediately", size: "lg" },
   argTypes: { size: { control: "inline-radio", options: ["sm", "lg"] } },

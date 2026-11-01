@@ -6,6 +6,7 @@ import { Checkbox } from "./Checkbox.js"
 const meta = {
   id: "components-checkbox",
   title: "Components/Forms/Checkbox",
+  tags: ["!dev"],
   component: Checkbox,
   args: { label: "Notify the receiver" },
   parameters: {

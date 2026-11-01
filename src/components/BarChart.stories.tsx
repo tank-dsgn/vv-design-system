@@ -3,6 +3,7 @@ import { BarChart } from "./BarChart.js"
 
 const meta: Meta = { id: "components-barchart",
   title: "Components/Data/BarChart",
+  tags: ["!dev"],
   parameters: { docs: { description: { component: "Bars for comparing values across categories or periods, stacked when the series add up to a whole. Colours come from the chart tokens; every bar has a tooltip on hover and focus, and *View as table* gives every value without hovering." } } } }
 export default meta
 type Story = StoryObj

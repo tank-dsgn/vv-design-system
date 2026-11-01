@@ -13,7 +13,7 @@ const meta = {
   id: "components-togglebutton",
   title: "Components/Actions/ToggleButton",
   component: ToggleButton,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { pressed: false, onChange: () => {}, children: "Show map" },
   argTypes: { icon: { control: false }, children: { control: "text" }, size: { control: "inline-radio", options: ["sm", "md"] } },
   parameters: { docs: { description: { component: "A button that stays on until pressed again: show a map, pin a panel, bold text. Screen readers announce it as pressed or not pressed. For the sliding on and off control, use Switch." } } },

@@ -6,6 +6,7 @@ import { Icon } from "./Icon.js"
 const meta = {
   id: "components-avatar",
   title: "Components/Content/Avatar",
+  tags: ["!dev"],
   component: Avatar,
   args: { name: "Maya Collins", size: "md", tone: "blue", shape: "circle" },
   argTypes: {

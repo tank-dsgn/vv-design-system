@@ -15,7 +15,7 @@ const meta = {
   id: "components-stepper",
   title: "Components/Navigation/Stepper",
   component: Stepper,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { steps: STEPS, current: 1, orientation: "horizontal" },
   argTypes: { steps: { control: false }, current: { control: { type: "range", min: 0, max: 4 } }, orientation: { control: "inline-radio", options: ["horizontal", "vertical"] } },
   parameters: {

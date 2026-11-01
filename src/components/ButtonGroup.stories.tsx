@@ -9,7 +9,7 @@ const meta = {
   id: "components-buttongroup",
   title: "Components/Actions/ButtonGroup",
   component: ButtonGroup,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: {
     label: "Document actions",
     children: (

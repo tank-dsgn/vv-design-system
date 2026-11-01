@@ -7,6 +7,7 @@ import { Tabs } from "./Tabs.js"
 const meta = {
   id: "components-tabs",
   title: "Components/Navigation/Tabs",
+  tags: ["!dev"],
   component: Tabs,
   args: { "aria-label": "Shipments", value: "active", onChange: () => {}, items: [], size: "md" },
   argTypes: { size: { control: "inline-radio", options: ["sm", "md"] }, items: { control: false } },

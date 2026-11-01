@@ -7,7 +7,7 @@ const meta = {
   id: "components-fileitem",
   title: "Components/Forms/FileItem",
   component: FileItem,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { name: "CMR-4417.pdf", size: 482000, status: "done", progress: 60, onRemove: () => {} },
   argTypes: { status: { control: "inline-radio", options: ["uploading", "done", "error"] }, progress: { control: { type: "range", min: 0, max: 100 } } },
   parameters: {

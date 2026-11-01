@@ -7,7 +7,7 @@ const meta = {
   id: "components-explainerblock",
   title: "Components/Content/ExplainerBlock",
   component: ExplainerBlock,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: {
     title: "How the rate is calculated",
     children: "The rate depends on weight, distance and the carrier's fuel index.",

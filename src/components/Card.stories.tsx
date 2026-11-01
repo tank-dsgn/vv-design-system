@@ -23,6 +23,7 @@ function RouteMedia() {
 const meta = {
   id: "components-card",
   title: "Components/Content/Card",
+  tags: ["!dev"],
   component: Card,
   args: { title: "ORD-4417", meta: "North warehouse → Port terminal" },
   argTypes: { media: { control: false }, footer: { control: false }, children: { control: false } },

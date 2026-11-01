@@ -7,7 +7,7 @@ const meta = {
   id: "components-divider",
   title: "Components/Content/Divider",
   component: Divider,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { orientation: "horizontal", spacing: "md" },
   argTypes: { orientation: { control: "inline-radio", options: ["horizontal", "vertical"] }, spacing: { control: "inline-radio", options: ["none", "sm", "md"] } },
   parameters: {

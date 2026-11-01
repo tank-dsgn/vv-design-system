@@ -11,7 +11,7 @@ const meta = {
   id: "components-listitem",
   title: "Components/Content/ListItem",
   component: ListItem,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { title: "North Line Logistics", description: "Road freight, 12 lanes", media: <Avatar name="North Line" shape="rounded" tone="blue" />, meta: <Badge tone="success">Active</Badge> },
   argTypes: { media: { control: false }, meta: { control: false }, action: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],

@@ -7,7 +7,7 @@ const meta = {
   id: "components-emptystate",
   title: "Components/Feedback/EmptyState",
   component: EmptyState,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: {
     title: "No shipments yet",
     description: "Book your first shipment and it will appear here with its tracking status.",

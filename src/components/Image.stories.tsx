@@ -10,7 +10,7 @@ const meta = {
   id: "components-image",
   title: "Components/Content/Image",
   component: Image,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { src: SVG("#1d4ed8"), alt: "Dock 4 at North warehouse", ratio: "16 / 9", fit: "cover", radius: "md" },
   argTypes: { fit: { control: "inline-radio", options: ["cover", "contain"] }, radius: { control: "inline-radio", options: ["none", "md", "lg"] }, ratio: { control: "inline-radio", options: ["16 / 9", "4 / 3", "1 / 1", "3 / 4"] } },
   parameters: {

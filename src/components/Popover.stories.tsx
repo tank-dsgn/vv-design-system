@@ -11,7 +11,7 @@ const meta = {
   id: "components-popover",
   title: "Components/Overlays/Popover",
   component: Popover,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: {
     title: "Fuel surcharge",
     trigger: <IconButton variant="ghost" size="sm" icon={<Icon name="information" />} label="About the fuel surcharge" />,

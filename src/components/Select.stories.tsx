@@ -6,6 +6,7 @@ import { Select } from "./Select.js"
 const meta = {
   id: "components-select",
   title: "Components/Forms/Select",
+  tags: ["!dev"],
   component: Select,
   args: { size: "md", defaultValue: "truck" },
   argTypes: { size: { control: "inline-radio", options: ["xs", "sm", "md", "lg"] } },

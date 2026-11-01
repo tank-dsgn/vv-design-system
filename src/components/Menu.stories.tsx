@@ -23,6 +23,7 @@ const SECTIONS: MenuSection[] = [
 const meta = {
   id: "components-menu",
   title: "Components/Actions/Menu",
+  tags: ["!dev"],
   component: Menu,
   args: {
     trigger: <Button variant="outlined" iconTrailing={<Icon name="chevron-down" size={16} />}>Actions</Button>,

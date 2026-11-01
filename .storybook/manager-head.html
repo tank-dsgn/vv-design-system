@@ -164,10 +164,11 @@
     .vv-drawer__find input::placeholder { color: var(--vv-muted); opacity: 1; }
     .vv-drawer__pages a[aria-current="page"] { margin: 0 -8px; padding-left: 8px; border-radius: 6px; background: var(--vv-active-bg); color: var(--vv-active-fg); font-weight: 600; }
     .vv-drawer__pages details a { padding-left: 16px; }
+    .vv-drawer__pages details a[aria-current="page"] { padding-left: 24px; }
     .vv-drawer__pages svg { flex: none; margin-right: 8px; }
-    .vv-drawer__pages summary { justify-content: space-between; color: var(--vv-fg); font-weight: 600; list-style: none; }
+    .vv-drawer__pages summary { color: var(--vv-fg); font-weight: 600; list-style: none; }
     .vv-drawer__pages summary::-webkit-details-marker { display: none; }
-    .vv-drawer__pages summary::after { content: ""; width: 7px; height: 7px; margin-right: 4px; border-right: 1.5px solid var(--vv-muted); border-bottom: 1.5px solid var(--vv-muted); transform: rotate(45deg); }
+    .vv-drawer__pages summary::after { content: ""; width: 7px; height: 7px; margin-left: auto; margin-right: 4px; border-right: 1.5px solid var(--vv-muted); border-bottom: 1.5px solid var(--vv-muted); transform: rotate(45deg); }
     .vv-drawer__pages details[open] > summary::after { transform: rotate(-135deg); }
     .vv-drawer__pages p { margin: 12px 0; color: var(--vv-muted); }
     .vv-drawer__theme { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--vv-line); }

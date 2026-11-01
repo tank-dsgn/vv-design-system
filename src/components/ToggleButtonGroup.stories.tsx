@@ -15,7 +15,7 @@ const meta = {
   id: "components-togglebuttongroup",
   title: "Components/Actions/ToggleButtonGroup",
   component: ToggleButtonGroup,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Map layers", items: LAYERS, value: ["routes"], onChange: () => {} },
   argTypes: { items: { control: false } },
   parameters: { docs: { description: { component: "Toggles joined in one row when any number of them can be on: map layers, text formatting. If exactly one must be on, use SegmentedControl." } } },

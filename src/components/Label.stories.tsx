@@ -7,7 +7,7 @@ const meta = {
   id: "components-label",
   title: "Components/Forms/Label",
   component: Label,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { children: "Order number", optional: false, htmlFor: "label-demo" },
   argTypes: { children: { control: "text" } },
   decorators: [(Story) => <Narrow><Story /></Narrow>],

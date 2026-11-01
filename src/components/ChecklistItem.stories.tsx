@@ -8,7 +8,7 @@ const meta = {
   id: "components-checklistitem",
   title: "Components/Content/ChecklistItem",
   component: ChecklistItem,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Upload the customs declaration", description: "A PDF under 5 MB, signed by the shipper.", checked: false, onChange: () => {} },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],
   parameters: { docs: { description: { component: "One task on a list people work through: onboarding, a pre-departure check. It is a real checkbox, with room for what the task involves and a way to do it." } } },

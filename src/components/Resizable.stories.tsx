@@ -8,7 +8,7 @@ const meta = {
   id: "components-resizable",
   title: "Components/Content/Resizable",
   component: Resizable,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { label: "Resize the list and the details", first: <Pane text="Shipment list" />, second: <Pane text="Shipment details" />, defaultSize: 40 },
   argTypes: { first: { control: false }, second: { control: false }, direction: { control: "inline-radio", options: ["horizontal", "vertical"] } },
   parameters: { docs: { description: { component: "Two panes with a handle between them, for tools where people decide how much room each side gets. The handle is a focusable separator: arrows move it, Home and End jump to the limits." } } },

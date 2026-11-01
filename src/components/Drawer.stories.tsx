@@ -20,7 +20,7 @@ const meta = {
   id: "components-drawer",
   title: "Components/Overlays/Drawer",
   component: Drawer,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { open: false, title: "Shipment ORD-4417", onClose: () => {} },
   argTypes: { children: { control: false }, footer: { control: false }, headerActions: { control: false } },
   parameters: { docs: { description: { component: "A panel from the right edge for an object's details or a longer form, keeping the list behind it in view. Esc and a click on the scrim close it, and focus returns to the trigger." }, story: { inline: false, height: "420px" } } },

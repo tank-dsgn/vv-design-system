@@ -6,6 +6,7 @@ import { Pagination } from "./Pagination.js"
 const meta = {
   id: "components-pagination",
   title: "Components/Navigation/Pagination",
+  tags: ["!dev"],
   component: Pagination,
   args: { page: 4, pageCount: 12, onChange: () => {}, variant: "pages", size: "sm", siblings: 1 },
   argTypes: {

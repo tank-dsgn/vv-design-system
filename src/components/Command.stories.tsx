@@ -15,7 +15,7 @@ const meta = {
   id: "components-command",
   title: "Components/Actions/Command",
   component: Command,
-  tags: ["new"],
+  tags: ["new", "!dev"],
   args: { groups: GROUPS, onSelect: () => {} },
   argTypes: { groups: { control: false } },
   decorators: [(Story) => <Narrow width="medium"><Story /></Narrow>],
