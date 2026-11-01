@@ -248,7 +248,6 @@
   --color-background-overlay: rgb(0 0 0 / 0.5);
 
   /* Surfaces */
-  --color-surface-primary: var(--white);
   --color-surface-input: var(--white);
   --color-surface-raised: var(--white);
   --color-surface-sunken: var(--neutral-100);
@@ -381,7 +380,6 @@
   --color-icon-inverse: var(--neutral-950);
   --color-icon-danger: var(--red-400);
   --color-icon-success: var(--green-400);
-  --color-surface-primary: var(--neutral-950);
   --color-surface-input: var(--neutral-900);
   --color-surface-raised: var(--neutral-900);
   --color-surface-sunken: var(--neutral-950);

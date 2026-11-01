@@ -1,6 +1,6 @@
 /* ChoiceCard. A native input, so arrows, Space and forms work unchanged; the
    whole card is its label, and selection shows in the border and the control. */
-.vv-choice-card { display: flex; align-items: flex-start; gap: var(--space-12); padding: var(--space-16); border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); background: var(--color-surface-primary); font-family: var(--font-sans); cursor: pointer; transition: border-color var(--duration-fast), background-color var(--duration-fast); }
+.vv-choice-card { display: flex; align-items: flex-start; gap: var(--space-12); padding: var(--space-16); border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); background: var(--color-surface-raised); font-family: var(--font-sans); cursor: pointer; transition: border-color var(--duration-fast), background-color var(--duration-fast); }
 .vv-choice-card:hover { border-color: var(--color-border-hover); }
 .vv-choice-card:has(:checked) { border-color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); background: var(--color-accent-subtle); }
 .vv-choice-card:has(:checked) .vv-choice-card__title { color: var(--color-accent-on-subtle); }

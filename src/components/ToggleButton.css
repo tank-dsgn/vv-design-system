@@ -1,6 +1,6 @@
 /* ToggleButton. Pressed is a neutral fill with strong text: a mode that is on, not a
    call to action. */
-.vv-toggle { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-6); border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-primary); color: var(--color-text-secondary); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); cursor: pointer; transition: background-color var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast); }
+.vv-toggle { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-6); border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-raised); color: var(--color-text-secondary); font-family: var(--font-sans); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); cursor: pointer; transition: background-color var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast); }
 .vv-toggle--sm { min-width: 32px; height: 32px; padding: 0 var(--space-8); }
 .vv-toggle--md { min-width: 40px; height: 40px; padding: 0 var(--space-12); }
 .vv-toggle:hover:not(:disabled) { background: var(--color-surface-hover); color: var(--color-text-primary); }
