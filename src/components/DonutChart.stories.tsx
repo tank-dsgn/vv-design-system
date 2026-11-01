@@ -19,10 +19,10 @@ export const ExpectedCash: Story = {
       caption="next 90 days"
       format={money}
       slices={[
-        { key: "w1", label: "0–7 days", value: 42300, color: "var(--color-chart-ordinal4-1)" },
-        { key: "w2", label: "8–14 days", value: 38900, color: "var(--color-chart-ordinal4-2)" },
-        { key: "w4", label: "15–30 days", value: 84800, color: "var(--color-chart-ordinal4-3)" },
-        { key: "later", label: "31+ days", value: 362300, color: "var(--color-chart-ordinal4-4)" },
+        { key: "w1", label: "0–7 days", value: 42300, color: "var(--color-chart-1)" },
+        { key: "w2", label: "8–14 days", value: 38900, color: "var(--color-chart-2)" },
+        { key: "w4", label: "15–30 days", value: 84800, color: "var(--color-chart-3)" },
+        { key: "later", label: "31+ days", value: 362300, color: "var(--color-chart-4)" },
       ]}
     />
   ),
@@ -37,9 +37,9 @@ export const ShorterWindow: Story = {
       caption="next 30 days"
       format={money}
       slices={[
-        { key: "w1", label: "0–7 days", value: 42300, color: "var(--color-chart-ordinal4-1)" },
-        { key: "w2", label: "8–14 days", value: 38900, color: "var(--color-chart-ordinal4-2)" },
-        { key: "w4", label: "15–30 days", value: 84800, color: "var(--color-chart-ordinal4-3)" },
+        { key: "w1", label: "0–7 days", value: 42300, color: "var(--color-chart-1)" },
+        { key: "w2", label: "8–14 days", value: 38900, color: "var(--color-chart-2)" },
+        { key: "w4", label: "15–30 days", value: 84800, color: "var(--color-chart-3)" },
       ]}
     />
   ),

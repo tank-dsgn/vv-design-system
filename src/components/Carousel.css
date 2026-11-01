@@ -3,4 +3,4 @@
 .vv-carousel__track:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 .vv-carousel__slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
 .vv-carousel__nav { display: flex; align-items: center; justify-content: center; gap: var(--space-12); margin-top: var(--space-12); }
-.vv-carousel__count { min-width: 56px; font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-secondary); text-align: center; }
+.vv-carousel__count { min-width: 56px; font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); text-align: center; }

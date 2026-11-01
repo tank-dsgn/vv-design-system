@@ -34,6 +34,10 @@ report "No emoji or text glyphs as icons" "$(
 report "No marketing register in copy" "$(
   grep -rniE '\b(elevate|unlock|empower|seamless|effortless|supercharge|get started|learn more)\b|[a-z]!\s*["<]' . --include=*.tsx --include=*.mdx | grep -v 'WorkflowsPage.tsx'
 )"
+# Components read type roles: the scale behind them is for tokens.css and the docs.
+report "Components read type roles, not the scale" "$(
+  grep -nE -- '--(font-size|line-height|font-weight)-' components/*.css
+)"
 # Every component page has usage text, and its [links] lead somewhere.
 report "Every component has usage, every link resolves" "$(
   for f in components/*.stories.tsx; do n=$(basename "$f" .stories.tsx); grep -q "^  $n: {" docs/usage.ts || echo "no usage: $n"; done

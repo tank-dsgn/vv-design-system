@@ -1,7 +1,7 @@
 .vv-context-zone { position: relative; border-radius: var(--corner-surface); }
 .vv-context-zone:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 .vv-context-menu { position: absolute; z-index: 10; display: flex; flex-direction: column; min-width: 180px; padding: var(--space-4); border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-raised); box-shadow: var(--shadow-lg); font-family: var(--font-sans); }
-.vv-context-menu__item { min-height: 32px; padding: var(--space-4) var(--space-8); border: 0; border-radius: var(--radius-sm); background: none; color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); line-height: var(--line-height-sm); text-align: left; cursor: pointer; }
+.vv-context-menu__item { min-height: 32px; padding: var(--space-4) var(--space-8); border: 0; border-radius: var(--radius-sm); background: none; color: var(--color-text-primary); font: inherit; font-size: var(--text-body-size); line-height: var(--text-body-line-height); text-align: left; cursor: pointer; }
 .vv-context-menu__item:hover:not(:disabled), .vv-context-menu__item:focus-visible { outline: 0; background: var(--color-surface-hover); }
 .vv-context-menu__item--destructive { color: var(--color-text-danger); }
 .vv-context-menu__item:disabled { color: var(--color-text-disabled); cursor: not-allowed; }

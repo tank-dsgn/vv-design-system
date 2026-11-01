@@ -5,9 +5,9 @@
 
 .vv-radio-group__legend {
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-line-height);
+  font-weight: var(--text-label-weight);
   color: var(--color-text-primary);
   padding: 0;
   margin-bottom: var(--space-4);
@@ -18,8 +18,8 @@
   align-items: center;
   gap: var(--space-8);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   color: var(--color-text-primary);
   cursor: pointer;
 }

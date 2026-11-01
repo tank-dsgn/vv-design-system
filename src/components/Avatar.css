@@ -7,14 +7,14 @@
   flex: none;
   overflow: hidden;
   font-family: var(--font-sans);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--text-label-weight);
   color: var(--color-text-on-tone);
   user-select: none;
 }
 
 .vv-avatar--xs { width: var(--size-avatar-xs); height: var(--size-avatar-xs); font-size: 10px; }
-.vv-avatar--sm { width: var(--size-avatar-sm); height: var(--size-avatar-sm); font-size: 12px; }
-.vv-avatar--md { width: var(--size-avatar-md); height: var(--size-avatar-md); font-size: var(--font-size-sm); }
+.vv-avatar--sm { width: var(--size-avatar-sm); height: var(--size-avatar-sm); font-size: var(--text-caption-size); }
+.vv-avatar--md { width: var(--size-avatar-md); height: var(--size-avatar-md); font-size: var(--text-body-size); }
 .vv-avatar--lg { width: var(--size-avatar-lg); height: var(--size-avatar-lg); font-size: 18px; }
 
 /* Tones. Figma models these as component variants (2 Blue, 3 MAngeta…), so the

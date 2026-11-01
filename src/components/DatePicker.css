@@ -1,11 +1,11 @@
 .vv-datepicker { position: relative; display: inline-flex; flex-direction: column; gap: var(--space-6); min-width: 240px; font-family: var(--font-sans); }
-.vv-datepicker__label { font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+.vv-datepicker__label { font-size: var(--text-label-size); line-height: var(--text-label-line-height); font-weight: var(--text-label-weight); color: var(--color-text-primary); }
 .vv-datepicker__field {
   display: flex; align-items: center; justify-content: space-between; gap: var(--space-8);
   height: var(--size-control-md); padding: 0 var(--space-12);
   border: 1px solid var(--color-border-default); border-radius: var(--corner-control);
   background: var(--color-surface-input); color: var(--color-text-primary);
-  font: inherit; font-size: var(--font-size-sm); line-height: var(--line-height-sm); text-align: left; cursor: pointer;
+  font: inherit; font-size: var(--text-body-size); line-height: var(--text-body-line-height); text-align: left; cursor: pointer;
   transition: border-color var(--duration-fast);
 }
 .vv-datepicker__field svg { color: var(--color-icon-muted); }
@@ -14,7 +14,7 @@
 .vv-datepicker__field--invalid { border-color: var(--color-border-danger); }
 .vv-datepicker__field:disabled { border-color: var(--color-border-disabled); color: var(--color-text-disabled); cursor: not-allowed; }
 .vv-datepicker__placeholder { color: var(--color-text-muted); }
-.vv-datepicker__hint { font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-muted); }
+.vv-datepicker__hint { font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-muted); }
 .vv-datepicker__popover {
   position: absolute; top: calc(100% + var(--space-4)); left: 0; z-index: var(--z-dropdown);
   padding: var(--space-12); border: 1px solid var(--color-border-default); border-radius: var(--radius-xl);

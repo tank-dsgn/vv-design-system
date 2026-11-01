@@ -13,15 +13,15 @@
 .vv-stepper__marker {
   display: inline-grid; place-items: center; flex: none;
   width: 24px; height: 24px; border-radius: var(--radius-full);
-  font-size: var(--font-size-xs); line-height: var(--line-height-xs); font-weight: var(--font-weight-semibold);
+  font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); font-weight: var(--text-label-strong-weight);
   border: 1px solid var(--color-border-hover); color: var(--color-text-secondary); background: var(--color-background-primary);
 }
 .vv-stepper--horizontal .vv-stepper__marker { display: none; }
-.vv-stepper__step[data-state="complete"] .vv-stepper__marker { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-text-on-accent); }
+.vv-stepper__step[data-state="complete"] .vv-stepper__marker { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-icon-on-accent); }
 .vv-stepper__step[data-state="current"] .vv-stepper__marker { border: 2px solid var(--color-accent); color: var(--color-text-accent); }
 .vv-stepper__text { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; padding-top: var(--space-2); }
-.vv-stepper__label { font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+.vv-stepper__label { font-size: var(--text-label-size); line-height: var(--text-label-line-height); font-weight: var(--text-label-weight); color: var(--color-text-primary); }
 .vv-stepper__step[data-state="upcoming"] .vv-stepper__label { color: var(--color-text-secondary); }
 .vv-stepper--horizontal .vv-stepper__step[data-state="current"] .vv-stepper__label { color: var(--color-text-accent); }
-.vv-stepper__desc { font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-muted); }
+.vv-stepper__desc { font-size: var(--text-caption-size); line-height: var(--text-caption-line-height); color: var(--color-text-muted); }
 .vv-stepper__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

@@ -7,8 +7,8 @@
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   color: var(--color-text-primary);
 }
 
@@ -22,7 +22,7 @@
 
 .vv-table th {
   color: var(--color-text-secondary);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--text-label-weight);
 }
 
 .vv-table tbody tr:hover { background: var(--color-surface-sunken); }
@@ -52,7 +52,7 @@
   outline-offset: 2px;
 }
 
-.vv-table__arrow { font-size: var(--font-size-xs); }
+.vv-table__arrow { font-size: var(--text-caption-size); }
 
 .vv-table__empty {
   padding: var(--space-24);

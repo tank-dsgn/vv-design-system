@@ -8,8 +8,8 @@
   background: var(--color-background-secondary);
   border-right: 1px solid var(--color-border-default);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   transition: width var(--duration-fast);
 }
 
@@ -26,8 +26,8 @@
 .vv-sidebar__group-title {
   padding: var(--space-4) var(--space-8);
   color: var(--color-text-secondary);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
 }
@@ -62,8 +62,8 @@
 /* State=Active. As with tabs: a fact of selection, not an input state. */
 .vv-sidebar__item[aria-current="page"] {
   background: var(--color-accent-subtle-hover);
-  color: var(--color-accent-on-subtle);
-  font-weight: var(--font-weight-medium);
+  color: var(--color-text-on-accent-subtle);
+  font-weight: var(--text-label-weight);
 }
 
 .vv-sidebar__item:focus-visible {

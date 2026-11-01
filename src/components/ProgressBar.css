@@ -5,8 +5,8 @@
   align-items: center;
   gap: var(--space-12);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   color: var(--color-text-primary);
   min-width: 0;
 }
@@ -34,6 +34,6 @@
   transition: width var(--duration-fast);
 }
 
-.vv-progress--complete .vv-progress__fill { background: var(--color-status-success-strong-bg); }
+.vv-progress--complete .vv-progress__fill { background: var(--color-status-success-strong); }
 
 @media (prefers-reduced-motion: reduce) { .vv-progress__fill { transition: none; } }

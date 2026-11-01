@@ -8,9 +8,9 @@
   gap: var(--space-8);
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-line-height);
+  font-weight: var(--text-label-weight);
 
   border: 1px solid transparent;
   border-radius: var(--corner-control);
@@ -36,22 +36,22 @@
 .vv-button--lg { height: var(--size-control-lg); padding: 0 var(--space-12); }
 
 /* --- primary --- */
-.vv-button--primary { background: var(--color-button-bg-primary); color: var(--color-text-on-accent); }
-.vv-button--primary:hover:not(:disabled) { background: var(--color-button-bg-primary-hover); }
-.vv-button--primary:active:not(:disabled) { background: var(--color-button-bg-primary-pressed); }
-.vv-button--primary:disabled { background: var(--color-button-bg-primary-disabled); }
+.vv-button--primary { background: var(--color-accent); color: var(--color-text-on-accent); }
+.vv-button--primary:hover:not(:disabled) { background: var(--color-accent-hover); }
+.vv-button--primary:active:not(:disabled) { background: var(--color-accent-pressed); }
+.vv-button--primary:disabled { background: var(--color-accent-disabled); }
 
 /* --- secondary --- */
-.vv-button--secondary { background: var(--color-button-bg-secondary); color: var(--color-text-primary); }
-.vv-button--secondary:hover:not(:disabled) { background: var(--color-button-bg-secondary-hover); }
-.vv-button--secondary:active:not(:disabled) { background: var(--color-button-bg-secondary-pressed); }
-.vv-button--secondary:disabled { background: var(--color-button-bg-secondary-disabled); color: var(--color-text-disabled); }
+.vv-button--secondary { background: var(--color-button-secondary); color: var(--color-text-primary); }
+.vv-button--secondary:hover:not(:disabled) { background: var(--color-button-secondary-hover); }
+.vv-button--secondary:active:not(:disabled) { background: var(--color-button-secondary-pressed); }
+.vv-button--secondary:disabled { background: var(--color-button-secondary-disabled); color: var(--color-text-disabled); }
 
 /* --- destructive --- */
-.vv-button--destructive { background: var(--color-button-bg-danger); color: var(--color-text-on-accent); }
-.vv-button--destructive:hover:not(:disabled) { background: var(--color-button-bg-danger-hover); }
-.vv-button--destructive:active:not(:disabled) { background: var(--color-button-bg-danger-pressed); }
-.vv-button--destructive:disabled { background: var(--color-button-bg-danger-disabled); }
+.vv-button--destructive { background: var(--color-button-danger); color: var(--color-text-on-accent); }
+.vv-button--destructive:hover:not(:disabled) { background: var(--color-button-danger-hover); }
+.vv-button--destructive:active:not(:disabled) { background: var(--color-button-danger-pressed); }
+.vv-button--destructive:disabled { background: var(--color-button-danger-disabled); }
 
 /* --- outlined --- */
 .vv-button--outlined {
@@ -64,8 +64,8 @@
 
 /* --- ghost --- */
 .vv-button--ghost { background: transparent; color: var(--color-text-primary); }
-.vv-button--ghost:hover:not(:disabled) { background: var(--color-button-bg-secondary-hover); }
-.vv-button--ghost:active:not(:disabled) { background: var(--color-button-bg-secondary-pressed); }
+.vv-button--ghost:hover:not(:disabled) { background: var(--color-button-secondary-hover); }
+.vv-button--ghost:active:not(:disabled) { background: var(--color-button-secondary-pressed); }
 .vv-button--ghost:disabled { color: var(--color-text-disabled); }
 
 /* --- link --- */

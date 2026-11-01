@@ -14,7 +14,7 @@
   background: linear-gradient(90deg, transparent, var(--color-skeleton-shine), transparent);
   animation: vv-skeleton-shimmer var(--duration-shimmer) linear infinite;
 }
-.vv-skeleton--text { height: var(--font-size-sm); margin: var(--space-2) 0; border-radius: var(--radius-sm); }
+.vv-skeleton--text { height: var(--text-body-size); margin: var(--space-2) 0; border-radius: var(--radius-sm); }
 .vv-skeleton--rect { border-radius: var(--radius-lg); }
 .vv-skeleton--circle { border-radius: var(--radius-full); flex: none; }
 .vv-skeleton-lines { display: flex; flex-direction: column; gap: var(--space-6); }

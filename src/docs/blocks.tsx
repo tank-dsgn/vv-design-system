@@ -156,36 +156,39 @@ export function ProjectTheme() {
 
 /* --- Typography --------------------------------------------------------- */
 
-const TYPE_STEPS: { size: string; name: string; use: string; weight?: string }[] = [
-  { size: "4xl", name: "Display", use: "Covers", weight: "bold" },
-  { size: "2xl", name: "Page title", use: "The top of a page", weight: "semibold" },
-  { size: "lg", name: "Section", use: "Sections, modals, cards", weight: "semibold" },
-  { size: "base", name: "Body large", use: "Reading text" },
-  { size: "sm", name: "Body", use: "Default UI text, tables" },
-  { size: "sm", name: "Controls", use: "Buttons, tabs, labels", weight: "medium" },
-  { size: "xs", name: "Caption", use: "Hints, meta, badges" },
+const TEXT_ROLES = [
+  { name: "Heading XL", role: "heading-xl", size: "3xl", weight: "medium" },
+  { name: "Heading L", role: "heading-lg", size: "xl", weight: "medium" },
+  { name: "Heading M", role: "heading-md", size: "lg", weight: "semibold" },
+  { name: "Heading S", role: "heading-sm", size: "base", weight: "semibold" },
+  { name: "Body", role: "body", size: "sm", weight: "normal" },
+  { name: "Label", role: "label", size: "sm", weight: "medium" },
+  { name: "Label strong", role: "label-strong", size: "sm", weight: "semibold" },
+  { name: "Caption", role: "caption", size: "xs", weight: "normal" },
+  { name: "Caption strong", role: "caption-strong", size: "xs", weight: "medium" },
+  { name: "Code", role: "code", size: "sm", weight: "normal" },
 ]
 
 export function TypeScale({ sample = "The quick brown fox jumps over the lazy dog" }: { sample?: string }) {
   return (
     <div className="vvd vvd-type">
-      {TYPE_STEPS.map((s) => {
-        const size = lightTokens.find((t) => t.name === `--font-size-${s.size}`)?.value
-        const lh = lightTokens.find((t) => t.name === `--line-height-${s.size}`)?.value
+      {TEXT_ROLES.map((r) => {
+        const size = lightTokens.find((t) => t.name === `--font-size-${r.size}`)?.value
+        const lh = lightTokens.find((t) => t.name === `--line-height-${r.size}`)?.value
         return (
-          <div key={s.name} className="vvd-type__row">
+          <div key={r.role} className="vvd-type__row">
             <div className="vvd-type__meta">
-              <b style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>{s.name}</b>
-              <code>font-size-{s.size}</code>
-              <span className="mono" style={{ color: "var(--color-text-muted)" }}>{size} / {lh}{s.weight ? ` · ${s.weight}` : ""}</span>
+              <b style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>{r.name}</b>
+              <code>text-{r.role}</code>
+              <span className="mono" style={{ color: "var(--color-text-muted)" }}>{size} / {lh} · {r.weight}</span>
             </div>
             <p
               className="vvd-type__sample"
               style={{
-                fontSize: `var(--font-size-${s.size})`,
-                lineHeight: `var(--line-height-${s.size})`,
-                fontWeight: s.weight ? `var(--font-weight-${s.weight})` : "var(--font-weight-normal)",
-                letterSpacing: s.size === "4xl" ? "-0.02em" : undefined,
+                fontSize: `var(--text-${r.role}-size)`,
+                lineHeight: `var(--text-${r.role}-line-height)`,
+                fontWeight: `var(--text-${r.role}-weight)`,
+                fontFamily: r.role === "code" ? "var(--text-code-family)" : undefined,
               }}
             >
               {sample}
@@ -231,20 +234,6 @@ export function FontSizeScale() {
         })}
       </tbody>
     </table>
-  )
-}
-
-/** Tailwind's line heights, as multiples of the size, for running text. */
-export function LeadingScale() {
-  return (
-    <div className="vvd vvd-type-rows">
-      {byPrefix("--leading-").map((t) => (
-        <div key={t.name} className="vvd-type-row">
-          <div><code className="vvd-name">{t.name.replace(/^--/, "")}</code><small className="mono">{t.value}</small></div>
-          <p style={{ margin: 0, maxWidth: 420, lineHeight: `var(${t.name})`, fontSize: "var(--font-size-sm)" }}>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog again, on a second line.</p>
-        </div>
-      ))}
-    </div>
   )
 }
 
@@ -387,7 +376,7 @@ export function IconGallery() {
               aria-checked={size === s}
               onClick={() => setSize(s)}
               className="vvd-icon"
-              style={{ height: 32, width: 48, flexDirection: "row", border: `1px solid var(${size === s ? "--color-accent" : "--color-border-default"})`, borderRadius: "var(--radius-lg)", background: size === s ? "var(--color-accent-subtle)" : undefined, color: size === s ? "var(--color-accent-on-subtle)" : undefined }}
+              style={{ height: 32, width: 48, flexDirection: "row", border: `1px solid var(${size === s ? "--color-accent" : "--color-border-default"})`, borderRadius: "var(--radius-lg)", background: size === s ? "var(--color-accent-subtle)" : undefined, color: size === s ? "var(--color-text-on-accent-subtle)" : undefined }}
             >
               {s}
             </button>

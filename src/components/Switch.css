@@ -6,8 +6,8 @@
   align-items: center;
   gap: var(--space-8);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   color: var(--color-text-primary);
   cursor: pointer;
 }

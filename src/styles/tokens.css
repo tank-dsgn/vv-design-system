@@ -86,7 +86,7 @@
   --rose-50: #fff1f2; --rose-100: #ffe4e6; --rose-200: #fecdd3; --rose-300: #fda4af; --rose-400: #fb7185; --rose-500: #f43f5e;
   --rose-600: #e11d48; --rose-700: #be123c; --rose-800: #9f1239; --rose-900: #881337; --rose-950: #4c0519;
 
-  /* Spacing: the number is the multiple of 4px. */
+  /* Spacing: the name is the value in pixels. */
   --space-0: 0px;
   --space-2: 2px;
   --space-4: 4px;
@@ -130,12 +130,6 @@
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
-  --leading-none: 1;
-  --leading-tight: 1.25;
-  --leading-snug: 1.375;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.625;
-  --leading-loose: 2;
 
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;
@@ -211,11 +205,6 @@
    Semantic tokens, light theme.
    --------------------------------------------------------------------------- */
 :root, .light, .vv-project {
-  /* Primary button */
-  --color-button-bg-primary: var(--brand-700);
-  --color-button-bg-primary-hover: var(--brand-800);
-  --color-button-bg-primary-pressed: var(--brand-900);
-  --color-button-bg-primary-disabled: var(--brand-300);
 
   /* Accent: selection, checked controls, active tabs */
   --color-accent: var(--brand-700);
@@ -224,21 +213,18 @@
   --color-accent-disabled: var(--brand-300);
   --color-accent-subtle: var(--brand-50);
   --color-accent-subtle-hover: var(--brand-100);
-  --color-accent-border: var(--brand-300);
-  --color-accent-on-subtle: var(--brand-800);
+  --color-border-accent: var(--brand-300);
+  --color-text-on-accent-subtle: var(--brand-800);
   --color-text-accent: var(--brand-700);
   --color-icon-accent: var(--brand-700);
   --color-text-accent-hover: var(--brand-800);
   --color-text-accent-pressed: var(--brand-900);
   --color-text-accent-disabled: var(--brand-300);
   --color-border-focus: var(--brand-500);
-  --color-chart-ordinal3-1: var(--brand-400);
-  --color-chart-ordinal3-2: var(--brand-600);
-  --color-chart-ordinal3-3: var(--brand-900);
-  --color-chart-ordinal4-1: var(--brand-400);
-  --color-chart-ordinal4-2: var(--brand-500);
-  --color-chart-ordinal4-3: var(--brand-700);
-  --color-chart-ordinal4-4: var(--brand-900);
+  --color-chart-1: var(--brand-400);
+  --color-chart-2: var(--brand-500);
+  --color-chart-3: var(--brand-700);
+  --color-chart-4: var(--brand-900);
 }
 
 :root, .light {
@@ -273,18 +259,18 @@
   --color-icon-success: var(--green-700);
 
   /* Secondary button */
-  --color-button-bg-secondary: var(--neutral-200);
-  --color-button-bg-secondary-hover: var(--neutral-300);
-  --color-button-bg-secondary-pressed: var(--neutral-400);
-  --color-button-bg-secondary-disabled: var(--neutral-100);
+  --color-button-secondary: var(--neutral-200);
+  --color-button-secondary-hover: var(--neutral-300);
+  --color-button-secondary-pressed: var(--neutral-400);
+  --color-button-secondary-disabled: var(--neutral-100);
 
   /* Destructive button */
-  --color-button-bg-danger: var(--red-600);
-  --color-button-bg-danger-hover: var(--red-700);
-  --color-button-bg-danger-pressed: var(--red-800);
-  --color-button-bg-danger-disabled: var(--red-300);
+  --color-button-danger: var(--red-600);
+  --color-button-danger-hover: var(--red-700);
+  --color-button-danger-pressed: var(--red-800);
+  --color-button-danger-disabled: var(--red-300);
 
-  /* Text and icons */
+  /* Text */
   --color-text-primary: var(--neutral-950);
   --color-text-secondary: var(--neutral-600);
   --color-text-muted: var(--neutral-500);
@@ -303,28 +289,28 @@
   --color-border-danger: var(--red-600);
 
   /* Status: pale fill, dark text; strong is a solid fill */
-  --color-status-neutral-bg: var(--neutral-100);
-  --color-status-neutral-fg: var(--neutral-800);
-  --color-status-info-bg: var(--sky-100);
-  --color-status-info-fg: var(--sky-800);
-  --color-status-info-strong-bg: var(--sky-700);
-  --color-status-info-strong-fg: var(--white);
-  --color-status-success-bg: var(--green-100);
-  --color-status-success-fg: var(--green-800);
-  --color-status-success-strong-bg: var(--green-700);
-  --color-status-success-strong-fg: var(--white);
-  --color-status-attention-bg: var(--yellow-100);
-  --color-status-attention-fg: var(--yellow-800);
-  --color-status-attention-strong-bg: var(--yellow-400);
-  --color-status-attention-strong-fg: var(--yellow-950);
-  --color-status-warning-bg: var(--orange-100);
-  --color-status-warning-fg: var(--orange-800);
-  --color-status-warning-strong-bg: var(--orange-500);
-  --color-status-warning-strong-fg: var(--orange-950);
-  --color-status-critical-bg: var(--red-100);
-  --color-status-critical-fg: var(--red-800);
-  --color-status-critical-strong-bg: var(--red-600);
-  --color-status-critical-strong-fg: var(--white);
+  --color-status-neutral-subtle: var(--neutral-100);
+  --color-status-neutral-on-subtle: var(--neutral-800);
+  --color-status-info-subtle: var(--sky-100);
+  --color-status-info-on-subtle: var(--sky-800);
+  --color-status-info-strong: var(--sky-700);
+  --color-status-info-on-strong: var(--white);
+  --color-status-success-subtle: var(--green-100);
+  --color-status-success-on-subtle: var(--green-800);
+  --color-status-success-strong: var(--green-700);
+  --color-status-success-on-strong: var(--white);
+  --color-status-attention-subtle: var(--yellow-100);
+  --color-status-attention-on-subtle: var(--yellow-800);
+  --color-status-attention-strong: var(--yellow-400);
+  --color-status-attention-on-strong: var(--yellow-950);
+  --color-status-warning-subtle: var(--orange-100);
+  --color-status-warning-on-subtle: var(--orange-800);
+  --color-status-warning-strong: var(--orange-500);
+  --color-status-warning-on-strong: var(--orange-950);
+  --color-status-critical-subtle: var(--red-100);
+  --color-status-critical-on-subtle: var(--red-800);
+  --color-status-critical-strong: var(--red-600);
+  --color-status-critical-on-strong: var(--white);
 
   /* Charts */
   --color-chart-grid: var(--neutral-200);
@@ -340,6 +326,41 @@
   --color-tone-red: var(--red-600);
 }
 
+/* Type roles: size, line height and weight together. Components read these, not the scale. */
+:root {
+  --text-heading-xl-size: var(--font-size-3xl);
+  --text-heading-xl-line-height: var(--line-height-3xl);
+  --text-heading-xl-weight: var(--font-weight-medium);
+  --text-heading-lg-size: var(--font-size-xl);
+  --text-heading-lg-line-height: var(--line-height-xl);
+  --text-heading-lg-weight: var(--font-weight-medium);
+  --text-heading-md-size: var(--font-size-lg);
+  --text-heading-md-line-height: var(--line-height-lg);
+  --text-heading-md-weight: var(--font-weight-semibold);
+  --text-heading-sm-size: var(--font-size-base);
+  --text-heading-sm-line-height: var(--line-height-base);
+  --text-heading-sm-weight: var(--font-weight-semibold);
+  --text-body-size: var(--font-size-sm);
+  --text-body-line-height: var(--line-height-sm);
+  --text-body-weight: var(--font-weight-normal);
+  --text-label-size: var(--font-size-sm);
+  --text-label-line-height: var(--line-height-sm);
+  --text-label-weight: var(--font-weight-medium);
+  --text-label-strong-size: var(--font-size-sm);
+  --text-label-strong-line-height: var(--line-height-sm);
+  --text-label-strong-weight: var(--font-weight-semibold);
+  --text-caption-size: var(--font-size-xs);
+  --text-caption-line-height: var(--line-height-xs);
+  --text-caption-weight: var(--font-weight-normal);
+  --text-caption-strong-size: var(--font-size-xs);
+  --text-caption-strong-line-height: var(--line-height-xs);
+  --text-caption-strong-weight: var(--font-weight-medium);
+  --text-code-size: var(--font-size-sm);
+  --text-code-line-height: var(--line-height-sm);
+  --text-code-weight: var(--font-weight-normal);
+  --text-code-family: var(--font-mono);
+}
+
 /* ---------------------------------------------------------------------------
    Semantic tokens, dark theme. Same names, other values.
    --------------------------------------------------------------------------- */
@@ -349,22 +370,18 @@
   --color-accent-disabled: var(--brand-900);
   --color-accent-subtle: var(--brand-950);
   --color-accent-subtle-hover: var(--brand-900);
-  --color-accent-border: var(--brand-700);
-  --color-accent-on-subtle: var(--brand-200);
-  --color-button-bg-primary-disabled: var(--brand-900);
+  --color-border-accent: var(--brand-700);
+  --color-text-on-accent-subtle: var(--brand-200);
   --color-text-accent: var(--brand-400);
   --color-icon-accent: var(--brand-400);
   --color-text-accent-hover: var(--brand-300);
   --color-text-accent-pressed: var(--brand-500);
   --color-text-accent-disabled: var(--brand-700);
   --color-border-focus: var(--brand-400);
-  --color-chart-ordinal3-1: var(--brand-700);
-  --color-chart-ordinal3-2: var(--brand-500);
-  --color-chart-ordinal3-3: var(--brand-300);
-  --color-chart-ordinal4-1: var(--brand-700);
-  --color-chart-ordinal4-2: var(--brand-500);
-  --color-chart-ordinal4-3: var(--brand-400);
-  --color-chart-ordinal4-4: var(--brand-200);
+  --color-chart-1: var(--brand-700);
+  --color-chart-2: var(--brand-500);
+  --color-chart-3: var(--brand-400);
+  --color-chart-4: var(--brand-200);
 }
 
 .dark {
@@ -389,12 +406,12 @@
   --color-surface-tint-hover: rgb(255 255 255 / 0.08);
 
   --color-surface-subtle: var(--neutral-800);
-  --color-button-bg-secondary: var(--neutral-800);
-  --color-button-bg-secondary-hover: var(--neutral-700);
-  --color-button-bg-secondary-pressed: var(--neutral-900);
-  --color-button-bg-secondary-disabled: var(--neutral-900);
+  --color-button-secondary: var(--neutral-800);
+  --color-button-secondary-hover: var(--neutral-700);
+  --color-button-secondary-pressed: var(--neutral-900);
+  --color-button-secondary-disabled: var(--neutral-900);
 
-  --color-button-bg-danger-disabled: var(--red-950);
+  --color-button-danger-disabled: var(--red-950);
 
   --color-text-primary: var(--neutral-50);
   --color-text-secondary: var(--neutral-400);
@@ -410,18 +427,18 @@
   --color-border-disabled: var(--neutral-800);
   --color-border-danger: var(--red-400);
 
-  --color-status-neutral-bg: var(--neutral-800);
-  --color-status-neutral-fg: var(--neutral-300);
-  --color-status-info-bg: var(--sky-950);
-  --color-status-info-fg: var(--sky-300);
-  --color-status-success-bg: var(--green-950);
-  --color-status-success-fg: var(--green-300);
-  --color-status-attention-bg: var(--yellow-950);
-  --color-status-attention-fg: var(--yellow-300);
-  --color-status-warning-bg: var(--orange-950);
-  --color-status-warning-fg: var(--orange-300);
-  --color-status-critical-bg: var(--red-950);
-  --color-status-critical-fg: var(--red-300);
+  --color-status-neutral-subtle: var(--neutral-800);
+  --color-status-neutral-on-subtle: var(--neutral-300);
+  --color-status-info-subtle: var(--sky-950);
+  --color-status-info-on-subtle: var(--sky-300);
+  --color-status-success-subtle: var(--green-950);
+  --color-status-success-on-subtle: var(--green-300);
+  --color-status-attention-subtle: var(--yellow-950);
+  --color-status-attention-on-subtle: var(--yellow-300);
+  --color-status-warning-subtle: var(--orange-950);
+  --color-status-warning-on-subtle: var(--orange-300);
+  --color-status-critical-subtle: var(--red-950);
+  --color-status-critical-on-subtle: var(--red-300);
 
   --color-chart-grid: var(--neutral-800);
   --color-chart-axis: var(--neutral-600);

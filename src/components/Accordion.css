@@ -13,9 +13,9 @@
   background: none;
   color: var(--color-text-primary);
   font: inherit;
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-line-height);
+  font-weight: var(--text-label-weight);
   text-align: left;
   cursor: pointer;
   border-radius: var(--radius-sm);
@@ -26,7 +26,7 @@
 .vv-accordion__trigger:disabled { color: var(--color-text-disabled); cursor: not-allowed; }
 .vv-accordion__chevron { flex: none; color: var(--color-icon-muted); transition: transform var(--duration-fast) var(--ease-out); }
 .vv-accordion__item[data-open] .vv-accordion__chevron { transform: rotate(180deg); }
-.vv-accordion__panel { padding: 0 var(--space-4) var(--space-16); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-secondary); }
+.vv-accordion__panel { padding: 0 var(--space-4) var(--space-16); font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); }
 
 @media (prefers-reduced-motion: reduce) {
   .vv-accordion__trigger, .vv-accordion__chevron { transition: none; }

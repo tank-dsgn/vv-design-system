@@ -17,16 +17,16 @@
 
 .vv-page-header__title {
   margin: 0;
-  font-size: var(--font-size-xl);
-  line-height: var(--line-height-xl);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-heading-lg-size);
+  line-height: var(--text-heading-lg-line-height);
+  font-weight: var(--text-heading-lg-weight);
   color: var(--color-text-primary);
 }
 
 .vv-page-header__subtitle {
   color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
 }
 
 .vv-page-header__actions { display: flex; align-items: center; gap: var(--space-8); flex: none; }

@@ -1,5 +1,5 @@
 import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
-import { FontFamilies, LeadingScale, Rules, FontSizeScale, TrackingScale, TypeScale, WeightScale } from "../blocks"
+import { FontFamilies, Rules, FontSizeScale, TrackingScale, TypeScale, WeightScale } from "../blocks"
 
 <Meta title="Foundations/Typography" />
 
@@ -12,7 +12,9 @@ second typeface. Change the font once, in `--font-sans`.
 
 <Unstyled><FontFamilies /></Unstyled>
 
-## Text styles
+## Roles
+
+What components read: one role sets size, line height and weight together.
 
 <Unstyled><TypeScale /></Unstyled>
 
@@ -29,15 +31,9 @@ second typeface. Change the font once, in `--font-sans`.
 
 ## Sizes
 
-Tailwind's whole scale, each size with its line height.
+Tailwind's whole scale, each size with its line height. The roles above are built from it; components don't read it directly.
 
 <Unstyled><FontSizeScale /></Unstyled>
-
-## Line height
-
-For running text, as a multiple of the size.
-
-<Unstyled><LeadingScale /></Unstyled>
 
 ## Letter spacing
 

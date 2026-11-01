@@ -23,15 +23,15 @@
   color: var(--color-text-inverse);
   box-shadow: var(--shadow-lg);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   animation: vv-toast-in var(--duration-moderate) var(--ease-out);
 }
 @keyframes vv-toast-in {
   from { opacity: 0; transform: translateY(8px); }
 }
 
-.vv-toast__glyph { flex: none; }
+.vv-toast__glyph { flex: none; color: var(--color-icon-inverse); }
 .vv-toast__text { flex: 1; min-width: 0; padding: var(--space-6) 0; }
 
 .vv-toast__action,
@@ -48,7 +48,7 @@
 .vv-toast__action {
   height: var(--size-control-sm);
   padding: 0 var(--space-8);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--text-label-strong-weight);
   text-decoration: underline;
   text-underline-offset: 3px;
 }

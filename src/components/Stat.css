@@ -9,24 +9,24 @@
 }
 
 .vv-stat__label {
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   color: var(--color-text-primary);
 }
 
 .vv-stat__value {
   margin: 0;
-  font-size: var(--font-size-3xl);
-  line-height: var(--line-height-3xl);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-heading-xl-size);
+  line-height: var(--text-heading-xl-line-height);
+  font-weight: var(--text-heading-xl-weight);
   color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--tracking-tight);
 }
 
 .vv-stat__note {
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   color: var(--color-text-secondary);
 }
 

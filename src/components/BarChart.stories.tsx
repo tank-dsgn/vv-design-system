@@ -8,9 +8,9 @@ export default meta
 type Story = StoryObj
 
 const SERIES = [
-  { key: "current", label: "0–30 days", color: "var(--color-chart-ordinal3-1)" },
-  { key: "late30", label: "31–60 days", color: "var(--color-chart-ordinal3-2)" },
-  { key: "late60", label: "60+ days", color: "var(--color-chart-ordinal3-3)" },
+  { key: "current", label: "0–30 days", color: "var(--color-chart-1)" },
+  { key: "late30", label: "31–60 days", color: "var(--color-chart-3)" },
+  { key: "late60", label: "60+ days", color: "var(--color-chart-4)" },
 ]
 const DATA = ["Apr", "May", "Jun", "Jul", "Aug", "Sep"].map((label, i) => ({
   label,

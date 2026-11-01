@@ -5,14 +5,15 @@
   align-items: flex-start;
   gap: var(--space-8);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
 }
 
-.vv-inline-message--error       { color: var(--color-status-critical-fg); }
-.vv-inline-message--success     { color: var(--color-status-success-fg); }
-.vv-inline-message--warning     { color: var(--color-status-warning-fg); }
-.vv-inline-message--information { color: var(--color-status-info-fg); }
+.vv-inline-message--error       { color: var(--color-status-critical-on-subtle); }
+.vv-inline-message--success     { color: var(--color-status-success-on-subtle); }
+.vv-inline-message--warning     { color: var(--color-status-warning-on-subtle); }
+.vv-inline-message--information { color: var(--color-status-info-on-subtle); }
 .vv-inline-message--hint        { color: var(--color-text-muted); }
 
 .vv-inline-message__icon { flex: none; line-height: inherit; }
+.vv-inline-message--success .vv-inline-message__icon { color: var(--color-icon-success); }

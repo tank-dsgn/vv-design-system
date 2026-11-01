@@ -14,8 +14,8 @@
   color: var(--color-text-secondary);
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
   text-align: center;
   cursor: pointer;
   transition: border-color var(--duration-fast), background-color var(--duration-fast);

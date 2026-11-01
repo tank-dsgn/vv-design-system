@@ -6,12 +6,12 @@
   height: 24px;
   max-width: 100%;
   border-radius: var(--radius-sm);
-  background: var(--color-status-neutral-bg);
+  background: var(--color-status-neutral-subtle);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-caption-strong-size);
+  line-height: var(--text-caption-strong-line-height);
+  font-weight: var(--text-caption-strong-weight);
   white-space: nowrap;
 }
 
@@ -46,11 +46,11 @@ button.vv-tag__main:hover:not(:disabled) { background: var(--color-surface-tint-
   border: 0;
   border-radius: var(--radius-sm);
   background: none;
-  color: var(--color-text-secondary);
+  color: var(--color-icon-secondary);
   cursor: pointer;
   transition: background-color var(--duration-fast), color var(--duration-fast);
 }
-.vv-tag__remove:hover:not(:disabled) { background: var(--color-surface-tint-hover); color: var(--color-text-primary); }
+.vv-tag__remove:hover:not(:disabled) { background: var(--color-surface-tint-hover); color: var(--color-icon-primary); }
 
 .vv-tag__main:focus-visible,
 .vv-tag__remove:focus-visible {
@@ -59,7 +59,7 @@ button.vv-tag__main:hover:not(:disabled) { background: var(--color-surface-tint-
 }
 
 .vv-tag--disabled { color: var(--color-text-disabled); }
-.vv-tag--disabled .vv-tag__remove,
+.vv-tag--disabled .vv-tag__remove { cursor: not-allowed; color: var(--color-icon-disabled); }
 .vv-tag--disabled button.vv-tag__main { cursor: not-allowed; color: var(--color-text-disabled); }
 
 @media (prefers-reduced-motion: reduce) {

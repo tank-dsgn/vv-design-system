@@ -13,9 +13,9 @@
   color: var(--color-text-inverse);
   box-shadow: var(--shadow-md);
   font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-caption-strong-size);
+  line-height: var(--text-caption-strong-line-height);
+  font-weight: var(--text-caption-strong-weight);
   text-align: center;
   pointer-events: none;
   opacity: 0;
