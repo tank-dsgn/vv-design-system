@@ -1,6 +1,6 @@
 /* Blocks for the Foundations pages. Each one renders straight from tokens.css
    (via tokens.ts), so a page shows what components actually get. */
-import { useState, type CSSProperties, type ReactNode } from "react"
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
 import { ICONS, type IconName } from "../icons/icons.js"
 import { Icon } from "../components/Icon.js"
 import { Field, Input } from "../components/Input.js"
@@ -354,10 +354,20 @@ export function IconGallery() {
   const [q, setQ] = useState("")
   const [size, setSize] = useState<16 | 20 | 24>(24)
   const [open, setOpen] = useState<IconName | null>(null)
+  const [stuck, setStuck] = useState(false)
+  const sentinel = useRef<HTMLDivElement>(null)
+  // The toolbar's line appears only once the page has scrolled past where it sits.
+  useEffect(() => {
+    if (!sentinel.current) return
+    const io = new IntersectionObserver(([e]) => setStuck(!e.isIntersecting && e.boundingClientRect.top < 0))
+    io.observe(sentinel.current)
+    return () => io.disconnect()
+  }, [])
   const names = (Object.keys(ICONS) as IconName[]).filter((n) => n.includes(q.trim().toLowerCase()))
   return (
     <div className="vvd">
-      <div className="vvd-icons-tools">
+      <div ref={sentinel} aria-hidden="true" />
+      <div className="vvd-icons-tools" data-stuck={stuck || undefined}>
         <div style={{ width: 280 }}>
           <Input
             aria-label="Search icons"
@@ -382,7 +392,7 @@ export function IconGallery() {
             </button>
           ))}
         </div>
-        <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>Click an icon for its details</span>
+        <span className="vvd-hide-sm" style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>Click an icon for its details</span>
       </div>
       <div className="vvd-icons">
         {names.map((n) => (

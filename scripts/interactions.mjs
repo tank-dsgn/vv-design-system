@@ -254,6 +254,20 @@ await test("Menu: a saved layout with the sidebar dragged away is restored", asy
   eq(await page.getByRole("combobox", { name: "Find" }).isVisible(), true, "menu back")
   eq(await page.locator('[aria-label="Sidebar resize handle"]').isVisible().catch(() => false), false, "no handle")
 })
+await test("Icons: the search and sizes stay at the top while the grid scrolls, and go back", async () => {
+  await open("foundations-icons--docs", "docs")
+  const tools = page.locator(".vvd-icons-tools")
+  await tools.waitFor()
+  const start = (await tools.boundingBox()).y
+  await page.evaluate(() => window.scrollTo(0, 3000))
+  await page.waitForTimeout(200)
+  eq(Math.round((await tools.boundingBox()).y), 0, "stuck to the top")
+  eq(await tools.getAttribute("data-stuck"), "true", "line shown")
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.waitForTimeout(200)
+  eq(Math.round((await tools.boundingBox()).y), Math.round(start), "back in place")
+  eq(await tools.getAttribute("data-stuck"), null, "line gone")
+})
 await test("Sidebar: Foundations pages listed, a component is one item that opens its page", async () => {
   await page.evaluate(() => localStorage.removeItem("vv-nav"))
   await page.goto(`${base}/index.html?path=/docs/foundations-tokens--docs`)

@@ -163,7 +163,10 @@
 .vvd-tile p { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 
 /* Icon gallery */
-.vvd-icons-tools { display: flex; gap: var(--space-12); align-items: center; flex-wrap: wrap; margin: var(--space-16) 0; }
+/* Stays under the site's header while the grid scrolls by, and only while the grid is there. */
+.vvd-icons-tools { position: sticky; top: 0; z-index: var(--z-dropdown); display: flex; gap: var(--space-12); align-items: center; flex-wrap: wrap; margin: var(--space-4) 0; padding: var(--space-12) 0; background: var(--color-background-primary); border-bottom: 1px solid transparent; }
+.vvd-icons-tools[data-stuck] { border-bottom-color: var(--color-border-default); }
+@media (max-width: 600px) { .vvd-icons-tools .vvd-hide-sm { display: none; } }
 .vvd-icons {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
