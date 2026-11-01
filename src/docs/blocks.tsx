@@ -127,7 +127,7 @@ export function ProjectTheme() {
     "--font-sans": FONTS.find((x) => x[0] === font)![1],
   }
   for (const s of STEPS) style[`--brand-${s}`] = `var(--${brand}-${s})`
-  const code = `:root {\n  /* paste the ${brand} ramp */\n${["500", "700", "800"].map((s) => `  --brand-${s}: ${lightTokens.find((t) => t.name === `--${brand}-${s}`)?.value};`).join("\n")}\n  /* …all eleven steps */\n\n  --corner-control: ${c[1]};\n  --corner-surface: ${c[2]};\n  --font-sans: ${font === "Inter" ? "Inter, sans-serif" : "JetBrains Mono, monospace"};\n}`
+  const code = `:root {\n  /* point the brand at the ${brand} ramp */\n${["500", "700", "800"].map((s) => `  --brand-${s}: var(--${brand}-${s});`).join("\n")}\n  /* …all eleven steps */\n\n  --corner-control: ${c[1]};\n  --corner-surface: ${c[2]};\n  --font-sans: ${font === "Inter" ? "Inter, sans-serif" : "JetBrains Mono, monospace"};\n}`
   return (
     <div className="vvd vvd-theme">
       <div className="vvd-theme__controls">
@@ -139,7 +139,7 @@ export function ProjectTheme() {
         <div className="vvd-theme__row">
           <Button iconLeading={<Icon name="plus" size={16} />}>New shipment</Button>
           <Button variant="outlined">Export</Button>
-          <Link href="#">View details</Link>
+          <Link href="#" onClick={(e) => e.preventDefault()}>View details</Link>
         </div>
         <Field label="Order number" placeholder="ORD-0000" hint="ORD followed by four digits" />
         <div className="vvd-theme__row">

@@ -7,6 +7,12 @@ import { addons } from "storybook/preview-api"
 import "../src/styles/tokens.css"
 import "../src/docs/docs.css"
 
+// Links in examples are samples: they show a link and go nowhere.
+document.addEventListener("click", (e) => {
+  const link = (e.target as Element).closest?.("a[href]")
+  if (link?.closest("#storybook-root, .docs-story")) e.preventDefault()
+}, true)
+
 /* The current theme lives outside React. Storybook remounts the docs container
    when globals change, and the iframe's URL still holds the previous value at
    that moment, so a remount must not start from the URL. */

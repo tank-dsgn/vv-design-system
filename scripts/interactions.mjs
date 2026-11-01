@@ -364,6 +364,17 @@ await test("Error screen: a failed load offers a reload", async () => {
   await page.unroute("**/index.json")
 })
 
+await test("Sample links go nowhere: the page does not jump or change its address", async () => {
+  await open("foundations-theming--docs", "docs")
+  const before = page.url()
+  await page.getByRole("link", { name: "View details" }).first().click()
+  eq(page.url(), before, "theming demo")
+  await open("components-link--playground")
+  const story = page.url()
+  await page.getByRole("link").first().click()
+  eq(page.url(), story, "story")
+})
+
 for (const [name, path] of [["a Foundations page", "foundations-tokens--docs"], ["a component page", "components-button--docs"]]) {
   await test(`Theme: the button switches ${name} both ways`, async () => {
     await page.goto(`${base}/index.html?path=/docs/${path}`)
