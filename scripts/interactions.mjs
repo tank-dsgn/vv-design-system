@@ -365,6 +365,9 @@ await test("Error screen: a failed load offers a reload", async () => {
 })
 
 await test("Sample links go nowhere: the page does not jump or change its address", async () => {
+  const errors = []
+  const onError = (e) => errors.push(e.message)
+  page.on("pageerror", onError)
   await open("foundations-theming--docs", "docs")
   const before = page.url()
   await page.getByRole("link", { name: "View details" }).first().click()
@@ -373,6 +376,8 @@ await test("Sample links go nowhere: the page does not jump or change its addres
   const story = page.url()
   await page.getByRole("link").first().click()
   eq(page.url(), story, "story")
+  page.off("pageerror", onError)
+  eq(errors.length, 0, "no script errors")
 })
 
 for (const [name, path] of [["a Foundations page", "foundations-tokens--docs"], ["a component page", "components-button--docs"]]) {
