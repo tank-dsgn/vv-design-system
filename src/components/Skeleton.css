@@ -1,20 +1,29 @@
-/* Skeleton. A soft pulse while loading — tied to the loading state, and
-   static under reduced motion. */
+/* Skeleton. A band of light runs across it while loading. The one gradient in the
+   components: it is the light itself, and it stops with the loading state. Under
+   reduced motion it runs slowly rather than stopping, so it never looks frozen. */
 .vv-skeleton {
+  position: relative;
   display: block;
+  overflow: hidden;
   background: var(--color-surface-subtle);
-  animation: vv-skeleton-pulse var(--duration-pulse) var(--ease-out) infinite;
+}
+.vv-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--color-surface-shine), transparent);
+  animation: vv-skeleton-shimmer var(--duration-shimmer) linear infinite;
 }
 .vv-skeleton--text { height: var(--font-size-sm); margin: var(--space-2) 0; border-radius: var(--radius-sm); }
 .vv-skeleton--rect { border-radius: var(--radius-lg); }
 .vv-skeleton--circle { border-radius: var(--radius-full); flex: none; }
 .vv-skeleton-lines { display: flex; flex-direction: column; gap: var(--space-6); }
 
-@keyframes vv-skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.55; }
+@keyframes vv-skeleton-shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vv-skeleton { animation: none; }
+  .vv-skeleton::after { animation-duration: var(--duration-shimmer-reduced); }
 }

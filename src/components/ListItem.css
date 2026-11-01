@@ -3,7 +3,7 @@
 .vv-list-item--selected, .vv-list-item--selected:has(button.vv-list-item__main):hover { box-shadow: inset 0 0 0 1px var(--color-accent-border); }
 .vv-list-item--selected { background: var(--color-accent-subtle); }
 .vv-list-item--selected:has(button.vv-list-item__main):hover { background: var(--color-accent-subtle-hover); }
-.vv-list-item--selected .vv-list-item__title { color: var(--color-accent-on-subtle); }
+.vv-list-item--selected .vv-list-item__title, .vv-list-item--selected .vv-list-item__desc { color: var(--color-accent-on-subtle); }
 .vv-list-item__main { display: flex; flex: 1; align-items: center; gap: var(--space-12); min-width: 0; padding: var(--space-8) var(--space-12); border: 0; border-radius: inherit; background: none; color: inherit; font: inherit; text-align: left; }
 button.vv-list-item__main { cursor: pointer; }
 .vv-list-item:not(.vv-list-item--selected) button.vv-list-item__main:active:not(:disabled) { background: var(--color-surface-subtle); }

@@ -172,6 +172,8 @@
   --duration-fast: 150ms;
   --duration-moderate: 250ms;
   --duration-pulse: 1.6s;
+  --duration-shimmer: 1.4s;
+  --duration-shimmer-reduced: 4s;
   --duration-spin: 700ms;
   --duration-spin-reduced: 3s;
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
@@ -249,6 +251,7 @@
   --color-surface-inverse-hover: rgb(255 255 255 / 0.12);
   --color-surface-tint-hover: rgb(0 0 0 / 0.08);
   --color-surface-overlay: rgb(0 0 0 / 0.5);
+  --color-surface-shine: rgb(255 255 255 / 0.5);
 
   --color-surface-subtle: var(--neutral-200);
 
@@ -348,6 +351,7 @@
 
 .dark {
   color-scheme: dark;
+  --color-surface-shine: rgb(255 255 255 / 0.07);
   --color-surface-primary: var(--neutral-950);
   --color-surface-input: var(--neutral-900);
   --color-surface-raised: var(--neutral-900);

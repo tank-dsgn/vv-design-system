@@ -24,18 +24,18 @@ type Story = StoryObj
 
 export const Default: Story = {
   render: () => {
-    const [page, setPage] = useState("dashboard")
+    const [page, setPage] = useState("home")
     return (
       <TopNav
         aria-label="Main"
         current={page}
         onNavigate={setPage}
         items={[
-          { id: "dashboard", label: "Dashboard", icon: <Icon name="dashboard" /> },
-          { id: "map", label: "Map", icon: <Icon name="map" /> },
-          { id: "analytics", label: "Analytics", icon: <Icon name="chart" /> },
-          { id: "progress", label: "Progress", icon: <Icon name="time" /> },
-          { id: "deliverables", label: "Deliverables", icon: <Icon name="folder" /> },
+          { id: "home", label: "Home", icon: <Icon name="house" /> },
+          { id: "projects", label: "Projects", icon: <Icon name="folder" /> },
+          { id: "team", label: "Team", icon: <Icon name="users" /> },
+          { id: "reports", label: "Reports", icon: <Icon name="chart-column" /> },
+          { id: "settings", label: "Settings", icon: <Icon name="settings" /> },
         ]}
       />
     )
@@ -45,6 +45,6 @@ export const Default: Story = {
 /** Every interactive state. */
 export const States: Story = {
   parameters: pseudoParams, render: () => (
-    <StateMatrix stacked rows={[{ label: "Items", node: <TopNav aria-label="Items" items={[{ id: "a", label: "Shipments", icon: <Icon name="orders" /> }, { id: "b", label: "Rates", icon: <Icon name="money" /> }]} current="a" onNavigate={() => {}} /> }]} />
+    <StateMatrix stacked rows={[{ label: "Items", node: <TopNav aria-label="Items" items={[{ id: "a", label: "Home", icon: <Icon name="house" /> }, { id: "b", label: "Projects", icon: <Icon name="folder" /> }]} current="a" onNavigate={() => {}} /> }]} />
   ),
 }

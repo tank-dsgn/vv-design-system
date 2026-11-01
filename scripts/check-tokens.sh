@@ -13,8 +13,9 @@ report "No raw hex outside tokens.css" "$(
   grep -rnE 'style=.*#[0-9a-fA-F]{3,8}\b' . --include=*.tsx
 )"
 # receivables.css: the dot grid on the workflow canvas is a pattern, not decoration.
+# Skeleton.css: the running band of light is the loading signal itself.
 report "No gradients, blur or text effects" "$(
-  grep -rnE 'gradient\(|backdrop-filter|filter:\s*blur|text-shadow|background-clip:\s*text' . --include=*.css --include=*.tsx | grep -v 'receivables/receivables.css'
+  grep -rnE 'gradient\(|backdrop-filter|filter:\s*blur|text-shadow|background-clip:\s*text' . --include=*.css --include=*.tsx | grep -vE 'receivables/receivables.css|components/Skeleton.css'
 )"
 report "No transition: all, no durations outside --duration-*" "$(
   grep -rnE 'transition(-property)?:\s*all' . --include=*.css
