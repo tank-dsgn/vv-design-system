@@ -41,7 +41,7 @@ export function IconDetails({ name, onPick, onClose }: { name: IconName | null; 
   if (!name) return null
 
   const copySvg = () => {
-    navigator.clipboard?.writeText(svgOf(name, size)).then(() => setCopied(true)).catch(() => {})
+    navigator.clipboard?.writeText(svgOf(name, size)).then(() => { setCopied(true); window.setTimeout(() => setCopied(false), 2000) }).catch(() => {})
   }
   const download = () => {
     const url = URL.createObjectURL(new Blob([svgOf(name, size)], { type: "image/svg+xml" }))
@@ -64,7 +64,7 @@ export function IconDetails({ name, onPick, onClose }: { name: IconName | null; 
       headerActions={<IconButton variant="ghost" size="sm" label="Close details" icon={<Icon name="close" size={16} />} onClick={onClose} />}
       footer={
         <>
-          <Button variant="outlined" onClick={copySvg}>{copied ? "SVG copied" : "Copy SVG"}</Button>
+          <Button variant={copied ? "primary" : "outlined"} onClick={copySvg}>{copied ? "SVG copied" : "Copy SVG"}</Button>
           <Button variant="outlined" onClick={download}>Download SVG</Button>
         </>
       }

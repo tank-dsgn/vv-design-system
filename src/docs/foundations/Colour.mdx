@@ -1,12 +1,12 @@
 import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
-import { ColorTable, ColorTabs, ContrastPairs, PrimitiveRamps, RestRamps } from "../blocks"
+import { ColorTable, ColorTabs, ContrastPairs, PrimitiveRamps } from "../blocks"
 
 <Meta title="Foundations/Colors" />
 
 # Colors
 
-Every colour in the interface, as [tokens](./?path=/docs/foundations-tokens--docs): the Tailwind palette first, then the
-semantic colours built on it, which components read.
+Every colour in the interface, as [tokens](./?path=/docs/foundations-tokens--docs): semantic colours, which components read, built on
+the Tailwind palette.
 
 <ColorTabs>
 <div data-panel="primitives">
@@ -20,11 +20,9 @@ system. Semantic tokens read it as `brand-700`, not by the name of the ramp behi
 
 ## Primitives
 
-The Tailwind ramps the semantic colours read, under their Tailwind names. Hover a step for its value.
+The whole Tailwind palette under its Tailwind names. Hover a step for its value.
 
 <Unstyled><PrimitiveRamps /></Unstyled>
-
-<Unstyled><RestRamps /></Unstyled>
 
 </div>
 <div data-panel="semantic">

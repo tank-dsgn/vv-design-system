@@ -1,5 +1,5 @@
 import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
-import { TokenList } from "../blocks"
+import { MotionEase, MotionInUse, MotionSpeeds, TokenList } from "../blocks"
 
 <Meta title="Foundations/Motion" />
 
@@ -8,12 +8,29 @@ import { TokenList } from "../blocks"
 Motion confirms a change of state — a hover, a menu opening, a toast arriving. Nothing moves
 on its own, nothing loops except a loading spinner, and nothing scrolls into view for effect.
 
+## Speed
+
+The same distance at each duration. The shorter it is, the smaller the change it confirms.
+
+<Unstyled><MotionSpeeds /></Unstyled>
+
+## Easing
+
+One curve, `ease-out`: it starts fast, so the interface answers at once, and settles slowly. Compare it with a straight line
+over the same time.
+
+<Unstyled><MotionEase /></Unstyled>
+
+## In use
+
+The durations where they really work. Transitions name their properties; `transition: all` is never used.
+
+<Unstyled><MotionInUse /></Unstyled>
+
+## Tokens
+
 <Unstyled><TokenList prefix="--duration-" /></Unstyled>
 <Unstyled><TokenList prefix="--ease-" /></Unstyled>
-
-- **Fast (150ms)** — colour and border changes on hover and press.
-- **Moderate (250ms)** — overlays entering: menus, tooltips, toasts.
-- Transitions name their properties. `transition: all` is never used.
 
 ## Reduced motion
 

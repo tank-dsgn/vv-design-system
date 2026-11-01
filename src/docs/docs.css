@@ -222,11 +222,30 @@
 /* Air above every section, on all pages. */
 .sbdocs-content > h2, .sbdocs-content [data-panel] > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-64) !important; }
 
+/* Motion page. */
+.vvd-motion { display: flex; flex-direction: column; gap: var(--space-16); margin: var(--space-16) 0 var(--space-32); }
+.vvd-motion-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--space-16); align-items: center; }
+.vvd-motion-row p { display: flex; flex-direction: column; margin: 0; }
+.vvd-motion-row small { color: var(--color-text-secondary); }
+.vvd-motion-track { position: relative; height: var(--space-24); border-radius: var(--radius-full); background: var(--color-surface-sunken); }
+.vvd-motion-dot { position: absolute; top: var(--space-4); left: var(--space-4); width: var(--space-16); height: var(--space-16); border-radius: var(--radius-full); background: var(--color-accent); transition-property: left; }
+.vvd-motion-dot[data-on] { left: calc(100% - var(--space-16) - var(--space-4)); }
+.vvd-motion--ease { flex-direction: row; gap: var(--space-32); align-items: center; flex-wrap: wrap; }
+.vvd-motion-curve { flex: none; width: 160px; height: 160px; overflow: visible; }
+.vvd-motion-axis { stroke: var(--color-border-default); }
+.vvd-motion-line { stroke: var(--color-accent); stroke-width: 2; stroke-linecap: round; }
+.vvd-motion-race { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: var(--space-16); }
+.vvd-motion-stage { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-8); min-height: 120px; padding: var(--space-16); box-sizing: border-box; border: 1px solid var(--color-border-default); border-radius: var(--corner-surface); }
+.vvd-motion-stage--wide > * { width: 100%; }
+.vvd-motion-pop { padding: var(--space-4) var(--space-12); border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-raised); box-shadow: var(--shadow-md); font-size: var(--font-size-sm); opacity: 0; transform: translateY(var(--space-4)); transition: opacity var(--duration-moderate) var(--ease-out), transform var(--duration-moderate) var(--ease-out); }
+.vvd-motion-pop[data-open] { opacity: 1; transform: none; }
+.vvd-motion-use .vvd-tile p { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+@media (prefers-reduced-motion: reduce) { .vvd-motion-dot, .vvd-motion-pop { transition: none; } }
+@media (max-width: 600px) { .vvd-motion-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); } }
+
 /* Colors: one view at a time. */
 .vvd-color-tabs { margin-top: var(--space-24); }
 .vvd-color-tabs[data-tab="semantic"] > [data-panel="primitives"], .vvd-color-tabs[data-tab="primitives"] > [data-panel="semantic"] { display: none; }
-.vvd-ramps-rest { margin: var(--space-24) 0 var(--space-32); }
-.vvd-ramps-rest summary { width: fit-content; color: var(--color-text-secondary); font-size: var(--text-body-size); line-height: var(--text-body-line-height); cursor: pointer; }
 .vvd-contrast-table { table-layout: fixed; }
 .vvd-contrast-table th:nth-child(1), .vvd-contrast-table th:nth-child(2) { width: 25%; }
 .vvd-contrast-table td { overflow-wrap: anywhere; }

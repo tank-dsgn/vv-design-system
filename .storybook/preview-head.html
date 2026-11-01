@@ -5,7 +5,8 @@
   /* Our own screen for every failure, over Storybook's. It may show before any bundle
      has loaded, so tokens.css cannot be assumed: the colours mirror the tokens here. */
   :root { --vve-bg: #ffffff; --vve-shadow: rgb(76 29 149 / 0.35); --vve-fg: #0a0a0a; --vve-muted: #525252; --vve-line: #e5e5e5; --vve-fill: #f5f5f5; --vve-brand: #6d28d9; --vve-brand-hover: #5b21b6; --vve-on-brand: #ffffff; --vve-ring: #8b5cf6; }
-  html.dark { --vve-bg: #0a0a0a; --vve-shadow: rgb(139 92 246 / 0.5); --vve-fg: #fafafa; --vve-muted: #a3a3a3; --vve-line: #262626; --vve-fill: #171717; --vve-brand: #6d28d9; --vve-brand-hover: #7c3aed; --vve-on-brand: #ffffff; --vve-ring: #a78bfa; background: #0a0a0a; }
+  html { background: var(--vve-bg); }
+  html.dark { color-scheme: dark; --vve-bg: #0a0a0a; --vve-shadow: rgb(139 92 246 / 0.5); --vve-fg: #fafafa; --vve-muted: #a3a3a3; --vve-line: #262626; --vve-fill: #171717; --vve-brand: #6d28d9; --vve-brand-hover: #7c3aed; --vve-on-brand: #ffffff; --vve-ring: #a78bfa; background: #0a0a0a; }
   /* No loading screen: a page appears when it is ready, and fades in. The animation restarts
      each time Storybook shows the root again. */
   .sb-preparing-docs, .sb-preparing-story { display: none !important; }

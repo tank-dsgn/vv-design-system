@@ -12,7 +12,9 @@ import { ProgressBar } from "../components/ProgressBar.js"
 import { SegmentedControl } from "../components/SegmentedControl.js"
 import { Switch } from "../components/Switch.js"
 import { Tabs } from "../components/Tabs.js"
-import { STEPS, RAMPS, byPrefix, darkTokens, darkValue, lightTokens, primitiveOf, rawValue, tailwindStep } from "./tokens.js"
+import { Skeleton } from "../components/Skeleton.js"
+import { Spinner } from "../components/Spinner.js"
+import { STEPS, RAMPS, byPrefix, darkValue, lightTokens, primitiveOf, rawValue, tailwindStep } from "./tokens.js"
 
 export function Docs({ children }: { children: ReactNode }) {
   return <div className="vvd">{children}</div>
@@ -107,22 +109,6 @@ export function ColorTabs({ children }: { children: ReactNode }) {
   )
 }
 
-/** The ramps the semantic colours point at, in either theme. Brand has its own row. */
-const USED_RAMPS = RAMPS.filter((r) =>
-  r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, "") &&
-  [...lightTokens, ...darkTokens].some((t) => t.name.startsWith("--color-") && t.value.includes(`var(--${r}-`)),
-)
-
-/** The ramps nothing reads yet, kept for a project that needs them. */
-export function RestRamps() {
-  return (
-    <details className="vvd vvd-ramps-rest">
-      <summary>Rest of Tailwind ({RAMPS.length - USED_RAMPS.length - 1} ramps)</summary>
-      <PrimitiveRamps only={RAMPS.filter((r) => !USED_RAMPS.includes(r) && r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, ""))} />
-    </details>
-  )
-}
-
 const CONTRAST_PAIRS: [string, string][] = [
   ["text-primary", "background-primary"],
   ["text-secondary", "background-primary"],
@@ -194,7 +180,7 @@ export function PrimitiveRamps({ only }: { only?: string[] }) {
         <span />
         <div className="vvd-ramp__steps">{STEPS.map((s) => <span key={s}>{s}</span>)}</div>
       </div>
-      {(only ?? USED_RAMPS).map((r) => (
+      {(only ?? RAMPS.filter((r) => r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, ""))).map((r) => (
         <div key={r} className="vvd-ramp">
           <span className="vvd-ramp__name">
             {r}
@@ -469,6 +455,83 @@ export function ShadowScale() {
           </p>
         </div>
       ))}
+    </div>
+  )
+}
+
+/* --- Motion --------------------------------------------------------------- */
+
+function MotionTrack({ name, value, on, easing }: { name: string; value: string; on: boolean; easing?: string }) {
+  return (
+    <div className="vvd-motion-row">
+      <p><code className="vvd-name">{name}</code><small className="mono">{value}</small></p>
+      <div className="vvd-motion-track">
+        <span className="vvd-motion-dot" data-on={on || undefined} style={{ transitionDuration: value, transitionTimingFunction: easing ?? "var(--ease-out)" }} />
+      </div>
+    </div>
+  )
+}
+
+function usePlay(): [boolean, () => void, string] {
+  const [on, setOn] = useState(false)
+  return [on, () => setOn(!on), on ? "Play back" : "Play"]
+}
+
+/** Each duration running the same distance, started together. */
+export function MotionSpeeds() {
+  const [on, play, label] = usePlay()
+  const rows = ["--duration-fast", "--duration-moderate", "--duration-spin", "--duration-shimmer"]
+  return (
+    <div className="vvd vvd-motion">
+      {rows.map((n) => <MotionTrack key={n} name={n.replace(/^--/, "")} value={lightTokens.find((t) => t.name === n)?.value ?? ""} on={on} />)}
+      <div><Button variant="outlined" onClick={play}>{label}</Button></div>
+    </div>
+  )
+}
+
+/** The one curve, drawn, and racing a straight line over the same time. */
+export function MotionEase() {
+  const [on, play, label] = usePlay()
+  const time = lightTokens.find((t) => t.name === "--duration-shimmer")?.value ?? ""
+  return (
+    <div className="vvd vvd-motion vvd-motion--ease">
+      <svg className="vvd-motion-curve" viewBox="-4 -4 108 108" role="img" aria-label="The ease-out curve: a fast start that settles slowly">
+        <path d="M0 100H100M0 100V0" className="vvd-motion-axis" fill="none" />
+        <path d="M0 100C20 100 0 0 100 0" className="vvd-motion-line" fill="none" />
+      </svg>
+      <div className="vvd-motion-race">
+        <MotionTrack name="ease-out" value={time} on={on} />
+        <MotionTrack name="linear" value={time} on={on} easing="linear" />
+        <div><Button variant="outlined" onClick={play}>{label}</Button></div>
+      </div>
+    </div>
+  )
+}
+
+/** The durations where they are really used. */
+export function MotionInUse() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="vvd vvd-tiles vvd-motion-use">
+      <div className="vvd-tile">
+        <div className="vvd-motion-stage"><Button>Hover me</Button></div>
+        <p><code className="vvd-name">duration-fast</code><span>Hover and press</span></p>
+      </div>
+      <div className="vvd-tile">
+        <div className="vvd-motion-stage">
+          <Button variant="outlined" onClick={() => setOpen(!open)}>{open ? "Close" : "Open"}</Button>
+          <span className="vvd-motion-pop" data-open={open || undefined}>Menu</span>
+        </div>
+        <p><code className="vvd-name">duration-moderate</code><span>Menus, tooltips, toasts</span></p>
+      </div>
+      <div className="vvd-tile">
+        <div className="vvd-motion-stage"><Spinner label="Spinner example" /></div>
+        <p><code className="vvd-name">duration-spin</code><span>A spinner turning</span></p>
+      </div>
+      <div className="vvd-tile">
+        <div className="vvd-motion-stage vvd-motion-stage--wide"><Skeleton lines={2} /></div>
+        <p><code className="vvd-name">duration-shimmer</code><span>A skeleton loading</span></p>
+      </div>
     </div>
   )
 }

@@ -3,6 +3,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 <meta name="description" content="VV Foundations — design system: tokens, components and patterns, light and dark." />
+<script>
+  // The saved theme before the first paint, or a reload in dark flashes white.
+  try { if (localStorage.getItem("vv-theme") === "dark") document.documentElement.dataset.vvTheme = "dark" } catch (e) {}
+</script>
 <style>
   /* Registered so the menu's width can animate. */
   @property --nav-width { syntax: "<length>"; inherits: true; initial-value: 0px; }
@@ -10,6 +14,8 @@
      manager is a separate page and cannot read tokens.css. */
   :root { --vv-h: 56px; --vv-bg: #ffffff; --vv-fg: #0a0a0a; --vv-muted: #525252; --vv-line: #e5e5e5; --vv-hover: #fafafa; --vv-current: #f5f5f5; --vv-ring: #8b5cf6; --vv-brand: #6d28d9; --vv-active-bg: #ede9fe; --vv-active-fg: #5b21b6; --vv-brand-hover: #a78bfa; }
   :root[data-vv-theme="dark"] { --vv-bg: #0a0a0a; --vv-fg: #fafafa; --vv-muted: #a3a3a3; --vv-line: #262626; --vv-hover: #171717; --vv-current: #262626; --vv-ring: #a78bfa; --vv-brand: #a78bfa; --vv-active-bg: #2e1065; --vv-active-fg: #ddd6fe; --vv-brand-hover: #c4b5fd; }
+  html, body { background: var(--vv-bg) !important; }
+  #storybook-preview-iframe { background: var(--vv-bg); }
   #vv-header { position: fixed; inset: 0 0 auto 0; height: var(--vv-h); z-index: 100; }
   #root { position: fixed !important; inset: var(--vv-h) 0 0 0 !important; width: auto !important; height: auto !important; }
   #root > div { height: 100% !important; }
