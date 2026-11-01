@@ -62,8 +62,8 @@
      mounted but hidden; the tree steps aside while search is open. */
   form:has(> .search-field), .search-field { display: none !important; }
   :root[data-vv-find="open"] #storybook-explorer-tree { display: none !important; }
-  :root { --vv-find-fill: #f5f5f5; --vv-find-on-bg: #ede9fe; --vv-find-on-fg: #6d28d9; }
-  :root[data-vv-theme="dark"] { --vv-find-fill: #262626; --vv-find-on-bg: #2e1065; --vv-find-on-fg: #a78bfa; }
+  :root { --vv-find-fill: #f5f5f5; }
+  :root[data-vv-theme="dark"] { --vv-find-fill: #262626; }
   #vv-find { width: 100%; align-self: stretch; }
   .vv-find { color: var(--vv-fg); font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 12px; }
   .vv-find__bar { display: flex; align-items: center; gap: 2px; }
@@ -74,7 +74,6 @@
   .vv-find__field input::placeholder { color: var(--vv-muted); opacity: 1; }
   .vv-find__icon { flex: none; display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 6px; background: none; color: var(--vv-fg); cursor: pointer; }
   .vv-find__icon:hover { background: var(--vv-current); }
-  .vv-find__icon[data-on] { background: var(--vv-find-on-bg); color: var(--vv-find-on-fg); }
   .vv-find__icon[data-hidden] { visibility: hidden; }
   .vv-find__icon:focus-visible, .vv-find__status button:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; }
   .vv-find__status { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 8px; border-top: 0; color: var(--vv-fg); }
@@ -101,7 +100,9 @@
   /* No drag handle: dragged to the edge, Storybook unmounts the sidebar for good. */
   [aria-label="Sidebar resize handle"] { display: none !important; }
   /* The theme change's fade (setTheme in manager.tsx). */
-  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 160ms; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 250ms; animation-timing-function: ease-in-out; }
+  /* Scrollbars and native controls follow the theme, or they stay white on a dark page. */
+  :root[data-vv-theme="dark"] { color-scheme: dark; }
   @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
   /* The menu folded to its icon rail (.storybook/rail.tsx). The full sidebar is hidden, not
      just narrowed, so Tab skips it. */

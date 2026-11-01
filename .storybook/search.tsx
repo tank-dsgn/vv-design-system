@@ -4,9 +4,8 @@ import { createRoot } from "react-dom/client"
 import type { API } from "storybook/manager-api"
 import { PanelIcon, setNavOpen } from "./nav-state"
 
-/* Search in the sidebar, laid out like Figma's Find: a filled field, a filter
-   button with a dark menu, a close button, and an empty panel until something
-   is typed. It replaces Storybook's own field (hidden in manager-head.html) and
+/* Search in the sidebar, laid out like Figma's Find: a filled field, a close
+   button, and an empty panel until something is typed. It replaces Storybook's own field (hidden in manager-head.html) and
    reads the same index. The sidebar's tree is hidden while search is open. */
 
 type Scope = "all" | "section"
@@ -19,7 +18,6 @@ const Glyph = ({ d, size = 16 }: { d: string; size?: number }) => (
   </svg>
 )
 const SEARCH = "M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM11 11l3.5 3.5"
-const SLIDERS = "M5 1.5v6.2M5 12v2.5M11 1.5V4M11 8.3v6.2M5 12a2.1 2.1 0 1 0 0-4.3A2.1 2.1 0 0 0 5 12ZM11 8.3A2.1 2.1 0 1 0 11 4a2.1 2.1 0 0 0 0 4.3Z"
 const CLOSE = "M3.5 3.5l9 9M12.5 3.5l-9 9"
 const CHECK = "M3 8.5l3.2 3.2L13 4.5"
 const CHEVRON = "M4.5 6.5 8 10l3.5-3.5"
@@ -27,10 +25,10 @@ const PAGE = "M4 1.5h5.5L12.5 4.5v10h-8.5zM6.5 7.5h4M6.5 10h4"
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
-function find(entries: Entry[], query: string, scope: Scope, matchCase: boolean, wholeWords: boolean) {
+function find(entries: Entry[], query: string, scope: Scope) {
   const q = query.trim()
   if (!q) return { results: [] as Result[], re: null }
-  const re = new RegExp(wholeWords ? `\\b${escape(q)}\\b` : escape(q), matchCase ? "" : "i")
+  const re = new RegExp(escape(q), "i")
   const section = document.documentElement.dataset.vvSection === "components" ? "Components" : "Foundations"
   const results = entries
     .filter((e) => e.type === "docs" && (scope === "all" || e.title.startsWith(section)))
@@ -52,7 +50,7 @@ function Mark({ text, re }: { text: string; re: RegExp | null }) {
   return <>{text.slice(0, m.index)}<b>{m[0]}</b>{text.slice(m.index + m[0].length)}</>
 }
 
-type MenuItem = { label: string; on: boolean; icon?: string; onPick: () => void; role: "menuitemradio" | "menuitemcheckbox" }
+type MenuItem = { label: string; on: boolean; onPick: () => void }
 
 /** The dark menu. In a portal, because it reaches past the sidebar's edge. */
 function DarkMenu({ anchor, label, groups, onClose }: { anchor: HTMLElement; label: string; groups: MenuItem[][]; onClose: () => void }) {
@@ -84,9 +82,8 @@ function DarkMenu({ anchor, label, groups, onClose }: { anchor: HTMLElement; lab
       {groups.map((items, g) => (
         <div key={g} role="group" className="vv-find-menu__group">
           {items.map((it) => (
-            <button key={it.label} type="button" role={it.role} aria-checked={it.on} onClick={it.onPick}>
+            <button key={it.label} type="button" role="menuitemradio" aria-checked={it.on} onClick={it.onPick}>
               <span className="vv-find-menu__check">{it.on && <Glyph d={CHECK} />}</span>
-              {it.icon && <Glyph d={it.icon} />}
               {it.label}
             </button>
           ))}
@@ -101,13 +98,10 @@ function Find({ api }: { api: API }) {
   const [open, setOpen] = React.useState(false)
   const [text, setText] = React.useState("")
   const [scope, setScope] = React.useState<Scope>("all")
-  const [matchCase, setMatchCase] = React.useState(false)
-  const [wholeWords, setWholeWords] = React.useState(false)
-  const [menu, setMenu] = React.useState<"filter" | "scope" | null>(null)
+  const [menu, setMenu] = React.useState<"scope" | null>(null)
   const [active, setActive] = React.useState(0)
   const root = React.useRef<HTMLDivElement>(null)
   const input = React.useRef<HTMLInputElement>(null)
-  const filterBtn = React.useRef<HTMLButtonElement>(null)
   const scopeBtn = React.useRef<HTMLButtonElement>(null)
 
   React.useEffect(() => {
@@ -118,9 +112,8 @@ function Find({ api }: { api: API }) {
     () => (open ? (Object.values(api.getIndex()?.entries ?? {}) as unknown as Entry[]) : []),
     [api, open],
   )
-  const { results, re } = React.useMemo(() => find(entries, text, scope, matchCase, wholeWords), [entries, text, scope, matchCase, wholeWords])
+  const { results, re } = React.useMemo(() => find(entries, text, scope), [entries, text, scope])
   const shown = results.slice(0, 100)
-  const filtered = matchCase || wholeWords
   const scopeLabel = scope === "all" ? "All sections" : "This section"
 
   const close = () => {
@@ -170,18 +163,6 @@ function Find({ api }: { api: API }) {
             onKeyDown={onKey}
           />
         </label>
-        <button
-          ref={filterBtn}
-          type="button"
-          className="vv-find__icon"
-          data-on={menu === "filter" || filtered || undefined}
-          aria-label="Filters"
-          aria-haspopup="menu"
-          aria-expanded={menu === "filter"}
-          onClick={() => { setOpen(true); setMenu(menu === "filter" ? null : "filter") }}
-        >
-          <Glyph d={SLIDERS} />
-        </button>
         {open ? (
           <button type="button" className="vv-find__icon" aria-label="Close search" onClick={close}>
             <Glyph d={CLOSE} />
@@ -226,27 +207,14 @@ function Find({ api }: { api: API }) {
         </ul>
       )}
 
-      {menu === "filter" && filterBtn.current && (
-        <DarkMenu
-          anchor={filterBtn.current}
-          label="Filters"
-          onClose={() => setMenu(null)}
-          groups={[
-            [
-              { label: "Match case", role: "menuitemcheckbox", on: matchCase, onPick: () => setMatchCase(!matchCase) },
-              { label: "Whole words", role: "menuitemcheckbox", on: wholeWords, onPick: () => setWholeWords(!wholeWords) },
-            ],
-          ]}
-        />
-      )}
       {menu === "scope" && scopeBtn.current && (
         <DarkMenu
           anchor={scopeBtn.current}
           label="Where to search"
           onClose={() => setMenu(null)}
           groups={[[
-            { label: "This section", role: "menuitemradio", on: scope === "section", onPick: () => { setScope("section"); setMenu(null); input.current?.focus() } },
-            { label: "All sections", role: "menuitemradio", on: scope === "all", onPick: () => { setScope("all"); setMenu(null); input.current?.focus() } },
+            { label: "This section", on: scope === "section", onPick: () => { setScope("section"); setMenu(null); input.current?.focus() } },
+            { label: "All sections", on: scope === "all", onPick: () => { setScope("all"); setMenu(null); input.current?.focus() } },
           ]]}
         />
       )}

@@ -214,7 +214,7 @@ await test("ChoiceCard: arrows move between the cards", async () => {
   eq(await page.getByRole("radio", { name: /Rail freight/ }).isChecked(), true, "second chosen")
 })
 
-await test("Find: empty panel, results, arrows and Enter, filters, scope, Esc", async () => {
+await test("Find: empty panel, results, arrows and Enter, scope, Esc", async () => {
   await page.goto(`${base}/index.html?path=/docs/foundations-tokens--docs`)
   await page.waitForSelector("#vv-find input")
   await page.waitForTimeout(2500)
@@ -227,15 +227,12 @@ await test("Find: empty panel, results, arrows and Enter, filters, scope, Esc", 
   await page.keyboard.press("Enter")
   await page.waitForTimeout(800)
   eq(page.url().includes("components-button--docs"), true, "Enter opens it")
-  await page.getByRole("button", { name: "Filters" }).click()
-  await page.getByRole("menuitemcheckbox", { name: "Match case" }).click()
-  await page.keyboard.press("Escape")
   await box.fill("Button")
   const pages = await page.locator("#vv-find-results li").count()
   await box.fill("buttonzz")
   eq(await page.locator(".vv-find__status").innerText().then((s) => s.includes("No results")), true, "no results")
   await box.fill("Button")
-  eq(await page.locator("#vv-find-results li").count(), pages, "filter holds")
+  eq(await page.locator("#vv-find-results li").count(), pages, "results return")
   await box.press("Escape")
   eq(await page.locator("#storybook-explorer-tree").isVisible(), true, "tree back")
 })
