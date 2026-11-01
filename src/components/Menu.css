@@ -59,7 +59,7 @@
 .vv-menu__item:disabled { color: var(--color-text-disabled); cursor: not-allowed; }
 .vv-menu__item--destructive:not(:disabled) { color: var(--color-text-danger); }
 
-.vv-menu__icon { display: inline-flex; color: var(--color-text-secondary); }
+.vv-menu__icon { display: inline-flex; color: var(--color-icon-secondary); }
 .vv-menu__item--destructive .vv-menu__icon,
 .vv-menu__item:disabled .vv-menu__icon { color: inherit; }
 .vv-menu__label { flex: 1; min-width: 0; }

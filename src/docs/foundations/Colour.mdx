@@ -21,26 +21,36 @@ The rest of the Tailwind CSS palette under its Tailwind names. Hover a step for 
 
 <Unstyled><PrimitiveRamps /></Unstyled>
 
+## Background
+
+What everything sits on. Take every element off the page, and this is what is left.
+
+<Unstyled><ColorTable prefix="--color-background-" roles={{
+  "--color-background-primary": "The page, and cut-outs that must match it",
+  "--color-background-secondary": "A large zone of the page, such as a sidebar",
+  "--color-background-overlay": "Dim behind a modal",
+}} /></Unstyled>
+
 ## Surface
 
+An element that sits on the background and could be picked up and moved.
+
 <Unstyled><ColorTable prefix="--color-surface-" roles={{
-  "--color-surface-primary": "Page background",
+  "--color-surface-primary": "Flat elements level with the page: toggle buttons, choice cards",
   "--color-surface-input": "Input fields",
   "--color-surface-raised": "Cards, menus, modals",
   "--color-surface-sunken": "Wells, inset areas",
-  "--color-surface-subtle": "Tracks, active items, skeletons",
+  "--color-surface-subtle": "Tracks and active items",
   "--color-surface-hover": "Rows and list items on hover",
   "--color-surface-inverse": "Tooltips and toasts",
   "--color-surface-inverse-hover": "Hover on an inverse surface",
   "--color-surface-tint-hover": "Hover on a tinted ground, such as a banner",
-  "--color-surface-overlay": "Dim behind a modal",
-  "--color-surface-shine": "The band of light running across a skeleton",
 }} /></Unstyled>
 
 ## Text
 
 <Unstyled><ColorTable prefix="--color-text-" roles={{
-  "--color-text-primary": "Default text and icons",
+  "--color-text-primary": "Default text",
   "--color-text-secondary": "Supporting text",
   "--color-text-muted": "Placeholders, hints, meta",
   "--color-text-faint": "Separators and quiet marks",
@@ -54,6 +64,29 @@ The rest of the Tailwind CSS palette under its Tailwind names. Hover a step for 
   "--color-text-accent-disabled": "Disabled links",
   "--color-text-danger": "Errors",
   "--color-text-success": "Confirmations",
+}} /></Unstyled>
+
+## Icon
+
+An icon takes the colour of its text unless it needs its own.
+
+<Unstyled><ColorTable prefix="--color-icon-" roles={{
+  "--color-icon-primary": "Default icons",
+  "--color-icon-secondary": "Icons beside text: menus, commands, file rows",
+  "--color-icon-muted": "Quiet marks: chevrons, field icons",
+  "--color-icon-disabled": "Icons on a disabled control",
+  "--color-icon-on-accent": "Icons on a primary or destructive fill",
+  "--color-icon-inverse": "Icons on an inverse surface",
+  "--color-icon-accent": "Brand icons",
+  "--color-icon-danger": "Error icons",
+  "--color-icon-success": "Confirmation icons",
+}} /></Unstyled>
+
+## Skeleton
+
+<Unstyled><ColorTable prefix="--color-skeleton-" roles={{
+  "--color-skeleton-base": "The shape standing in for content",
+  "--color-skeleton-shine": "The band of light running across it",
 }} /></Unstyled>
 
 ## Button

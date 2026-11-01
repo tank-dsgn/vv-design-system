@@ -227,6 +227,7 @@
   --color-accent-border: var(--brand-300);
   --color-accent-on-subtle: var(--brand-800);
   --color-text-accent: var(--brand-700);
+  --color-icon-accent: var(--brand-700);
   --color-text-accent-hover: var(--brand-800);
   --color-text-accent-pressed: var(--brand-900);
   --color-text-accent-disabled: var(--brand-300);
@@ -241,6 +242,11 @@
 }
 
 :root, .light {
+  /* Background: what everything sits on. Surface: what sits on it. */
+  --color-background-primary: var(--white);
+  --color-background-secondary: var(--neutral-100);
+  --color-background-overlay: rgb(0 0 0 / 0.5);
+
   /* Surfaces */
   --color-surface-primary: var(--white);
   --color-surface-input: var(--white);
@@ -250,10 +256,22 @@
   --color-surface-inverse: var(--neutral-950);
   --color-surface-inverse-hover: rgb(255 255 255 / 0.12);
   --color-surface-tint-hover: rgb(0 0 0 / 0.08);
-  --color-surface-overlay: rgb(0 0 0 / 0.5);
-  --color-surface-shine: rgb(255 255 255 / 0.5);
 
   --color-surface-subtle: var(--neutral-200);
+
+  /* Skeleton */
+  --color-skeleton-base: var(--neutral-200);
+  --color-skeleton-shine: rgb(255 255 255 / 0.5);
+
+  /* Icons */
+  --color-icon-primary: var(--neutral-950);
+  --color-icon-secondary: var(--neutral-600);
+  --color-icon-muted: var(--neutral-500);
+  --color-icon-disabled: var(--neutral-400);
+  --color-icon-on-accent: var(--white);
+  --color-icon-inverse: var(--white);
+  --color-icon-danger: var(--red-700);
+  --color-icon-success: var(--green-700);
 
   /* Secondary button */
   --color-button-bg-secondary: var(--neutral-200);
@@ -336,6 +354,7 @@
   --color-accent-on-subtle: var(--brand-200);
   --color-button-bg-primary-disabled: var(--brand-900);
   --color-text-accent: var(--brand-400);
+  --color-icon-accent: var(--brand-400);
   --color-text-accent-hover: var(--brand-300);
   --color-text-accent-pressed: var(--brand-500);
   --color-text-accent-disabled: var(--brand-700);
@@ -351,7 +370,17 @@
 
 .dark {
   color-scheme: dark;
-  --color-surface-shine: rgb(255 255 255 / 0.07);
+  --color-background-primary: var(--neutral-950);
+  --color-background-secondary: var(--neutral-950);
+  --color-skeleton-base: var(--neutral-800);
+  --color-skeleton-shine: rgb(255 255 255 / 0.07);
+  --color-icon-primary: var(--neutral-50);
+  --color-icon-secondary: var(--neutral-400);
+  --color-icon-muted: var(--neutral-400);
+  --color-icon-disabled: var(--neutral-600);
+  --color-icon-inverse: var(--neutral-950);
+  --color-icon-danger: var(--red-400);
+  --color-icon-success: var(--green-400);
   --color-surface-primary: var(--neutral-950);
   --color-surface-input: var(--neutral-900);
   --color-surface-raised: var(--neutral-900);

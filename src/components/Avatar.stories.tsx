@@ -81,7 +81,7 @@ export const Group: Story = {
   render: () => (
     <div style={{ display: "flex" }}>
       {PEOPLE.slice(0, 4).map((n, i) => (
-        <span key={n} style={{ marginLeft: i ? -8 : 0, borderRadius: "var(--radius-full)", boxShadow: "0 0 0 2px var(--color-surface-primary)" }}>
+        <span key={n} style={{ marginLeft: i ? -8 : 0, borderRadius: "var(--radius-full)", boxShadow: "0 0 0 2px var(--color-background-primary)" }}>
           <Avatar size="sm" name={n} tone={TONES[i + 1]} />
         </span>
       ))}

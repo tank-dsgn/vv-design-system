@@ -11,11 +11,11 @@ import { Switch } from "../../components/Switch"
 
 Dark is a **mode**, not a second set of tokens. The token names stay the same; only their values
 change under a `.dark` class. No component knows the theme exists — it reads
-`color-surface-primary` and gets whatever the current mode says.
+`color-background-primary` and gets whatever the current mode says.
 
 ```css
-:root { --color-surface-primary: var(--white); }
-.dark { --color-surface-primary: var(--neutral-950); }
+:root { --color-background-primary: var(--white); }
+.dark { --color-background-primary: var(--neutral-950); }
 ```
 
 The sun and moon button at the top right switches the whole page.

@@ -2,7 +2,7 @@
    docs are built from the system they describe. */
 
 .vv-frame {
-  background: var(--color-surface-primary);
+  background: var(--color-background-primary);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: var(--font-size-sm);
@@ -181,7 +181,7 @@
 
 /* Side-by-side theme comparison */
 .vvd-themes { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--color-border-default); border-radius: var(--radius-xl); overflow: hidden; margin: var(--space-16) 0 var(--space-32); }
-.vvd-themes > div { padding: var(--space-24); background: var(--color-surface-primary); color: var(--color-text-primary); display: flex; flex-direction: column; gap: var(--space-16); }
+.vvd-themes > div { padding: var(--space-24); background: var(--color-background-primary); color: var(--color-text-primary); display: flex; flex-direction: column; gap: var(--space-16); }
 @media (max-width: 700px) { .vvd-themes { grid-template-columns: 1fr; } }
 
 /* Do / don't */
