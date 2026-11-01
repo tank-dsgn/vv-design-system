@@ -4,20 +4,18 @@
 <style>
   /* Our own screen for every failure, over Storybook's. It may show before any bundle
      has loaded, so tokens.css cannot be assumed: the colours mirror the tokens here. */
-  :root { --vve-bg: #ffffff; --vve-fg: #0a0a0a; --vve-muted: #525252; --vve-line: #e5e5e5; --vve-fill: #f5f5f5; --vve-brand: #6d28d9; --vve-brand-hover: #5b21b6; --vve-on-brand: #ffffff; --vve-ring: #8b5cf6; --vve-ghost: #a78bfa; }
-  html.dark { --vve-bg: #0a0a0a; --vve-fg: #fafafa; --vve-muted: #a3a3a3; --vve-line: #262626; --vve-fill: #171717; --vve-brand: #6d28d9; --vve-brand-hover: #7c3aed; --vve-on-brand: #ffffff; --vve-ring: #a78bfa; --vve-ghost: #8b5cf6; background: #0a0a0a; }
+  :root { --vve-bg: #ffffff; --vve-fg: #0a0a0a; --vve-muted: #525252; --vve-line: #e5e5e5; --vve-fill: #f5f5f5; --vve-brand: #6d28d9; --vve-brand-hover: #5b21b6; --vve-on-brand: #ffffff; --vve-ring: #8b5cf6; }
+  html.dark { --vve-bg: #0a0a0a; --vve-fg: #fafafa; --vve-muted: #a3a3a3; --vve-line: #262626; --vve-fill: #171717; --vve-brand: #6d28d9; --vve-brand-hover: #7c3aed; --vve-on-brand: #ffffff; --vve-ring: #a78bfa; background: #0a0a0a; }
   html.dark .sb-preparing-docs, html.dark .sb-preparing-story { background: #0a0a0a; }
   .sb-errordisplay, .sb-nopreview { position: fixed; inset: 0; z-index: 1000; padding: 0 !important; background: var(--vve-bg) !important; }
   .sb-errordisplay > *:not(#vv-error), .sb-nopreview > *:not(#vv-error) { display: none !important; }
   #vv-error { box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; padding: 32px 16px; background: var(--vve-bg); color: var(--vve-fg); font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 24px; text-align: center; }
-  #vv-error .vve-art { width: 200px; height: 152px; margin-bottom: 32px; overflow: visible; }
-  .vve-t1 { fill: #ddd6fe; } .vve-t2 { fill: #a78bfa; } .vve-t3 { fill: #6d28d9; }
-  .vve-ghost { fill: none; stroke: var(--vve-ghost); stroke-width: 1.5; stroke-dasharray: 4 4; stroke-linejoin: round; }
-  .vve-link { fill: none; stroke: var(--vve-ghost); stroke-width: 1.5; stroke-dasharray: 2 3; }
-  .vve-float { animation: vve-float 3.2s ease-in-out infinite; }
-  .vve-fade { animation: vve-fade 3.2s ease-in-out infinite; }
-  @keyframes vve-float { 50% { transform: translateY(-6px); } }
-  @keyframes vve-fade { 50% { opacity: 0.55; } }
+  #vv-error .vve-art { width: 200px; height: 124px; margin-bottom: 32px; overflow: visible; }
+  .vve-t1 { fill: #ddd6fe; --vve-delay: 240ms; } .vve-t2 { fill: #a78bfa; --vve-delay: 120ms; } .vve-t3 { fill: #6d28d9; --vve-delay: 0ms; }
+  /* The tiers rise one by one from the base, then a slow wave keeps running up the pyramid. */
+  .vve-tier { animation: vve-rise 480ms ease-out var(--vve-delay) both, vve-wave 3s ease-in-out calc(var(--vve-delay) + 800ms) infinite; }
+  @keyframes vve-rise { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes vve-wave { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-6px); } }
   #vv-error h1.vve-code { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-weight: 500; letter-spacing: -0.02em; }
   #vv-error h1 { margin: 0 0 8px; color: var(--vve-fg); font-size: 24px; line-height: 32px; font-weight: 600; }
   #vv-error p { max-width: 440px; margin: 0 0 24px; color: var(--vve-muted); }
@@ -30,7 +28,7 @@
   #vv-error details { width: 100%; max-width: 640px; margin-top: 32px; color: var(--vve-muted); font-size: 14px; line-height: 20px; }
   #vv-error summary { display: inline-block; border-radius: 4px; cursor: pointer; }
   #vv-error pre { max-height: 240px; margin: 12px 0 0; padding: 12px; overflow: auto; border-radius: 8px; background: var(--vve-fill); color: var(--vve-fg); font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; line-height: 16px; text-align: left; white-space: pre-wrap; word-break: break-word; }
-  @media (prefers-reduced-motion: reduce) { #vv-error a, #vv-error button.vve-btn { transition: none; } .vve-float, .vve-fade { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { #vv-error a, #vv-error button.vve-btn { transition: none; } .vve-tier { animation: none; } }
 </style>
 <script>
   (function () {
@@ -40,23 +38,18 @@
       if (saved) document.documentElement.classList.toggle("dark", saved === "dark")
     } catch (e) {}
 
-    // The case study's token pyramid, broken a different way for each failure.
-    var ART = {
-      missing: '<polygon class="vve-ghost vve-float" points="100,10 130,50 70,50"/><polygon class="vve-t2" points="64,58 136,58 161.5,92 38.5,92"/><polygon class="vve-t3" points="32.5,100 167.5,100 197.5,140 2.5,140"/>',
-      offline: '<path class="vve-link" d="M100 54V62M100 96V104"/><polygon class="vve-t1 vve-float" points="100,0 130,40 70,40"/><polygon class="vve-t2 vve-fade" points="64,62 136,62 161.5,96 38.5,96"/><polygon class="vve-t3" points="32.5,110 167.5,110 197.5,150 2.5,150"/>',
-      broken: '<polygon class="vve-t1 vve-float" points="168,62 198,102 138,102" transform="rotate(14 168 82)"/><polygon class="vve-t2" points="50,50 122,50 147.5,84 24.5,84" transform="rotate(-7 86 67)"/><polygon class="vve-t3" points="32.5,100 167.5,100 197.5,140 2.5,140"/>',
-      empty: '<polygon class="vve-ghost" points="100,10 130,50 70,50"/><polygon class="vve-ghost" points="64,58 136,58 161.5,92 38.5,92"/><polygon class="vve-ghost" points="32.5,100 167.5,100 197.5,140 2.5,140"/>',
-    }
+    // The case study's token pyramid.
+    var PYRAMID = '<polygon class="vve-tier vve-t3" points="34,88 166,88 193,124 7,124"/><polygon class="vve-tier vve-t2" points="67,44 133,44 160,80 40,80"/><polygon class="vve-tier vve-t1" points="100,0 127,36 73,36"/>'
     var HOME = "./?path=/docs/foundations-tokens--docs"
 
     function describe(message, empty) {
-      if (empty) return { art: "empty", title: "Zero spacing, zero content", text: "The structure is here, nothing has filled it yet. Pick another page from the menu.", home: true }
-      if (!navigator.onLine) return { art: "offline", title: "You've gone off the grid", text: "No connection, so nothing can resolve to a value. It all clicks back into place once you're online.", reload: true }
+      if (empty) return { title: "Zero spacing, zero content", text: "The structure is here, nothing has filled it yet. Pick another page from the menu.", home: true }
+      if (!navigator.onLine) return { title: "You've gone off the grid", text: "No connection, so nothing can resolve to a value. It all clicks back into place once you're online.", reload: true }
       if (/failed to fetch|networkerror|load failed|importing a module|dynamically imported|chunk/i.test(message))
-        return { art: "offline", title: "The tokens didn't arrive", text: "The connection dropped on the way, or the site has just been updated. A reload usually reconnects everything.", reload: true, home: true, details: true }
+        return { title: "The tokens didn't arrive", text: "The connection dropped on the way, or the site has just been updated. A reload usually reconnects everything.", reload: true, home: true, details: true }
       if (/couldn.t find|can.t find|unable to find|no story|not found/i.test(message))
-        return { art: "missing", code: true, title: "var(--this-page) is undefined", text: "No token, no page. It may have moved or been renamed, or the address has a typo.", home: true, primaryHome: true }
-      return { art: "broken", title: "This example fell out of the system", text: "Something in it broke. The rest of the pyramid is still standing.", reload: true, home: true, details: true }
+        return { code: true, title: "var(--this-page) is undefined", text: "No token, no page. It may have moved or been renamed, or the address has a typo.", home: true, primaryHome: true }
+      return { title: "This example fell out of the system", text: "Something in it broke. The rest of the pyramid is still standing.", reload: true, home: true, details: true }
     }
 
     function draw(wrapper, empty) {
@@ -70,7 +63,7 @@
       box.dataset.key = key
       var d = describe(message, empty)
       box.innerHTML =
-        '<svg class="vve-art" viewBox="0 0 200 152" aria-hidden="true">' + ART[d.art] + "</svg>" +
+        '<svg class="vve-art" viewBox="0 0 200 124" aria-hidden="true">' + PYRAMID + "</svg>" +
         "<h1></h1><p></p><div class=\"vve-actions\"></div>"
       if (d.code) box.querySelector("h1").className = "vve-code"
       box.querySelector("h1").textContent = d.title
