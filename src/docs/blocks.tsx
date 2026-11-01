@@ -608,7 +608,7 @@ export function IconGallery() {
           </button>
         ))}
       </div>
-      <IconDetails name={open} onPick={setOpen} onClose={() => setOpen(null)} />
+      <IconDetails name={open} initialSize={size} onPick={setOpen} onClose={() => setOpen(null)} />
       {names.length === 0 && <p style={{ color: "var(--color-text-secondary)" }}>No icon matches “{q}”.</p>}
     </div>
   )

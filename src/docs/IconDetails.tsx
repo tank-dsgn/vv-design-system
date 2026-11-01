@@ -33,9 +33,12 @@ function relatedTo(name: IconName) {
   return (Object.keys(ICONS) as IconName[]).filter((n) => n !== name && (n === family || n.startsWith(`${family}-`))).slice(0, 12)
 }
 
-export function IconDetails({ name, onPick, onClose }: { name: IconName | null; onPick: (name: IconName) => void; onClose: () => void }) {
+export function IconDetails({ name, initialSize = 20, onPick, onClose }: { name: IconName | null; initialSize?: Size; onPick: (name: IconName) => void; onClose: () => void }) {
   const [copied, setCopied] = useState(false)
-  const [size, setSize] = useState<Size>(20)
+  const [size, setSize] = useState<Size>(initialSize)
+  // Opens at the size chosen in the library; moving to a related icon keeps the one picked here.
+  const isOpen = name !== null
+  useEffect(() => { if (isOpen) setSize(initialSize) }, [isOpen, initialSize])
   const [usage, setUsage] = useState<Usage>("icon")
   useEffect(() => setCopied(false), [name, size])
   if (!name) return null
