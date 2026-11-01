@@ -197,16 +197,6 @@ await test("Collapsible: Enter toggles it", async () => {
   await page.keyboard.press("Enter")
   eq(await trigger.getAttribute("aria-expanded"), "true", "opened")
 })
-await test("PromptInput: Enter sends and clears, Shift+Enter keeps writing", async () => {
-  await open("components-promptinput--playground")
-  const box = page.getByRole("textbox", { name: "Message" })
-  await box.click()
-  await page.keyboard.type("Hello")
-  await page.keyboard.press("Shift+Enter")
-  eq(await box.inputValue(), "Hello\n", "new line")
-  await page.keyboard.press("Enter")
-  eq(await box.inputValue(), "", "sent")
-})
 await test("NavigationMenu: Enter opens a panel, Esc closes and returns", async () => {
   await open("components-navigationmenu--playground")
   const trigger = page.getByRole("button", { name: "Services" })

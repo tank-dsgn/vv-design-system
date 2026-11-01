@@ -26,7 +26,6 @@ export const GROUP_ICONS: Record<string, IconName> = {
   Overlays: "layers-2",
   Content: "layout-list",
   Data: "chart-column",
-  AI: "sparkles",
 }
 
 const TYPE_ICONS: Record<string, IconName> = {

@@ -119,7 +119,7 @@ const preview: Preview = {
           "Foundations",
           ["Tokens", "Colors", "Theming", "Typography", "Spacing & Size", "Border and Corner", "Shadows & Elevation", "Breakpoints & Grids", "Motion", "Icons", "Dark theme"],
           "Components",
-          ["Actions", "Forms", "Navigation", "Feedback", "Overlays", "Content", "Data", "AI"],
+          ["Actions", "Forms", "Navigation", "Feedback", "Overlays", "Content", "Data"],
         ],
       },
     },

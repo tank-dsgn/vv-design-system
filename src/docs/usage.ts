@@ -9,23 +9,14 @@ export const USAGE: Record<string, Usage> = {
     avoid: ["Content needed on every visit: leave it open on the page", "One section: use [Collapsible]", "Switching views of the same content: use [Tabs]"],
     write: ["Titles name what is inside, so people can skip without opening"],
   },
-  ActionBar: {
-    use: ["Copy, retry or reply under a message or a block", "Two to four actions everyone recognises by icon"],
-    avoid: ["An action that needs explaining: use [Button]", "More than four actions: put the rest in a [Menu]"],
-    write: ["Each label names the action and the object: Copy message"],
-  },
   AlertDialog: {
     use: ["Irreversible actions, or ones that affect other people", "Deleting, cancelling a booked pickup"],
-    avoid: ["Reversible actions: do it at once and offer Undo in a [Toast]", "A task with fields: use [Modal]", "An assistant asking for approval: use [Confirmation]"],
+    avoid: ["Reversible actions: do it at once and offer Undo in a [Toast]", "A task with fields: use [Modal]"],
     write: ["The title is the question, with the object's name", "The body says what will be lost", "Both buttons say what they do. Never Yes and No"],
   },
   AspectRatio: {
     use: ["Video, maps and images whose shape must hold while loading", "Grids where every tile keeps one shape"],
     avoid: ["A plain image: [Image] already keeps its shape", "Text content: it will overflow a fixed shape"],
-  },
-  Attachments: {
-    use: ["Files added to a message, before and after sending"],
-    avoid: ["Uploads with progress and retry: use [FileItem]", "A form's file field: use [Dropzone]"],
   },
   Avatar: {
     use: ["A person or a company beside their name", "Lists where a face or a logo speeds up scanning"],
@@ -74,10 +65,6 @@ export const USAGE: Record<string, Usage> = {
     use: ["Peer items where seeing one at a time is enough", "Photos, steps of a guide"],
     avoid: ["Content everyone must see: the later slides are rarely reached", "Anything that moves on its own"],
   },
-  Chat: {
-    use: ["A whole conversation thread with its composer"],
-    avoid: ["Building a thread from your own parts: use [Message] and [PromptInput]", "Comments on an object: use [Timeline]"],
-  },
   Checkbox: {
     use: ["An option that applies when the form is submitted", "Indeterminate: a parent over a partly checked list"],
     avoid: ["A setting that applies at once: use [Switch]", "One answer out of several: use [Radio]", "Options answering one question: use [ChoiceList]"],
@@ -85,7 +72,7 @@ export const USAGE: Record<string, Usage> = {
   },
   ChecklistItem: {
     use: ["Tasks people work through: onboarding, a pre-departure check"],
-    avoid: ["A form option: use [Checkbox]", "Steps in a fixed order: use [Stepper]", "An assistant's own progress: use [Plan]"],
+    avoid: ["A form option: use [Checkbox]", "Steps in a fixed order: use [Stepper]"],
     write: ["Each task starts with a verb"],
   },
   ChoiceCard: {
@@ -114,11 +101,6 @@ export const USAGE: Record<string, Usage> = {
     avoid: ["The only way to reach an action: everything must also be on screen", "Picking a value in a form: use [Combobox]"],
     write: ["Each command starts with a verb"],
   },
-  Confirmation: {
-    use: ["An assistant asks before an action with consequences", "The decision stays on record in the conversation"],
-    avoid: ["A person's own destructive action: use [AlertDialog]", "Questions with several answers: use [Suggestion]"],
-    write: ["Name the object and the cost in the title or body", "Buttons say what happens: Book shipment, Keep as draft"],
-  },
   ContextMenu: {
     use: ["Shortcuts in canvases and dense tools"],
     avoid: ["The only way to an action: touch screens have no right click", "A visible overflow button: use [Menu]"],
@@ -146,7 +128,7 @@ export const USAGE: Record<string, Usage> = {
   },
   Dropzone: {
     use: ["Adding files to a form or a page"],
-    avoid: ["Files in a message: use [PromptInput] with [Attachments]", "Showing what was uploaded: use [FileItem]"],
+    avoid: ["Showing what was uploaded: use [FileItem]"],
     write: ["State the accepted types and the size limit up front"],
   },
   EmptyState: {
@@ -170,7 +152,7 @@ export const USAGE: Record<string, Usage> = {
   },
   FileItem: {
     use: ["One file in an upload list, with progress and retry"],
-    avoid: ["Files on a message: use [Attachments]"],
+    avoid: ["Choosing a file: use [Dropzone]"],
     write: ["On failure name the file and the limit: dock-photo.jpg is over 5 MB"],
   },
   FilterList: {
@@ -198,10 +180,6 @@ export const USAGE: Record<string, Usage> = {
     use: ["Content images that load and may fail"],
     avoid: ["A person or a company: use [Avatar]", "Icons and marks: use [Icon]"],
     write: ["Alt text says what the image shows. Empty only for decoration"],
-  },
-  InlineCitation: {
-    use: ["A claim in a generated answer that can be checked"],
-    avoid: ["A plain link in text: use [Link]", "The full list of sources: use [Sources]"],
   },
   InlineMessage: {
     use: ["A one-line message attached to a field or a small block"],
@@ -242,10 +220,6 @@ export const USAGE: Record<string, Usage> = {
   Menubar: {
     use: ["A desktop-like tool: an editor, a canvas"],
     avoid: ["Page navigation: use [TopNav] or [NavigationMenu]", "A few actions: use [Menu]"],
-  },
-  Message: {
-    use: ["Building a conversation from your own parts"],
-    avoid: ["A ready thread with a composer: use [Chat]", "An activity history: use [Timeline]"],
   },
   MetricCard: {
     use: ["A key figure with its change over a period"],
@@ -290,11 +264,6 @@ export const USAGE: Record<string, Usage> = {
     use: ["A long list split into pages", "Pages: jumping to a number. Compact: moving on through a table"],
     avoid: ["Short lists that fit on a page", "Steps of a process: use [Stepper]"],
   },
-  Plan: {
-    use: ["What an assistant intends to do, before and while it does it"],
-    avoid: ["Stages people move through themselves: use [Stepper]", "Detail on one piece of work: use [Task]"],
-    write: ["Each step is a short action, in the order it happens"],
-  },
   Popover: {
     use: ["Interactive content on a button: a short filter form, an explanation with a link"],
     avoid: ["A plain label: use [Tooltip]", "A list of actions: use [Menu]", "A task that must be finished first: use [Modal]"],
@@ -303,22 +272,9 @@ export const USAGE: Record<string, Usage> = {
     use: ["Measurable work: an upload, an inspection"],
     avoid: ["Work of unknown length: use [Spinner]", "A figure that is not progress: use [Stat]"],
   },
-  PromptInput: {
-    use: ["Where a person asks an assistant"],
-    avoid: ["A message to people, with no generation: use [Textarea]", "A search over known items: use [Command]"],
-    write: ["The placeholder says what can be asked on this screen"],
-  },
-  Queue: {
-    use: ["Work waiting its turn: queued prompts, batch jobs"],
-    avoid: ["Stages of one job: use [Plan]", "A finished history: use [Timeline]"],
-  },
   Radio: {
     use: ["One option from two to five that should be seen together"],
     avoid: ["More than five: use [Select]", "Options needing a sentence each: use [ChoiceCard]", "Switching views: use [SegmentedControl]"],
-  },
-  Reasoning: {
-    use: ["How an assistant reached its answer, for those who want to check it"],
-    avoid: ["The answer itself: keep it outside", "The steps of a job: use [Plan] or [Task]"],
   },
   Resizable: {
     use: ["Tools where people decide how much room each side gets"],
@@ -340,10 +296,6 @@ export const USAGE: Record<string, Usage> = {
     use: ["How serious something is: incidents, defects, audit findings"],
     avoid: ["A status with no ranking: use [Badge]", "Where a process is: use [StatusChip]"],
   },
-  Shimmer: {
-    use: ["Words naming what an assistant is doing right now"],
-    avoid: ["A page that is loading: use [Skeleton]", "Waiting with nothing to say: use [Spinner]", "Anything after the work has finished"],
-  },
   Sidebar: {
     use: ["An app with many sections, grouped under headings"],
     avoid: ["A handful of pages: use [TopNav]", "Filters: use [FilterList]"],
@@ -355,10 +307,6 @@ export const USAGE: Record<string, Usage> = {
   Slider: {
     use: ["Picking from a range when the position matters more than the number"],
     avoid: ["An exact number: use [NumberInput]", "A few named options: use [SegmentedControl]"],
-  },
-  Sources: {
-    use: ["What a generated answer was based on, in a list under it"],
-    avoid: ["One claim inside a sentence: use [InlineCitation]", "Related links with no bearing on the answer"],
   },
   Spinner: {
     use: ["Loading of unknown shape, or under a few seconds"],
@@ -375,12 +323,7 @@ export const USAGE: Record<string, Usage> = {
   },
   Stepper: {
     use: ["A fixed sequence of four to six steps: a booking flow"],
-    avoid: ["Fewer steps: they do not need it", "An assistant's own work: use [Plan]", "Tasks in any order: use [ChecklistItem]"],
-  },
-  Suggestion: {
-    use: ["Showing what an assistant can do here, one click away"],
-    avoid: ["Generic prompts that would fit any product", "Choosing from a fixed list: use [Radio]"],
-    write: ["Written as the person would ask, specific to this screen"],
+    avoid: ["Fewer steps: they do not need it", "Tasks in any order: use [ChecklistItem]"],
   },
   Switch: {
     use: ["A setting that takes effect at once, with no Save", "Anywhere you would say toggle: this is the sliding one"],
@@ -400,13 +343,9 @@ export const USAGE: Record<string, Usage> = {
     use: ["A keyword people attach to label, group or filter"],
     avoid: ["A status set by the system: use [Badge]", "Choosing an option in a form: use [ChoiceList]"],
   },
-  Task: {
-    use: ["One unit of an assistant's work, its status and what it did"],
-    avoid: ["A person's to-do: use [ChecklistItem]", "A tool's input and output: use [ToolCall]"],
-  },
   Textarea: {
     use: ["Multi-line text: notes, descriptions, comments"],
-    avoid: ["An answer that fits on one line: use [Field]", "Asking an assistant: use [PromptInput]"],
+    avoid: ["An answer that fits on one line: use [Field]"],
   },
   ThemeSwitcher: {
     use: ["A theme choice on a settings page"],
@@ -414,7 +353,7 @@ export const USAGE: Record<string, Usage> = {
   },
   Timeline: {
     use: ["What happened to an object, in order"],
-    avoid: ["Steps still to come: use [Stepper]", "A conversation: use [Chat]"],
+    avoid: ["Steps still to come: use [Stepper]"],
     write: ["Newest first for the current state, oldest first for the story"],
   },
   Toast: {
@@ -429,10 +368,6 @@ export const USAGE: Record<string, Usage> = {
   ToggleButtonGroup: {
     use: ["Related toggles where any number can be on: map layers"],
     avoid: ["Exactly one must be on: use [SegmentedControl]", "Actions with no lasting state: use [ButtonGroup]"],
-  },
-  ToolCall: {
-    use: ["A tool an assistant used, with what went in and came out"],
-    avoid: ["A plain step with no data to inspect: use [Task]", "Code for people to copy and use: use [CodeBlock]"],
   },
   Tooltip: {
     use: ["Naming a control, most often an [IconButton]", "Showing a shortcut"],

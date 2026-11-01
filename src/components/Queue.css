@@ -1,4 +1,0 @@
-.vv-queue { margin: 0; padding: 0; list-style: none; font-family: var(--font-sans); }
-.vv-queue__item { display: flex; align-items: center; gap: var(--space-8); min-height: 40px; border-bottom: 1px solid var(--color-border-default); font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-primary); }
-.vv-queue__pos { display: inline-grid; flex: none; place-items: center; width: 24px; color: var(--color-text-secondary); }
-.vv-queue__title { flex: 1; min-width: 0; }

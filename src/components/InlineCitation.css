@@ -1,4 +1,0 @@
-.vv-citation { display: inline-grid; place-items: center; min-width: 16px; height: 16px; padding: 0 var(--space-4); border-radius: var(--radius-sm); background: var(--color-status-neutral-bg); color: var(--color-status-neutral-fg); font-family: var(--font-sans); font-size: var(--font-size-xs); line-height: 1; font-weight: var(--font-weight-medium); text-decoration: none; vertical-align: text-top; transition: background-color var(--duration-fast); }
-.vv-citation:hover { background: var(--color-surface-subtle); }
-.vv-citation:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 1px; }
-@media (prefers-reduced-motion: reduce) { .vv-citation { transition: none; } }

@@ -1,5 +1,0 @@
-/* Shimmer. An opacity pulse tied to real work in progress; under reduced motion
-   it stays still. */
-.vv-shimmer { font-family: var(--font-sans); animation: vv-shimmer var(--duration-pulse) ease-in-out infinite; }
-@keyframes vv-shimmer { 50% { opacity: 0.55; } }
-@media (prefers-reduced-motion: reduce) { .vv-shimmer { animation: none; } }

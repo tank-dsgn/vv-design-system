@@ -9,7 +9,6 @@ export const GROUPS: Record<string, string[]> = {
   Overlays: ["AlertDialog", "Drawer", "HoverCard", "Modal", "Popover", "Tooltip"],
   Content: ["Accordion", "AspectRatio", "Avatar", "Card", "Carousel", "ChecklistItem", "CodeBlock", "Collapsible", "Divider", "EntityCard", "ExplainerBlock", "Icon", "Image", "ListItem", "NextStepCard", "Resizable", "ScrollArea"],
   Data: ["BarChart", "DescriptionList", "DonutChart", "MetricCard", "Stat", "Table", "Timeline"],
-  AI: ["ActionBar", "Attachments", "Chat", "Confirmation", "InlineCitation", "Message", "Plan", "PromptInput", "Queue", "Reasoning", "Shimmer", "Sources", "Suggestion", "Task", "ToolCall"],
 }
 
 export const COMPONENTS = Object.values(GROUPS).flat()

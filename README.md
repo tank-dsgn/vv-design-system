@@ -1,6 +1,6 @@
 # VV Design System
 
-A design system by Ivan Grigorenko: tokens on Tailwind's scales, 100 components in React, both themes,
+A design system by Ivan Grigorenko: tokens on Tailwind's scales, 85 components in React, both themes,
 every state documented.
 
 **See it live: https://vv-foundations.vercel.app**
