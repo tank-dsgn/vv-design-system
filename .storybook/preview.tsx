@@ -3,6 +3,7 @@ import type { Preview } from "@storybook/react-vite"
 import { vvTheme, vvThemeDark } from "./theme"
 import { DocsPage } from "./DocsPage"
 import { subscribeToTheme, theme } from "./theme-store"
+import "./toc-spy"
 import { DocsContainer, type DocsContainerProps } from "@storybook/addon-docs/blocks"
 import { addons } from "storybook/preview-api"
 import "../src/styles/tokens.css"
@@ -109,7 +110,7 @@ const preview: Preview = {
       theme: vvTheme,
       page: DocsPage,
       container: ThemedDocs,
-      toc: { headingSelector: "h2, h3", title: <PageName /> },
+      toc: { headingSelector: "h2, h3", title: <PageName />, unsafeTocbotOptions: { activeLinkClass: "vv-toc-unused", activeListItemClass: "vv-toc-unused" } },
       codePanel: true,
     },
     options: {

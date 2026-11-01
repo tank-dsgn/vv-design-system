@@ -58,11 +58,14 @@ function Pager({ name }: { name: string }) {
   )
 }
 
+/** An anchor for the contents list, which can only track and reach a heading that has one. */
+const slug = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+
 function List({ title, items }: { title: string; items?: string[] }) {
   if (!items?.length) return null
   return (
     <div>
-      <h3>{title}</h3>
+      <h3 id={slug(title)}>{title}</h3>
       <ul>{items.map((t) => <li key={t}><Rich text={t} /></li>)}</ul>
     </div>
   )
@@ -111,7 +114,7 @@ export function DocsPage() {
 
       {usage && (
         <>
-          <h2 className="vvd-docpage__h2">Usage</h2>
+          <h2 id="usage" className="vvd-docpage__h2">Usage</h2>
           <div className="vvd-usage">
             <List title="When to use" items={usage.use} />
             <List title="When not to use" items={usage.avoid} />
@@ -122,7 +125,7 @@ export function DocsPage() {
 
       {rest.length > 0 && (
         <>
-          <h2 className="vvd-docpage__h2">Properties</h2>
+          <h2 id="properties" className="vvd-docpage__h2">Properties</h2>
           {rest.map((s) => (
             <section
               key={s.id}
@@ -130,7 +133,7 @@ export function DocsPage() {
               className={s.parameters.docs?.wide ?? WIDE.has(s.name) ? "vvd-prop vvd-prop--wide" : "vvd-prop"}
             >
               <div className="vvd-prop__text">
-                <h3>{s.name}</h3>
+                <h3 id={`prop-${slug(s.name)}`}>{s.name}</h3>
                 <Description of={s.moduleExport as never} />
               </div>
               <div className="vvd-prop__example">
@@ -143,7 +146,7 @@ export function DocsPage() {
 
       {first && (
         <>
-          <h2 className="vvd-docpage__h2">Property table</h2>
+          <h2 id="property-table" className="vvd-docpage__h2">Property table</h2>
           <p className="vvd-docpage__note">Every prop with its values and default. Change a value to update the example at the top.</p>
           <div className="vvd-table-scroll" role="region" aria-label="Property table" tabIndex={0}>
             <Controls of={first.moduleExport as never} />
