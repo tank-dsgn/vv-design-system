@@ -47,18 +47,20 @@ const Moon = () => (
   </svg>
 )
 
-/** The preview repaints a moment after the manager. Resolves when it has, or at the cap. */
-function previewCaughtUp(dark: boolean) {
-  return new Promise<void>((resolve) => {
-    const started = performance.now()
-    const check = () => {
-      const doc = document.querySelector<HTMLIFrameElement>("#storybook-preview-iframe")?.contentDocument
-      if (doc?.documentElement.classList.contains("dark") === dark || performance.now() - started > 300) resolve()
-      else window.setTimeout(check, 16)
-    }
-    check()
+/** Gives every preview, nested ones too, the theme at once instead of waiting for the storage event. */
+function applyToPreviews(dark: boolean, doc: Document = document) {
+  doc.querySelectorAll("iframe").forEach((frame) => {
+    try {
+      const win = frame.contentWindow as (Window & { vvApplyTheme?: (dark: boolean) => void }) | null
+      win?.vvApplyTheme?.(dark)
+      if (frame.contentDocument) applyToPreviews(dark, frame.contentDocument)
+    } catch { /* a frame from another origin keeps its own theme */ }
   })
 }
+
+// WebKit, which is every browser on an iPhone, snapshots the page for a view transition without
+// the preview inside it, so the fade shows the preview change on its own. There the theme swaps at once.
+const webkit = /AppleWebKit/.test(navigator.userAgent) && !/Chrome\/|Chromium|Edg\//.test(navigator.userAgent)
 
 function Header({ api }: { api: API }) {
   const [path, setPath] = React.useState(() => api.getUrlState().path)
@@ -109,12 +111,13 @@ function Header({ api }: { api: API }) {
   const label = dark ? "Switch to light theme" : "Switch to dark theme"
   const setTheme = (next: boolean) => {
     try { localStorage.setItem(KEY, next ? "dark" : "light") } catch { /* the choice just won't persist */ }
-    // The old picture holds until the whole window has the new theme, then fades over.
-    if (!document.startViewTransition) { setDark(next); return }
-    document.startViewTransition(() => {
+    const apply = () => {
       flushSync(() => setDark(next))
-      return previewCaughtUp(next)
-    })
+      applyToPreviews(next)
+    }
+    // The old picture holds until the whole window has the new theme, then fades over.
+    if (!document.startViewTransition || webkit) apply()
+    else document.startViewTransition(apply)
   }
 
   return (

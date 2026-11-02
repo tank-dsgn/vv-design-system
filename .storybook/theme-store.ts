@@ -10,11 +10,18 @@ export const theme = {
   listeners: new Set<() => void>(),
 }
 
-window.addEventListener("storage", (e) => {
-  if (e.key !== "vv-theme") return
-  theme.dark = e.newValue === "dark"
-  document.documentElement.classList.toggle("dark", theme.dark)
+function applyTheme(dark: boolean) {
+  if (theme.dark === dark && document.documentElement.classList.contains("dark") === dark) return
+  theme.dark = dark
+  document.documentElement.classList.toggle("dark", dark)
   theme.listeners.forEach((l) => l())
+}
+
+// The header also calls this directly, so the page changes in the same frame as the header.
+;(window as unknown as { vvApplyTheme?: (dark: boolean) => void }).vvApplyTheme = applyTheme
+
+window.addEventListener("storage", (e) => {
+  if (e.key === "vv-theme") applyTheme(e.newValue === "dark")
 })
 
 export function subscribeToTheme(listener: () => void) {
