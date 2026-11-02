@@ -61,7 +61,9 @@
 
 @media (max-width: 600px) {
   .vvs-line, .vvs-head { grid-template-columns: 1fr; gap: var(--space-8); }
-  .vv-frame { padding: var(--space-16); }
+  .vv-frame, .vv-frame[data-docs] { padding: var(--space-16); }
+  /* An example never runs wider than its card: blocks inside it may shrink. */
+  .vvs-stack > *, .vvs-narrow, .vvs-medium { min-width: 0; max-width: 100%; }
 }
 
 /* --- Foundations blocks (MDX pages) ------------------------------------- */
@@ -298,10 +300,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .vvd-motion-use .vvd-tile p { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
 @media (prefers-reduced-motion: reduce) { .vvd-motion-dot, .vvd-motion-pop { transition: none; } }
 @media (max-width: 600px) { .vvd-motion-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); } }
-
-/* Colors: lines only between colours. No rule under a heading, none after a table's last row. */
-.vvd-color-tabs [data-panel] > h2 { border-bottom: 0 !important; padding-bottom: 0 !important; }
-.vvd-color-tabs .vvd-table tbody tr:last-child td, .vvd-color-tabs .vvd-colors tbody tr:last-child { border-bottom: 0; }
 
 /* Colors: one view at a time. */
 .vvd-color-tabs { margin-top: var(--space-24); }

@@ -18,6 +18,8 @@
 .vv-skeleton--rect { border-radius: var(--radius-lg); }
 .vv-skeleton--circle { border-radius: var(--radius-full); flex: none; }
 .vv-skeleton-lines { display: flex; flex-direction: column; gap: var(--space-6); }
+/* A set width is the most it takes: in a narrower container it fits. */
+.vv-skeleton, .vv-skeleton-lines { max-width: 100%; }
 
 @keyframes vv-skeleton-shimmer {
   from { transform: translateX(-100%); }

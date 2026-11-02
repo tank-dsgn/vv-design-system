@@ -40,7 +40,7 @@ export const Playground: Story = {}
 
 export const Placements: Story = {
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 200px)", gap: 48, justifyItems: "center" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 200px))", gap: 24, justifyItems: "center" }}>
       {(["top", "bottom", "left", "right"] as const).map((p) => (
         <div key={p} style={{ padding: "40px 0" }}>
           <Tooltip content={`Placed ${p}`} placement={p} open>

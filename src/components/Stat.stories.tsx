@@ -22,7 +22,7 @@ export const Default: Story = {
  *  is good. The caller says which, and the sign stays in the text either way. */
 export const Sentiment: Story = {
   render: () => (
-    <dl style={{ margin: 0, display: "flex", gap: 48 }}>
+    <dl style={{ margin: 0, display: "flex", flexWrap: "wrap", gap: "24px 48px" }}>
       <Stat label="Average risk per finding" value="11.84" note="−0.31 since last quarter" sentiment="good" />
       <Stat label="Priority 1 findings" value="323" note="+31 new this quarter" sentiment="bad" />
       <Stat label="Estimated repair cost" value="$38,412,900" note="Estimate accuracy +50% / −25%" />
