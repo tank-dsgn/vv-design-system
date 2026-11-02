@@ -15,7 +15,7 @@ export const PAGE_ICONS: Record<string, IconName> = {
   "Breakpoints & Grids": "layout-grid",
   Motion: "zap",
   Icons: "shapes",
-  "Dark theme": "moon",
+  "Theme mode": "moon",
 }
 
 export const GROUP_ICONS: Record<string, IconName> = {
