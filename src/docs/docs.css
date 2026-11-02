@@ -304,6 +304,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (max-width: 600px) {
   .vvd-motion-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
   .vvd-motion-play > * { width: 100%; }
+  /* The curve stretches to the column; its lines keep their width. */
+  .vvd-motion-curve { width: 100%; }
 }
 
 /* Colors: one view at a time. */

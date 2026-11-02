@@ -514,9 +514,9 @@ export function MotionEase() {
   return (
     <div className="vvd vvd-motion">
       <div className="vvd-motion--ease">
-        <svg className="vvd-motion-curve" viewBox="-4 -4 108 108" role="img" aria-label="The ease-out curve: a fast start that settles slowly">
-          <path d="M0 100H100M0 100V0" className="vvd-motion-axis" fill="none" />
-          <path d="M0 100C20 100 0 0 100 0" className="vvd-motion-line" fill="none" />
+        <svg className="vvd-motion-curve" viewBox="-4 -4 108 108" preserveAspectRatio="none" role="img" aria-label="The ease-out curve: a fast start that settles slowly">
+          <path d="M0 100H100M0 100V0" className="vvd-motion-axis" vectorEffect="non-scaling-stroke" fill="none" />
+          <path d="M0 100C20 100 0 0 100 0" className="vvd-motion-line" vectorEffect="non-scaling-stroke" fill="none" />
         </svg>
         <div className="vvd-motion-race">
           <MotionTrack name="ease-out" value={time} on={on} />
