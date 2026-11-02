@@ -274,7 +274,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 /* The levels table: every cell the same size, token names on one line. */
 .vvd-levels code { white-space: nowrap; }
-.vvd-levels td, .vvd-levels code { font-size: var(--font-size-sm); line-height: var(--line-height-sm); }
+.vvd-levels td { font-size: var(--font-size-sm); line-height: var(--line-height-sm); }
+.vvd-levels code { font-size: var(--font-size-xs); }
 
 /* Typography roles table. */
 .vvd-type-table td { white-space: nowrap; }
