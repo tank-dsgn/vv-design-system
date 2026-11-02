@@ -219,6 +219,9 @@
 .vvd-docpage__lead p { margin: 0; font-size: inherit; line-height: inherit; }
 #table-of-contents { margin-bottom: var(--space-12); color: var(--color-text-primary); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-semibold); }
 
+/* A phone keeps 16px at each side, as the header does. */
+@media (max-width: 600px) { .sbdocs.sbdocs-wrapper { padding-left: var(--space-16) !important; padding-right: var(--space-16) !important; } }
+
 /* Air above every section, on all pages. */
 .sbdocs-content > h2, .sbdocs-content [data-panel] > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-64) !important; }
 
