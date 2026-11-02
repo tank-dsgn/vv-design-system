@@ -358,7 +358,7 @@ export function TrackingScale() {
 
 export function WeightScale() {
   return (
-    <div className="vvd vvd-tiles">
+    <div className="vvd vvd-tiles vvd-tiles--pair">
       {byPrefix("--font-weight-").map((t) => (
         <div key={t.name} className="vvd-tile">
           <span style={{ fontSize: "var(--font-size-4xl)", lineHeight: "var(--line-height-4xl)", fontWeight: `var(${t.name})` }}>Aa</span>
