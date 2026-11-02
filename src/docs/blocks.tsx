@@ -398,14 +398,14 @@ export function SpaceScale() {
 export function SizeScale() {
   return (
     <table className="vvd vvd-table vvd-scale">
-      <thead><tr><th>Token</th><th>Value</th><th className="vvd-hide-sm">Preview</th></tr></thead>
+      <thead><tr><th>Token</th><th>Value</th><th>Preview</th></tr></thead>
       <tbody>
         {byPrefix("--size-").map((t) => (
           <tr key={t.name}>
             <td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td>
             <td><span className="mono">{resolved(t.name)}</span></td>
-            <td className="vvd-hide-sm">
-              <div style={{ height: `var(${t.name})`, width: t.name.includes("avatar") ? `var(${t.name})` : 120, borderRadius: t.name.includes("avatar") ? "var(--radius-full)" : "var(--radius-lg)", background: "var(--color-surface-subtle)" }} />
+            <td>
+              <div style={{ height: `var(${t.name})`, width: t.name.includes("avatar") ? `var(${t.name})` : "min(120px, 100%)", borderRadius: t.name.includes("avatar") ? "var(--radius-full)" : "var(--radius-lg)", background: "var(--color-surface-subtle)" }} />
             </td>
           </tr>
         ))}
