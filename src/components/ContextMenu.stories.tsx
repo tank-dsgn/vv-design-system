@@ -3,7 +3,7 @@ import { Narrow, StateMatrix, Stack } from "../docs/specimen.js"
 import { ContextMenu, type ContextMenuItem } from "./ContextMenu.js"
 
 const ITEMS: ContextMenuItem[] = [{ id: "open", label: "Open shipment" }, { id: "copy", label: "Copy reference" }, { id: "archive", label: "Archive shipment", disabled: true }, { id: "del", label: "Delete shipment", destructive: true }]
-const Area = ({ text }: { text: string }) => <div style={{ display: "grid", placeItems: "center", height: 220, border: "1px dashed var(--color-border-hover)", borderRadius: "inherit", color: "var(--color-text-secondary)", fontSize: "var(--font-size-sm)" }}>{text}</div>
+const Area = ({ text }: { text: string }) => <div style={{ display: "grid", placeItems: "center", height: 220, padding: "var(--space-16)", textAlign: "center", border: "1px dashed var(--color-border-hover)", borderRadius: "inherit", color: "var(--color-text-secondary)", fontSize: "var(--font-size-sm)" }}>{text}</div>
 
 const meta = {
   id: "components-contextmenu",

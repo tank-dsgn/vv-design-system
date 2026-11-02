@@ -58,7 +58,7 @@ export function ColorTable({ prefix, roles }: { prefix: string; roles?: Record<s
               </td>
               <td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td>
               <td>
-                <span className="mono" title={rawValue(t.value)}>{primitiveOf(t.value) ?? t.value}</span>
+                <span className="mono" title={rawValue(t.value)}>{dark && <span className="vvd-light-label">light: </span>}{primitiveOf(t.value) ?? t.value}</span>
                 {dark && <span className="mono vvd-dark-value" title={rawValue(dark)}>dark: {primitiveOf(dark) ?? dark}</span>}
               </td>
               <td className="vvd-hide-sm">{roles?.[t.name] ?? ""}</td>

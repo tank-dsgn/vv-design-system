@@ -138,13 +138,14 @@
   .vvd-colors thead { display: none; }
   .vvd-colors tr { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "sample name" "sample value" "use use"; column-gap: var(--space-12); padding: var(--space-12) 0; border-bottom: 1px solid var(--color-border-default); }
   .vvd-colors td { display: block; padding: 0; border: 0; }
-  .vvd-colors td:nth-child(1) { grid-area: sample; }
+  .vvd-colors td:nth-child(1) { grid-area: sample; align-self: stretch; }
   .vvd-colors td:nth-child(2) { grid-area: name; }
   .vvd-colors td:nth-child(3) { grid-area: value; }
   .vvd-colors td.vvd-hide-sm { display: block; grid-area: use; margin-top: var(--space-8); color: var(--color-text-secondary); }
   .vvd-colors td.vvd-hide-sm:empty { display: none; }
-  .vvd-colors .vvd-swatch--pair { width: var(--space-48); }
-  .vvd-colors .vvd-swatch--pair > span { height: var(--space-48); }
+  .vvd-colors .vvd-swatch--pair { width: var(--space-40); height: 100%; }
+  .vvd-colors .vvd-swatch--pair > span { height: auto; }
+  .vvd-colors .vvd-light-label { display: inline; }
 }
 
 /* Project theme demo */
