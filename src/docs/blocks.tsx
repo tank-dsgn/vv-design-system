@@ -262,33 +262,44 @@ const TEXT_ROLES = [
   { name: "Code", role: "code", size: "sm", weight: "normal" },
 ]
 
-export function TypeScale({ sample = "The quick brown fox jumps over the lazy dog" }: { sample?: string }) {
+const WEIGHT_NAMES: Record<string, string> = { normal: "Regular", medium: "Medium", semibold: "Semibold", bold: "Bold" }
+
+/** The type roles as a table: a sample in the role, its token, and what it is made of. */
+export function TypeScale() {
+  const px = (name: string) => lightTokens.find((t) => t.name === name)?.value ?? ""
+  const rem = (value: string) => `${Number.parseFloat(value) / 16} rem`
+  const weight = (w: string) => lightTokens.find((t) => t.name === `--font-weight-${w}`)?.value
   return (
-    <div className="vvd vvd-type">
-      {TEXT_ROLES.map((r) => {
-        const size = lightTokens.find((t) => t.name === `--font-size-${r.size}`)?.value
-        const lh = lightTokens.find((t) => t.name === `--line-height-${r.size}`)?.value
-        return (
-          <div key={r.role} className="vvd-type__row">
-            <div className="vvd-type__meta">
-              <b style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>{r.name}</b>
-              <code>text-{r.role}</code>
-              <span className="mono" style={{ color: "var(--color-text-secondary)" }}>{size} / {lh} · {r.weight}</span>
-            </div>
-            <p
-              className="vvd-type__sample"
-              style={{
-                fontSize: `var(--text-${r.role}-size)`,
-                lineHeight: `var(--text-${r.role}-line-height)`,
-                fontWeight: `var(--text-${r.role}-weight)`,
-                fontFamily: r.role === "code" ? "var(--text-code-family)" : undefined,
-              }}
-            >
-              {sample}
-            </p>
-          </div>
-        )
-      })}
+    <div className="vvd vvd-table-scroll" role="region" aria-label="Type roles" tabIndex={0}>
+      <table className="vvd-table vvd-type-table">
+        <thead><tr><th>Preview</th><th>Token</th><th>Weight</th><th>Size</th><th>Line height</th></tr></thead>
+        <tbody>
+          {TEXT_ROLES.map((r) => {
+            const size = px(`--font-size-${r.size}`)
+            return (
+              <tr key={r.role}>
+                <td>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      fontSize: `var(--text-${r.role}-size)`,
+                      lineHeight: `var(--text-${r.role}-line-height)`,
+                      fontWeight: `var(--text-${r.role}-weight)`,
+                      fontFamily: r.role === "code" ? "var(--text-code-family)" : undefined,
+                    }}
+                  >
+                    Aa
+                  </span>
+                </td>
+                <td><code className="vvd-name">text-{r.role}</code></td>
+                <td>{WEIGHT_NAMES[r.weight] ?? r.weight} <span className="mono">{weight(r.weight)}</span></td>
+                <td>{size} <span className="mono">{rem(size)}</span></td>
+                <td>{px(`--line-height-${r.size}`)}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }

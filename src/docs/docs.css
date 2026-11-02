@@ -245,6 +245,11 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .toc-wrapper .toc-list-item::before { border-left-color: var(--color-text-accent) !important; }
 .toc-wrapper .toc-list-item.is-active-li > a { color: var(--color-text-accent) !important; }
 
+/* Typography roles table. */
+.vvd-type-table td { white-space: nowrap; }
+.vvd-type-table td:first-child { width: 72px; }
+.vvd-type-table .mono { margin-left: var(--space-4); }
+
 /* Motion page. */
 .vvd-motion { display: flex; flex-direction: column; gap: var(--space-16); margin: var(--space-16) 0 var(--space-32); }
 .vvd-motion-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--space-16); align-items: center; }
