@@ -96,11 +96,14 @@ export function DocsPage() {
   return (
     <div className="vvd-docpage">
       <header className="vvd-docpage__head">
-        {name && <Pager name={name} />}
         <h1 className="vvd-docpage__title">
           {name} <span className="vvd-docpage__usage">usage</span>
         </h1>
-        <span className={`vvd-status vvd-status--${isNew ? "new" : "stable"}`}>{isNew ? "New" : "Stable"}</span>
+        {/* The arrows sit on the status row, so a long name never runs into them. */}
+        <div className="vvd-docpage__meta">
+          <span className={`vvd-status vvd-status--${isNew ? "new" : "stable"}`}>{isNew ? "New" : "Stable"}</span>
+          {name && <Pager name={name} />}
+        </div>
         <div className="vvd-docpage__lead">
           <Description of="meta" />
         </div>
