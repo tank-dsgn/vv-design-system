@@ -138,16 +138,17 @@
   .vv-rail__fly a[aria-current="page"] { font-weight: 600; }
   @media (max-width: 599px) { #vv-rail, .vv-rail__tip, .vv-rail__fly { display: none; } }
   @media (prefers-reduced-motion: reduce) { #vv-rail { animation: none; } }
-  /* Phone: the logo, then the navigation and theme buttons; the sections become tabs under the
-     header, and the navigation panel slides in from the right with search and the section's pages. */
+  /* Phone: the logo and the theme button; under them the section tabs with the navigation button at
+     their right end, which slides the panel in from the right with search and the section's pages. */
   .vv-header__panel, .vv-drawer, .vv-drawer__scrim { display: none; }
   @media (max-width: 599px) {
     :root { --vv-tabs: 44px; }
     #root { top: calc(var(--vv-h) + var(--vv-tabs)) !important; }
-    .vv-header { grid-template-columns: 1fr auto auto; gap: 4px; padding: 0 16px; }
+    .vv-header { grid-template-columns: 1fr auto; padding: 0 16px; }
+    .vv-header .vv-header__theme { margin-right: -9px; }
     .vv-header__nav { position: fixed; top: var(--vv-h); left: 0; right: 0; z-index: 99; height: var(--vv-tabs); padding: 0 4px; box-sizing: border-box; background: var(--vv-bg); border-bottom: 1px solid var(--vv-line); }
     section:has(> header.sb-bar button[aria-label="Open navigation menu"]) { display: none !important; }
-    .vv-header .vv-header__panel { display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 8px; background: none; color: var(--vv-brand); cursor: pointer; margin-right: -9px; }
+    .vv-header .vv-header__panel { display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 8px; background: none; color: var(--vv-brand); cursor: pointer; position: fixed; z-index: 100; top: calc(var(--vv-h) + (var(--vv-tabs) - 36px) / 2); right: 7px; }
     .vv-header__panel:hover { background: var(--vv-hover); }
     .vv-header__panel:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; }
     .vv-drawer__scrim { display: block; position: fixed; inset: calc(var(--vv-h) + var(--vv-tabs)) 0 0 0; z-index: 90; background: rgb(0 0 0 / 0.4); opacity: 0; visibility: hidden; transition: opacity 240ms ease-out, visibility 0s linear 240ms; }
