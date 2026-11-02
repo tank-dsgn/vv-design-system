@@ -140,20 +140,24 @@
   @media (prefers-reduced-motion: reduce) { #vv-rail { animation: none; } }
   /* Phone: the logo, the theme button and the navigation button. The panel slides in from the right
      with the sections as tabs, search and the section's pages. */
-  .vv-header__panel, .vv-drawer, .vv-drawer__scrim { display: none; }
+  .vv-header__panel, .vv-drawer, .vv-drawer__scrim, .vv-header__crumbs { display: none; }
   @media (max-width: 599px) {
+    :root { --vv-crumbs: 36px; }
+    #root { top: calc(var(--vv-h) + var(--vv-crumbs)) !important; }
+    .vv-header__crumbs { position: fixed; top: var(--vv-h); left: 0; right: 0; z-index: 99; display: block; height: var(--vv-crumbs); margin: 0; padding: 0 16px; box-sizing: border-box; overflow: hidden; line-height: var(--vv-crumbs); text-overflow: ellipsis; background: var(--vv-bg); border-bottom: 1px solid var(--vv-line); color: var(--vv-muted); font-size: 13px; white-space: nowrap; }
+    .vv-header__crumbs b { color: var(--vv-fg); font-weight: 600; }
     .vv-header { grid-template-columns: 1fr auto auto; gap: 4px; padding: 0 16px; }
     .vv-header__nav { display: none; }
     section:has(> header.sb-bar button[aria-label="Open navigation menu"]) { display: none !important; }
     .vv-header .vv-header__panel { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-right: -9px; padding: 0; border: 0; border-radius: 8px; background: none; color: var(--vv-brand); cursor: pointer; }
     .vv-header__panel:hover { background: var(--vv-hover); }
     .vv-header__panel:focus-visible { outline: 2px solid var(--vv-ring); outline-offset: -2px; }
-    .vv-drawer__scrim { display: block; position: fixed; inset: var(--vv-h) 0 0 0; z-index: 90; background: rgb(0 0 0 / 0.4); opacity: 0; visibility: hidden; transition: opacity 240ms ease-out, visibility 0s linear 240ms; }
+    .vv-drawer__scrim { display: block; position: fixed; inset: calc(var(--vv-h) + var(--vv-crumbs)) 0 0 0; z-index: 90; background: rgb(0 0 0 / 0.4); opacity: 0; visibility: hidden; transition: opacity 240ms ease-out, visibility 0s linear 240ms; }
     .vv-drawer__scrim[data-open] { opacity: 1; visibility: visible; transition: opacity 240ms ease-out; }
-    .vv-drawer { display: flex; flex-direction: column; position: fixed; top: var(--vv-h); right: 0; bottom: 0; z-index: 91; width: min(320px, 86vw); box-sizing: border-box; background: var(--vv-bg); border-left: 1px solid var(--vv-line); color: var(--vv-fg); font-size: 16px; line-height: 24px; transform: translateX(100%); visibility: hidden; transition: transform 240ms ease-out, visibility 0s linear 240ms; }
+    .vv-drawer { display: flex; flex-direction: column; position: fixed; top: calc(var(--vv-h) + var(--vv-crumbs)); right: 0; bottom: 0; z-index: 91; width: min(320px, 86vw); box-sizing: border-box; background: var(--vv-bg); border-left: 1px solid var(--vv-line); color: var(--vv-fg); font-size: 16px; line-height: 24px; transform: translateX(100%); visibility: hidden; transition: transform 240ms ease-out, visibility 0s linear 240ms; }
     .vv-drawer[data-open] { transform: none; visibility: visible; transition: transform 240ms ease-out; }
     .vv-drawer__body { flex: 1; min-height: 0; overflow-y: auto; padding: 0 16px 16px; }
-    .vv-drawer__findbar { position: sticky; top: 0; z-index: 1; padding: 8px 0; background: var(--vv-bg); }
+    .vv-drawer__findbar { position: sticky; top: 0; z-index: 1; margin: 0 -16px; padding: 8px 16px; background: var(--vv-bg); }
     .vv-drawer__sections { display: flex; gap: 24px; margin-bottom: 12px; border-bottom: 1px solid var(--vv-line); }
     .vv-drawer__sections a { position: relative; font-weight: 500; }
     .vv-drawer__sections a[data-tab] { color: var(--vv-brand); font-weight: 600; }

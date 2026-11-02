@@ -247,7 +247,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 
 /* A phone keeps 16px at each side, as the header does. */
-@media (max-width: 600px) { .sbdocs.sbdocs-wrapper { padding-left: var(--space-16) !important; padding-right: var(--space-16) !important; } }
+@media (max-width: 600px) { .sbdocs.sbdocs-wrapper { padding: var(--space-24) var(--space-16) var(--space-40) !important; } }
 
 /* Air above every section, on all pages. */
 .sbdocs-content > h2, .sbdocs-content [data-panel] > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-64) !important; }
@@ -257,6 +257,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .toc-wrapper .toc-list { border-left-color: var(--color-border-default) !important; }
 .toc-wrapper .toc-list-item::before { border-left-color: var(--color-text-accent) !important; }
 .toc-wrapper .toc-list-item.is-active-li > a { color: var(--color-text-accent) !important; }
+
+/* The levels table: every cell the same size, token names on one line. */
+.vvd-levels code { white-space: nowrap; }
+.vvd-levels td, .vvd-levels code { font-size: var(--font-size-sm); line-height: var(--line-height-sm); }
 
 /* Typography roles table. */
 .vvd-type-table td { white-space: nowrap; }

@@ -66,10 +66,15 @@ function Header({ api }: { api: API }) {
   const [drawer, setDrawer] = React.useState(false)
   const closeDrawer = React.useCallback(() => setDrawer(false), [])
   const section = sectionOf(path)
+  // The page's name from the index, by the id in the address. The index may arrive after the first
+  // render, so every navigation event renders again.
+  const [, rerender] = React.useReducer((n: number) => n + 1, 0)
+  const entries = (api.getIndex() as unknown as { entries?: Record<string, { title?: string }> } | undefined)?.entries
+  const page = entries?.[path?.split("/").pop() ?? ""]?.title?.split("/").pop()
 
   // Follow navigation from anywhere: the sidebar, links inside a page, Back.
   React.useEffect(() => {
-    const sync = () => setPath(api.getUrlState().path)
+    const sync = () => { setPath(api.getUrlState().path); rerender() }
     const channel = addons.getChannel()
     const events = ["storyChanged", "storyRendered", "docsRendered", "storySpecified", "setCurrentStory"]
     events.forEach((e) => channel.on(e, sync))
@@ -114,6 +119,11 @@ function Header({ api }: { api: API }) {
 
   return (
     <header className="vv-header">
+      {/* A phone says where you are under the header. */}
+      <p className="vv-header__crumbs">
+        {LINKS.find((l) => l.id === section)?.label}
+        {page && <><span aria-hidden="true"> • </span><b>{page}</b></>}
+      </p>
       <a className="vv-header__logo" href={`./?path=${HOME}`} aria-label="VV Design System, home" onClick={(e) => go(e, HOME)}>
         <span aria-hidden="true">VV</span>
         <small aria-hidden="true">Design System</small>

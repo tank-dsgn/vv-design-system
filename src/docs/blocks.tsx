@@ -56,7 +56,7 @@ export function ColorTable({ prefix, roles }: { prefix: string; roles?: Record<s
                   <span style={{ background: dark ?? t.value }} />
                 </span>
               </td>
-              <td><code className="vvd-name">{t.name}</code></td>
+              <td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td>
               <td>
                 <span className="mono" title={rawValue(t.value)}>{primitiveOf(t.value) ?? t.value}</span>
                 {dark && <span className="mono vvd-dark-value" title={rawValue(dark)}>dark: {primitiveOf(dark) ?? dark}</span>}
@@ -75,14 +75,14 @@ export function TokenLevels() {
   const raw = rawValue("var(--color-accent)")
   const rows = [
     ["Raw value", raw, "tokens.css only"],
-    ["Primitive", `--${tailwindStep(lightTokens.find((t) => t.name === "--color-accent")?.value)}`, "Brand"],
-    ["Brand", "--brand-700", "Semantic tokens"],
-    ["Semantic", "--color-accent", "Components"],
+    ["Primitive", `${tailwindStep(lightTokens.find((t) => t.name === "--color-accent")?.value)}`, "Brand"],
+    ["Brand", "brand-700", "Semantic tokens"],
+    ["Semantic", "color-accent", "Components"],
   ]
   return (
-    <table className="vvd vvd-table">
+    <table className="vvd vvd-table vvd-levels">
       <thead><tr><th>Level</th><th>Example</th><th>Read by</th></tr></thead>
-      <tbody>{rows.map(([level, example, reader]) => <tr key={level}><td>{level}</td><td><code>{example}</code></td><td>{reader}</td></tr>)}</tbody>
+      <tbody>{rows.map(([level, example, reader]) => <tr key={level}><td>{level}</td><td><code className="vvd-name">{example}</code></td><td>{reader}</td></tr>)}</tbody>
     </table>
   )
 }

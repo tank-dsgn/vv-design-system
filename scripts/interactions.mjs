@@ -391,6 +391,7 @@ await test("Phone: the navigation button opens the panel with the sections, them
   await phone.waitForTimeout(600)
   eq(phone.url().includes("components-combobox--docs"), true, "page opens")
   eq(await drawer.isVisible(), false, "closes on a page")
+  eq(await phone.locator(".vv-header__crumbs").innerText(), "Components • Combobox", "says where you are")
   await phone.close()
 })
 
