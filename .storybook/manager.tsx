@@ -2,7 +2,7 @@ import * as React from "react"
 import { flushSync } from "react-dom"
 import { createRoot } from "react-dom/client"
 import { addons, type API } from "storybook/manager-api"
-import { Burger, MobileMenu } from "./mobile-menu"
+import { MobileMenu, PanelButton } from "./mobile-menu"
 import { navLabel } from "./nav-icons"
 import { Rail } from "./rail"
 import { mountSearch } from "./search"
@@ -134,8 +134,8 @@ function Header({ api }: { api: API }) {
       >
         {dark ? <Sun /> : <Moon />}
       </button>
-      <Burger open={drawer} onClick={() => setDrawer(!drawer)} />
-      <MobileMenu api={api} open={drawer} path={path} section={section} dark={dark} onTheme={setTheme} onClose={closeDrawer} sections={LINKS} />
+      <PanelButton open={drawer} onClick={() => setDrawer(!drawer)} />
+      <MobileMenu api={api} open={drawer} path={path} section={section} onClose={closeDrawer} />
       <Rail api={api} section={section} path={path} />
     </header>
   )
