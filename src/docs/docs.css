@@ -299,6 +299,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { .vvd-motion-dot, .vvd-motion-pop { transition: none; } }
 @media (max-width: 600px) { .vvd-motion-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); } }
 
+/* Colors: lines only between colours. No rule under a heading, none after a table's last row. */
+.vvd-color-tabs [data-panel] > h2 { border-bottom: 0 !important; padding-bottom: 0 !important; }
+.vvd-color-tabs .vvd-table tbody tr:last-child td, .vvd-color-tabs .vvd-colors tbody tr:last-child { border-bottom: 0; }
+
 /* Colors: one view at a time. */
 .vvd-color-tabs { margin-top: var(--space-24); }
 .vvd-color-tabs > .sb-unstyled { position: sticky; top: 0; z-index: var(--z-dropdown); background: var(--color-background-primary); }
