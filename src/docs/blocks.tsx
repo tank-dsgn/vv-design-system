@@ -198,6 +198,7 @@ export function PrimitiveRamps({ only }: { only?: string[] }) {
               return <span key={s} className="vvd-ramp__chip" style={{ background: v }} title={`${r}-${s} ${rawValue(v)}`} />
             })}
           </div>
+          <div className="vvd-ramp__ends" aria-hidden="true"><span>50</span><span>500</span><span>950</span></div>
         </div>
       ))}
     </div>
