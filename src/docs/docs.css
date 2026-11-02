@@ -251,6 +251,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 /* Air above every section, on all pages. */
 .sbdocs-content > h2, .sbdocs-content [data-panel] > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-64) !important; }
+@media (max-width: 600px) { .sbdocs-content > h2, .sbdocs-content [data-panel] > h2, .sbdocs-content .vvd-docpage__h2 { margin-top: var(--space-40) !important; } }
 
 /* The contents list: a quiet rail with the current section in the active colour. */
 .toc-wrapper .toc-list { border-left-color: var(--color-border-default) !important; }
@@ -372,6 +373,13 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .dark .vvd-example .docblock-source pre, .dark .vvd-example .docblock-source .os-host { background: transparent; }
 .vvd-docpage__meta { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: var(--space-16); }
 .vvd-pager { display: flex; gap: var(--space-4); }
+/* Wider screens keep the arrows on the title row, with room left for them after a long name. A phone puts
+   them on the status row. */
+@media (min-width: 601px) {
+  .vvd-docpage__head { position: relative; }
+  .vvd-docpage__title { padding-right: var(--space-80); }
+  .vvd-docpage__meta .vvd-pager { position: absolute; top: var(--space-8); right: 0; }
+}
 .vvd-pager > * { display: inline-grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--color-border-default); border-radius: var(--corner-control); color: var(--color-text-primary); transition: background-color var(--duration-fast), border-color var(--duration-fast); }
 .vvd-pager a:hover { border-color: var(--color-border-hover); background: var(--color-surface-hover); }
 .vvd-pager a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
