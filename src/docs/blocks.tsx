@@ -371,29 +371,39 @@ export function WeightScale() {
 
 /* --- Space, radius, elevation ------------------------------------------- */
 
+/** A token's value with references followed through: size-control-sm reads 32px, not var(--space-32). */
+const resolved = (name: string): string => {
+  const value = lightTokens.find((t) => t.name === name)?.value ?? ""
+  const ref = value.match(/^var\((--[\w-]+)\)$/)
+  return ref ? resolved(ref[1]) : value
+}
+
 export function SpaceScale() {
   return (
-    <div className="vvd vvd-scale">
-      {byPrefix("--space-").map((t) => (
-        <div key={t.name} className="vvd-scale__row">
-          <code className="vvd-name">{t.name.replace(/^--/, "")}</code>
-          <span className="mono" style={{ color: "var(--color-text-secondary)" }}>{t.value}</span>
-          <div className="vvd-scale__bar" style={{ width: `var(${t.name})` }} />
-        </div>
-      ))}
-    </div>
+    <table className="vvd vvd-table vvd-scale">
+      <thead><tr><th>Token</th><th>Value</th><th>Preview</th></tr></thead>
+      <tbody>
+        {byPrefix("--space-").map((t) => (
+          <tr key={t.name}>
+            <td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td>
+            <td><span className="mono">{t.value}</span></td>
+            <td><div className="vvd-scale__bar" style={{ width: `var(${t.name})` }} /></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
 export function SizeScale() {
   return (
-    <table className="vvd vvd-table">
+    <table className="vvd vvd-table vvd-scale">
       <thead><tr><th>Token</th><th>Value</th><th className="vvd-hide-sm">Preview</th></tr></thead>
       <tbody>
         {byPrefix("--size-").map((t) => (
           <tr key={t.name}>
             <td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td>
-            <td><span className="mono">{t.value}</span></td>
+            <td><span className="mono">{resolved(t.name)}</span></td>
             <td className="vvd-hide-sm">
               <div style={{ height: `var(${t.name})`, width: t.name.includes("avatar") ? `var(${t.name})` : 120, borderRadius: t.name.includes("avatar") ? "var(--radius-full)" : "var(--radius-lg)", background: "var(--color-surface-subtle)" }} />
             </td>
@@ -659,12 +669,7 @@ const LAYOUTS = [
 ]
 
 export function GridLayouts() {
-  // A value can point at another token, as the gutters point at the spacing scale.
-  const v = (n: string): string => {
-    const value = lightTokens.find((t) => t.name === n)?.value ?? ""
-    const ref = value.match(/^var\((--[\w-]+)\)$/)
-    return ref ? v(ref[1]) : value
-  }
+  const v = resolved
   return (
     <div className="vvd vvd-grids">
       {LAYOUTS.map((l) => {
