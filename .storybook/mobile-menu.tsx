@@ -83,10 +83,13 @@ export function MobileMenu({ api, open, path, section, onClose }: {
       <nav id="vv-drawer" className="vv-drawer" data-open={open || undefined} aria-label="Menu">
         <div className="vv-drawer__body">
 
-          <label className="vv-drawer__find">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true"><path d="M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM11 11l3.5 3.5" /></svg>
-            <input aria-label="Find a page" placeholder="Find..." autoComplete="off" spellCheck={false} value={text} onChange={(e) => setText(e.target.value)} />
-          </label>
+          {/* Stays at the top of the panel while the list scrolls under it. */}
+          <div className="vv-drawer__findbar">
+            <label className="vv-drawer__find">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true"><path d="M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM11 11l3.5 3.5" /></svg>
+              <input aria-label="Find a page" placeholder="Find..." autoComplete="off" spellCheck={false} value={text} onChange={(e) => setText(e.target.value)} />
+            </label>
+          </div>
 
           <div className="vv-drawer__pages">
             {q ? (
