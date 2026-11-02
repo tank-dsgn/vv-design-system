@@ -135,7 +135,7 @@ function Header({ api }: { api: API }) {
         {dark ? <Sun /> : <Moon />}
       </button>
       <PanelButton open={drawer} onClick={() => setDrawer(!drawer)} />
-      <MobileMenu api={api} open={drawer} path={path} section={section} onClose={closeDrawer} />
+      <MobileMenu api={api} open={drawer} path={path} section={section} onClose={closeDrawer} sections={LINKS} />
       <Rail api={api} section={section} path={path} />
     </header>
   )

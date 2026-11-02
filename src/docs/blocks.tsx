@@ -24,12 +24,12 @@ export function Docs({ children }: { children: ReactNode }) {
 
 /** Raw value -> primitive token -> semantic token: the diagram from the case study. */
 export function TokenPyramid() {
+  // A phone gets the pyramid alone, larger: the whole picture at that width leaves its labels unreadable.
   return (
-    <img
-      className="vvd vvd-scheme"
-      src="./vv-token-architecture.jpg"
-      alt="VV Foundations token architecture, a pyramid of three levels. A raw value, #F5F5F5, is named by a primitive token, neutral-100, which is given a role by a semantic token, color-background-secondary."
-    />
+    <picture>
+      <source media="(max-width: 600px)" srcSet="./vv-token-architecture-mobile.jpg" />
+      <img className="vvd vvd-scheme" src="./vv-token-architecture.jpg" alt="VV Foundations token architecture, a pyramid of three levels. A raw value, #F5F5F5, is named by a primitive token, neutral-100, which is given a role by a semantic token, color-background-secondary." />
+    </picture>
   )
 }
 

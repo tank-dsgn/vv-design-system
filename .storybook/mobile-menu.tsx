@@ -4,9 +4,9 @@ import { GROUPS } from "../src/docs/groups"
 import { GROUP_ICONS, NavIcon, PAGE_ICONS } from "./nav-icons"
 import { PanelIcon } from "./nav-state"
 
-/* The phone menu: a panel from the right, under the header and its section tabs, opened by
-   the navigation button. It replaces Storybook's bottom bar and its drawer, and holds search
-   and the pages of the open section. */
+/* The phone menu: a panel from the right, under the header, opened by the navigation button.
+   It replaces Storybook's bottom bar and its drawer, and holds the sections as tabs, search and
+   the pages of the chosen section. */
 
 type Page = { id: string; title: string }
 
@@ -17,7 +17,7 @@ const pagesOf = (api: API): Page[] =>
 
 const leaf = (title: string) => title.split("/").pop() ?? title
 
-/** The phone's navigation button, beside the theme button in the header. */
+/** The phone's navigation button, at the right end of the header. */
 export function PanelButton({ open, onClick }: { open: boolean; onClick: () => void }) {
   const label = open ? "Close navigation" : "Open navigation"
   return (
@@ -27,20 +27,21 @@ export function PanelButton({ open, onClick }: { open: boolean; onClick: () => v
   )
 }
 
-export function MobileMenu({ api, open, path, section, onClose }: {
+export function MobileMenu({ api, open, path, section, onClose, sections }: {
   api: API
   open: boolean
   path: string | undefined
   section: string
   onClose: () => void
+  sections: { id: string; label: string; to: string }[]
 }) {
-  const tab = section
+  const [tab, setTab] = React.useState(section)
   const [text, setText] = React.useState("")
   const pages = React.useMemo(() => (open ? pagesOf(api) : []), [api, open])
   const current = path?.split("/").pop()?.replace(/--.*$/, "")
 
   React.useEffect(() => {
-    if (open) setText("")
+    if (open) { setTab(section); setText("") }
   }, [open, section])
 
   // Everything behind the panel leaves the tab order while it is open.
@@ -60,11 +61,11 @@ export function MobileMenu({ api, open, path, section, onClose }: {
     }
   }, [open, onClose])
 
-  const go = (e: React.MouseEvent, to: string) => {
+  const go = (e: React.MouseEvent, to: string, close = true) => {
     if (e.metaKey || e.ctrlKey) return
     e.preventDefault()
     api.navigate(to)
-    onClose()
+    if (close) onClose()
   }
 
   const link = (p: Page) => (
@@ -83,8 +84,15 @@ export function MobileMenu({ api, open, path, section, onClose }: {
       <nav id="vv-drawer" className="vv-drawer" data-open={open || undefined} aria-label="Menu">
         <div className="vv-drawer__body">
 
-          {/* Stays at the top of the panel while the list scrolls under it. */}
+          {/* The sections and search stay at the top of the panel while the list scrolls under them. */}
           <div className="vv-drawer__findbar">
+            <div className="vv-drawer__sections">
+              {sections.map((s) => (
+                <a key={s.id} href={`./?path=${s.to}`} aria-current={section === s.id ? "page" : undefined} data-tab={tab === s.id || undefined} onClick={(e) => { setTab(s.id); setText(""); go(e, s.to, false) }}>
+                  {s.label}
+                </a>
+              ))}
+            </div>
             <label className="vv-drawer__find">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true"><path d="M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM11 11l3.5 3.5" /></svg>
               <input aria-label="Find a page" placeholder="Find..." autoComplete="off" spellCheck={false} value={text} onChange={(e) => setText(e.target.value)} />
