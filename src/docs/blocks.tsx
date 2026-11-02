@@ -589,7 +589,7 @@ export function IconGallery() {
     <div className="vvd">
       <div ref={sentinel} aria-hidden="true" />
       <div className="vvd-icons-tools" data-stuck={stuck || undefined}>
-        <div style={{ width: 280 }}>
+        <div className="vvd-icons-find">
           <Input
             aria-label="Search icons"
             placeholder="Search icons"
@@ -599,7 +599,7 @@ export function IconGallery() {
             size="sm"
           />
         </div>
-        <div role="radiogroup" aria-label="Icon size" style={{ display: "flex", gap: 4 }}>
+        <div role="radiogroup" aria-label="Icon size" className="vvd-icons-sizes">
           {([16, 20, 24] as const).map((s) => (
             <button
               key={s}
@@ -607,9 +607,9 @@ export function IconGallery() {
               aria-checked={size === s}
               onClick={() => setSize(s)}
               className="vvd-icon"
-              style={{ height: 32, width: 48, flexDirection: "row", border: `1px solid var(${size === s ? "--color-accent" : "--color-border-default"})`, borderRadius: "var(--radius-lg)", background: size === s ? "var(--color-accent-subtle)" : undefined, color: size === s ? "var(--color-text-on-accent-subtle)" : undefined }}
+              style={{ height: 32, flexDirection: "row", border: `1px solid var(${size === s ? "--color-accent" : "--color-border-default"})`, borderRadius: "var(--radius-lg)", background: size === s ? "var(--color-accent-subtle)" : undefined, color: size === s ? "var(--color-text-on-accent-subtle)" : undefined }}
             >
-              {s}
+              {s}px
             </button>
           ))}
         </div>
@@ -659,7 +659,12 @@ const LAYOUTS = [
 ]
 
 export function GridLayouts() {
-  const v = (n: string) => lightTokens.find((t) => t.name === n)?.value ?? ""
+  // A value can point at another token, as the gutters point at the spacing scale.
+  const v = (n: string): string => {
+    const value = lightTokens.find((t) => t.name === n)?.value ?? ""
+    const ref = value.match(/^var\((--[\w-]+)\)$/)
+    return ref ? v(ref[1]) : value
+  }
   return (
     <div className="vvd vvd-grids">
       {LAYOUTS.map((l) => {
@@ -668,7 +673,7 @@ export function GridLayouts() {
         const margin = parseFloat(v(`--grid-${l.key}-margin`))
         return (
           <figure key={l.key} className="vvd-grid">
-            <div className="vvd-grid__frame" style={{ aspectRatio: `${l.width} / ${l.key === "phone" ? 520 : 400}`, maxWidth: l.key === "desktop" ? "100%" : l.key === "tablet" ? "62%" : "32%" }}>
+            <div className={`vvd-grid__frame vvd-grid__frame--${l.key}`} style={{ aspectRatio: `${l.width} / ${l.key === "phone" ? 520 : 400}` }}>
               <div className="vvd-grid__cols" style={{ padding: `0 ${(margin / l.width) * 100}%`, gap: `${(gutter / l.width) * 100}%` }}>
                 {Array.from({ length: cols }, (_, i) => <span key={i} />)}
               </div>

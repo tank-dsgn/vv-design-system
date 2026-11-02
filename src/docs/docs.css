@@ -193,7 +193,15 @@
 /* Stays under the site's header while the grid scrolls by, and only while the grid is there. */
 .vvd-icons-tools { position: sticky; top: 0; z-index: var(--z-dropdown); display: flex; gap: var(--space-12); align-items: center; flex-wrap: wrap; margin: var(--space-4) 0; padding: var(--space-12) 0; background: var(--color-background-primary); border-bottom: 1px solid transparent; }
 .vvd-icons-tools[data-stuck] { border-bottom-color: var(--color-border-default); }
-@media (max-width: 600px) { .vvd-icons-tools .vvd-hide-sm { display: none; } }
+.vvd-icons-find { width: 280px; }
+.vvd-icons-sizes { display: flex; gap: var(--space-4); }
+.vvd-icons-sizes > button { width: var(--space-56); }
+/* A phone gives search and the sizes the whole width, the sizes in equal parts. */
+@media (max-width: 600px) {
+  .vvd-icons-tools .vvd-hide-sm { display: none; }
+  .vvd-icons-find, .vvd-icons-sizes { width: 100%; }
+  .vvd-icons-sizes > button { flex: 1; }
+}
 .vvd-icons {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
@@ -368,6 +376,9 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .vvd-grid figcaption { display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--font-size-sm); }
 .vvd-grid figcaption .mono { color: var(--color-text-secondary); }
 .vvd-grid__frame { width: 100%; background: var(--color-surface-sunken); border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); overflow: hidden; }
+.vvd-grid__frame--tablet { max-width: 62%; }
+.vvd-grid__frame--phone { max-width: 32%; }
+@media (max-width: 600px) { .vvd-grid__frame--tablet, .vvd-grid__frame--phone { max-width: none; } }
 .vvd-grid__cols { display: flex; height: 100%; box-sizing: border-box; }
 .vvd-grid__cols > span { flex: 1; background: var(--color-status-critical-subtle); }
 .vvd-grid__nested { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16); background: var(--color-surface-sunken); border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); }
