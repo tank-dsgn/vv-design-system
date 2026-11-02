@@ -219,6 +219,21 @@
 .vvd-docpage__lead p { margin: 0; font-size: inherit; line-height: inherit; }
 #table-of-contents { margin-bottom: var(--space-12); color: var(--color-text-primary); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-semibold); }
 
+/* Phones may enlarge text on their own; the sizes here are the ones meant. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* On a phone, code on the docs pages fits the width: smaller, and long lines wrap instead of scrolling.
+   The CodeBlock component's own examples keep its behaviour. */
+@media (max-width: 600px) {
+  .sbdocs pre:not(.docs-story *), .sbdocs pre:not(.docs-story *) code, .sbdocs pre:not(.docs-story *) span {
+    font-size: var(--font-size-xs) !important;
+    line-height: var(--line-height-xs) !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere;
+  }
+  .sbdocs .docblock-source :is(div, pre):not(.docs-story *) { overflow-x: hidden !important; }
+}
+
 /* A phone keeps 16px at each side, as the header does. */
 @media (max-width: 600px) { .sbdocs.sbdocs-wrapper { padding-left: var(--space-16) !important; padding-right: var(--space-16) !important; } }
 
