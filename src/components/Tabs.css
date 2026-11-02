@@ -6,7 +6,11 @@
   border-bottom: 1px solid var(--color-border-default);
   font-family: var(--font-sans);
   overflow-x: auto;
+  /* A narrow row scrolls sideways; its scrollbar would sit on the selected tab's line. */
+  scrollbar-width: none;
 }
+
+.vv-tabs::-webkit-scrollbar { display: none; }
 
 .vv-tab {
   display: inline-flex;
