@@ -12,6 +12,8 @@
   box-sizing: border-box;
 }
 .vv-frame[data-docs] { min-height: 0; padding: var(--space-24); }
+/* An example with a set height can be taller than its frame; the rest matches the frame. */
+.sbdocs .docs-story { background: var(--color-background-primary); }
 
 /* --- Specimen layout used by stories ------------------------------------ */
 
@@ -366,7 +368,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .vvd-prop__text p { margin: 0 0 var(--space-8); }
 .vvd-prop--wide .vvd-prop__text { max-width: 72ch; }
 .vvd-prop__example { min-width: 0; }
-.vvd-prop__example .docs-story { background: var(--color-surface-sunken); }
 .vvd-prop__example > div { margin: 0 !important; }
 @media (max-width: 800px) { .vvd-prop { grid-template-columns: 1fr; gap: var(--space-12); } }
 

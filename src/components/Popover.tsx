@@ -2,6 +2,7 @@ import {
   cloneElement,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
   type ReactElement,
@@ -36,6 +37,33 @@ export function Popover({ trigger, title, children, align = "start", placement =
     setOpen(false)
     if (returnFocus) triggerRef.current?.focus()
   }
+
+  // A narrow screen or a clipping container gets a narrower panel, 16px clear of its edge.
+  // It is measured again whenever that container changes size.
+  useLayoutEffect(() => {
+    const panel = panelRef.current
+    if (!open || !panel) return
+    let clip: HTMLElement | null = panel.parentElement
+    while (clip && getComputedStyle(clip).overflowX === "visible") clip = clip.parentElement
+    const fit = () => {
+      const box = clip?.getBoundingClientRect()
+      const left = Math.max(0, box?.left ?? 0)
+      const right = Math.min(document.documentElement.clientWidth, box?.right ?? Infinity)
+      const anchor = panel.parentElement!.getBoundingClientRect()
+      const s = getComputedStyle(panel)
+      const frame = ["paddingLeft", "paddingRight", "borderLeftWidth", "borderRightWidth"].reduce((sum, k) => sum + parseFloat(s[k as "paddingLeft"]), 0)
+      const room = (align === "start" ? right - 16 - anchor.left : anchor.right - left - 16) - frame
+      panel.style.maxWidth = room < width ? `${Math.max(room, 160)}px` : ""
+    }
+    fit()
+    const observer = new ResizeObserver(fit)
+    observer.observe(clip ?? document.documentElement)
+    window.addEventListener("resize", fit)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("resize", fit)
+    }
+  }, [open, align, width])
 
   useEffect(() => {
     if (!open) return

@@ -30,7 +30,7 @@ const meta = {
       },
     },
   },
-  decorators: [(Story) => <div style={{ padding: "48px 96px" }}><Story /></div>],
+  decorators: [(Story) => <div style={{ display: "flex", justifyContent: "center", padding: "48px 0" }}><Story /></div>],
 } satisfies Meta<typeof Tooltip>
 
 export default meta

@@ -7,7 +7,6 @@ import { ICONS, type IconName } from "../src/icons/icons"
 export const PAGE_ICONS: Record<string, IconName> = {
   Tokens: "braces",
   Colors: "palette",
-  Theming: "swatch-book",
   Typography: "type",
   "Spacing & Size": "ruler",
   "Border and Corner": "square",
@@ -16,6 +15,7 @@ export const PAGE_ICONS: Record<string, IconName> = {
   Motion: "zap",
   Icons: "shapes",
   "Theme mode": "moon",
+  Theming: "swatch-book",
 }
 
 export const GROUP_ICONS: Record<string, IconName> = {
