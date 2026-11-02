@@ -4,7 +4,7 @@
 import { createHash } from "node:crypto"
 import { readFileSync, writeFileSync } from "node:fs"
 
-const dir = "storybook-static"
+const dir = process.argv[2] ?? "storybook-static"
 const page = `${dir}/index.html`
 let html = readFileSync(page, "utf8")
 let count = 0

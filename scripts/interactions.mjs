@@ -397,7 +397,7 @@ await test("Phone: the navigation button opens the panel with the sections, them
 
 await test("Icon details: click opens them, a related icon switches, Esc returns to the tile", async () => {
   await open("foundations-icons--docs", "docs")
-  await page.getByPlaceholder(/Search \d+ icons/).fill("alarm-clock")
+  await page.getByPlaceholder("Search icons").fill("alarm-clock")
   const tile = page.locator(".vvd-icons .vvd-icon", { hasText: /^alarm-clock$/ })
   await tile.click()
   const dialog = page.getByRole("dialog", { name: "alarm-clock" })

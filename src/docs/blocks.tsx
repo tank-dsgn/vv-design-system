@@ -502,7 +502,7 @@ export function MotionSpeeds() {
   return (
     <div className="vvd vvd-motion">
       {rows.map((n) => <MotionTrack key={n} name={n.replace(/^--/, "")} value={lightTokens.find((t) => t.name === n)?.value ?? ""} on={on} />)}
-      <div><Button variant="outlined" onClick={play}>{label}</Button></div>
+      <div className="vvd-motion-play"><Button variant="outlined" onClick={play}>{label}</Button></div>
     </div>
   )
 }
@@ -512,16 +512,18 @@ export function MotionEase() {
   const [on, play, label] = usePlay()
   const time = lightTokens.find((t) => t.name === "--duration-shimmer")?.value ?? ""
   return (
-    <div className="vvd vvd-motion vvd-motion--ease">
-      <svg className="vvd-motion-curve" viewBox="-4 -4 108 108" role="img" aria-label="The ease-out curve: a fast start that settles slowly">
-        <path d="M0 100H100M0 100V0" className="vvd-motion-axis" fill="none" />
-        <path d="M0 100C20 100 0 0 100 0" className="vvd-motion-line" fill="none" />
-      </svg>
-      <div className="vvd-motion-race">
-        <MotionTrack name="ease-out" value={time} on={on} />
-        <MotionTrack name="linear" value={time} on={on} easing="linear" />
-        <div><Button variant="outlined" onClick={play}>{label}</Button></div>
+    <div className="vvd vvd-motion">
+      <div className="vvd-motion--ease">
+        <svg className="vvd-motion-curve" viewBox="-4 -4 108 108" role="img" aria-label="The ease-out curve: a fast start that settles slowly">
+          <path d="M0 100H100M0 100V0" className="vvd-motion-axis" fill="none" />
+          <path d="M0 100C20 100 0 0 100 0" className="vvd-motion-line" fill="none" />
+        </svg>
+        <div className="vvd-motion-race">
+          <MotionTrack name="ease-out" value={time} on={on} />
+          <MotionTrack name="linear" value={time} on={on} easing="linear" />
+        </div>
       </div>
+      <div className="vvd-motion-play"><Button variant="outlined" onClick={play}>{label}</Button></div>
     </div>
   )
 }
@@ -590,7 +592,7 @@ export function IconGallery() {
         <div style={{ width: 280 }}>
           <Input
             aria-label="Search icons"
-            placeholder={`Search ${Object.keys(ICONS).length} icons`}
+            placeholder="Search icons"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             iconLeading={<Icon name="search" size={16} />}

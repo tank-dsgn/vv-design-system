@@ -61,6 +61,46 @@ export function MobileMenu({ api, open, path, section, onClose, sections }: {
     }
   }, [open, onClose])
 
+  // A swipe to the right closes the panel: it follows the finger and closes past a third of its
+  // width or on a quick flick; a vertical move is left to scrolling.
+  const drawer = React.useRef<HTMLElement>(null)
+  const scrim = React.useRef<HTMLDivElement>(null)
+  const swipe = React.useRef<{ x: number; y: number; t: number; dx: number; axis?: "x" | "y" } | null>(null)
+  const onTouchStart = (e: React.TouchEvent) => {
+    const p = e.touches[0]
+    swipe.current = e.touches.length === 1 ? { x: p.clientX, y: p.clientY, t: e.timeStamp, dx: 0 } : null
+  }
+  const onTouchMove = (e: React.TouchEvent) => {
+    const s = swipe.current
+    const el = drawer.current
+    if (!s || !el) return
+    const dx = e.touches[0].clientX - s.x
+    const dy = e.touches[0].clientY - s.y
+    if (!s.axis) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return
+      s.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
+    }
+    if (s.axis !== "x") return
+    s.dx = Math.max(0, dx)
+    el.style.transition = "none"
+    el.style.transform = `translateX(${s.dx}px)`
+    if (scrim.current) {
+      scrim.current.style.transition = "none"
+      scrim.current.style.opacity = String(1 - s.dx / el.offsetWidth)
+    }
+  }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const s = swipe.current
+    const el = drawer.current
+    swipe.current = null
+    if (!s || !el || s.axis !== "x") return
+    for (const node of [el, scrim.current]) node?.style.removeProperty("transition")
+    el.style.removeProperty("transform")
+    scrim.current?.style.removeProperty("opacity")
+    if (s.dx > el.offsetWidth / 3 || s.dx / (e.timeStamp - s.t) > 0.5) onClose()
+  }
+  const swipeHandlers = { onTouchStart, onTouchMove, onTouchEnd, onTouchCancel: onTouchEnd }
+
   const go = (e: React.MouseEvent, to: string, close = true) => {
     if (e.metaKey || e.ctrlKey) return
     e.preventDefault()
@@ -80,8 +120,8 @@ export function MobileMenu({ api, open, path, section, onClose, sections }: {
 
   return (
     <>
-      <div className="vv-drawer__scrim" data-open={open || undefined} onClick={onClose} />
-      <nav id="vv-drawer" className="vv-drawer" data-open={open || undefined} aria-label="Menu">
+      <div ref={scrim} className="vv-drawer__scrim" data-open={open || undefined} onClick={onClose} {...swipeHandlers} />
+      <nav ref={drawer} id="vv-drawer" className="vv-drawer" {...swipeHandlers} data-open={open || undefined} aria-label="Menu">
         <div className="vv-drawer__body">
 
           {/* The sections and search stay at the top of the panel while the list scrolls under them. */}
