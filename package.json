@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6306 --no-open",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build && node scripts/stamp-manager.mjs",
     "typecheck": "tsc --noEmit",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

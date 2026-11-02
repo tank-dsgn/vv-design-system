@@ -136,7 +136,7 @@
 @media (max-width: 600px) {
   .vvd-colors, .vvd-colors tbody { display: block; }
   .vvd-colors thead { display: none; }
-  .vvd-colors tr { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "sample name" "sample value" "use use"; column-gap: var(--space-12); padding: var(--space-12) 0; border-bottom: 1px solid var(--color-border-default); }
+  .vvd-colors tr { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "sample name" "sample value" ". use"; column-gap: var(--space-12); padding: var(--space-12) 0; border-bottom: 1px solid var(--color-border-default); }
   .vvd-colors td { display: block; padding: 0; border: 0; }
   .vvd-colors td:nth-child(1) { grid-area: sample; align-self: stretch; }
   .vvd-colors td:nth-child(2) { grid-area: name; }
