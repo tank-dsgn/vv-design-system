@@ -1,12 +1,12 @@
 # VV Design System
 
-**Problem.** The studio's design system in Figma was not finished: five token systems, three brand colours, seven versions of the dropdown.
+**Problem.** The studio worked on several projects with no shared system. Products grew apart, solutions were made again from scratch, and components were built separately for each project.
 
-**Idea.** Code is the source of truth. Primitive tokens are Tailwind's palette and scales. Semantic tokens give each value a role.
+**Idea.** One source of truth for tokens, components and patterns. Tokens use Tailwind CSS scales, without extra customisation.
 
-**Built.** 85 React components and 300 icons, light and dark themes, a Storybook site with every state. Checks: token rules, axe on every story in both themes, keyboard scenarios, a crawl of every page on desktop and phone.
+**Built.** 85 React components and 147 icons in two styles, outline and filled. Light and dark themes, a Storybook site with every state. Checks: token rules, axe on every story in both themes, keyboard scenarios, a crawl of every page on desktop and phone.
 
-**Decision.** Two token levels, not three. Developers already know Tailwind's names, so there is no extra layer to learn.
+**Decision.** Two token levels, chosen on purpose to avoid extra complexity. Primitives hold raw values. Semantic tokens give each value its role in the interface.
 
 A design system by Ivan Grigorenko: tokens on Tailwind's scales, 85 components in React, both themes,
 every state documented.
