@@ -8,9 +8,6 @@
 
 **Decision.** Two token levels, chosen on purpose to avoid extra complexity. Primitives hold raw values. Semantic tokens give each value its role in the interface.
 
-A design system by Ivan Grigorenko: tokens on Tailwind's scales, 85 components in React, both themes,
-every state documented.
-
 **See it live: https://vv-foundations.vercel.app**
 
 ## What is here
