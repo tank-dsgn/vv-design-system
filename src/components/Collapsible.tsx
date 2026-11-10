@@ -19,7 +19,7 @@ export function Collapsible({ title, children, defaultOpen = false, meta, disabl
   return (
     <div className="vv-collapsible">
       <button type="button" className="vv-collapsible__trigger" aria-expanded={open} aria-controls={id} disabled={disabled} onClick={() => setOpen(!open)}>
-        <span className="vv-collapsible__icon" data-open={open}><Icon name="chevron-down-sm" size={16} /></span>
+        <span className="vv-collapsible__icon" data-open={open}><Icon name="chevron-down" size={16} /></span>
         <span className="vv-collapsible__title">{title}</span>
         {meta && <span className="vv-collapsible__meta">{meta}</span>}
       </button>

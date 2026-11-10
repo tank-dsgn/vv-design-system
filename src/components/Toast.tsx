@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { Icon } from "./Icon.js"
 import "./Toast.css"
 
 export type ToastTone = "neutral" | "success" | "critical"
@@ -13,14 +14,7 @@ export type ToastProps = {
 
 const Glyph = ({ tone }: { tone: ToastTone }) =>
   tone === "neutral" ? null : (
-    <svg className="vv-toast__glyph" viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false">
-      <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.8" />
-      {tone === "success" ? (
-        <path d="M6.8 10.2l2.2 2.2 4.2-4.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      ) : (
-        <path d="M10 6.2v4.6M10 13.6v.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      )}
-    </svg>
+    <span className="vv-toast__glyph"><Icon name={tone === "success" ? "success" : "error"} /></span>
   )
 
 /** A brief confirmation of something the user just did. */
@@ -36,9 +30,7 @@ export function Toast({ tone = "neutral", children, action, onDismiss }: ToastPr
       )}
       {onDismiss && (
         <button type="button" className="vv-toast__dismiss" onClick={onDismiss} aria-label="Dismiss">
-          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
-            <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
+          <Icon name="close" size={16} />
         </button>
       )}
     </div>

@@ -15,16 +15,17 @@
 .vv-button[data-icon-only].vv-button--md { width: var(--size-control-md); }
 .vv-button[data-icon-only].vv-button--lg { width: var(--size-control-lg); }
 
-/* The glyph takes a share of the button rather than a fixed size: otherwise it
-   touches the edges at 24px and drowns in space at 48px. */
+/* The glyph is one of the icon sizes, 16, 20 or 24: 16 in the two small
+   buttons, then one step up per size. */
 .vv-button[data-icon-only] .vv-icon-button__glyph {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  height: 50%;
-  line-height: 1;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
 }
+.vv-button[data-icon-only].vv-button--md .vv-icon-button__glyph { width: var(--size-icon-md); height: var(--size-icon-md); }
+.vv-button[data-icon-only].vv-button--lg .vv-icon-button__glyph { width: var(--size-icon-lg); height: var(--size-icon-lg); }
 
 .vv-button[data-icon-only] .vv-icon-button__glyph > svg {
   width: 100%;

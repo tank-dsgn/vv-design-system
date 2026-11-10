@@ -31,7 +31,7 @@
 .vv-tag--removable .vv-tag__main { padding-right: var(--space-2); }
 .vv-tag__label { overflow: hidden; text-overflow: ellipsis; }
 .vv-tag__icon { display: inline-flex; }
-.vv-tag__icon svg { width: 12px; height: 12px; }
+.vv-tag__icon svg { width: var(--size-icon-sm); height: var(--size-icon-sm); }
 
 button.vv-tag__main { cursor: pointer; transition: background-color var(--duration-fast); }
 button.vv-tag__main:hover:not(:disabled) { background: var(--color-surface-tint-hover); }

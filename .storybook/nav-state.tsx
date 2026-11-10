@@ -30,17 +30,13 @@ export const useNavOpen = () =>
     () => open,
   )
 
-/** The panel and an arrow: which way it goes. `right` is the phone's panel, which slides in from the right. */
-export const PanelIcon = ({ open: on, side = "left" }: { open: boolean; side?: "left" | "right" }) => side === "right" ? (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <path d="M15 3v18" />
-    <path d={on ? "m8 9 3 3-3 3" : "m10 15-3-3 3-3"} />
-  </svg>
-) : (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <path d="M9 3v18" />
-    <path d={on ? "m16 15-3-3 3-3" : "m14 9 3 3-3 3"} />
+/* Phosphor's sidebar-simple with a caret drawn at Phosphor's weight (16 on its 256 grid), so it
+   matches the menu icons. The caret shows which way the panel goes. `right` is the phone's panel,
+   which slides in from the right: the same drawing, mirrored. */
+const SIDEBAR = "M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H80V200H40ZM216,200H96V56H216V200Z"
+export const PanelIcon = ({ open: on, side = "left" }: { open: boolean; side?: "left" | "right" }) => (
+  <svg width={side === "right" ? 18 : 16} height={side === "right" ? 18 : 16} viewBox="0 0 256 256" aria-hidden="true" style={side === "right" ? { transform: "scaleX(-1)" } : undefined}>
+    <path d={SIDEBAR} fill="currentColor" />
+    <path d={on ? "M172,100l-28,28,28,28" : "M144,100l28,28-28,28"} fill="none" stroke="currentColor" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )

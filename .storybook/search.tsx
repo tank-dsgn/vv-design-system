@@ -3,6 +3,7 @@ import { createPortal } from "react-dom"
 import { createRoot } from "react-dom/client"
 import type { API } from "storybook/manager-api"
 import { PanelIcon, setNavOpen } from "./nav-state"
+import { NavIcon } from "./nav-icons"
 
 /* Search in the sidebar, laid out like Figma's Find: a filled field, a close
    button, and an empty panel until something is typed. It replaces Storybook's own field (hidden in manager-head.html) and
@@ -12,16 +13,6 @@ type Scope = "all" | "section"
 type Entry = { id: string; type: string; title: string; name: string }
 type Result = { id: string; label: string; path: string }
 
-const Glyph = ({ d, size = 16 }: { d: string; size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d={d} />
-  </svg>
-)
-const SEARCH = "M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM11 11l3.5 3.5"
-const CLOSE = "M3.5 3.5l9 9M12.5 3.5l-9 9"
-const CHECK = "M3 8.5l3.2 3.2L13 4.5"
-const CHEVRON = "M4.5 6.5 8 10l3.5-3.5"
-const PAGE = "M4 1.5h5.5L12.5 4.5v10h-8.5zM6.5 7.5h4M6.5 10h4"
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
@@ -83,7 +74,7 @@ function DarkMenu({ anchor, label, groups, onClose }: { anchor: HTMLElement; lab
         <div key={g} role="group" className="vv-find-menu__group">
           {items.map((it) => (
             <button key={it.label} type="button" role="menuitemradio" aria-checked={it.on} onClick={it.onPick}>
-              <span className="vv-find-menu__check">{it.on && <Glyph d={CHECK} />}</span>
+              <span className="vv-find-menu__check">{it.on && <NavIcon name="check" />}</span>
               {it.label}
             </button>
           ))}
@@ -145,7 +136,7 @@ function Find({ api }: { api: API }) {
     <div ref={root} className="vv-find" onBlur={onBlur}>
       <div className="vv-find__bar">
         <label className="vv-find__field">
-          <Glyph d={SEARCH} />
+          <NavIcon name="magnifying-glass" />
           <input
             ref={input}
             role="combobox"
@@ -165,7 +156,7 @@ function Find({ api }: { api: API }) {
         </label>
         {open ? (
           <button type="button" className="vv-find__icon" aria-label="Close search" onClick={close}>
-            <Glyph d={CLOSE} />
+            <NavIcon name="x" />
           </button>
         ) : (
           <button type="button" className="vv-find__icon" aria-label="Hide menu" title="Hide menu" onClick={() => setNavOpen(false)}>
@@ -180,7 +171,7 @@ function Find({ api }: { api: API }) {
           <span aria-hidden="true">·</span>
           <button ref={scopeBtn} type="button" aria-haspopup="menu" aria-expanded={menu === "scope"} onClick={() => setMenu(menu === "scope" ? null : "scope")}>
             {scopeLabel}
-            <Glyph d={CHEVRON} size={12} />
+            <NavIcon name="caret-down" size={12} />
           </button>
         </div>
       )}
@@ -197,7 +188,7 @@ function Find({ api }: { api: API }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => go(r)}
             >
-              <Glyph d={PAGE} />
+              <NavIcon name="file-text" />
               <span>
                 <span className="vv-find__label"><Mark text={r.label} re={re} /></span>
                 <span className="vv-find__path">{r.path}</span>

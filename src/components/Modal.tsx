@@ -2,7 +2,7 @@ import { useEffect, useRef, type ReactNode, type RefObject } from "react"
 import "./Modal.css"
 
 /** Three sizes from Figma: Size=Small | Large | FullScreen. */
-export type ModalSize = "small" | "large" | "fullscreen"
+export type ModalSize = "sm" | "lg" | "fullscreen"
 
 /** `right` turns the dialog into a side panel over the page. Same focus trap,
  *  same focus return, same Esc — one implementation for both shapes. */
@@ -32,7 +32,7 @@ export type ModalProps = {
 export function Modal({
   open,
   title,
-  size = "small",
+  size = "sm",
   onClose,
   initialFocusRef,
   placement = "center",

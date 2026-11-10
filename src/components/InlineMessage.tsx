@@ -2,13 +2,13 @@ import type { ReactNode } from "react"
 import { Icon, type IconName } from "./Icon.js"
 import "./InlineMessage.css"
 
-/** Figma's five `message` values, kept as they are. */
+/** The five tones, named as Badge and Banner name them. */
 export type InlineMessageTone =
-  | "error"
+  | "critical"
   | "success"
   | "warning"
-  | "information"
-  | "hint"
+  | "info"
+  | "neutral"
 
 export type InlineMessageProps = {
   tone?: InlineMessageTone
@@ -16,15 +16,15 @@ export type InlineMessageProps = {
 }
 
 const GLYPH: Record<InlineMessageTone, IconName | null> = {
-  error: "error",
+  critical: "error",
   success: "success",
   warning: "warning",
-  information: "information",
-  hint: null,
+  info: "information",
+  neutral: null,
 }
 
 export function InlineMessage({
-  tone = "hint",
+  tone = "neutral",
   children,
 }: InlineMessageProps) {
   return (
@@ -33,7 +33,7 @@ export function InlineMessage({
       /* An error must interrupt: it appears after the user has already acted,
          and a silent one is never noticed. The rest are read in document
          order, so they need no live region. */
-      role={tone === "error" ? "alert" : undefined}
+      role={tone === "critical" ? "alert" : undefined}
     >
       {GLYPH[tone] && (
         <span className="vv-inline-message__icon" aria-hidden="true">

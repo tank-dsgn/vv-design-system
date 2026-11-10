@@ -1,8 +1,8 @@
 /* Combobox. The list floats over the page and scrolls past eight options. */
 .vv-combobox { position: relative; display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; font-family: var(--font-sans); }
-.vv-combobox__error { margin: 0; font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-danger); }
-.vv-combobox__list { position: absolute; top: 100%; left: 0; right: 0; z-index: 10; max-height: 256px; margin: var(--space-4) 0 0; padding: var(--space-4); overflow-y: auto; list-style: none; border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-raised); box-shadow: var(--shadow-lg); }
-.vv-combobox__option { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); min-height: 32px; padding: var(--space-4) var(--space-8); border-radius: var(--radius-sm); font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-primary); cursor: pointer; }
+.vv-combobox__error { margin: 0; font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-critical); }
+.vv-combobox__list { position: absolute; top: 100%; left: 0; right: 0; z-index: var(--z-dropdown); max-height: 256px; margin: var(--space-4) 0 0; padding: var(--space-4); overflow-y: auto; list-style: none; border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-raised); box-shadow: var(--shadow-lg); }
+.vv-combobox__option { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); min-height: var(--size-control-sm); padding: var(--space-4) var(--space-8); border-radius: var(--radius-sm); font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-primary); cursor: pointer; }
 .vv-combobox__option--active { background: var(--color-surface-hover); }
 .vv-combobox__option[aria-selected="true"] { background: var(--color-accent-subtle); color: var(--color-text-on-accent-subtle); font-weight: var(--text-label-weight); }
 .vv-combobox__empty { padding: var(--space-8); font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); }

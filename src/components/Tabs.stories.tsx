@@ -72,7 +72,7 @@ export const WithIcons: Story = {
         items={[
           { id: "orders", label: "Orders", iconLeading: <Icon name="documents" size={16} />, counter: 7 },
           { id: "routes", label: "Routes", iconLeading: <Icon name="map" size={16} /> },
-          { id: "team", label: "Team", iconLeading: <Icon name="team" size={16} /> },
+          { id: "team", label: "Team", iconLeading: <Icon name="users" size={16} /> },
         ]}
       />
     )

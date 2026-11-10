@@ -1,4 +1,5 @@
 import { useId, useState, type ReactNode } from "react"
+import { Icon } from "./Icon.js"
 import "./Accordion.css"
 
 export type AccordionItem = {
@@ -18,9 +19,7 @@ export type AccordionProps = {
 }
 
 const Chevron = () => (
-  <svg className="vv-accordion__chevron" viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false">
-    <path d="M6.7 8.3 10 11.6l3.3-3.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
+  <span className="vv-accordion__chevron"><Icon name="chevron-down" /></span>
 )
 
 /** Sections that expand one at a time, to keep a long page scannable.

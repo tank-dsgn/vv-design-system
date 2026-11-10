@@ -31,7 +31,7 @@
   from { opacity: 0; transform: translateY(8px); }
 }
 
-.vv-toast__glyph { flex: none; color: var(--color-icon-inverse); }
+.vv-toast__glyph { display: inline-flex; flex: none; color: var(--color-icon-inverse); }
 .vv-toast__text { flex: 1; min-width: 0; padding: var(--space-6) 0; }
 
 .vv-toast__action,

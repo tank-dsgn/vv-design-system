@@ -12,10 +12,10 @@
   user-select: none;
 }
 
-.vv-avatar--xs { width: var(--size-avatar-xs); height: var(--size-avatar-xs); font-size: 10px; }
+.vv-avatar--xs { width: var(--size-avatar-xs); height: var(--size-avatar-xs); font-size: var(--text-caption-strong-size); }
 .vv-avatar--sm { width: var(--size-avatar-sm); height: var(--size-avatar-sm); font-size: var(--text-caption-size); }
 .vv-avatar--md { width: var(--size-avatar-md); height: var(--size-avatar-md); font-size: var(--text-body-size); }
-.vv-avatar--lg { width: var(--size-avatar-lg); height: var(--size-avatar-lg); font-size: 18px; }
+.vv-avatar--lg { width: var(--size-avatar-lg); height: var(--size-avatar-lg); font-size: var(--text-heading-md-size); font-weight: var(--text-heading-md-weight); }
 
 /* Tones. Figma models these as component variants (2 Blue, 3 MAngeta…), so the
    colour is baked into the variant. Here tone is a prop and the colours live

@@ -14,4 +14,4 @@
 .vv-metric__change { margin: 0; font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); }
 .vv-metric__delta { font-weight: var(--text-label-weight); margin-right: var(--space-8); }
 .vv-metric__delta--good { color: var(--color-text-success); }
-.vv-metric__delta--bad { color: var(--color-text-danger); }
+.vv-metric__delta--bad { color: var(--color-text-critical); }

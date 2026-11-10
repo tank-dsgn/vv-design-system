@@ -32,7 +32,7 @@
   width: 20px;
   height: 20px;
   flex: none;
-  border: 1px solid var(--color-border-hover);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-full);
   background: var(--color-surface-input);
   cursor: inherit;
@@ -40,6 +40,7 @@
 }
 
 .vv-radio__input:hover:not(:disabled) { border-color: var(--color-text-primary); }
+.vv-radio__input:active:not(:disabled):not(:checked) { background: var(--color-surface-hover); }
 
 /* The dot is an inset shadow rather than a pseudo-element, so it scales with
    the control and never drifts off-centre. */

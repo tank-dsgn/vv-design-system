@@ -28,7 +28,7 @@ export const Playground: Story = { render: () => <Demo /> }
 
 /** Icon-only items keep their label as the accessible name. */
 export const Icons: Story = {
-  render: () => <Demo initial={["pin"]} items={[{ value: "pin", label: "Pin", icon: <Icon name="pin" />, iconOnly: true }, { value: "flag", label: "Flag", icon: <Icon name="flag" />, iconOnly: true }, { value: "star", label: "Favourite", icon: <Icon name="star-empty" />, iconOnly: true }]} />,
+  render: () => <Demo initial={["pin"]} items={[{ value: "pin", label: "Pin", icon: <Icon name="pin" />, iconOnly: true }, { value: "flag", label: "Flag", icon: <Icon name="flag" />, iconOnly: true }, { value: "star", label: "Favourite", icon: <Icon name="star" />, iconOnly: true }]} />,
 }
 
 /** Every interactive state. */

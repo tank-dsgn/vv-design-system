@@ -20,7 +20,7 @@ system. Semantic tokens read it as `brand-700`, not by the name of the ramp behi
 
 ## Primitives
 
-The whole Tailwind palette under its Tailwind names. Hover a step for its value.
+The whole Tailwind palette under its Tailwind names. On a wide screen each step shows its hex.
 
 <Unstyled><PrimitiveRamps /></Unstyled>
 
@@ -57,7 +57,7 @@ An element that sits on the background and could be picked up and moved.
 <Unstyled><ColorTable prefix="--color-text-" roles={{
   "--color-text-primary": "Default text",
   "--color-text-secondary": "Supporting text, placeholders, hints",
-  "--color-text-faint": "Separators and quiet marks",
+  "--color-text-faint": "Separators and the text of a disabled field. Decorative: never text that has to be read",
   "--color-text-disabled": "Disabled labels",
   "--color-text-on-accent": "Label on a primary or destructive fill",
   "--color-text-on-accent-subtle": "Text on a selected row or card",
@@ -67,8 +67,10 @@ An element that sits on the background and could be picked up and moved.
   "--color-text-accent-hover": "Links on hover",
   "--color-text-accent-pressed": "Links when pressed",
   "--color-text-accent-disabled": "Disabled links",
-  "--color-text-danger": "Errors",
+  "--color-text-critical": "Errors",
   "--color-text-success": "Confirmations",
+  "--color-text-warning": "Warnings",
+  "--color-text-info": "Neutral information",
 }} /></Unstyled>
 
 ## Icon
@@ -82,8 +84,10 @@ An icon takes the colour of its text unless it needs its own.
   "--color-icon-on-accent": "Icons on a primary or destructive fill",
   "--color-icon-inverse": "Icons on an inverse surface",
   "--color-icon-accent": "Brand icons",
-  "--color-icon-danger": "Error icons",
+  "--color-icon-critical": "Error icons",
   "--color-icon-success": "Confirmation icons",
+  "--color-icon-warning": "Warning icons",
+  "--color-icon-info": "Information icons",
 }} /></Unstyled>
 
 ## Skeleton
@@ -100,10 +104,10 @@ An icon takes the colour of its text unless it needs its own.
   "--color-button-secondary-hover": "Secondary and ghost, hover",
   "--color-button-secondary-pressed": "Secondary and ghost, pressed",
   "--color-button-secondary-disabled": "Secondary, disabled",
-  "--color-button-danger": "Destructive button",
-  "--color-button-danger-hover": "Destructive, hover",
-  "--color-button-danger-pressed": "Destructive, pressed",
-  "--color-button-danger-disabled": "Destructive, disabled",
+  "--color-button-destructive": "Destructive button",
+  "--color-button-destructive-hover": "Destructive, hover",
+  "--color-button-destructive-pressed": "Destructive, pressed",
+  "--color-button-destructive-disabled": "Destructive, disabled",
 }} /></Unstyled>
 
 ## Accent
@@ -121,10 +125,12 @@ An icon takes the colour of its text unless it needs its own.
 
 <Unstyled><ColorTable prefix="--color-border-" roles={{
   "--color-border-accent": "Outline of a selected row",
-  "--color-border-default": "Inputs, cards, dividers",
-  "--color-border-hover": "Inputs on hover",
+  "--color-border-default": "Cards, panels, dividers",
+  "--color-border-hover": "Cards on hover",
+  "--color-border-strong": "Controls whose outline is their edge — inputs, checkboxes, radios, toggle buttons: 3:1 on their ground",
+  "--color-border-strong-hover": "Those same controls on hover",
   "--color-border-disabled": "Disabled inputs",
-  "--color-border-danger": "Invalid inputs",
+  "--color-border-critical": "Invalid inputs",
   "--color-border-focus": "Focus ring on every interactive component",
 }} /></Unstyled>
 
@@ -142,6 +148,12 @@ An icon takes the colour of its text unless it needs its own.
 ## Status
 
 Each tone is a pale fill with dark text, plus a solid fill for the one status that must stand out.
+
+`attention` and `warning` are two steps of the same idea, and the choice is not
+free. **`attention`** (yellow) marks a middle position on a scale the component
+owns — a medium severity, a partly finished job. **`warning`** (orange) says
+something needs care before it becomes a problem. A component that only has one
+of the two uses `warning`.
 
 <Unstyled><ColorTable prefix="--color-status-" /></Unstyled>
 

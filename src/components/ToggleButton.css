@@ -1,10 +1,16 @@
 /* ToggleButton. Pressed is a neutral fill with strong text: a mode that is on, not a
-   call to action. */
-.vv-toggle { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-6); border: 1px solid var(--color-border-default); border-radius: var(--corner-control); background: var(--color-surface-raised); color: var(--color-text-secondary); font-family: var(--font-sans); font-size: var(--text-label-size); line-height: var(--text-label-line-height); font-weight: var(--text-label-weight); cursor: pointer; transition: background-color var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast); }
-.vv-toggle--sm { min-width: 32px; height: 32px; padding: 0 var(--space-8); }
-.vv-toggle--md { min-width: 40px; height: 40px; padding: 0 var(--space-12); }
-.vv-toggle:hover:not(:disabled) { background: var(--color-surface-hover); color: var(--color-text-primary); }
-.vv-toggle[aria-pressed="true"], .vv-toggle[aria-pressed="true"]:hover:not(:disabled) { background: var(--color-accent-subtle); color: var(--color-text-on-accent-subtle); border-color: var(--color-accent); }
+   call to action.
+
+   The outline is the only edge this control has, so it reads border-strong
+   (3:1), the same as inputs and checkboxes — not border-default, which is for
+   cards and dividers. */
+.vv-toggle { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-6); border: 1px solid var(--color-border-strong); border-radius: var(--corner-control); background: var(--color-surface-raised); color: var(--color-text-secondary); font-family: var(--font-sans); font-size: var(--text-label-size); line-height: var(--text-label-line-height); font-weight: var(--text-label-weight); cursor: pointer; transition: background-color var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast); }
+.vv-toggle--sm { min-width: var(--size-control-sm); height: var(--size-control-sm); padding: 0 var(--space-8); }
+.vv-toggle--md { min-width: var(--size-control-md); height: var(--size-control-md); padding: 0 var(--space-12); }
+.vv-toggle:hover:not(:disabled) { background: var(--color-surface-hover); color: var(--color-text-primary); border-color: var(--color-border-strong-hover); }
+.vv-toggle:active:not(:disabled):not([aria-pressed="true"]) { background: var(--color-surface-subtle); }
+.vv-toggle[aria-pressed="true"] { background: var(--color-accent-subtle); color: var(--color-text-on-accent-subtle); border-color: var(--color-accent); }
+.vv-toggle[aria-pressed="true"]:hover:not(:disabled) { background: var(--color-accent-subtle-hover); }
 .vv-toggle:focus-visible { position: relative; z-index: 1; outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 .vv-toggle:disabled { border-color: var(--color-border-disabled); color: var(--color-text-disabled); cursor: not-allowed; }
 .vv-toggle__icon { display: inline-flex; }

@@ -8,10 +8,10 @@ const meta = {
   title: "Components/Feedback/Badge",
   tags: ["!dev"],
   component: Badge,
-  args: { children: "In transit", tone: "info", size: "medium", strong: false, dot: false },
+  args: { children: "In transit", tone: "info", size: "md", strong: false, dot: false },
   argTypes: {
     tone: { control: "inline-radio", options: ["neutral", "info", "success", "attention", "warning", "critical"] },
-    size: { control: "inline-radio", options: ["medium", "large"] },
+    size: { control: "inline-radio", options: ["md", "lg"] },
     icon: { control: false },
   },
   parameters: {
@@ -70,8 +70,8 @@ export const Tones: Story = {
 export const Sizes: Story = {
   render: () => (
     <Row>
-      <Badge size="medium" tone="success">Delivered · 20px</Badge>
-      <Badge size="large" tone="success">Delivered · 24px</Badge>
+      <Badge size="md" tone="success">Delivered · 20px</Badge>
+      <Badge size="lg" tone="success">Delivered · 24px</Badge>
     </Row>
   ),
 }

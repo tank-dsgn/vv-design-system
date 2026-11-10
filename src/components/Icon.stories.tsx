@@ -8,10 +8,11 @@ const meta = {
   title: "Components/Content/Icon",
   tags: ["!dev"],
   component: Icon,
-  args: { name: "notifications", size: 20 },
+  args: { name: "notifications", size: 20, filled: false },
   argTypes: {
     name: { control: "select", options: Object.keys(ICONS) },
     size: { control: "inline-radio", options: [16, 20, 24] },
+    filled: { control: "boolean" },
   },
   parameters: {
     docs: {
@@ -42,11 +43,24 @@ export const Sizes: Story = {
   ),
 }
 
+/** Outlined by default; Filled marks the selected or active one. */
+export const Styles: Story = {
+  render: () => (
+    <Stack gap={16}>
+      {[false, true].map((f) => (
+        <Line key={String(f)} label={f ? "Filled" : "Outlined"}>
+          {(["house", "orders", "trucking", "customers", "notifications", "settings", "star", "bookmark"] as IconName[]).map((n) => <Icon key={n} name={n} filled={f} />)}
+        </Line>
+      ))}
+    </Stack>
+  ),
+}
+
 /** Icons take the colour of their text, in every state and theme. */
 export const InheritsColour: Story = {
   render: () => (
     <Row>
-      <span style={{ color: "var(--color-text-danger)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="error" size={16} />Booking failed</span>
+      <span style={{ color: "var(--color-text-critical)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="error" size={16} />Booking failed</span>
       <span style={{ color: "var(--color-text-success)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="success" size={16} />Delivered</span>
       <span style={{ color: "var(--color-text-accent)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="information" size={16} />2 updates</span>
       <span style={{ color: "var(--color-text-secondary)", display: "inline-flex", gap: 6, alignItems: "center" }}><Icon name="time" size={16} />Updated 5 min ago</span>

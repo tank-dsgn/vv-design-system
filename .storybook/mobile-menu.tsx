@@ -110,7 +110,7 @@ export function MobileMenu({ api, open, path, section, onClose, sections }: {
 
   const link = (p: Page) => (
     <a key={p.id} href={`./?path=/docs/${p.id}`} aria-current={p.id.replace(/--.*$/, "") === current ? "page" : undefined} onClick={(e) => go(e, `/docs/${p.id}`)}>
-      <NavIcon name={p.id.startsWith("components-") ? "component" : PAGE_ICONS[leaf(p.title)]} />
+      <NavIcon name={p.id.startsWith("components-") ? "diamonds-four" : PAGE_ICONS[leaf(p.title)]} />
       {leaf(p.title)}
     </a>
   )
@@ -134,7 +134,7 @@ export function MobileMenu({ api, open, path, section, onClose, sections }: {
               ))}
             </div>
             <label className="vv-drawer__find">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true"><path d="M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM11 11l3.5 3.5" /></svg>
+              <NavIcon name="magnifying-glass" />
               <input aria-label="Find a page" placeholder="Find..." autoComplete="off" spellCheck={false} value={text} onChange={(e) => setText(e.target.value)} />
             </label>
           </div>

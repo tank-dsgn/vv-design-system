@@ -1,3 +1,4 @@
+import { Icon } from "./Icon.js"
 import "./Stepper.css"
 
 export type Step = { label: string; description?: string }
@@ -9,11 +10,7 @@ export type StepperProps = {
   orientation?: "horizontal" | "vertical"
 }
 
-const Check = () => (
-  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true" focusable="false">
-    <path d="m3.5 8.2 3 3 6-6.4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
+const Check = () => <Icon name="check" size={16} />
 
 /** Progress through a fixed sequence — a multi-step form, an onboarding.
  *  The current step carries `aria-current="step"`; each step's state is also

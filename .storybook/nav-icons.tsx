@@ -1,41 +1,41 @@
 import * as React from "react"
 import { ICONS, type IconName } from "../src/icons/icons"
+import { NAV_ICONS, type NavIconName } from "./nav-icons.gen"
 
 /* One icon per menu item, shared by the sidebar, its folded rail and the phone menu.
-   All Lucide at 16px, the weight of the panel and search icons above them. */
+   Phosphor Regular at 16px, from scripts/build-icons.py. */
 
-export const PAGE_ICONS: Record<string, IconName> = {
-  Tokens: "braces",
+export const PAGE_ICONS: Record<string, NavIconName> = {
+  Tokens: "brackets-curly",
   Colors: "palette",
-  Typography: "type",
+  Typography: "text-t",
   "Spacing & Size": "ruler",
   "Border and Corner": "square",
-  "Shadows & Elevation": "layers",
-  "Breakpoints & Grids": "layout-grid",
-  Motion: "zap",
+  "Shadows & Elevation": "stack",
+  "Breakpoints & Grids": "squares-four",
+  Motion: "lightning",
   Icons: "shapes",
-  "Theme mode": "moon",
-  Theming: "swatch-book",
+  Theming: "swatches",
 }
 
-export const GROUP_ICONS: Record<string, IconName> = {
-  Actions: "mouse-pointer-click",
-  Forms: "text-cursor-input",
+export const GROUP_ICONS: Record<string, NavIconName> = {
+  Actions: "cursor-click",
+  Forms: "textbox",
   Navigation: "compass",
   Feedback: "bell",
-  Overlays: "layers-2",
-  Content: "layout-list",
-  Data: "chart-column",
+  Overlays: "stack-simple",
+  Content: "list-dashes",
+  Data: "chart-bar",
 }
 
-// The manager's bundle needs React in scope, so it draws the set itself instead of importing Icon.
-export const NavIcon = ({ name }: { name: IconName }) => (
-  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS[name] }} />
+// The manager's bundle needs React in scope, so it draws the icons itself instead of importing Icon.
+export const NavIcon = ({ name, size = 16 }: { name: NavIconName | IconName; size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true" dangerouslySetInnerHTML={{ __html: name in NAV_ICONS ? NAV_ICONS[name as NavIconName] : ICONS[name as IconName] }} />
 )
 
 /** The sidebar's label: Storybook's own icon per node type is hidden in manager-head.html. */
 export function navLabel(item: { id: string; name: string; type: string }) {
-  const icon = item.type === "group" ? GROUP_ICONS[item.name] : item.id.startsWith("components-") ? "component" : PAGE_ICONS[item.name]
+  const icon = item.type === "group" ? GROUP_ICONS[item.name] : item.id.startsWith("components-") ? "diamonds-four" : PAGE_ICONS[item.name]
   if (!icon) return undefined
   return (
     <span className="vv-nav-label">

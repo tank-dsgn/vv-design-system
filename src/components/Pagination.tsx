@@ -1,5 +1,6 @@
 import { Button } from "./Button.js"
 import { IconButton } from "./IconButton.js"
+import { Icon } from "./Icon.js"
 import "./Pagination.css"
 
 export type PaginationProps = {
@@ -17,11 +18,7 @@ export type PaginationProps = {
   size?: "xs" | "sm"
 }
 
-const Chevron = ({ dir }: { dir: "left" | "right" }) => (
-  <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false">
-    <path d={dir === "left" ? "M12.5 15l-5-5 5-5" : "M7.5 5l5 5-5 5"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
+const Chevron = ({ dir }: { dir: "left" | "right" }) => <Icon name={dir === "left" ? "chevron-left" : "chevron-right"} />
 
 /** The page numbers to show, with null for each gap. */
 export function pageRange(page: number, count: number, siblings: number): (number | null)[] {

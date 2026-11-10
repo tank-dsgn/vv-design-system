@@ -55,7 +55,7 @@ export function DatePicker({ label, value, onChange, placeholder = "Choose a dat
         <Icon name="calendar" size={16} />
       </button>
       {hint && !error && <span id={`${id}-hint`} className="vv-datepicker__hint">{hint}</span>}
-      {error && <div id={`${id}-error`}><InlineMessage tone="error">{error}</InlineMessage></div>}
+      {error && <div id={`${id}-error`}><InlineMessage tone="critical">{error}</InlineMessage></div>}
       {open && (
         <div role="dialog" aria-label={`${label}: calendar`} className="vv-datepicker__popover">
           <Calendar

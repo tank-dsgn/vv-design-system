@@ -24,8 +24,18 @@ report "No transition: all, no durations outside --duration-*" "$(
 report "Motion has a reduced-motion block in the same file" "$(
   for f in $(grep -rlE '@keyframes|transition:|animation:' . --include=*.css); do grep -q 'prefers-reduced-motion' "$f" || echo "$f"; done
 )"
-report "No raw radius, shadow, font family or size" "$(
-  grep -rnE '(border-radius|box-shadow|font-family|font-size|letter-spacing):' . --include=*.css | grep -v 'styles/tokens.css' | grep -vE 'var\(--|:\s*(0|none|inherit|50%)(\s*!important)?\s*;'
+# Checked per declaration, not per line: a line that also holds a var(--) must not hide a raw value.
+# An inset 0 0 0 Npx ring is a border drawn with a shadow; z-index up to 3 and auto order siblings locally (a focused button over its neighbours).
+report "No raw radius, shadow, font family, size or stacking" "$(
+  find . -name '*.css' ! -path './styles/tokens.css' -exec perl -ne '
+    while (/\b(border-radius|box-shadow|font-family|font-size|letter-spacing|z-index)\s*:\s*([^;{}]+)/g) {
+      my ($p, $v) = ($1, $2); (my $t = $v) =~ s/var\([^()]*(\([^()]*\))?[^()]*\)//g; $t =~ s/!important//; $t =~ s/^\s+|\s+$//g;
+      next if $t eq "" || $t =~ /^(0|none|inherit|50%)$/ || $t =~ /^[0\s]+$/ || ($v =~ /var\(/ && $t =~ /^calc\(\s*[-+]\s*\d+\s*\)$/);
+      next if $p eq "box-shadow" && $t =~ /^(inset\s+)?0\s+0\s+0\s+\d+px$/;
+      next if $p eq "z-index" && $t =~ /^(-?[0-3]|auto)$/;
+      print "$ARGV:$.: $p: $v\n";
+    }
+    close ARGV if eof' {} +
 )"
 report "No emoji or text glyphs as icons" "$(
   find . -name '*.tsx' -exec perl -CSD -ne 'print "$ARGV:$.: $_" if /[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]/; close ARGV if eof' {} +
@@ -46,6 +56,28 @@ report "Every component has usage, every link resolves" "$(
 # A space token is named by its value: --space-40 is 40px.
 report "Space tokens are named by their value" "$(
   sed -n 's/^ *--space-\([0-9]*\): \([0-9]*\)px;.*/\1 \2/p' styles/tokens.css | while read -r a b; do [ "$a" = "$b" ] || echo "--space-$a is ${b}px"; done
+)"
+# Spacing reads the scale: padding, margin and gap take --space-* or 0, never raw px.
+# The -1px margins are the visually-hidden pattern and the shared border of grouped controls.
+# SeverityPill: the 1px between its bars is part of the glyph, not spacing.
+report "Spacing reads --space-*, not raw values" "$(
+  find . -name '*.css' ! -path './styles/tokens.css' ! -path './components/SeverityPill.css' -exec perl -ne '
+    (my $t = $_) =~ s/var\([^)]*\)//g;
+    print "$ARGV:$.: $_" if $t =~ /(padding|margin|gap)[a-z-]*:[^;]*\d(px|rem|em)\b/ && $t !~ /margin(-left)?:\s*-1px;/;
+    close ARGV if eof' {} +
+)"
+# A component's height is a token or a hairline. 1px is the visually-hidden
+# pattern and the dividers. BarChart, DonutChart and Checkbox are exempt: their
+# 5 and 10px are glyph shapes — a swatch, a tick — drawn rather than laid out.
+report "Component heights read the scale" "$(
+  find components -name '*.css' ! -name 'BarChart.css' ! -name 'DonutChart.css' ! -name 'Checkbox.css' -exec perl -ne '
+    while (/(?<![-a-z])((?:min-)?height)\s*:\s*([^;,]+)/g) {
+      my ($p, $v) = ($1, $2); (my $t = $v) =~ s/var\([^()]*(\([^()]*\))?[^()]*\)//g; $t =~ s/!important//; $t =~ s/^\s+|\s+$//g;
+      next unless $t =~ /^(\d+)px$/;
+      next if $1 =~ /^(0|1|2|4|6|8|12|16|20|24|32|40|48|56|64|80|96|120)$/;
+      print "$ARGV:$.: $p: $v\n";
+    }
+    close ARGV if eof' {} +
 )"
 # The sidebar lists a component once: its examples live on its page, so they carry !dev.
 report "Every component's examples stay out of the sidebar" "$(

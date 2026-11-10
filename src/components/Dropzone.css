@@ -24,8 +24,8 @@
 }
 
 .vv-dropzone--lg { min-height: 120px; padding: var(--space-12); }
-.vv-dropzone--md { min-height: 100px; padding: var(--space-8); }
-.vv-dropzone--sm { min-height: 50px; padding: var(--space-4); }
+.vv-dropzone--md { min-height: 96px; padding: var(--space-8); }
+.vv-dropzone--sm { min-height: var(--size-control-lg); padding: var(--space-4); }
 
 .vv-dropzone:hover:not(.vv-dropzone--disabled) {
   border-color: var(--color-border-hover);
@@ -45,7 +45,7 @@
   background: var(--color-surface-sunken);
 }
 
-.vv-dropzone--invalid { border-color: var(--color-border-danger); }
+.vv-dropzone--invalid { border-color: var(--color-border-critical); }
 
 .vv-dropzone--disabled {
   border-color: var(--color-border-disabled);

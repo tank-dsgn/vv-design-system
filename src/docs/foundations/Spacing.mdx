@@ -1,5 +1,5 @@
 import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
-import { SpaceScale, SizeScale, Rules } from "../blocks"
+import { SpaceScale, SizeScale } from "../blocks"
 
 <Meta title="Foundations/Spacing & Size" />
 
@@ -10,13 +10,6 @@ The token number is the size in pixels: `space-16` is 16px, `space-40` is 40px. 
 ## Spacing scale
 
 <Unstyled><SpaceScale /></Unstyled>
-
-<Unstyled>
-<Rules items={[
-  { kind: "do", title: "separate with space first", text: "Group related items with a smaller gap and separate groups with a larger one. Reach for a divider only when space is not enough." },
-  { kind: "dont", title: "use an off-grid value", text: "13px or 18px breaks the rhythm. Snap to the nearest step." },
-]} />
-</Unstyled>
 
 ## Control heights
 

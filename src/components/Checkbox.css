@@ -19,7 +19,7 @@
   height: 20px;
   flex: none;
   position: relative;
-  border: 1px solid var(--color-border-hover);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
   background: var(--color-surface-input);
   cursor: inherit;
@@ -27,6 +27,7 @@
 }
 
 .vv-checkbox__input:hover:not(:disabled) { border-color: var(--color-text-primary); }
+.vv-checkbox__input:active:not(:disabled):not(:checked):not(:indeterminate) { background: var(--color-surface-hover); }
 
 .vv-checkbox__input:checked,
 .vv-checkbox__input:indeterminate {

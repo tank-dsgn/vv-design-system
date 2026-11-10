@@ -1,7 +1,7 @@
 /* Blocks for the Foundations pages. Each one renders straight from tokens.css
    (via tokens.ts), so a page shows what components actually get. */
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
-import { ICONS, type IconName } from "../icons/icons.js"
+import { ICONS, ICONS_FILLED, type IconName } from "../icons/icons.js"
 import { Icon } from "../components/Icon.js"
 import { Field, Input } from "../components/Input.js"
 import { IconDetails } from "./IconDetails.js"
@@ -114,8 +114,11 @@ const CONTRAST_PAIRS: Record<"text" | "controls" | "status", [string, string][]>
     ["text-primary", "background-primary"],
     ["text-secondary", "background-primary"],
     ["text-accent", "background-primary"],
-    ["text-danger", "background-primary"],
+    ["text-faint", "background-primary"],
+    ["text-critical", "background-primary"],
     ["text-success", "background-primary"],
+    ["text-warning", "background-primary"],
+    ["text-info", "background-primary"],
     ["text-primary", "surface-raised"],
     ["text-secondary", "surface-raised"],
     ["text-primary", "surface-sunken"],
@@ -126,7 +129,7 @@ const CONTRAST_PAIRS: Record<"text" | "controls" | "status", [string, string][]>
     ["text-on-accent", "accent"],
     ["text-on-accent-subtle", "accent-subtle"],
     ["text-primary", "button-secondary"],
-    ["text-on-accent", "button-danger"],
+    ["text-on-accent", "button-destructive"],
   ],
   status: [
     ...["neutral", "info", "success", "attention", "warning", "critical"].map((t): [string, string] => [`status-${t}-on-subtle`, `status-${t}-subtle`]),
@@ -178,14 +181,16 @@ export function ContrastPairs({ group }: { group: keyof typeof CONTRAST_PAIRS })
   )
 }
 
-/** Every ramp as one strip. Hover a step for its hex value. */
+/** Text on a swatch: dark on light steps, white on dark ones, by the swatch's luminance. */
+function inkOn(hex: string) {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "rgb(0 0 0 / 0.8)" : "#fff"
+}
+
+/** Every ramp as one row of swatches, each with its step and hex, as in Figma. A phone shows a plain strip. */
 export function PrimitiveRamps({ only }: { only?: string[] }) {
   return (
     <div className="vvd vvd-ramps">
-      <div className="vvd-ramp vvd-ramp--head" aria-hidden="true">
-        <span />
-        <div className="vvd-ramp__steps">{STEPS.map((s) => <span key={s}>{s}</span>)}</div>
-      </div>
       {(only ?? RAMPS.filter((r) => r !== tailwindStep("var(--brand-50)")?.replace(/-\d+$/, ""))).map((r) => (
         <div key={r} className="vvd-ramp">
           <span className="vvd-ramp__name">
@@ -195,7 +200,13 @@ export function PrimitiveRamps({ only }: { only?: string[] }) {
           <div className="vvd-ramp__steps">
             {STEPS.map((s) => {
               const v = lightTokens.find((t) => t.name === `--${r}-${s}`)?.value
-              return <span key={s} className="vvd-ramp__chip" style={{ background: v }} title={`${r}-${s} ${rawValue(v)}`} />
+              const hex = rawValue(v).toUpperCase()
+              return (
+                <span key={s} className="vvd-ramp__chip" style={{ background: v, color: /^#[0-9A-F]{6}$/.test(hex) ? inkOn(hex) : undefined }} title={`${r}-${s} ${hex}`}>
+                  <b>{s}</b>
+                  <span>{hex.replace("#", "")}</span>
+                </span>
+              )
             })}
           </div>
           <div className="vvd-ramp__ends" aria-hidden="true"><span>50</span><span>500</span><span>950</span></div>
@@ -428,10 +439,12 @@ export function RadiusScale() {
 }
 
 const BORDERS: { token: string; use: string; width?: number }[] = [
-  { token: "--color-border-default", use: "Inputs, cards, dividers" },
-  { token: "--color-border-hover", use: "An input under the pointer" },
+  { token: "--color-border-default", use: "Cards, dividers, panels" },
+  { token: "--color-border-hover", use: "A card under the pointer" },
+  { token: "--color-border-strong", use: "Inputs, checkboxes, radios: 3:1 on their ground" },
+  { token: "--color-border-strong-hover", use: "An input under the pointer" },
   { token: "--color-border-disabled", use: "A disabled input" },
-  { token: "--color-border-danger", use: "An invalid input" },
+  { token: "--color-border-critical", use: "An invalid input" },
   { token: "--color-border-accent", use: "A selected row" },
   { token: "--color-border-focus", use: "Focus, on every control", width: 2 },
 ]
@@ -566,12 +579,47 @@ export function MotionInUse() {
   )
 }
 
-export function TokenList({ prefix }: { prefix: string }) {
+const Z_USE: Record<string, string> = {
+  "--z-dropdown": "Menus, popovers, selects, comboboxes",
+  "--z-overlay": "The dim layer behind a modal or drawer",
+  "--z-modal": "Modals and drawers",
+  "--z-tooltip": "Tooltips, above a modal",
+  "--z-toast": "Toasts, above everything",
+}
+
+/** Stacking order as in Figma: each level is one more card on the pile. */
+export function ZLayers() {
   return (
-    <table className="vvd vvd-table">
+    <table className="vvd vvd-table vvd-zlayers">
+      <thead><tr><th>Token</th><th className="vvd-hide-sm">Value</th><th>Usage</th><th>Preview</th></tr></thead>
+      <tbody>
+        {byPrefix("--z-").map((t, i) => (
+          <tr key={t.name}>
+            <td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td>
+            <td className="vvd-hide-sm"><span className="mono">{t.value}</span></td>
+            <td>{Z_USE[t.name]}</td>
+            <td>
+              <div className="vvd-zstack" aria-hidden="true">
+                {Array.from({ length: i + 1 }, (_, k) => (
+                  <span key={k} data-top={k === i || undefined} style={{ left: (96 - 40 - i * 8) / 2 + k * 8, bottom: (80 - 28 - i * 6) / 2 + k * 6 }} />
+                ))}
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
+/** One table for one or more prefixes. The token column has a fixed width, so
+    every token table on a page lines its values up in the same place. */
+export function TokenList({ prefix }: { prefix: string | string[] }) {
+  return (
+    <table className="vvd vvd-table vvd-token-list">
       <thead><tr><th>Token</th><th>Value</th></tr></thead>
       <tbody>
-        {byPrefix(prefix).map((t) => (
+        {[prefix].flat().flatMap((p) => byPrefix(p)).map((t) => (
           <tr key={t.name}><td><code className="vvd-name">{t.name.replace(/^--/, "")}</code></td><td><span className="mono">{primitiveOf(t.value) ? `${primitiveOf(t.value)}, ${rawValue(t.value)}` : t.value}</span></td></tr>
         ))}
       </tbody>
@@ -584,6 +632,7 @@ export function TokenList({ prefix }: { prefix: string }) {
 export function IconGallery() {
   const [q, setQ] = useState("")
   const [size, setSize] = useState<16 | 20 | 24>(24)
+  const [filled, setFilled] = useState(false)
   const [open, setOpen] = useState<IconName | null>(null)
   const [stuck, setStuck] = useState(false)
   const sentinel = useRef<HTMLDivElement>(null)
@@ -595,6 +644,12 @@ export function IconGallery() {
     return () => io.disconnect()
   }, [])
   const names = (Object.keys(ICONS) as IconName[]).filter((n) => n.includes(q.trim().toLowerCase()))
+  const tile = (n: IconName) => (
+    <button key={n} className="vvd-icon" aria-haspopup="dialog" onClick={() => setOpen(n)}>
+      <Icon name={n} size={size} filled={filled} />
+      <span>{n}</span>
+    </button>
+  )
   return (
     <div className="vvd">
       <div ref={sentinel} aria-hidden="true" />
@@ -624,21 +679,23 @@ export function IconGallery() {
           ))}
         </div>
         <span className="vvd-hide-sm" style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>Click an icon for its details</span>
+        <div role="radiogroup" aria-label="Icon style" className="vvd-icons-sizes vvd-icons-styles">
+          {([false, true] as const).map((f) => (
+            <button
+              key={String(f)}
+              role="radio"
+              aria-checked={filled === f}
+              onClick={() => setFilled(f)}
+              className="vvd-icon"
+              style={{ height: 32, flexDirection: "row", border: `1px solid var(${filled === f ? "--color-accent" : "--color-border-default"})`, borderRadius: "var(--radius-lg)", background: filled === f ? "var(--color-accent-subtle)" : undefined, color: filled === f ? "var(--color-text-on-accent-subtle)" : undefined }}
+            >
+              {f ? "Filled" : "Outlined"}
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="vvd-icons">
-        {names.map((n) => (
-          <button
-            key={n}
-            className="vvd-icon"
-            aria-haspopup="dialog"
-            onClick={() => setOpen(n)}
-          >
-            <Icon name={n} size={size} />
-            <span>{n}</span>
-          </button>
-        ))}
-      </div>
-      <IconDetails name={open} initialSize={size} onPick={setOpen} onClose={() => setOpen(null)} />
+      <div className="vvd-icons">{names.map(tile)}</div>
+      <IconDetails name={open} initialSize={size} filled={filled} onPick={setOpen} onClose={() => setOpen(null)} />
       {names.length === 0 && <p style={{ color: "var(--color-text-secondary)" }}>No icon matches “{q}”.</p>}
     </div>
   )

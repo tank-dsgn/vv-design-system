@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react"
 import { IconButton } from "./IconButton.js"
+import { Icon } from "./Icon.js"
 import "./Calendar.css"
 
 export type CalendarProps = {
@@ -21,11 +22,7 @@ const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDat
 const sameDay = (a?: Date | null, b?: Date | null) => !!a && !!b && a.toDateString() === b.toDateString()
 const addMonths = (d: Date, n: number) => new Date(d.getFullYear(), d.getMonth() + n, Math.min(d.getDate(), 28))
 
-const Chevron = ({ dir }: { dir: "left" | "right" }) => (
-  <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true" focusable="false">
-    <path d={dir === "left" ? "M12.5 15l-5-5 5-5" : "M7.5 5l5 5-5 5"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
+const Chevron = ({ dir }: { dir: "left" | "right" }) => <Icon name={dir === "left" ? "chevron-left" : "chevron-right"} />
 
 /** A month grid for picking one date. Follows the WAI-ARIA date grid:
  *  arrows move by day and week, Home/End to the week's start and end,

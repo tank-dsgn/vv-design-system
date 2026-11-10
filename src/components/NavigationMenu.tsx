@@ -39,7 +39,7 @@ export function NavigationMenu({ label, entries }: NavigationMenuProps) {
               <>
                 <button type="button" className="vv-navmenu__top" aria-expanded={open === e.label} onClick={() => setOpen(open === e.label ? null : e.label)}>
                   {e.label}
-                  <Icon name="chevron-down-sm" size={16} />
+                  <Icon name="chevron-down" size={16} />
                 </button>
                 {open === e.label && (
                   <ul className="vv-navmenu__panel">

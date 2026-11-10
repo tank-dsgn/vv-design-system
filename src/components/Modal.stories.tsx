@@ -10,9 +10,9 @@ const meta = {
   title: "Components/Overlays/Modal",
   tags: ["!dev"],
   component: Modal,
-  args: { open: false, title: "Delete shipment?", onClose: () => {}, size: "small", placement: "center" },
+  args: { open: false, title: "Delete shipment?", onClose: () => {}, size: "sm", placement: "center" },
   argTypes: {
-    size: { control: "inline-radio", options: ["small", "large", "fullscreen"] },
+    size: { control: "inline-radio", options: ["sm", "lg", "fullscreen"] },
     placement: { control: "inline-radio", options: ["center", "right"] },
     footer: { control: false },
     headerActions: { control: false },
@@ -71,7 +71,7 @@ export const Form: Story = {
         <Button onClick={() => setOpen(true)}>Add stop</Button>
         <Modal
           open={open}
-          size="large"
+          size="lg"
           title="Add a stop"
           onClose={() => setOpen(false)}
           footer={<><Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button><Button onClick={() => setOpen(false)}>Add stop</Button></>}
@@ -108,13 +108,13 @@ export const Sizes: Story = {
     const [size, setSize] = useState<ModalSize | null>(null)
     return (
       <>
-        <Row>{(["small", "large", "fullscreen"] as const).map((s) => <Button key={s} variant="outlined" onClick={() => setSize(s)}>Open {s}</Button>)}</Row>
+        <Row>{(["sm", "lg", "fullscreen"] as const).map((s) => <Button key={s} variant="outlined" onClick={() => setSize(s)}>Open {s}</Button>)}</Row>
         <Reasons label="Size" rows={[
-          ["small · 384", "Confirmations", "Narrow enough to read in one glance; nothing else fits, which keeps it honest."],
-          ["large · 672", "Short forms", "One comfortable column of fields. Longer than a screen means it should be a page."],
+          ["sm · 384", "Confirmations", "Narrow enough to read in one glance; nothing else fits, which keeps it honest."],
+          ["lg · 672", "Short forms", "One comfortable column of fields. Longer than a screen means it should be a page."],
           ["fullscreen · 1024", "Focused tasks with their own structure", "For previews and multi-part tasks, where the page behind would only distract."],
         ]} />
-        <Modal open={size !== null} size={size ?? "small"} title={`${size} modal`} onClose={() => setSize(null)} footer={<Button onClick={() => setSize(null)}>Done</Button>}>
+        <Modal open={size !== null} size={size ?? "sm"} title={`${size} modal`} onClose={() => setSize(null)} footer={<Button onClick={() => setSize(null)}>Done</Button>}>
           Content area. The width is fixed per size; the height follows the content up to the viewport.
         </Modal>
       </>

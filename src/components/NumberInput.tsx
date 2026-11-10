@@ -1,6 +1,7 @@
 import { useId, type KeyboardEvent } from "react"
 import { IconButton } from "./IconButton.js"
 import { InlineMessage } from "./InlineMessage.js"
+import { Icon } from "./Icon.js"
 import "./NumberInput.css"
 
 export type NumberInputProps = {
@@ -18,11 +19,7 @@ export type NumberInputProps = {
   size?: "sm" | "md"
 }
 
-const Glyph = ({ d }: { d: string }) => (
-  <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
-    <path d={d} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-  </svg>
-)
+
 
 /** An exact number with a step — quantity, pallets, weight. Arrows and
  *  the − / + buttons step by `step`; the value is clamped to min and max.
@@ -42,7 +39,7 @@ export function NumberInput({ label, value, onChange, min = -Infinity, max = Inf
     <div className="vv-number">
       <label htmlFor={id} className="vv-number__label">{label}</label>
       <div className={`vv-number__field vv-number__field--${size}${error ? " vv-number__field--invalid" : ""}${disabled ? " vv-number__field--disabled" : ""}`}>
-        <IconButton variant="ghost" size={size === "md" ? "sm" : "xs"} icon={<Glyph d="M3.5 8h9" />} label={`Decrease ${label}`} disabled={disabled || value <= min} onClick={() => set(value - step)} tabIndex={-1} />
+        <IconButton variant="ghost" size={size === "md" ? "sm" : "xs"} icon={<Icon name="minus" size={16} />} label={`Decrease ${label}`} disabled={disabled || value <= min} onClick={() => set(value - step)} tabIndex={-1} />
         <input
           id={id}
           role="spinbutton"
@@ -60,10 +57,10 @@ export function NumberInput({ label, value, onChange, min = -Infinity, max = Inf
           onChange={(e) => set(Number(e.target.value.replace(",", ".")))}
         />
         {unit && <span className="vv-number__unit" aria-hidden="true">{unit}</span>}
-        <IconButton variant="ghost" size={size === "md" ? "sm" : "xs"} icon={<Glyph d="M3.5 8h9M8 3.5v9" />} label={`Increase ${label}`} disabled={disabled || value >= max} onClick={() => set(value + step)} tabIndex={-1} />
+        <IconButton variant="ghost" size={size === "md" ? "sm" : "xs"} icon={<Icon name="plus" size={16} />} label={`Increase ${label}`} disabled={disabled || value >= max} onClick={() => set(value + step)} tabIndex={-1} />
       </div>
       {hint && !error && <span id={`${id}-hint`} className="vv-number__hint">{hint}</span>}
-      {error && <div id={`${id}-error`}><InlineMessage tone="error">{error}</InlineMessage></div>}
+      {error && <div id={`${id}-error`}><InlineMessage tone="critical">{error}</InlineMessage></div>}
     </div>
   )
 }

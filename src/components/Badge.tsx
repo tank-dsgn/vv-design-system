@@ -20,7 +20,7 @@ export type BadgeTone =
   | "warning"
   | "critical"
 
-export type BadgeSize = "medium" | "large"
+export type BadgeSize = "md" | "lg"
 
 export type BadgeProps = {
   tone?: BadgeTone
@@ -37,7 +37,7 @@ export type BadgeProps = {
 
 export function Badge({
   tone = "neutral",
-  size = "medium",
+  size = "md",
   strong = false,
   dot = false,
   icon,

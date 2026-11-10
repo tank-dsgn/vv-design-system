@@ -77,7 +77,7 @@ export function ChoiceList({
           )
         })}
       </div>
-      {error && <div id={errorId}><InlineMessage tone="error">{error}</InlineMessage></div>}
+      {error && <div id={errorId}><InlineMessage tone="critical">{error}</InlineMessage></div>}
     </fieldset>
   )
 }

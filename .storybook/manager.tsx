@@ -3,7 +3,7 @@ import { flushSync } from "react-dom"
 import { createRoot } from "react-dom/client"
 import { addons, type API } from "storybook/manager-api"
 import { MobileMenu, PanelButton } from "./mobile-menu"
-import { navLabel } from "./nav-icons"
+import { NavIcon, navLabel } from "./nav-icons"
 import { Rail } from "./rail"
 import { mountSearch } from "./search"
 import { vvTheme, vvThemeDark } from "./theme"
@@ -34,18 +34,6 @@ const KEY = "vv-theme"
 const readTheme = () => {
   try { return localStorage.getItem(KEY) } catch { return null }
 }
-
-const Sun = () => (
-  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" aria-hidden="true">
-    <circle cx="8" cy="8" r="3" />
-    <path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1" />
-  </svg>
-)
-const Moon = () => (
-  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M13.5 9.6A5.5 5.5 0 1 1 6.4 2.5a4.5 4.5 0 0 0 7.1 7.1Z" />
-  </svg>
-)
 
 /** Gives every preview, nested ones too, the theme at once instead of waiting for the storage event. */
 function applyToPreviews(dark: boolean, doc: Document = document) {
@@ -145,7 +133,7 @@ function Header({ api }: { api: API }) {
         title={label}
         onClick={() => setTheme(!dark)}
       >
-        {dark ? <Sun /> : <Moon />}
+        {dark ? <NavIcon name="sun" size={18} /> : <NavIcon name="moon" size={18} />}
       </button>
       <PanelButton open={drawer} onClick={() => setDrawer(!drawer)} />
       <MobileMenu api={api} open={drawer} path={path} section={section} onClose={closeDrawer} sections={LINKS} />

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Icon } from "./Icon.js"
 import "./Breadcrumbs.css"
 
 export type Crumb = { label: string; href?: string }
@@ -11,9 +12,7 @@ export type BreadcrumbsProps = {
 }
 
 const Sep = () => (
-  <svg className="vv-crumbs__sep" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
-    <path d="m6 4 4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
+  <span className="vv-crumbs__sep" aria-hidden="true"><Icon name="chevron-right" size={16} /></span>
 )
 
 /** Where the page sits in the hierarchy, with a way back up. */

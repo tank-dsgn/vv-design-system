@@ -48,10 +48,10 @@
 .vv-button--secondary:disabled { background: var(--color-button-secondary-disabled); color: var(--color-text-disabled); }
 
 /* --- destructive --- */
-.vv-button--destructive { background: var(--color-button-danger); color: var(--color-text-on-accent); }
-.vv-button--destructive:hover:not(:disabled) { background: var(--color-button-danger-hover); }
-.vv-button--destructive:active:not(:disabled) { background: var(--color-button-danger-pressed); }
-.vv-button--destructive:disabled { background: var(--color-button-danger-disabled); }
+.vv-button--destructive { background: var(--color-button-destructive); color: var(--color-text-on-accent); }
+.vv-button--destructive:hover:not(:disabled) { background: var(--color-button-destructive-hover); }
+.vv-button--destructive:active:not(:disabled) { background: var(--color-button-destructive-pressed); }
+.vv-button--destructive:disabled { background: var(--color-button-destructive-disabled); }
 
 /* --- outlined --- */
 .vv-button--outlined {

@@ -23,8 +23,8 @@
   transition: background-color var(--duration-fast);
 }
 
-.vv-switch__input--sm { width: 28px; height: 16px; }
-.vv-switch__input--lg { width: 52px; height: 24px; }
+.vv-switch__input--sm { width: var(--space-32); height: var(--space-16); }
+.vv-switch__input--lg { width: var(--space-48); height: var(--space-24); }
 
 /* The knob is a pseudo-element so the whole control stays one element in the
    accessibility tree — a real checkbox, not a div pretending to be one. */
@@ -38,12 +38,12 @@
   transition: transform var(--duration-fast);
 }
 
-.vv-switch__input--sm::after { width: 12px; height: 12px; }
-.vv-switch__input--lg::after { width: 20px; height: 20px; }
+.vv-switch__input--sm::after { width: var(--space-12); height: var(--space-12); }
+.vv-switch__input--lg::after { width: var(--space-20); height: var(--space-20); }
 
 .vv-switch__input:checked { background: var(--color-accent); }
-.vv-switch__input--sm:checked::after { transform: translateX(12px); }
-.vv-switch__input--lg:checked::after { transform: translateX(28px); }
+.vv-switch__input--sm:checked::after { transform: translateX(var(--space-16)); }
+.vv-switch__input--lg:checked::after { transform: translateX(var(--space-24)); }
 
 .vv-switch__input:hover:not(:disabled):not(:checked) { background: var(--color-text-secondary); }
 .vv-switch__input:hover:not(:disabled):checked { background: var(--color-accent-hover); }

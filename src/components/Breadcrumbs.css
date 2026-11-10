@@ -1,6 +1,6 @@
 .vv-crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin: 0; padding: 0; list-style: none; font-family: var(--font-sans); font-size: var(--text-body-size); line-height: var(--text-body-line-height); }
 .vv-crumbs li { display: inline-flex; align-items: center; gap: var(--space-4); min-width: 0; }
-.vv-crumbs__sep { color: var(--color-text-faint); flex: none; }
+.vv-crumbs__sep { display: inline-flex; color: var(--color-text-faint); flex: none; }
 .vv-crumbs__link, .vv-crumbs__fold {
   color: var(--color-text-secondary);
   text-decoration: none;

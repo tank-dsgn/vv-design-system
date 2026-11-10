@@ -4,7 +4,7 @@
 .vv-timeline__dot { flex: none; width: 12px; height: 12px; margin-top: var(--space-4); border-radius: var(--radius-full); background: var(--color-background-primary); border: 2px solid var(--color-border-hover); box-sizing: border-box; }
 .vv-timeline__event[data-tone="accent"] .vv-timeline__dot { border-color: var(--color-accent); background: var(--color-accent); }
 .vv-timeline__event[data-tone="success"] .vv-timeline__dot { border-color: var(--color-text-success); background: var(--color-text-success); }
-.vv-timeline__event[data-tone="critical"] .vv-timeline__dot { border-color: var(--color-text-danger); background: var(--color-text-danger); }
+.vv-timeline__event[data-tone="critical"] .vv-timeline__dot { border-color: var(--color-text-critical); background: var(--color-text-critical); }
 .vv-timeline__body { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; flex: 1; }
 .vv-timeline__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4) var(--space-12); }
 .vv-timeline__title { font-size: var(--text-label-size); line-height: var(--text-label-line-height); font-weight: var(--text-label-weight); color: var(--color-text-primary); }

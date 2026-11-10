@@ -9,7 +9,7 @@ const meta = {
   component: FileItem,
   tags: ["new", "!dev"],
   args: { name: "CMR-4417.pdf", size: 482000, status: "done", progress: 60, onRemove: () => {} },
-  argTypes: { status: { control: "inline-radio", options: ["uploading", "done", "error"] }, progress: { control: { type: "range", min: 0, max: 100 } } },
+  argTypes: { status: { control: "inline-radio", options: ["uploading", "done", "failed"] }, progress: { control: { type: "range", min: 0, max: 100 } } },
   parameters: {
     docs: {
       description: {
@@ -32,7 +32,7 @@ export const States: Story = {
     <Stack gap={8}>
       <FileItem name="packing-list.xlsx" size={36000} status="uploading" progress={42} onRemove={() => {}} />
       <FileItem name="CMR-4417.pdf" size={482000} status="done" onRemove={() => {}} />
-      <FileItem name="dock-photo.jpg" size={8400000} status="error" error="Larger than 5 MB" onRemove={() => {}} onRetry={() => {}} />
+      <FileItem name="dock-photo.jpg" size={8400000} status="failed" error="Larger than 5 MB" onRemove={() => {}} onRetry={() => {}} />
     </Stack>
   ),
 }

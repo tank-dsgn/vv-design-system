@@ -117,7 +117,7 @@ const preview: Preview = {
       storySort: {
         order: [
           "Foundations",
-          ["Tokens", "Colors", "Typography", "Spacing & Size", "Border and Corner", "Shadows & Elevation", "Breakpoints & Grids", "Motion", "Icons", "Theme mode", "Theming"],
+          ["Tokens", "Colors", "Typography", "Spacing & Size", "Border and Corner", "Shadows & Elevation", "Breakpoints & Grids", "Motion", "Icons", "Theming"],
           "Components",
           ["Actions", "Forms", "Navigation", "Feedback", "Overlays", "Content", "Data"],
         ],

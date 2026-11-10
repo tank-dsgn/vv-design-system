@@ -32,8 +32,8 @@
 }
 
 /* Widths from Figma: Width/w-96, w-2xl, w-5xl. */
-.vv-modal--small { max-width: 384px; }
-.vv-modal--large { max-width: 672px; }
+.vv-modal--sm { max-width: 384px; }
+.vv-modal--lg { max-width: 672px; }
 .vv-modal--fullscreen { max-width: 1024px; }
 
 .vv-modal__header {

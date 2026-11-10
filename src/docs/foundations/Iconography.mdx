@@ -1,28 +1,26 @@
 import { Meta, Unstyled } from "@storybook/addon-docs/blocks"
-import { IconGallery, Rules } from "../blocks"
+import { IconGallery } from "../blocks"
 
 <Meta title="Foundations/Icons" />
 
 # Icons
 
-Our own set plus the whole [Lucide](https://lucide.dev) library, free for any use under the ISC licence, in one outline style at one stroke. Rendered on a 20px grid at three sizes: **16px** inside compact
-controls and badges, **20px** — the default — in buttons, inputs and navigation, **24px** for
-standalone and empty-state icons. Icons take the colour of the text next to them, so they follow
-every state and both themes without a colour prop.
-
+Our 147 icons are drawn by [Phosphor](https://phosphoricons.com) (MIT) in two styles of the same drawing:
+**Outlined**, the default, and **Filled** for a selected or active state — a starred item, the current
+tab.
+Icons render at three sizes:
+**16px** inside compact controls and badges, **20px** — the default — in buttons, inputs and navigation,
+**24px** for standalone and empty-state icons. Icons take the colour of the text next to them, so they
+follow every state and both themes without a colour prop.
 
 ```tsx
 <Icon name="search" />                 {/* decorative: hidden from screen readers */}
 <Icon name="warning" label="Warning" />  {/* the only carrier of meaning: named */}
+<Icon name="bookmark" filled />         {/* the Filled style: selected or active */}
 ```
 
-<Unstyled>
-<Rules items={[
-  { kind: "do", title: "pair an icon with a label", text: "An icon next to text is decoration and stays silent. An icon alone — in an icon button — gets an accessible name." },
-  { kind: "dont", title: "mix sizes in one row", text: "One row, one size. 16 next to 20 reads as a mistake." },
-]} />
-</Unstyled>
-
 ## Library
+
+Every icon is drawn in both styles; switching the style keeps each one in its place. An icon the set lacks is added from Phosphor's library, about 1,500 to pick from: see `scripts/README-icons.md`.
 
 <Unstyled><IconGallery /></Unstyled>

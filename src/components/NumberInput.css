@@ -3,15 +3,15 @@
 .vv-number__field {
   display: inline-flex; align-items: center; gap: var(--space-4);
   width: fit-content; padding: 0 var(--space-4);
-  border: 1px solid var(--color-border-default); border-radius: var(--corner-control);
+  border: 1px solid var(--color-border-strong); border-radius: var(--corner-control);
   background: var(--color-surface-input);
   transition: border-color var(--duration-fast);
 }
 .vv-number__field--md { height: var(--size-control-md); }
 .vv-number__field--sm { height: var(--size-control-sm); }
-.vv-number__field:hover:not(.vv-number__field--disabled):not(:focus-within) { border-color: var(--color-border-hover); }
+.vv-number__field:hover:not(.vv-number__field--disabled):not(:focus-within) { border-color: var(--color-border-strong-hover); }
 .vv-number__field:focus-within { border-color: var(--color-border-focus); box-shadow: inset 0 0 0 1px var(--color-border-focus); }
-.vv-number__field--invalid { border-color: var(--color-border-danger); }
+.vv-number__field--invalid { border-color: var(--color-border-critical); }
 .vv-number__field--disabled { border-color: var(--color-border-disabled); }
 .vv-number__input {
   width: 6ch; border: 0; background: none; padding: 0; text-align: center;

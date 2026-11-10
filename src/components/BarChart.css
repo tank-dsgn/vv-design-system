@@ -10,7 +10,7 @@
   color: var(--color-text-secondary);
 }
 .vv-bar__legend li { display: inline-flex; align-items: center; gap: var(--space-4); }
-.vv-bar__swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.vv-bar__swatch { width: 10px; height: 10px; border-radius: var(--radius-xs); flex: none; }
 
 .vv-bar__svg { display: block; width: 100%; overflow: visible; }
 .vv-bar__grid { stroke: var(--color-chart-grid); stroke-width: 1; }

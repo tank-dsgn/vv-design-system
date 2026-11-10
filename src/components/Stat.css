@@ -31,4 +31,4 @@
 }
 
 .vv-stat__note--good { color: var(--color-text-success); }
-.vv-stat__note--bad { color: var(--color-text-danger); }
+.vv-stat__note--bad { color: var(--color-text-critical); }

@@ -1,4 +1,8 @@
-/* Inline message. Figma: message=error | success | warning | information | hint */
+/* Inline message. Figma: tone=critical | success | warning | info | neutral
+
+   The message sits on the page, not on a tinted panel, so it reads the text
+   tokens. The status on-subtle colours are for words inside a Banner or a
+   Badge, where they sit on that status tint. */
 
 .vv-inline-message {
   display: flex;
@@ -9,11 +13,14 @@
   line-height: var(--text-body-line-height);
 }
 
-.vv-inline-message--error       { color: var(--color-status-critical-on-subtle); }
-.vv-inline-message--success     { color: var(--color-status-success-on-subtle); }
-.vv-inline-message--warning     { color: var(--color-status-warning-on-subtle); }
-.vv-inline-message--information { color: var(--color-status-info-on-subtle); }
-.vv-inline-message--hint        { color: var(--color-text-secondary); }
+.vv-inline-message--critical    { color: var(--color-text-critical); }
+.vv-inline-message--success     { color: var(--color-text-success); }
+.vv-inline-message--warning     { color: var(--color-text-warning); }
+.vv-inline-message--info        { color: var(--color-text-info); }
+.vv-inline-message--neutral     { color: var(--color-text-secondary); }
 
 .vv-inline-message__icon { flex: none; line-height: inherit; }
+.vv-inline-message--critical .vv-inline-message__icon { color: var(--color-icon-critical); }
 .vv-inline-message--success .vv-inline-message__icon { color: var(--color-icon-success); }
+.vv-inline-message--warning .vv-inline-message__icon { color: var(--color-icon-warning); }
+.vv-inline-message--info .vv-inline-message__icon { color: var(--color-icon-info); }

@@ -24,7 +24,7 @@
 .vv-accordion__trigger:hover:not(:disabled) { background: var(--color-surface-hover); }
 .vv-accordion__trigger:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: -2px; }
 .vv-accordion__trigger:disabled { color: var(--color-text-disabled); cursor: not-allowed; }
-.vv-accordion__chevron { flex: none; color: var(--color-icon-secondary); transition: transform var(--duration-fast) var(--ease-out); }
+.vv-accordion__chevron { display: inline-flex; flex: none; color: var(--color-icon-secondary); transition: transform var(--duration-fast) var(--ease-out); }
 .vv-accordion__item[data-open] .vv-accordion__chevron { transform: rotate(180deg); }
 .vv-accordion__panel { padding: 0 var(--space-4) var(--space-16); font-size: var(--text-body-size); line-height: var(--text-body-line-height); color: var(--color-text-secondary); }
 

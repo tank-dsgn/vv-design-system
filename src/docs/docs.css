@@ -92,6 +92,8 @@
 .vvd-table .mono { color: var(--color-text-secondary); }
 .vvd-table .vvd-name { color: var(--color-text-primary); font-weight: var(--font-weight-medium); }
 @media (max-width: 600px) { .vvd-table .vvd-hide-sm { display: none; } }
+.vvd-token-list { table-layout: fixed; }
+.vvd-token-list th:first-child { width: 50%; }
 
 .vvd-swatch {
   display: block;
@@ -105,23 +107,23 @@
 .vvd-swatch--pair > span { flex: 1; height: var(--space-32); }
 
 /* Primitive ramps: one strip per ramp */
-.vvd-ramps { display: flex; flex-direction: column; gap: var(--space-4); margin: var(--space-16) 0 var(--space-32); }
-.vvd-ramp { display: grid; grid-template-columns: 72px 1fr; gap: var(--space-12); align-items: center; }
-.vvd-ramp__name { font-size: var(--font-size-sm); line-height: var(--line-height-sm); }
-.vvd-ramp__name small { display: block; font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-secondary); }
-.vvd-ramp__steps { display: grid; grid-template-columns: repeat(11, 1fr); gap: var(--space-2); }
-.vvd-ramp__chip { height: var(--space-24); border-radius: var(--radius-sm); }
-.vvd-ramp--head .vvd-ramp__steps span { font-family: var(--font-mono); font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-secondary); text-align: center; }
+.vvd-ramps { display: flex; flex-direction: column; gap: var(--space-16); margin: var(--space-16) 0 var(--space-32); container-type: inline-size; }
+.vvd-ramp { display: flex; flex-direction: column; gap: var(--space-6); }
+.vvd-ramp__name { display: flex; align-items: baseline; gap: var(--space-8); font-size: var(--font-size-sm); line-height: var(--line-height-sm); font-weight: var(--font-weight-medium); }
+.vvd-ramp__name small { font-size: var(--font-size-xs); line-height: var(--line-height-xs); font-weight: var(--font-weight-normal); color: var(--color-text-secondary); }
+/* Below 11 swatches of 56px the hex no longer fits: the step stays, the hex moves to the tooltip. */
+@container (max-width: 650px) { .vvd-ramp__chip span { display: none; } }
+.vvd-ramp__steps { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: var(--space-4); }
+.vvd-ramp__chip { display: flex; flex-direction: column; justify-content: center; gap: var(--space-2); min-width: 0; height: var(--space-56); padding: 0 var(--space-6); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: var(--font-size-xs); line-height: var(--line-height-xs); }
+.vvd-ramp__chip b { font-weight: var(--font-weight-normal); opacity: 0.8; }
+.vvd-ramp__chip span { overflow: hidden; text-overflow: clip; white-space: nowrap; }
 .vvd-ramp__ends { display: none; }
 /* A phone shows each ramp as one strip under its name, labelled at both ends and the middle. */
 @media (max-width: 600px) {
   .vvd-ramps { gap: var(--space-12); }
-  .vvd-ramp.vvd-ramp--head { display: none; }
-  .vvd-ramp { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-4); }
-  .vvd-ramp__name { display: flex; align-items: baseline; gap: var(--space-8); font-weight: var(--font-weight-medium); }
-  .vvd-ramp__name small { display: inline; font-weight: var(--font-weight-normal); }
   .vvd-ramp__steps { display: flex; gap: 0; border-radius: var(--radius-md); overflow: hidden; outline: 1px solid var(--color-border-default); outline-offset: -1px; }
-  .vvd-ramp__chip { flex: 1; height: var(--space-32); border-radius: 0; outline: none !important; }
+  .vvd-ramp__chip { flex: 1; height: var(--space-32); padding: 0; border-radius: 0; outline: none !important; }
+  .vvd-ramp__chip > * { display: none; }
   .vvd-ramp__ends { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: var(--font-size-xs); line-height: var(--line-height-xs); color: var(--color-text-secondary); }
 }
 
@@ -190,7 +192,10 @@
   border: 1px solid var(--color-border-default);
 }
 .vvd-tile__shape--shadow { border: 0; border-radius: var(--radius-xl); }
-.vvd-tile__shape--radius { background: var(--color-surface-sunken); }
+/* The tile documents a corner, so only the corner is drawn: a filled shape with
+   no outline, and the top-left quarter traced in accent. */
+.vvd-tile__shape--radius { position: relative; border: 0; background: var(--color-surface-sunken); }
+.vvd-tile__shape--radius::after { content: ""; position: absolute; top: 0; left: 0; width: 50%; height: 50%; box-sizing: border-box; border-top: 2px solid var(--color-accent); border-left: 2px solid var(--color-accent); border-top-left-radius: inherit; }
 .vvd-tile__shape--border { border-style: solid; border-radius: var(--radius-lg); background: var(--color-surface-raised); }
 .vvd-tile p { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 
@@ -201,6 +206,8 @@
 .vvd-icons-find { width: 280px; }
 .vvd-icons-sizes { display: flex; gap: var(--space-4); }
 .vvd-icons-sizes > button { width: var(--space-56); }
+.vvd-icons-styles { margin-left: auto; }
+.vvd-icons-styles > button { width: auto; padding: 0 var(--space-12); }
 /* A phone gives search and the sizes the whole width, the sizes in equal parts. */
 @media (max-width: 600px) {
   .vvd-icons-tools .vvd-hide-sm { display: none; }
@@ -243,7 +250,7 @@
 .vvd-rules { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); margin: var(--space-16) 0 var(--space-32); }
 .vvd-rule { border-top: 2px solid var(--color-border-default); padding-top: var(--space-12); }
 .vvd-rule--do { border-color: var(--color-text-success); }
-.vvd-rule--dont { border-color: var(--color-text-danger); }
+.vvd-rule--dont { border-color: var(--color-text-critical); }
 .vvd-rule b { display: block; margin-bottom: var(--space-4); font-size: var(--font-size-sm); }
 .vvd-rule p { margin: 0; font-size: var(--font-size-sm); line-height: var(--line-height-sm); color: var(--color-text-secondary); }
 @media (max-width: 600px) { .vvd-rules { grid-template-columns: 1fr; } }
@@ -471,3 +478,17 @@ a[aria-label="Copy heading URL to address bar"] svg path { fill: currentColor; }
 .vvd-table-scroll { overflow-x: auto; border-radius: var(--corner-control); }
 .vvd-table-scroll:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 
+
+/* Layers: the stacking order as a pile of cards, one more per level. */
+.vvd-zlayers { table-layout: fixed; }
+.vvd-zlayers th:nth-child(1) { width: 28%; }
+.vvd-zlayers th:nth-child(2) { width: 14%; }
+.vvd-zlayers th:nth-child(4) { width: 120px; }
+/* The pile is drawn like the shadow samples above: raised cards on a sunken ground,
+   one card per layer; the layer the row describes sits on top with the deepest shadow. */
+.vvd-zstack { position: relative; width: 96px; height: 80px; border-radius: var(--radius-lg); background: var(--color-surface-sunken); }
+.vvd-zstack > span { position: absolute; width: 40px; height: 28px; border-radius: var(--radius-md); background: var(--color-surface-raised); box-shadow: var(--shadow-sm); }
+.vvd-zstack > span[data-top] { box-shadow: var(--shadow-lg); }
+.dark .vvd-zstack { background: var(--neutral-900); }
+.dark .vvd-zstack > span { background: var(--neutral-800); }
+@media (max-width: 600px) { .vvd-zlayers th:nth-child(1) { width: 40%; } }

@@ -8,8 +8,8 @@ const meta = {
   title: "Components/Feedback/InlineMessage",
   tags: ["!dev"],
   component: InlineMessage,
-  args: { tone: "error", children: "Add the last two digits of the order number" },
-  argTypes: { tone: { control: "inline-radio", options: ["error", "success", "warning", "information", "hint"] } },
+  args: { tone: "critical", children: "Add the last two digits of the order number" },
+  argTypes: { tone: { control: "inline-radio", options: ["critical", "success", "warning", "info", "neutral"] } },
   parameters: {
     docs: {
       description: {
@@ -25,11 +25,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const TEXT: Record<InlineMessageTone, string> = {
-  error: "Add the last two digits of the order number",
+  critical: "Add the last two digits of the order number",
   success: "Address verified",
   warning: "This address is outside the carrier's usual area",
-  information: "Pickup slots are shown in the warehouse's time zone",
-  hint: "ORD followed by four digits",
+  info: "Pickup slots are shown in the warehouse's time zone",
+  neutral: "ORD followed by four digits",
 }
 
 export const Playground: Story = {}
@@ -39,11 +39,11 @@ export const Tones: Story = {
     <Stack gap={12}>
       {(Object.keys(TEXT) as InlineMessageTone[]).map((t) => <InlineMessage key={t} tone={t}>{TEXT[t]}</InlineMessage>)}
       <Reasons label="Tone" rows={[
-        ["error", "The value blocks the next step", "Announced at once, because it follows something the person just did and silence would go unnoticed."],
+        ["critical", "The value blocks the next step", "Announced at once, because it follows something the person just did and silence would go unnoticed."],
         ["warning", "Allowed, but with a consequence", "Doesn't block, so it doesn't interrupt."],
         ["success", "A check passed", "Only where a check was in doubt. A tick on every field is noise."],
-        ["information", "Context that prevents a mistake", "An icon marks it as a note, not as part of the value."],
-        ["hint", "How to fill the field", "No icon: it's part of the field's quiet furniture, shown before anything has gone wrong."],
+        ["info", "Context that prevents a mistake", "An icon marks it as a note, not as part of the value."],
+        ["neutral", "How to fill the field", "No icon: it's part of the field's quiet furniture, shown before anything has gone wrong."],
       ]} />
     </Stack>
   ),

@@ -57,7 +57,7 @@
 .vv-menu__item:focus-visible { background: var(--color-surface-hover); outline: none; }
 .vv-menu__item:focus-visible { box-shadow: inset 0 0 0 2px var(--color-border-focus); }
 .vv-menu__item:disabled { color: var(--color-text-disabled); cursor: not-allowed; }
-.vv-menu__item--destructive:not(:disabled) { color: var(--color-text-danger); }
+.vv-menu__item--destructive:not(:disabled) { color: var(--color-text-critical); }
 
 .vv-menu__icon { display: inline-flex; color: var(--color-icon-secondary); }
 .vv-menu__item--destructive .vv-menu__icon,

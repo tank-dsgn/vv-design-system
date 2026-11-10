@@ -9,8 +9,8 @@
   animation: vv-spinner-spin var(--duration-spin) linear infinite;
 }
 
-.vv-spinner--sm { width: 20px; height: 20px; }
-.vv-spinner--lg { width: 44px; height: 44px; border-width: 3px; }
+.vv-spinner--sm { width: var(--space-20); height: var(--space-20); }
+.vv-spinner--lg { width: var(--space-48); height: var(--space-48); }
 
 @keyframes vv-spinner-spin { to { transform: rotate(360deg); } }
 
